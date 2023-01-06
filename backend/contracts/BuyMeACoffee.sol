@@ -3,8 +3,10 @@ pragma solidity ^0.8.9;
 
 // Uncomment this line to use console.log
 import "hardhat/console.sol";
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 contract BuyMeACoffee {
+   
    
    struct Memo {
       address from;
