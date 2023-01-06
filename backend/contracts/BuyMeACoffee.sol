@@ -30,6 +30,10 @@ contract BuyMeACoffee {
       priceFeedAddress = _priceFeedAddress;
    }
 
+   function updatePriceFeed () public{
+      priceFeed = AggregatorV3Interface(priceFeedAddress);
+   }
+
    function setPriceFeedAddress() public view returns(address){
       return priceFeedAddress;
    }
