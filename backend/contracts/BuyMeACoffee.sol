@@ -6,4 +6,15 @@ import "hardhat/console.sol";
 
 contract BuyMeACoffee {
    
+   struct Memo {
+      address from;
+      uint256 timestamp;
+      string name;
+      string message;
+      uint256 price_in_usd;
+   }
+
+   Memo[] memos;
+
+   address payable owner;
 }
