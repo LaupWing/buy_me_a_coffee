@@ -17,7 +17,7 @@ contract BuyMeACoffee {
 
    Memo[] memos;
    AggregatorV3Interface internal priceFeed;
-   address priceFeedAddress;
+   address private priceFeedAddress;
    address payable owner;
 
    constructor(address _priceFeedAddress) {
@@ -29,4 +29,9 @@ contract BuyMeACoffee {
    function setPriceFeedAddress (address _priceFeedAddress) public{
       priceFeedAddress = _priceFeedAddress;
    }
+
+   function setPriceFeedAddress() public view returns(address){
+      return priceFeedAddress;
+   }
 }
+ 
