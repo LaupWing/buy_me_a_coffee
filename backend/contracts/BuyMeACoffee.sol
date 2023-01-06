@@ -7,7 +7,6 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 contract BuyMeACoffee {
    
-   
    struct Memo {
       address from;
       uint256 timestamp;
@@ -17,10 +16,17 @@ contract BuyMeACoffee {
    }
 
    Memo[] memos;
-
+   AggregatorV3Interface internal priceFeed;
+   address priceFeedAddress;
    address payable owner;
 
-   constructor() {
+   constructor(address _priceFeedAddress) {
+      priceFeedAddress = _priceFeedAddress;
+      priceFeed = AggregatorV3Interface(priceFeedAddress);
       owner = payable(msg.sender);
+   }
+
+   function setPriceFeedAddress (address _priceFeedAddress) public{
+      priceFeedAddress = _priceFeedAddress;
    }
 }
