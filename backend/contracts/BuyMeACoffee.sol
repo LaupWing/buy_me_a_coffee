@@ -24,8 +24,8 @@ contract BuyMeACoffee {
       uint256 price_in_usd;
    }
 
-   Memo[] memos;
-   Items[] items;
+   Memo[] private memos;
+   Items[] private items;
    AggregatorV3Interface internal priceFeed;
    address private priceFeedAddress;
    address payable owner;
