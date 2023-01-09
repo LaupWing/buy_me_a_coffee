@@ -25,6 +25,7 @@ contract BuyMeACoffee {
    struct Items {
       string[] names;
       uint256 cost;
+      uint256 index;
    }
 
    modifier onlyOwner(){
@@ -39,6 +40,7 @@ contract BuyMeACoffee {
    AggregatorV3Interface internal priceFeed;
    address private priceFeedAddress;
    address payable owner;
+   uint256 private itemsCount = 0;
 
    constructor(address _priceFeedAddress, Items[] memory _listOfItems) {
       priceFeedAddress = _priceFeedAddress;
