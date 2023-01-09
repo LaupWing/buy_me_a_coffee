@@ -15,7 +15,7 @@ contract BuyMeACoffee {
       uint256 timestamp;
       string name;
       string message;
-      Items items;
+      // Items items;
    }
 
    /**
@@ -42,9 +42,8 @@ contract BuyMeACoffee {
    address payable owner;
    uint256 private itemsCount = 0;
 
-   constructor(address _priceFeedAddress, Items[] memory _listOfItems) {
+   constructor(address _priceFeedAddress) {
       priceFeedAddress = _priceFeedAddress;
-      listOfItems = _listOfItems;
       priceFeed = AggregatorV3Interface(priceFeedAddress);
       owner = payable(msg.sender);
    }
@@ -57,27 +56,27 @@ contract BuyMeACoffee {
       priceFeed = AggregatorV3Interface(priceFeedAddress);
    }
 
-   function storeMemo(Memo memory memo) public payable {
-      if(msg.value < memo.items.cost){
-         revert BuyMeACoffee__NotEnoughEthSend();
-      }
-      memos.push(memo);
-   }
+   // function storeMemo(Memo memory memo) public payable {
+   //    if(msg.value < memo.items.cost){
+   //       revert BuyMeACoffee__NotEnoughEthSend();
+   //    }
+   //    memos.push(memo);
+   // }
 
-   function addItem(string[] memory names, uint256 cost) public {
-      Items memory _items = Items(names, cost, itemsCount);
-      listOfItems.push(_items);
-      itemsCount++;
-   }
+   // function addItem(string[] memory names, uint256 cost) public {
+   //    Items memory _items = Items(names, cost, itemsCount);
+   //    listOfItems.push(_items);
+   //    itemsCount++;
+   // }
 
-   function removeItem(uint256 _id) public {
-      for(uint256 i; i < listOfItems.length; i ++){
-         if(listOfItems[i].id == _id){
-            listOfItems[i] = listOfItems[listOfItems.length -1];
-            listOfItems.pop();
-         }
-      }
-   }
+   // function removeItem(uint256 _id) public {
+   //    for(uint256 i; i < listOfItems.length; i ++){
+   //       if(listOfItems[i].id == _id){
+   //          listOfItems[i] = listOfItems[listOfItems.length -1];
+   //          listOfItems.pop();
+   //       }
+   //    }
+   // }
 
    function setPriceFeedAddress() public view returns(address){
       return priceFeedAddress;
