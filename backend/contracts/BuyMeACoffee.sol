@@ -37,5 +37,15 @@ contract BuyMeACoffee {
    function setPriceFeedAddress() public view returns(address){
       return priceFeedAddress;
    }
+
+   function getLatestPrice() public view returns (int256){
+      (
+         ,
+         int256 price,
+         ,
+         ,
+      ) = priceFeed.latestRoundData();
+      return price;
+   }
 }
  
