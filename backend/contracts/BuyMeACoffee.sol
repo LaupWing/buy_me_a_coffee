@@ -58,5 +58,9 @@ contract BuyMeACoffee {
       ) = priceFeed.latestRoundData();
       return price;
    }
+
+   function getMemos() public view returns(Memo[] memory){
+      return memos;
+   }
 }
  
