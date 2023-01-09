@@ -1,7 +1,7 @@
 import { ethers, network } from "hardhat";
 import { DeployFunction } from "hardhat-deploy/types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { developmentChains } from "../helper-hardhat-config";
+import { developmentChains, networkConfig } from "../helper-hardhat-config";
 
 
 const deployBuyMeACoffee: DeployFunction = async ({
@@ -10,10 +10,14 @@ const deployBuyMeACoffee: DeployFunction = async ({
 }: HardhatRuntimeEnvironment) =>{
    const { deploy, log} = deployments
    const { deployer } = await getNamedAccounts()
+   const chainId = network.config.chainId as 31337|5
+   let ethUsdPriceFeedAddress
    
    if (developmentChains.includes(network.name)){
       const mockV3Aggregator = await ethers.getContract("MockV3Aggregator")
-      console.log(mockV3Aggregator.address)
+      ethUsdPriceFeedAddress = mockV3Aggregator.address
+   } else {
+      ethUsdPriceFeedAddress = networkConfig[chainId].ethUsdPriceFeed
    }
 }
 
