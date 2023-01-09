@@ -6,6 +6,7 @@ import "hardhat/console.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 error NotEnoughEthSend();
+error NotOwner();
 
 contract BuyMeACoffee {
    
@@ -28,7 +29,7 @@ contract BuyMeACoffee {
 
    modifier onlyOwner(){
       if(msg.sender != owner){
-
+         revert NotOwner();
       }
       _;
    }
