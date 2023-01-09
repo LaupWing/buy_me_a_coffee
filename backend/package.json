@@ -3,6 +3,9 @@
   "devDependencies": {
     "@chainlink/contracts": "^0.5.1",
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
-    "hardhat": "^2.12.5"
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.12.5",
+    "hardhat-deploy": "^0.11.22"
   }
 }
