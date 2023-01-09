@@ -62,5 +62,9 @@ contract BuyMeACoffee {
    function getMemos() public view returns(Memo[] memory){
       return memos;
    }
+
+   function getItems() public view returns (Items[] memory){
+      return items;
+   }
 }
  
