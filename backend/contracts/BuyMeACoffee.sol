@@ -17,11 +17,11 @@ contract BuyMeACoffee {
 
    /**
     * @dev The deployer of the contract can define a combination of items 
-    * @notice For example if the deployer want to have items combination of bread and coffee for 15 dollar. This is in usd
+    * @notice For example if the deployer want to have items combination of bread and coffee for 15 eth. In the frontend the deployer can put in the amount in dollars but it will be saved as eth.
     */
    struct Items {
       string[] names;
-      uint256 price_in_usd;
+      uint256 cost;
    }
 
    Memo[] private memos;
@@ -43,6 +43,11 @@ contract BuyMeACoffee {
 
    function updatePriceFeed () public{
       priceFeed = AggregatorV3Interface(priceFeedAddress);
+   }
+
+   function storeMemo(Memo memory memo) public payable {
+      require(msg.value > memo.items.cost, "Need to send more eth!");
+      memos.push(memo);
    }
 
    function setPriceFeedAddress() public view returns(address){
