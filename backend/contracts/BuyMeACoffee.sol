@@ -35,14 +35,14 @@ contract BuyMeACoffee {
    }
 
    Memo[] private memos;
-   Items[] private list_of_items;
+   Items[] private listOfItems;
    AggregatorV3Interface internal priceFeed;
    address private priceFeedAddress;
    address payable owner;
 
-   constructor(address _priceFeedAddress, Items[] memory _items) {
+   constructor(address _priceFeedAddress, Items[] memory _listOfItems) {
       priceFeedAddress = _priceFeedAddress;
-      list_of_items = _items;
+      listOfItems = _listOfItems;
       priceFeed = AggregatorV3Interface(priceFeedAddress);
       owner = payable(msg.sender);
    }
@@ -63,14 +63,14 @@ contract BuyMeACoffee {
    }
 
    function addItem(Items memory _items) public {
-      list_of_items.push(_items);
+      listOfItems.push(_items);
    }
 
-   function removeItem(Items memory _items) public {
-      for(uint256 i; i < list_of_items.length; i ++){
-
-      }
-   }
+   // function removeItem(Items memory _items) public {
+   //    for(uint256 i; i < listOfItems.length; i ++){
+   //       if(listOfItems[i] == )
+   //    }
+   // }
 
    function setPriceFeedAddress() public view returns(address){
       return priceFeedAddress;
@@ -91,7 +91,7 @@ contract BuyMeACoffee {
    }
 
    function getListOfItems() public view returns (Items[] memory){
-      return list_of_items;
+      return listOfItems;
    }
 }
  
