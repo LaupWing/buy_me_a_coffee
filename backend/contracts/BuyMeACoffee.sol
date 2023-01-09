@@ -26,6 +26,13 @@ contract BuyMeACoffee {
       uint256 cost;
    }
 
+   modifier onlyOwner(){
+      if(msg.sender != owner){
+
+      }
+      _;
+   }
+
    Memo[] private memos;
    Items[] private items;
    AggregatorV3Interface internal priceFeed;
