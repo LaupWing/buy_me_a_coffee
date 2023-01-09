@@ -5,6 +5,8 @@ pragma solidity ^0.8.9;
 import "hardhat/console.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
+error NotEnoughEthSend();
+
 contract BuyMeACoffee {
    
    struct Memo {
@@ -46,7 +48,9 @@ contract BuyMeACoffee {
    }
 
    function storeMemo(Memo memory memo) public payable {
-      require(msg.value > memo.items.cost, "Need to send more eth!");
+      if(msg.value < memo.items.cost){
+         revert NotEnoughEthSend();
+      }
       memos.push(memo);
    }
 
