@@ -54,7 +54,11 @@ contract BuyMeACoffee {
       priceFeedAddress = _priceFeedAddress;
    }
 
-   function updatePriceFeed () public{
+   function setName (string memory _name) public onlyOwner{
+      name = _name;
+   }
+
+   function updatePriceFeed () public onlyOwner{
       priceFeed = AggregatorV3Interface(priceFeedAddress);
    }
 
@@ -65,13 +69,13 @@ contract BuyMeACoffee {
       memos.push(memo);
    }
 
-   function addItem(string[] memory names, uint256 cost) public {
+   function addItem(string[] memory names, uint256 cost) public onlyOwner{
       Items memory _items = Items(names, cost, itemsCount);
       listOfItems.push(_items);
       itemsCount++;
    }
 
-   function removeItem(uint256 _id) public {
+   function removeItem(uint256 _id) public onlyOwner{
       for(uint256 i; i < listOfItems.length; i ++){
          if(listOfItems[i].id == _id){
             listOfItems[i] = listOfItems[listOfItems.length -1];
@@ -80,7 +84,7 @@ contract BuyMeACoffee {
       }
    }
 
-   function setPriceFeedAddress() public view returns(address){
+   function setPriceFeedAddress() public view onlyOwner returns(address) {
       return priceFeedAddress;
    }
 
@@ -100,6 +104,10 @@ contract BuyMeACoffee {
 
    function getListOfItems() public view returns (Items[] memory){
       return listOfItems;
+   }
+
+   function getName() public view returns (string memory){
+      return name;
    }
 }
  
