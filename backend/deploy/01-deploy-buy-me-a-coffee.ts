@@ -19,6 +19,13 @@ const deployBuyMeACoffee: DeployFunction = async ({
    } else {
       ethUsdPriceFeedAddress = networkConfig[chainId].ethUsdPriceFeed
    }
+
+   const buyMeACoffee = await deploy("BuyMeACoffee", {
+      from: deployer,
+      args: [ethUsdPriceFeedAddress],
+      log: true,
+      waitConfirmations: 1
+   })
 }
 
 export default deployBuyMeACoffee
