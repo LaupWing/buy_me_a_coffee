@@ -12,7 +12,7 @@ contract BuyMeACoffee {
       uint256 timestamp;
       string name;
       string message;
-      uint256 price_in_usd;
+      Items items;
    }
 
    /**
