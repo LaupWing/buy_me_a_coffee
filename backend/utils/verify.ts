@@ -1,7 +1,7 @@
 import { run } from "hardhat"
 
 
-const verify = async (contract_address:string, args:any[]) => {
+export const verify = async (contract_address:string, args:any[]) => {
    console.log("Verifying contract...")
    try {
       await run("verify:verify", {
@@ -15,8 +15,4 @@ const verify = async (contract_address:string, args:any[]) => {
          console.log(e)
       }
    }
-}
-
-module.exports = {
-   verify
 }
