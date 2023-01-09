@@ -25,12 +25,14 @@ contract BuyMeACoffee {
    }
 
    Memo[] memos;
+   Items[] items;
    AggregatorV3Interface internal priceFeed;
    address private priceFeedAddress;
    address payable owner;
 
-   constructor(address _priceFeedAddress) {
+   constructor(address _priceFeedAddress, Items[] memory _items) {
       priceFeedAddress = _priceFeedAddress;
+      items = _items;
       priceFeed = AggregatorV3Interface(priceFeedAddress);
       owner = payable(msg.sender);
    }
