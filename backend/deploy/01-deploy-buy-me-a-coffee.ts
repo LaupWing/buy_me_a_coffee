@@ -22,7 +22,7 @@ const deployBuyMeACoffee: DeployFunction = async ({
 
    const buyMeACoffee = await deploy("BuyMeACoffee", {
       from: deployer,
-      args: [ethUsdPriceFeedAddress],
+      args: [ethUsdPriceFeedAddress, "Test"],
       log: true,
       waitConfirmations: 1,
    })
