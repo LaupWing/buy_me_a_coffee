@@ -62,6 +62,10 @@ contract BuyMeACoffee {
       memos.push(memo);
    }
 
+   function addItem(Items memory _items) public {
+      items.push(_items);
+   }
+
    function setPriceFeedAddress() public view returns(address){
       return priceFeedAddress;
    }
