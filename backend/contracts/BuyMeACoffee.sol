@@ -64,8 +64,10 @@ contract BuyMeACoffee {
       memos.push(memo);
    }
 
-   function addItem(Items memory _items) public {
+   function addItem(string[] memory names, uint256 cost) public {
+      Items memory _items = Items(names, cost, itemsCount);
       listOfItems.push(_items);
+      itemsCount++;
    }
 
    // function removeItem(Items memory _items) public {
