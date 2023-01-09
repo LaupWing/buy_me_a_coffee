@@ -26,6 +26,8 @@ const deployBuyMeACoffee: DeployFunction = async ({
       log: true,
       waitConfirmations: 1
    })
+
+   console.log(buyMeACoffee.address)
 }
 
 export default deployBuyMeACoffee
