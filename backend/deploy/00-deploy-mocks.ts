@@ -3,6 +3,9 @@ import { DeployFunction } from "hardhat-deploy/types"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { developmentChains } from "../helper-hardhat-config"
 
+const BASE_FEE = "250000000000000000"
+const GAS_PRICE_LINK = 1e9
+
 const deployMocks: DeployFunction = async ({
    getNamedAccounts,
    deployments
@@ -10,10 +13,19 @@ const deployMocks: DeployFunction = async ({
    const { deploy, log } = deployments
    const { deployer } = await getNamedAccounts()
 
-   console.log(deployer)
-
    if(developmentChains.includes(network.name)){
-      // await deploy()
+      await deploy("VRFCoordinatorV2Mock", {
+         from: deployer,
+         log: true,
+         args: [BASE_FEE, GAS_PRICE_LINK]
+      })
+      
+      log("Mocks deployed!")
+      log("################################")
+      log("You are deploying to local network, you'll need a local network running to interact")
+      log("Please run `npx hardhat console --network localhost` to interact with the deployed contracts!!")
+      log("################################################################")
+      console.log("Local network detected! Deploying mocks...")
    }
 }
 
