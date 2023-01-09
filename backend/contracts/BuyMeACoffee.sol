@@ -15,6 +15,15 @@ contract BuyMeACoffee {
       uint256 price_in_usd;
    }
 
+   /**
+    * @dev The deployer of the contract can define a combination of items 
+    * @notice For example if the deployer want to have items combination of bread and coffee for 15 dollar. This is in usd
+    */
+   struct Items {
+      string[] names;
+      uint256 price_in_usd;
+   }
+
    Memo[] memos;
    AggregatorV3Interface internal priceFeed;
    address private priceFeedAddress;
