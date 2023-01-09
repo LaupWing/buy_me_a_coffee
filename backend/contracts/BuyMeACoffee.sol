@@ -5,8 +5,8 @@ pragma solidity ^0.8.9;
 import "hardhat/console.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
-error NotEnoughEthSend();
-error NotOwner();
+error BuyMeACoffee__NotEnoughEthSend();
+error BuyMeACoffee__NotOwner();
 
 contract BuyMeACoffee {
    
@@ -29,7 +29,7 @@ contract BuyMeACoffee {
 
    modifier onlyOwner(){
       if(msg.sender != owner){
-         revert NotOwner();
+         revert BuyMeACoffee__NotOwner();
       }
       _;
    }
@@ -57,7 +57,7 @@ contract BuyMeACoffee {
 
    function storeMemo(Memo memory memo) public payable {
       if(msg.value < memo.items.cost){
-         revert NotEnoughEthSend();
+         revert BuyMeACoffee__NotEnoughEthSend();
       }
       memos.push(memo);
    }
