@@ -25,7 +25,7 @@ contract BuyMeACoffee {
    struct Items {
       string[] names;
       uint256 cost;
-      uint256 index;
+      uint256 id;
    }
 
    modifier onlyOwner(){
@@ -70,11 +70,14 @@ contract BuyMeACoffee {
       itemsCount++;
    }
 
-   // function removeItem(Items memory _items) public {
-   //    for(uint256 i; i < listOfItems.length; i ++){
-   //       if(listOfItems[i] == )
-   //    }
-   // }
+   function removeItem(uint256 _id) public {
+      for(uint256 i; i < listOfItems.length; i ++){
+         if(listOfItems[i].id == _id){
+            listOfItems[i] = listOfItems[listOfItems.length -1];
+            listOfItems.pop();
+         }
+      }
+   }
 
    function setPriceFeedAddress() public view returns(address){
       return priceFeedAddress;
