@@ -41,9 +41,11 @@ contract BuyMeACoffee {
    address private priceFeedAddress;
    address payable owner;
    uint256 private itemsCount = 0;
+   string private name;
 
-   constructor(address _priceFeedAddress) {
+   constructor(address _priceFeedAddress, string memory _name) {
       priceFeedAddress = _priceFeedAddress;
+      name = _name;
       priceFeed = AggregatorV3Interface(priceFeedAddress);
       owner = payable(msg.sender);
    }
