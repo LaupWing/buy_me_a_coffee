@@ -10,7 +10,7 @@ const deployBuyMeACoffee: DeployFunction = async ({
 }: HardhatRuntimeEnvironment) =>{
    const { deploy, log} = deployments
    const { deployer } = await getNamedAccounts()
-   const chainId = network.config.chainId as 31337|5
+   const chainId = network.config.chainId as keyof typeof networkConfig
    let ethUsdPriceFeedAddress
    
    if (developmentChains.includes(network.name)){
