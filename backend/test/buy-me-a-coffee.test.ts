@@ -38,11 +38,12 @@ interface Item {
          let items:Item[]
          const firstSetOfItems = ["cookies", "cappochino"]
          const secondSetOfItems = ["Coffee"]
-         
+         const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
+         const secondSetOfItemsCost = ethers.utils.parseEther("0.001")
 
          beforeEach(async () => {
-            await buyMeACoffee.addItems(firstSetOfItems, ethers.utils.parseEther("0.01"))
-            await buyMeACoffee.addItems(secondSetOfItems, ethers.utils.parseEther("0.001"))
+            await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
+            await buyMeACoffee.addItems(secondSetOfItems, secondSetOfItemsCost)
             items = (await buyMeACoffee.getListOfItems())
          })
 
