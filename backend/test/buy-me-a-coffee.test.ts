@@ -13,7 +13,7 @@ import { BuyMeACoffee, MockV3Aggregator } from "../typechain-types"
 
       beforeEach(async () => { 
          const accounts = await getNamedAccounts()
-         await deployments()
+         await deployments.fixture(["all"])
          buyMeACoffee = await ethers.getContract("BuyMeACoffee")
          deployer = accounts.deployer
       })
