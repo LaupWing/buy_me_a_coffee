@@ -79,5 +79,10 @@ interface Item {
          })
       })
 
+      describe("Memos", () =>{
+         it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
+            buyMeACoffee.connect(user1).storeMemo()
+         })
+      })
 
    })
