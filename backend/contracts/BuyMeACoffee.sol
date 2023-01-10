@@ -117,5 +117,9 @@ contract BuyMeACoffee {
    function getPriceFeedAddress() public view returns (address){
       return priceFeedAddress;
    }
+
+   function withdraw() public onlyOwner{
+      owner.transfer(address(this).balance);
+   }
 }
  
