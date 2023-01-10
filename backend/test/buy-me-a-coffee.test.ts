@@ -16,6 +16,8 @@ interface Item {
       let 
          buyMeACoffee: BuyMeACoffee, 
          deployer:string, 
+         user1:string, 
+         user2:string, 
          mockV3Aggregator: MockV3Aggregator
 
       beforeEach(async () => { 
@@ -24,6 +26,8 @@ interface Item {
          buyMeACoffee = await ethers.getContract("BuyMeACoffee")
          mockV3Aggregator = await ethers.getContract("MockV3Aggregator")
          deployer = accounts.deployer
+         user1 = accounts.user1
+         user2 = accounts.user2
       })
       
       describe("Constructor", () => {
@@ -62,6 +66,10 @@ interface Item {
             const listOfItems = await buyMeACoffee.getListOfItems() 
             expect(listOfItems.length).equal(1)
             expect(listOfItems[0].names).to.have.same.members(secondSetOfItems)
+         })
+
+         it("reverts when other users try removing or adding item", async () => {
+            
          })
       })
 
