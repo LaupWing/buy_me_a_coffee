@@ -67,10 +67,22 @@ contract BuyMeACoffee {
       string memory _name,
       uint256 _itemsId
    ) public payable {
-      if(msg.value < _cost){
+      Items memory items;
+      for(uint256 i; i < listOfItems.length; i ++){
+         if(listOfItems[i].id == _itemsId){
+            items = listOfItems[i];
+         }
+      }
+      if(msg.value < items.cost){
          revert BuyMeACoffee__NotEnoughEthSend();
       }
-      memos.push(memo);
+      memos.push(Memo(
+         msg.sender, 
+         block.timestamp, 
+         _name, 
+         _message, 
+         _itemsId
+      ));
    }
 
    function addItems(string[] memory names, uint256 cost) public onlyOwner{
