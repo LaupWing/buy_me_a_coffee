@@ -31,10 +31,10 @@ import { BuyMeACoffee, MockV3Aggregator } from "../typechain-types"
          it("allows owner to add item to the contract", async () => {
             await buyMeACoffee.addItem(["cookies", "cappochino"], ethers.utils.parseEther("0.01"))
             const items = (await buyMeACoffee.getListOfItems())
-            // expect()
-            console.log(items[0].id.toString())
-            console.log(items[0].names)
-            console.log(items[0].cost.toString())
+            
+            expect(items[0].id.toString()).equal("0")
+            expect(items[0].names).to.have.members(["cookies", "cappochino"])
+            expect(items[0].cost.toString()).equal(ethers.utils.parseEther("0.01"))
          })
       })
 
