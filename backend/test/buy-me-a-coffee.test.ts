@@ -109,6 +109,17 @@ interface Item {
                value: ethers.utils.parseEther("0.001")
             })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
          })
+
+         it("allows owner to withdraw eth", async () => {
+            await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+               value: firstSetOfItemsCost
+            })
+            const deployerBeginBalance = (await ethers.provider.getBalance(deployer)).toString()
+            await buyMeACoffee.withdraw()
+
+            console.log(Number(deployerBeginBalance) + Number(firstSetOfItemsCost.toString()))
+            console.log((await ethers.provider.getBalance(deployer)).toString())
+         })
       })
 
    })
