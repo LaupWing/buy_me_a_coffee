@@ -50,7 +50,11 @@ interface Item {
          it("allows owner to add item to the contract", async () => {
             expect(items[0].id.toString()).equal("0")
             expect(items[0].names).to.have.members(firstSetOfItems)
-            expect(items[0].cost.toString()).equal(ethers.utils.parseEther("0.01"))
+            expect(items[0].cost.toString()).equal(firstSetOfItemsCost)
+
+            expect(items[1].id.toString()).equal("1")
+            expect(items[1].names).to.have.members(secondSetOfItems)
+            expect(items[1].cost.toString()).equal(secondSetOfItemsCost)
          })
 
          it("allows owner to add item to the contract", async () => {
