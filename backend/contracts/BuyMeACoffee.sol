@@ -73,8 +73,6 @@ contract BuyMeACoffee {
             items = listOfItems[i];
          }
       }
-      console.log(msg.value);
-      console.log(items.cost);
       if(msg.value < items.cost){
          revert BuyMeACoffee__NotEnoughEthSend();
       }
