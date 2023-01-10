@@ -89,8 +89,10 @@ interface Item {
             items = (await buyMeACoffee.getListOfItems())
          })
          it.only("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
-            await buyMeACoffee.connect(user1).storeMemo("Laup", "A nice message", "0")
-            console.log(await buyMeACoffee.getMemos())
+            await buyMeACoffee.connect(user1).storeMemo("Laup", "A nice message", "0", {
+               value: firstSetOfItemsCost
+            })
+            expect((await ethers.provider.getBalance(buyMeACoffee.address))).equal(firstSetOfItemsCost)
          })
       })
 
