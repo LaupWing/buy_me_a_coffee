@@ -83,15 +83,15 @@ interface Item {
          const firstSetOfItems = ["cookies", "cappochino"]
          const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
          let items: Item[]
+         const name = "Laup"
+         const message = "A nice message"
+         const itemsId = "0" 
 
          beforeEach(async () => {
             await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
             items = (await buyMeACoffee.getListOfItems())
          })
          it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
-            const name = "Laup"
-            const message = "A nice message"
-            const itemsId = "0" 
 
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: firstSetOfItemsCost
@@ -104,7 +104,11 @@ interface Item {
             expect(memos[0].items_id.toString()).equal(itemsId)
          })
 
-         
+         it("reverts with error when not enough eth is sent", async () => {
+            await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+               value: ethers.utils.parseEther("0.001")
+            })
+         })
       })
 
    })
