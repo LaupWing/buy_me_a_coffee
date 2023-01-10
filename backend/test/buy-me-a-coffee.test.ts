@@ -110,15 +110,16 @@ interface Item {
             })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
          })
 
-         it("allows owner to withdraw eth", async () => {
+         it.only("allows owner to withdraw eth", async () => {
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: firstSetOfItemsCost
             })
-            const deployerBeginBalance = (await ethers.provider.getBalance(deployer)).toString()
-            await buyMeACoffee.withdraw()
-
-            console.log(Number(deployerBeginBalance) + Number(firstSetOfItemsCost.toString()))
-            console.log((await ethers.provider.getBalance(deployer)).toString())
+            const deployerBeginBalance = await ethers.provider.getBalance(deployer)
+            const transaction = await buyMeACoffee.withdraw()
+            const transactionReceipt = await transaction.wait()
+            const gasPrice = transactionReceipt.gasUsed.mul(transactionReceipt.effectiveGasPrice) 
+            expect(deployerBeginBalance.add(firstSetOfItemsCost).sub(gasPrice))
+               .equal(await ethers.provider.getBalance(deployer))
          })
       })
 
