@@ -1,3 +1,4 @@
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
 import { expect } from "chai"
 import { BigNumber } from "ethers"
 import { deployments, ethers, getNamedAccounts, network } from "hardhat"
@@ -16,8 +17,8 @@ interface Item {
       let 
          buyMeACoffee: BuyMeACoffee, 
          deployer:string, 
-         user1:string, 
-         user2:string, 
+         user1:   SignerWithAddress, 
+         user2: SignerWithAddress, 
          mockV3Aggregator: MockV3Aggregator
 
       beforeEach(async () => { 
@@ -26,8 +27,8 @@ interface Item {
          buyMeACoffee = await ethers.getContract("BuyMeACoffee")
          mockV3Aggregator = await ethers.getContract("MockV3Aggregator")
          deployer = accounts.deployer
-         user1 = accounts.user1
-         user2 = accounts.user2
+         user1 = (await ethers.getSigners())[1]
+         user2 = (await ethers.getSigners())[2]
       })
       
       describe("Constructor", () => {
@@ -69,7 +70,9 @@ interface Item {
          })
 
          it("reverts when other users try removing or adding item", async () => {
-            
+            await expect(buyMeACoffee.connect(user1).addItems(["test"], 1))
+               .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotOwner")
+             
          })
       })
 

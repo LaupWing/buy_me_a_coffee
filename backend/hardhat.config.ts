@@ -15,13 +15,7 @@ const config: HardhatUserConfig = {
          default: 0,
          1: 0,
          5: 0
-      },
-      user1:{
-         default: 1
-      },
-      user2:{
-         default: 2
-      },
+      }
    }
 }
 
