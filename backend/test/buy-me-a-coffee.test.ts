@@ -36,17 +36,19 @@ interface Item {
 
       describe("Items", () => {
          let items:Item[]
-         const f
+         const firstSetOfItems = ["cookies", "cappochino"]
+         const secondSetOfItems = ["Coffee"]
+         
 
          beforeEach(async () => {
-            await buyMeACoffee.addItems(["cookies", "cappochino"], ethers.utils.parseEther("0.01"))
-            await buyMeACoffee.addItems(["Coffee"], ethers.utils.parseEther("0.001"))
+            await buyMeACoffee.addItems(firstSetOfItems, ethers.utils.parseEther("0.01"))
+            await buyMeACoffee.addItems(secondSetOfItems, ethers.utils.parseEther("0.001"))
             items = (await buyMeACoffee.getListOfItems())
          })
 
          it("allows owner to add item to the contract", async () => {
             expect(items[0].id.toString()).equal("0")
-            expect(items[0].names).to.have.members(["cookies", "cappochino"])
+            expect(items[0].names).to.have.members(firstSetOfItems)
             expect(items[0].cost.toString()).equal(ethers.utils.parseEther("0.01"))
          })
 
