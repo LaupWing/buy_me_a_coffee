@@ -105,9 +105,9 @@ interface Item {
          })
 
          it("reverts with error when not enough eth is sent", async () => {
-            await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+            await expect(buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: ethers.utils.parseEther("0.001")
-            })
+            })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
          })
       })
 
