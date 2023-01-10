@@ -41,6 +41,9 @@ interface Item {
          it("allows owner to change pricefeed address and name", async () => {
             await buyMeACoffee.setPriceFeedAddress(user1.address)
             expect(await buyMeACoffee.getPriceFeedAddress()).equal(user1.address)
+
+            await buyMeACoffee.setName("Test2")
+            expect(await buyMeACoffee.getName()).equal("Test2")
          })
       })
 
