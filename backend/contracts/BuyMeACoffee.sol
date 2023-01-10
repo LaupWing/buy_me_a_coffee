@@ -39,7 +39,7 @@ contract BuyMeACoffee {
    Items[] private listOfItems;
    AggregatorV3Interface internal priceFeed;
    address private priceFeedAddress;
-   address payable owner;
+   address payable private owner;
    uint256 private itemsCount = 0;
    string private name;
 
@@ -108,6 +108,10 @@ contract BuyMeACoffee {
 
    function getName() public view returns (string memory){
       return name;
+   }
+
+   function getOwner() public view returns (address){
+      return owner;
    }
 }
  

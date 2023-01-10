@@ -19,6 +19,7 @@ import { BuyMeACoffee, MockV3Aggregator } from "../typechain-types"
       })
 
       it("sets up starting values correctly", async () => {
-         console.log(await buyMeACoffee.getListOfItems())
+         expect(await buyMeACoffee.getName()).equal("Test")
+         console.log()
       })
    })
