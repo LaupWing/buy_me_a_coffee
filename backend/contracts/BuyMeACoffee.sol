@@ -15,7 +15,7 @@ contract BuyMeACoffee {
       uint256 timestamp;
       string name;
       string message;
-      Items items;
+      uint256 items_id;
    }
 
    /**
@@ -62,8 +62,12 @@ contract BuyMeACoffee {
       priceFeed = AggregatorV3Interface(priceFeedAddress);
    }
 
-   function storeMemo(Memo memory memo) public payable {
-      if(msg.value < memo.items.cost){
+   function storeMemo(
+      string memory _message, 
+      string memory _name,
+      uint256 _itemsId
+   ) public payable {
+      if(msg.value < _cost){
          revert BuyMeACoffee__NotEnoughEthSend();
       }
       memos.push(memo);
