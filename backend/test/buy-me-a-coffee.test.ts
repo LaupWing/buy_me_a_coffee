@@ -1,7 +1,14 @@
 import { expect } from "chai"
+import { BigNumber } from "ethers"
 import { deployments, ethers, getNamedAccounts, network } from "hardhat"
 import { developmentChains } from "../helper-hardhat-config"
 import { BuyMeACoffee, MockV3Aggregator } from "../typechain-types"
+
+interface Item {
+   id: BigNumber
+   names: string[]
+   cost: BigNumber
+}
 
 !developmentChains.includes(network.name)
    ? describe.skip
@@ -28,9 +35,13 @@ import { BuyMeACoffee, MockV3Aggregator } from "../typechain-types"
       })
 
       describe("Items", () => {
-         it("allows owner to add item to the contract", async () => {
+         let items:Item[]
+
+         beforeEach(async () => {
             await buyMeACoffee.addItem(["cookies", "cappochino"], ethers.utils.parseEther("0.01"))
-            const items = (await buyMeACoffee.getListOfItems())
+            items = (await buyMeACoffee.getListOfItems())
+         })
+         it("allows owner to add item to the contract", async () => {
             
             expect(items[0].id.toString()).equal("0")
             expect(items[0].names).to.have.members(["cookies", "cappochino"])
