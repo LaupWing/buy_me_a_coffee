@@ -100,10 +100,6 @@ contract BuyMeACoffee {
       }
    }
 
-   function setPriceFeedAddress() public view onlyOwner returns(address) {
-      return priceFeedAddress;
-   }
-
    function getLatestPrice() public view returns (int256){
       (
          ,

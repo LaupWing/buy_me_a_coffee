@@ -37,6 +37,11 @@ interface Item {
             expect(await buyMeACoffee.getOwner()).equal(deployer)
             expect(await buyMeACoffee.getPriceFeedAddress()).equal(mockV3Aggregator.address)
          })
+
+         it("allows owner to change pricefeed address and name", async () => {
+            await buyMeACoffee.setPriceFeedAddress(user1.address)
+            expect(await buyMeACoffee.getPriceFeedAddress()).equal(user1.address)
+         })
       })
 
       describe("Items", () => {
@@ -110,7 +115,7 @@ interface Item {
             })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
          })
 
-         it.only("allows owner to withdraw eth", async () => {
+         it("allows owner to withdraw eth", async () => {
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: firstSetOfItemsCost
             })
