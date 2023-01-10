@@ -27,8 +27,8 @@ interface Item {
          buyMeACoffee = await ethers.getContract("BuyMeACoffee")
          mockV3Aggregator = await ethers.getContract("MockV3Aggregator")
          deployer = accounts.deployer
-         user1 = (await ethers.getSigners())[1]
-         user2 = (await ethers.getSigners())[2]
+         user1 = await ethers.getNamedSigner("user1")
+         user2 = await ethers.getNamedSigner("user2")
       })
       
       describe("Constructor", () => {
