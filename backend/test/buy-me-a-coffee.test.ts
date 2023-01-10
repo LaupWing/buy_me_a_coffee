@@ -72,6 +72,9 @@ interface Item {
          it("reverts when other users try removing or adding item", async () => {
             await expect(buyMeACoffee.connect(user1).addItems(["test"], 1))
                .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotOwner")
+
+            await expect(buyMeACoffee.connect(user1).removeItems(0))
+               .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotOwner")
              
          })
       })
