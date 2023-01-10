@@ -27,7 +27,6 @@ const deployBuyMeACoffee: DeployFunction = async ({
       waitConfirmations: 1,
    })
 
-   console.log(buyMeACoffee.address)
    if (!developmentChains.includes(network.name)) {
       log("Verifying...")
       await verify(buyMeACoffee.address, [ethUsdPriceFeedAddress])
