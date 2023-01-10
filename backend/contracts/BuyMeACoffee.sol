@@ -63,8 +63,8 @@ contract BuyMeACoffee {
    }
 
    function storeMemo(
-      string memory _message, 
       string memory _name,
+      string memory _message, 
       uint256 _itemsId
    ) public payable {
       Items memory items;
@@ -73,6 +73,8 @@ contract BuyMeACoffee {
             items = listOfItems[i];
          }
       }
+      console.log(msg.value);
+      console.log(items.cost);
       if(msg.value < items.cost){
          revert BuyMeACoffee__NotEnoughEthSend();
       }

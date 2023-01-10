@@ -80,8 +80,17 @@ interface Item {
       })
 
       describe("Memos", () =>{
-         it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
-            buyMeACoffee.connect(user1).storeMemo()
+         const firstSetOfItems = ["cookies", "cappochino"]
+         const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
+         let items: Item[]
+
+         beforeEach(async () => {
+            await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
+            items = (await buyMeACoffee.getListOfItems())
+         })
+         it.only("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
+            await buyMeACoffee.connect(user1).storeMemo("Laup", "A nice message", "0")
+            console.log(await buyMeACoffee.getMemos())
          })
       })
 
