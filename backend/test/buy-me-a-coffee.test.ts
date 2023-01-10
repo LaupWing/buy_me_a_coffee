@@ -15,11 +15,14 @@ import { BuyMeACoffee, MockV3Aggregator } from "../typechain-types"
          const accounts = await getNamedAccounts()
          await deployments.fixture(["all"])
          buyMeACoffee = await ethers.getContract("BuyMeACoffee")
+         mockV3Aggregator = await ethers.getContract("MockV3Aggregator")
          deployer = accounts.deployer
       })
 
       it("sets up starting values correctly", async () => {
          expect(await buyMeACoffee.getName()).equal("Test")
          expect(await buyMeACoffee.getOwner()).equal(deployer)
+         console.log(mockV3Aggregator.address)
+         console.log(await buyMeACoffee)
       })
    })

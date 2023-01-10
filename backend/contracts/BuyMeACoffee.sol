@@ -113,5 +113,9 @@ contract BuyMeACoffee {
    function getOwner() public view returns (address){
       return owner;
    }
+
+   function getPriceFeedAddress() public view returns (address){
+      return priceFeedAddress;
+   }
 }
  
