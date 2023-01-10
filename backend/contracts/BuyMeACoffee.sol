@@ -110,6 +110,11 @@ contract BuyMeACoffee {
       return price;
    }
 
+   function getDecimals() public view returns(uint8)  {
+      uint8 decimals = priceFeed.decimals();
+      return decimals;
+   }
+
    function getMemos() public view returns(Memo[] memory){
       return memos;
    }

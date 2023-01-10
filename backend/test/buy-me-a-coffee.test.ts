@@ -45,6 +45,11 @@ interface Item {
             await buyMeACoffee.setName("Test2")
             expect(await buyMeACoffee.getName()).equal("Test2")
          })
+
+         it("can get the latest price in dollars", async () =>{
+            console.log((await buyMeACoffee.getLatestPrice()).toString())
+            console.log((await buyMeACoffee.getDecimals()).toString())
+         })
       })
 
       describe("Items", () => {
