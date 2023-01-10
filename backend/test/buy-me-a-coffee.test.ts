@@ -39,10 +39,17 @@ interface Item {
 
          beforeEach(async () => {
             await buyMeACoffee.addItem(["cookies", "cappochino"], ethers.utils.parseEther("0.01"))
+            await buyMeACoffee.addItem(["Coffee"], ethers.utils.parseEther("0.001"))
             items = (await buyMeACoffee.getListOfItems())
          })
+
          it("allows owner to add item to the contract", async () => {
-            
+            expect(items[0].id.toString()).equal("0")
+            expect(items[0].names).to.have.members(["cookies", "cappochino"])
+            expect(items[0].cost.toString()).equal(ethers.utils.parseEther("0.01"))
+         })
+
+         it("allows owner to add item to the contract", async () => {
             expect(items[0].id.toString()).equal("0")
             expect(items[0].names).to.have.members(["cookies", "cappochino"])
             expect(items[0].cost.toString()).equal(ethers.utils.parseEther("0.01"))
