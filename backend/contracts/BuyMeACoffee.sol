@@ -69,13 +69,13 @@ contract BuyMeACoffee {
       memos.push(memo);
    }
 
-   function addItem(string[] memory names, uint256 cost) public onlyOwner{
+   function addItems(string[] memory names, uint256 cost) public onlyOwner{
       Items memory _items = Items(names, cost, itemsCount);
       listOfItems.push(_items);
       itemsCount++;
    }
 
-   function removeItem(uint256 _id) public onlyOwner{
+   function removeItems(uint256 _id) public onlyOwner{
       for(uint256 i; i < listOfItems.length; i ++){
          if(listOfItems[i].id == _id){
             listOfItems[i] = listOfItems[listOfItems.length -1];

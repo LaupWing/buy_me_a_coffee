@@ -36,10 +36,11 @@ interface Item {
 
       describe("Items", () => {
          let items:Item[]
+         const f
 
          beforeEach(async () => {
-            await buyMeACoffee.addItem(["cookies", "cappochino"], ethers.utils.parseEther("0.01"))
-            await buyMeACoffee.addItem(["Coffee"], ethers.utils.parseEther("0.001"))
+            await buyMeACoffee.addItems(["cookies", "cappochino"], ethers.utils.parseEther("0.01"))
+            await buyMeACoffee.addItems(["Coffee"], ethers.utils.parseEther("0.001"))
             items = (await buyMeACoffee.getListOfItems())
          })
 
