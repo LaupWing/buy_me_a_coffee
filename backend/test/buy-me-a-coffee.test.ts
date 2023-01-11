@@ -62,9 +62,14 @@ interface Item {
             expect(Number(latestPrice) / 10**Number(decimals)).equal(200)
          })
 
-         it("can update the pricefeed", async () => {
+         it("superuser can update the pricefeed", async () => {
             await buyMeACoffeeFactory.updatePricefeed(user1.address)
             expect(await buyMeACoffee.getPriceFeed()).equal(user1.address)
+         })
+
+         it("reverts when not superuser updates", async () => {
+            await expect(buyMeACoffeeFactory.connect(user1).updatePricefeed(user1.address))
+               .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotSuperUser")
          })
 
       //    it("reverts when not owner wants to change things", async () => {
