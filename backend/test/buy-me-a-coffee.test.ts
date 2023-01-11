@@ -25,13 +25,20 @@ interface Item {
 
       const buyMeACoffeeName = "test"
       const buyMeACoffeeDescription = "test description"
+      const buyMeACoffeeProfile = "test profile"
+      const buyMeACoffeeThumbnail = "test thumbnail"
 
       beforeEach(async () => { 
          const accounts = await getNamedAccounts()
          await deployments.fixture(["all"])
 
          buyMeACoffeeFactory = await ethers.getContract("BuyMeACoffeeFactory")
-         const transaction = await buyMeACoffeeFactory.createBuyMeACoffee(buyMeACoffeeName, buyMeACoffeeDescription)
+         const transaction = await buyMeACoffeeFactory.createBuyMeACoffee(
+            buyMeACoffeeName, 
+            buyMeACoffeeDescription,
+            buyMeACoffeeProfile,
+            buyMeACoffeeThumbnail
+         )
          const transactionReceipt = await transaction.wait()
          buyMeACoffeeAddress = transactionReceipt.events?.find(x => x.event === "BuyMeACoffeeCreated")?.args?.buyMeACoffeeAddress
          buyMeACoffee = await ethers.getContractAt("BuyMeACoffee", buyMeACoffeeAddress)
@@ -48,6 +55,8 @@ interface Item {
             expect(await buyMeACoffee.getName()).equal(buyMeACoffeeName)
             expect(await buyMeACoffee.getOwner()).equal(deployer)
             expect(await buyMeACoffee.getPriceFeed()).equal(mockV3Aggregator.address)
+            expect(await buyMeACoffee.getProfile()).equal(buyMeACoffeeProfile)
+            expect(await buyMeACoffee.getThumbnail()).equal(buyMeACoffeeThumbnail)
          })
 
          it("allows owner to change description and name", async () => {
