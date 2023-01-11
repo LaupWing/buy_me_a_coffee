@@ -74,7 +74,6 @@ contract BuyMeACoffee {
    Memo[] private memos;
    Items[] private listOfItems;
    AggregatorV3Interface internal priceFeed;
-   address private priceFeedAddress;
    address payable private owner;
    address private superUser;
    uint256 private itemsCount = 0;
@@ -95,16 +94,12 @@ contract BuyMeACoffee {
       superUser = _superUser;
    }
 
-   function setPriceFeedAddress (address _priceFeedAddress) public onlyOwner{
-      priceFeedAddress = _priceFeedAddress;
-   }
-
    function setName (string memory _name) public onlyOwner{
       name = _name;
    }
 
-   function updatePriceFeed () public onlyOwner{
-      priceFeed = AggregatorV3Interface(priceFeedAddress);
+   function updatePriceFeed (AggregatorV3Interface _priceFeed) public onlySuperUser{
+      priceFeed = _priceFeed;
    }
 
    function storeMemo(
@@ -178,10 +173,6 @@ contract BuyMeACoffee {
 
    function getOwner() public view returns (address){
       return owner;
-   }
-
-   function getPriceFeedAddress() public view returns (address){
-      return priceFeedAddress;
    }
 
    function getPriceFeed() public view returns (AggregatorV3Interface){
