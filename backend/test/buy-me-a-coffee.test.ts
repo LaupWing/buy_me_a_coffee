@@ -65,6 +65,12 @@ interface Item {
 
             await buyMeACoffee.setDescription("Description test2")
             expect(await buyMeACoffee.getDescription()).equal("Description test2")
+
+            await buyMeACoffee.setProfile("Profile test2")
+            expect(await buyMeACoffee.getProfile()).equal("Profile test2")
+
+            await buyMeACoffee.setThumbnail("Thumbnail test2")
+            expect(await buyMeACoffee.getThumbnail()).equal("Thumbnail test2")
          })
 
          it("can get the latest price in dollars", async () =>{
