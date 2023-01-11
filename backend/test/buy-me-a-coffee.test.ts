@@ -18,6 +18,7 @@ interface Item {
          buyMeACoffee: BuyMeACoffee, 
          buyMeACoffeeFactory: BuyMeACoffeeFactory, 
          deployer:string, 
+         buyMeACoffeeAddress:string, 
          user1:   SignerWithAddress, 
          user2: SignerWithAddress, 
          mockV3Aggregator: MockV3Aggregator
@@ -32,7 +33,7 @@ interface Item {
          buyMeACoffeeFactory = await ethers.getContract("BuyMeACoffeeFactory")
          const transaction = await buyMeACoffeeFactory.createBuyMeACoffee(buyMeACoffeeName, buyMeACoffeeDescription)
          const transactionReceipt = await transaction.wait()
-         const buyMeACoffeeAddress = transactionReceipt.events?.find(x => x.event === "BuyMeACoffeeCreated")?.args?.buyMeACoffeeAddress
+         buyMeACoffeeAddress = transactionReceipt.events?.find(x => x.event === "BuyMeACoffeeCreated")?.args?.buyMeACoffeeAddress
          buyMeACoffee = await ethers.getContractAt("BuyMeACoffee", buyMeACoffeeAddress)
 
          mockV3Aggregator = await ethers.getContract("MockV3Aggregator")
@@ -43,6 +44,7 @@ interface Item {
       
       describe("Constructor", () => {
          it("sets up starting values correctly", async () => {
+            expect(await buyMeACoffeeFactory.getDeployedBuyMeACoffee()).to.have.members([buyMeACoffeeAddress])
             expect(await buyMeACoffee.getName()).equal(buyMeACoffeeName)
             expect(await buyMeACoffee.getOwner()).equal(deployer)
             expect(await buyMeACoffee.getPriceFeed()).equal(mockV3Aggregator.address)
