@@ -51,6 +51,11 @@ interface Item {
             const decimals = (await buyMeACoffee.getDecimals()).toString()
             expect(Number(latestPrice) / 10**Number(decimals)).equal(200)
          })
+
+         it("can update the pricefeed", async () => {
+            await (buyMeACoffee.updatePriceFeed())
+            console.log(buyMeACoffee)
+         })
       })
 
       describe("Items", () => {
