@@ -22,12 +22,15 @@ interface Item {
          user2: SignerWithAddress, 
          mockV3Aggregator: MockV3Aggregator
 
+      const buyMeACoffeeName = "test"
+      const buyMeACoffeeDescription = "test description"
+
       beforeEach(async () => { 
          const accounts = await getNamedAccounts()
          await deployments.fixture(["all"])
 
          buyMeACoffeeFactory = await ethers.getContract("BuyMeACoffeeFactory")
-         const transaction = await buyMeACoffeeFactory.createBuyMeACoffee("test", "test description")
+         const transaction = await buyMeACoffeeFactory.createBuyMeACoffee(buyMeACoffeeName, buyMeACoffeeDescription)
          const transactionReceipt = await transaction.wait()
          const buyMeACoffeeAddress = transactionReceipt.events?.find(x => x.event === "BuyMeACoffeeCreated")?.args?.buyMeACoffeeAddress
          buyMeACoffee = await ethers.getContractAt("BuyMeACoffee", buyMeACoffeeAddress)
@@ -40,10 +43,9 @@ interface Item {
       
       describe("Constructor", () => {
          it("sets up starting values correctly", async () => {
-            console.log("test")
-            // expect(await buyMeACoffee.getName()).equal("Test")
-            // expect(await buyMeACoffee.getOwner()).equal(deployer)
-            // expect(await buyMeACoffee.getPriceFeedAddress()).equal(mockV3Aggregator.address)
+            expect(await buyMeACoffee.getName()).equal(buyMeACoffeeName)
+            expect(await buyMeACoffee.getOwner()).equal(deployer)
+            expect(await buyMeACoffee.getPriceFeed()).equal(mockV3Aggregator.address)
          })
 
       //    it("allows owner to change pricefeed address and name", async () => {
