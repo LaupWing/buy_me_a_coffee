@@ -30,13 +30,15 @@ contract BuyMeACoffeeFactory {
 
    function createBuyMeACoffee(
       string memory _name, 
+      string memory _description,
       string memory _profile, 
-      string memory _description
+      string memory _thumbnail
    ) public{
       address newBuyMeACoffee = address(new BuyMeACoffee(
          _name, 
          _description, 
          _profile,
+         _thumbnail,
          msg.sender,
          superUser,
          priceFeed
@@ -101,19 +103,22 @@ contract BuyMeACoffee {
    uint256 private itemsCount = 0;
    string private name;
    string private profile;
+   string private thumbnail;
    string private description;
 
    constructor( 
       string memory _name, 
       string memory _description, 
       string memory _profile, 
+      string memory _thumbnail, 
       address _owner,
       address _superUser,
       AggregatorV3Interface _priceFeed
    ) {
       name = _name;
-      profile = _profile;
       description = _description;
+      profile = _profile;
+      thumbnail = _thumbnail;
       priceFeed = _priceFeed;
       owner = payable(_owner);
       superUser = _superUser;
@@ -129,6 +134,10 @@ contract BuyMeACoffee {
 
    function setProfile (string memory _profile) public onlyOwner{
       profile = _profile;
+   }
+
+   function setThumbnail (string memory _thumbnail) public onlyOwner{
+      thumbnail = _thumbnail;
    }
 
    function updatePriceFeed (AggregatorV3Interface _priceFeed, address sender) public onlySuperUser(sender){
@@ -207,6 +216,10 @@ contract BuyMeACoffee {
 
    function getProfile() public view returns (string memory){
       return profile;
+   }
+
+   function getThumbnail() public view returns (string memory){
+      return thumbnail;
    }
 
    function getOwner() public view returns (address){
