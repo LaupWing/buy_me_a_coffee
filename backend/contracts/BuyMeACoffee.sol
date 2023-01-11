@@ -25,7 +25,8 @@ contract BuyMeACoffeeFactory {
       address newBuyMeACoffee = address(new BuyMeACoffee(
          _name, 
          _description, 
-         msg.sender
+         msg.sender,
+         priceFeed
       ));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
    }
@@ -71,16 +72,15 @@ contract BuyMeACoffee {
    string private name;
    string private description;
 
-   constructor(
-      address _priceFeedAddress, 
+   constructor( 
       string memory _name, 
       string memory _description, 
-      address _owner
+      address _owner,
+      AggregatorV3Interface _priceFeed
    ) {
-      priceFeedAddress = _priceFeedAddress;
       name = _name;
       description = _description;
-      priceFeed = AggregatorV3Interface(priceFeedAddress);
+      priceFeed = _priceFeed;
       owner = payable(_owner);
    }
 
