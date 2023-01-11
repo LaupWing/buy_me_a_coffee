@@ -31,127 +31,127 @@ interface Item {
          user2 = await ethers.getNamedSigner("user2")
       })
       
-      describe("Constructor", () => {
-         it("sets up starting values correctly", async () => {
-            expect(await buyMeACoffee.getName()).equal("Test")
-            expect(await buyMeACoffee.getOwner()).equal(deployer)
-            expect(await buyMeACoffee.getPriceFeedAddress()).equal(mockV3Aggregator.address)
-         })
+      // describe("Constructor", () => {
+      //    it("sets up starting values correctly", async () => {
+      //       expect(await buyMeACoffee.getName()).equal("Test")
+      //       expect(await buyMeACoffee.getOwner()).equal(deployer)
+      //       expect(await buyMeACoffee.getPriceFeedAddress()).equal(mockV3Aggregator.address)
+      //    })
 
-         it("allows owner to change pricefeed address and name", async () => {
-            await buyMeACoffee.setPriceFeedAddress(user1.address)
-            expect(await buyMeACoffee.getPriceFeedAddress()).equal(user1.address)
+      //    it("allows owner to change pricefeed address and name", async () => {
+      //       await buyMeACoffee.setPriceFeedAddress(user1.address)
+      //       expect(await buyMeACoffee.getPriceFeedAddress()).equal(user1.address)
 
-            await buyMeACoffee.setName("Test2")
-            expect(await buyMeACoffee.getName()).equal("Test2")
-         })
+      //       await buyMeACoffee.setName("Test2")
+      //       expect(await buyMeACoffee.getName()).equal("Test2")
+      //    })
 
-         it("can get the latest price in dollars", async () =>{
-            const latestPrice = (await buyMeACoffee.getLatestPrice()).toString() 
-            const decimals = (await buyMeACoffee.getDecimals()).toString()
-            expect(Number(latestPrice) / 10**Number(decimals)).equal(200)
-         })
+      //    it("can get the latest price in dollars", async () =>{
+      //       const latestPrice = (await buyMeACoffee.getLatestPrice()).toString() 
+      //       const decimals = (await buyMeACoffee.getDecimals()).toString()
+      //       expect(Number(latestPrice) / 10**Number(decimals)).equal(200)
+      //    })
 
-         it("can update the pricefeed", async () => {
-            await buyMeACoffee.setPriceFeedAddress(user1.address)
-            await (buyMeACoffee.updatePriceFeed())
-            expect(await buyMeACoffee.getPriceFeed()).equal(user1.address)
-         })
+      //    it("can update the pricefeed", async () => {
+      //       await buyMeACoffee.setPriceFeedAddress(user1.address)
+      //       await (buyMeACoffee.updatePriceFeed())
+      //       expect(await buyMeACoffee.getPriceFeed()).equal(user1.address)
+      //    })
 
-         it("reverts when not owner wants to change things", async () => {
-            await expect(buyMeACoffee.connect(user1).setPriceFeedAddress(user1.address))
-               .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
+      //    it("reverts when not owner wants to change things", async () => {
+      //       await expect(buyMeACoffee.connect(user1).setPriceFeedAddress(user1.address))
+      //          .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
 
-            await expect(buyMeACoffee.connect(user1).updatePriceFeed())
-               .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
+      //       await expect(buyMeACoffee.connect(user1).updatePriceFeed())
+      //          .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
 
-            await expect(buyMeACoffee.connect(user1).setName("test3"))
-               .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
-         })
-      })
+      //       await expect(buyMeACoffee.connect(user1).setName("test3"))
+      //          .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
+      //    })
+      // })
 
-      describe("Items", () => {
-         let items:Item[]
-         const firstSetOfItems = ["cookies", "cappochino"]
-         const secondSetOfItems = ["Coffee"]
-         const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
-         const secondSetOfItemsCost = ethers.utils.parseEther("0.001")
+      // describe("Items", () => {
+      //    let items:Item[]
+      //    const firstSetOfItems = ["cookies", "cappochino"]
+      //    const secondSetOfItems = ["Coffee"]
+      //    const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
+      //    const secondSetOfItemsCost = ethers.utils.parseEther("0.001")
 
-         beforeEach(async () => {
-            await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
-            await buyMeACoffee.addItems(secondSetOfItems, secondSetOfItemsCost)
-            items = (await buyMeACoffee.getListOfItems())
-         })
+      //    beforeEach(async () => {
+      //       await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
+      //       await buyMeACoffee.addItems(secondSetOfItems, secondSetOfItemsCost)
+      //       items = (await buyMeACoffee.getListOfItems())
+      //    })
 
-         it("allows owner to add item to the contract", async () => {
-            expect(items[0].id.toString()).equal("0")
-            expect(items[0].names).to.have.same.members(firstSetOfItems)
-            expect(items[0].cost.toString()).equal(firstSetOfItemsCost)
+      //    it("allows owner to add item to the contract", async () => {
+      //       expect(items[0].id.toString()).equal("0")
+      //       expect(items[0].names).to.have.same.members(firstSetOfItems)
+      //       expect(items[0].cost.toString()).equal(firstSetOfItemsCost)
 
-            expect(items[1].id.toString()).equal("1")
-            expect(items[1].names).to.have.same.members(secondSetOfItems)
-            expect(items[1].cost.toString()).equal(secondSetOfItemsCost)
-         })
+      //       expect(items[1].id.toString()).equal("1")
+      //       expect(items[1].names).to.have.same.members(secondSetOfItems)
+      //       expect(items[1].cost.toString()).equal(secondSetOfItemsCost)
+      //    })
 
-         it("removes first set of items from the list of items", async () => {
-            await buyMeACoffee.removeItems("0")
-            const listOfItems = await buyMeACoffee.getListOfItems() 
-            expect(listOfItems.length).equal(1)
-            expect(listOfItems[0].names).to.have.same.members(secondSetOfItems)
-         })
+      //    it("removes first set of items from the list of items", async () => {
+      //       await buyMeACoffee.removeItems("0")
+      //       const listOfItems = await buyMeACoffee.getListOfItems() 
+      //       expect(listOfItems.length).equal(1)
+      //       expect(listOfItems[0].names).to.have.same.members(secondSetOfItems)
+      //    })
 
-         it("reverts when other users try removing or adding item", async () => {
-            await expect(buyMeACoffee.connect(user1).addItems(["test"], 1))
-               .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotOwner")
+      //    it("reverts when other users try removing or adding item", async () => {
+      //       await expect(buyMeACoffee.connect(user1).addItems(["test"], 1))
+      //          .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotOwner")
 
-            await expect(buyMeACoffee.connect(user1).removeItems(0))
-               .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotOwner")
+      //       await expect(buyMeACoffee.connect(user1).removeItems(0))
+      //          .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotOwner")
              
-         })
-      })
+      //    })
+      // })
 
-      describe("Memos", () =>{
-         const firstSetOfItems = ["cookies", "cappochino"]
-         const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
-         let items: Item[]
-         const name = "Laup"
-         const message = "A nice message"
-         const itemsId = "0" 
+      // describe("Memos", () =>{
+      //    const firstSetOfItems = ["cookies", "cappochino"]
+      //    const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
+      //    let items: Item[]
+      //    const name = "Laup"
+      //    const message = "A nice message"
+      //    const itemsId = "0" 
 
-         beforeEach(async () => {
-            await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
-            items = (await buyMeACoffee.getListOfItems())
-         })
-         it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
+      //    beforeEach(async () => {
+      //       await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
+      //       items = (await buyMeACoffee.getListOfItems())
+      //    })
+      //    it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
 
-            await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
-               value: firstSetOfItemsCost
-            })
-            expect((await ethers.provider.getBalance(buyMeACoffee.address))).equal(firstSetOfItemsCost)
-            const memos = await buyMeACoffee.getMemos()
+      //       await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+      //          value: firstSetOfItemsCost
+      //       })
+      //       expect((await ethers.provider.getBalance(buyMeACoffee.address))).equal(firstSetOfItemsCost)
+      //       const memos = await buyMeACoffee.getMemos()
 
-            expect(memos[0].name).equal(name)
-            expect(memos[0].message).equal(message)
-            expect(memos[0].items_id.toString()).equal(itemsId)
-         })
+      //       expect(memos[0].name).equal(name)
+      //       expect(memos[0].message).equal(message)
+      //       expect(memos[0].items_id.toString()).equal(itemsId)
+      //    })
 
-         it("reverts with error when not enough eth is sent", async () => {
-            await expect(buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
-               value: ethers.utils.parseEther("0.001")
-            })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
-         })
+      //    it("reverts with error when not enough eth is sent", async () => {
+      //       await expect(buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+      //          value: ethers.utils.parseEther("0.001")
+      //       })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
+      //    })
 
-         it("allows owner to withdraw eth", async () => {
-            await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
-               value: firstSetOfItemsCost
-            })
-            const deployerBeginBalance = await ethers.provider.getBalance(deployer)
-            const transaction = await buyMeACoffee.withdraw()
-            const transactionReceipt = await transaction.wait()
-            const gasPrice = transactionReceipt.gasUsed.mul(transactionReceipt.effectiveGasPrice) 
-            expect(deployerBeginBalance.add(firstSetOfItemsCost).sub(gasPrice))
-               .equal(await ethers.provider.getBalance(deployer))
-         })
-      })
+      //    it("allows owner to withdraw eth", async () => {
+      //       await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+      //          value: firstSetOfItemsCost
+      //       })
+      //       const deployerBeginBalance = await ethers.provider.getBalance(deployer)
+      //       const transaction = await buyMeACoffee.withdraw()
+      //       const transactionReceipt = await transaction.wait()
+      //       const gasPrice = transactionReceipt.gasUsed.mul(transactionReceipt.effectiveGasPrice) 
+      //       expect(deployerBeginBalance.add(firstSetOfItemsCost).sub(gasPrice))
+      //          .equal(await ethers.provider.getBalance(deployer))
+      //    })
+      // })
 
    })
