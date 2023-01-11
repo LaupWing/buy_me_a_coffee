@@ -117,6 +117,10 @@ contract BuyMeACoffee {
       name = _name;
    }
 
+   function setDescription (string memory _description) public onlyOwner{
+      description = _description;
+   }
+
    function updatePriceFeed (AggregatorV3Interface _priceFeed) public onlySuperUser{
       priceFeed = _priceFeed;
    }

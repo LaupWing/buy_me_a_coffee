@@ -48,13 +48,11 @@ interface Item {
             expect(await buyMeACoffee.getPriceFeed()).equal(mockV3Aggregator.address)
          })
 
-      //    it("allows owner to change pricefeed address and name", async () => {
-      //       await buyMeACoffee.setPriceFeedAddress(user1.address)
-      //       expect(await buyMeACoffee.getPriceFeedAddress()).equal(user1.address)
+         it("allows owner to change description and name", async () => {
 
-      //       await buyMeACoffee.setName("Test2")
-      //       expect(await buyMeACoffee.getName()).equal("Test2")
-      //    })
+            await buyMeACoffee.setName("Test2")
+            expect(await buyMeACoffee.getName()).equal("Test2")
+         })
 
       //    it("can get the latest price in dollars", async () =>{
       //       const latestPrice = (await buyMeACoffee.getLatestPrice()).toString() 
