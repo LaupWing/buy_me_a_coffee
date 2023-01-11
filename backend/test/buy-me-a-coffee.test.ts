@@ -57,6 +57,7 @@ interface Item {
             expect(await buyMeACoffee.getPriceFeed()).equal(mockV3Aggregator.address)
             expect(await buyMeACoffee.getProfile()).equal(buyMeACoffeeProfile)
             expect(await buyMeACoffee.getThumbnail()).equal(buyMeACoffeeThumbnail)
+            expect(await buyMeACoffee.getSuperUser()).equal(deployer)
          })
 
          it("allows owner to change description and name", async () => {
