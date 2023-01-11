@@ -14,6 +14,13 @@ contract BuyMeACoffeeFactory {
    address superUser;
    AggregatorV3Interface private priceFeed;
 
+   modifier onlySuperUser(){
+      if(msg.sender != superUser){
+         revert BuyMeACoffee__NotSuperUser();
+      }
+      _;
+   }
+
    constructor(address _priceFeedAddress){
       superUser = msg.sender;
       priceFeed = AggregatorV3Interface(_priceFeedAddress);
@@ -37,7 +44,9 @@ contract BuyMeACoffeeFactory {
       return deployedBuyMeCoffees;
    }
 
-   function updatePricefeed(address _priceFeedAddress) public 
+   function updatePricefeed(address _priceFeedAddress) public onlySuperUser{
+      
+   }
 }
 
 contract BuyMeACoffee {
