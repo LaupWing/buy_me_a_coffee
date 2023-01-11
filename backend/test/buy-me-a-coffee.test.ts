@@ -72,16 +72,13 @@ interface Item {
                .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotSuperUser")
          })
 
-      //    it("reverts when not owner wants to change things", async () => {
-      //       await expect(buyMeACoffee.connect(user1).setPriceFeedAddress(user1.address))
-      //          .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
-
-      //       await expect(buyMeACoffee.connect(user1).updatePriceFeed())
-      //          .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
-
-      //       await expect(buyMeACoffee.connect(user1).setName("test3"))
-      //          .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
-      //    })
+         it("reverts when not owner wants to change things", async () => {
+            await expect(buyMeACoffee.connect(user1).setName("test3"))
+               .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
+            
+            await expect(buyMeACoffee.connect(user1).setDescription("Test description"))
+               .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
+         })
       })
 
       // describe("Items", () => {
