@@ -50,7 +50,7 @@ contract BuyMeACoffee {
       owner = payable(msg.sender);
    }
 
-   function setPriceFeedAddress (address _priceFeedAddress) public{
+   function setPriceFeedAddress (address _priceFeedAddress) public onlyOwner{
       priceFeedAddress = _priceFeedAddress;
    }
 
