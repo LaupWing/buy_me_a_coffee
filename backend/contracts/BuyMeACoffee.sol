@@ -135,6 +135,10 @@ contract BuyMeACoffee {
       return priceFeedAddress;
    }
 
+   function getPriceFeed() public view returns (AggregatorV3Interface){
+      return priceFeed;
+   }
+
    function withdraw() public onlyOwner{
       owner.transfer(address(this).balance);
    }
