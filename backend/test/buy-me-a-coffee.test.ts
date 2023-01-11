@@ -121,48 +121,48 @@ interface Item {
          })
       })
 
-      // describe("Memos", () =>{
-      //    const firstSetOfItems = ["cookies", "cappochino"]
-      //    const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
-      //    let items: Item[]
-      //    const name = "Laup"
-      //    const message = "A nice message"
-      //    const itemsId = "0" 
+      describe("Memos", () =>{
+         const firstSetOfItems = ["cookies", "cappochino"]
+         const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
+         let items: Item[]
+         const name = "Laup"
+         const message = "A nice message"
+         const itemsId = "0" 
 
-      //    beforeEach(async () => {
-      //       await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
-      //       items = (await buyMeACoffee.getListOfItems())
-      //    })
-      //    it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
+         beforeEach(async () => {
+            await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
+            items = (await buyMeACoffee.getListOfItems())
+         })
+         it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
 
-      //       await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
-      //          value: firstSetOfItemsCost
-      //       })
-      //       expect((await ethers.provider.getBalance(buyMeACoffee.address))).equal(firstSetOfItemsCost)
-      //       const memos = await buyMeACoffee.getMemos()
+            await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+               value: firstSetOfItemsCost
+            })
+            expect((await ethers.provider.getBalance(buyMeACoffee.address))).equal(firstSetOfItemsCost)
+            const memos = await buyMeACoffee.getMemos()
 
-      //       expect(memos[0].name).equal(name)
-      //       expect(memos[0].message).equal(message)
-      //       expect(memos[0].items_id.toString()).equal(itemsId)
-      //    })
+            expect(memos[0].name).equal(name)
+            expect(memos[0].message).equal(message)
+            expect(memos[0].items_id.toString()).equal(itemsId)
+         })
 
-      //    it("reverts with error when not enough eth is sent", async () => {
-      //       await expect(buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
-      //          value: ethers.utils.parseEther("0.001")
-      //       })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
-      //    })
+         it("reverts with error when not enough eth is sent", async () => {
+            await expect(buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+               value: ethers.utils.parseEther("0.001")
+            })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
+         })
 
-      //    it("allows owner to withdraw eth", async () => {
-      //       await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
-      //          value: firstSetOfItemsCost
-      //       })
-      //       const deployerBeginBalance = await ethers.provider.getBalance(deployer)
-      //       const transaction = await buyMeACoffee.withdraw()
-      //       const transactionReceipt = await transaction.wait()
-      //       const gasPrice = transactionReceipt.gasUsed.mul(transactionReceipt.effectiveGasPrice) 
-      //       expect(deployerBeginBalance.add(firstSetOfItemsCost).sub(gasPrice))
-      //          .equal(await ethers.provider.getBalance(deployer))
-      //    })
-      // })
+         it("allows owner to withdraw eth", async () => {
+            await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+               value: firstSetOfItemsCost
+            })
+            const deployerBeginBalance = await ethers.provider.getBalance(deployer)
+            const transaction = await buyMeACoffee.withdraw()
+            const transactionReceipt = await transaction.wait()
+            const gasPrice = transactionReceipt.gasUsed.mul(transactionReceipt.effectiveGasPrice) 
+            expect(deployerBeginBalance.add(firstSetOfItemsCost).sub(gasPrice))
+               .equal(await ethers.provider.getBalance(deployer))
+         })
+      })
 
    })
