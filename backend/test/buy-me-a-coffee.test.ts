@@ -27,8 +27,10 @@ interface Item {
          await deployments.fixture(["all"])
 
          buyMeACoffeeFactory = await ethers.getContract("BuyMeACoffeeFactory")
-         await buyMeACoffeeFactory.createBuyMeACoffee("test", "test description")
-         console.log(await buyMeACoffeeFactory.getDeployedBuyMeACoffee())
+         const transaction = await buyMeACoffeeFactory.createBuyMeACoffee("test", "test description")
+         const transactionReceipt = await transaction.wait()
+         const buyMeACoffeeAddress = transactionReceipt.events?.find(x => x.event === "BuyMeACoffeeCreated")?.args?.buyMeACoffeeAddress
+         buyMeACoffee = await ethers.getContractAt("BuyMeACoffee", buyMeACoffeeAddress)
 
          mockV3Aggregator = await ethers.getContract("MockV3Aggregator")
          deployer = accounts.deployer
