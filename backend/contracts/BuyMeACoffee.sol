@@ -63,6 +63,7 @@ contract BuyMeACoffee {
       uint256 timestamp;
       string name;
       string message;
+      string response;
       uint256 items_id;
    }
 
@@ -144,6 +145,7 @@ contract BuyMeACoffee {
          block.timestamp, 
          _name, 
          _message, 
+         "",
          _itemsId
       ));
    }
