@@ -11,8 +11,8 @@ error BuyMeACoffee__NotOwner();
 contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
 
-   constructor(address _pricefeedAddress, string memory _name){
-      address newBuyMeACoffee = address(new BuyMeACoffee(_pricefeedAddress, _name, msg.sender));
+   constructor(address _pricefeedAddress, string memory _name, string memory _description){
+      address newBuyMeACoffee = address(new BuyMeACoffee(_pricefeedAddress, _name, _description, msg.sender));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
    }  
 
@@ -55,10 +55,17 @@ contract BuyMeACoffee {
    address payable private owner;
    uint256 private itemsCount = 0;
    string private name;
+   string private description;
 
-   constructor(address _priceFeedAddress, string memory _name, address _owner) {
+   constructor(
+      address _priceFeedAddress, 
+      string memory _name, 
+      string memory _description, 
+      address _owner
+   ) {
       priceFeedAddress = _priceFeedAddress;
       name = _name;
+      description = _description;
       priceFeed = AggregatorV3Interface(priceFeedAddress);
       owner = payable(_owner);
    }
@@ -138,6 +145,10 @@ contract BuyMeACoffee {
 
    function getName() public view returns (string memory){
       return name;
+   }
+
+   function getDescription() public view returns (string memory){
+      return description;
    }
 
    function getOwner() public view returns (address){
