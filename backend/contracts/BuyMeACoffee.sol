@@ -12,7 +12,7 @@ contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
 
    constructor(address _pricefeedAddress, string memory _name){
-      address newBuyMeACoffee = address(new BuyMeACoffee(_pricefeedAddress, _name));
+      address newBuyMeACoffee = address(new BuyMeACoffee(_pricefeedAddress, _name, msg.sender));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
    }  
 
@@ -56,11 +56,11 @@ contract BuyMeACoffee {
    uint256 private itemsCount = 0;
    string private name;
 
-   constructor(address _priceFeedAddress, string memory _name) {
+   constructor(address _priceFeedAddress, string memory _name, address _owner) {
       priceFeedAddress = _priceFeedAddress;
       name = _name;
       priceFeed = AggregatorV3Interface(priceFeedAddress);
-      owner = payable(msg.sender);
+      owner = payable(_owner);
    }
 
    function setPriceFeedAddress (address _priceFeedAddress) public onlyOwner{
