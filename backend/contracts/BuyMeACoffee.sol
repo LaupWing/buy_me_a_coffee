@@ -21,6 +21,8 @@ contract BuyMeACoffeeFactory {
       _;
    }
 
+   event BuyMeACoffeeCreated(address indexed buyMeACoffeeAddress);
+
    constructor(address _priceFeedAddress){
       superUser = msg.sender;
       priceFeed = AggregatorV3Interface(_priceFeedAddress);
@@ -38,6 +40,7 @@ contract BuyMeACoffeeFactory {
          priceFeed
       ));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
+      emit BuyMeACoffeeCreated(newBuyMeACoffee);
    }
 
    function getDeployedBuyMeACoffee() public view returns (address[] memory){

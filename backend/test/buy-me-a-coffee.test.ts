@@ -3,7 +3,7 @@ import { expect } from "chai"
 import { BigNumber } from "ethers"
 import { deployments, ethers, getNamedAccounts, network } from "hardhat"
 import { developmentChains } from "../helper-hardhat-config"
-import { BuyMeACoffee, MockV3Aggregator } from "../typechain-types"
+import { BuyMeACoffee, BuyMeACoffeeFactory, MockV3Aggregator } from "../typechain-types"
 
 interface Item {
    id: BigNumber
@@ -16,6 +16,7 @@ interface Item {
    : describe("BuyMeACoffee", () => {
       let 
          buyMeACoffee: BuyMeACoffee, 
+         buyMeACoffeeFactory: BuyMeACoffeeFactory, 
          deployer:string, 
          user1:   SignerWithAddress, 
          user2: SignerWithAddress, 
@@ -24,19 +25,24 @@ interface Item {
       beforeEach(async () => { 
          const accounts = await getNamedAccounts()
          await deployments.fixture(["all"])
-         buyMeACoffee = await ethers.getContract("BuyMeACoffee")
+
+         buyMeACoffeeFactory = await ethers.getContract("BuyMeACoffeeFactory")
+         await buyMeACoffeeFactory.createBuyMeACoffee("test", "test description")
+         console.log(await buyMeACoffeeFactory.getDeployedBuyMeACoffee())
+
          mockV3Aggregator = await ethers.getContract("MockV3Aggregator")
          deployer = accounts.deployer
          user1 = await ethers.getNamedSigner("user1")
          user2 = await ethers.getNamedSigner("user2")
       })
       
-      // describe("Constructor", () => {
-      //    it("sets up starting values correctly", async () => {
-      //       expect(await buyMeACoffee.getName()).equal("Test")
-      //       expect(await buyMeACoffee.getOwner()).equal(deployer)
-      //       expect(await buyMeACoffee.getPriceFeedAddress()).equal(mockV3Aggregator.address)
-      //    })
+      describe("Constructor", () => {
+         it("sets up starting values correctly", async () => {
+            console.log("test")
+            // expect(await buyMeACoffee.getName()).equal("Test")
+            // expect(await buyMeACoffee.getOwner()).equal(deployer)
+            // expect(await buyMeACoffee.getPriceFeedAddress()).equal(mockV3Aggregator.address)
+         })
 
       //    it("allows owner to change pricefeed address and name", async () => {
       //       await buyMeACoffee.setPriceFeedAddress(user1.address)
@@ -68,7 +74,7 @@ interface Item {
       //       await expect(buyMeACoffee.connect(user1).setName("test3"))
       //          .to.be.revertedWithCustomError( buyMeACoffee,"BuyMeACoffee__NotOwner")
       //    })
-      // })
+      })
 
       // describe("Items", () => {
       //    let items:Item[]
