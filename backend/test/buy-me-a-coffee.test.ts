@@ -60,6 +60,20 @@ interface Item {
             expect(await buyMeACoffee.getSuperUser()).equal(deployer)
          })
 
+         it("emits event when new contract has been made", async () =>{
+            const transaction = await buyMeACoffeeFactory.connect(user1).createBuyMeACoffee(
+               "test name", 
+               "test description",
+               "test profile",
+               "test thumbnail"
+            )
+            const transactionReceipt = await transaction.wait()
+            const address = transactionReceipt?.events?.find(x => x.event === "BuyMeACoffeeCreated")?.args?.buyMeACoffeeAddress 
+            
+            await expect(transaction).to.emit(buyMeACoffeeFactory, "BuyMeACoffeeCreated")
+               .withArgs(address)
+         })
+
          it("allows owner to change description and name", async () => {
             await buyMeACoffee.setName("Test2")
             expect(await buyMeACoffee.getName()).equal("Test2")
