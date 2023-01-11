@@ -48,8 +48,8 @@ interface Item {
 
          it("can get the latest price in dollars", async () =>{
             const latestPrice = (await buyMeACoffee.getLatestPrice()).toString() 
-            const decimals = (await buyMeACoffee.getDecimals()).toString() 
-            
+            const decimals = (await buyMeACoffee.getDecimals()).toString()
+            expect(Number(latestPrice) / 10**Number(decimals)).equal(200)
          })
       })
 
