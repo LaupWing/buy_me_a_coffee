@@ -45,7 +45,11 @@ contract BuyMeACoffeeFactory {
    }
 
    function updatePricefeed(address _priceFeedAddress) public onlySuperUser{
-      
+      priceFeed = AggregatorV3Interface(_priceFeedAddress);
+      for(uint256 i; i < deployedBuyMeCoffees.length; i ++){
+         BuyMeACoffee _contract = BuyMeACoffee(deployedBuyMeCoffees[i]);
+         _contract.updatePriceFeed(priceFeed);
+      }
    }
 }
 
