@@ -228,6 +228,10 @@ contract BuyMeACoffee {
 
    function getPriceFeed() public view returns (AggregatorV3Interface){
       return priceFeed;
+
+   }
+   function getItemsCount() public view returns (uint256){
+      return itemsCount;
    }
 
    function withdraw() public onlyOwner{

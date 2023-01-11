@@ -154,13 +154,13 @@ interface Item {
             items = (await buyMeACoffee.getListOfItems())
          })
          it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
-
+            expect((await buyMeACoffee.getItemsCount()).toString()).equal("1")
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: firstSetOfItemsCost
             })
             expect((await ethers.provider.getBalance(buyMeACoffee.address))).equal(firstSetOfItemsCost)
             const memos = await buyMeACoffee.getMemos()
-
+            
             expect(memos[0].name).equal(name)
             expect(memos[0].message).equal(message)
             expect(memos[0].items_id.toString()).equal(itemsId)
