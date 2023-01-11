@@ -49,9 +49,11 @@ interface Item {
          })
 
          it("allows owner to change description and name", async () => {
-
             await buyMeACoffee.setName("Test2")
             expect(await buyMeACoffee.getName()).equal("Test2")
+
+            await buyMeACoffee.setDescription("Description test2")
+            expect(await buyMeACoffee.getDescription()).equal("Description test2")
          })
 
       //    it("can get the latest price in dollars", async () =>{
