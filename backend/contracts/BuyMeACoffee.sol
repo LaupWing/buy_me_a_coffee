@@ -8,6 +8,12 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 error BuyMeACoffee__NotEnoughEthSend();
 error BuyMeACoffee__NotOwner();
 
+contract BuyMeACoffeeFactory {
+   address[] private deployedBuyMeCoffees;
+
+   
+}
+
 contract BuyMeACoffee {
    
    struct Memo {
