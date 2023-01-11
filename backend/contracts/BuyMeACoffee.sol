@@ -26,6 +26,7 @@ contract BuyMeACoffeeFactory {
          _name, 
          _description, 
          msg.sender,
+         superUser,
          priceFeed
       ));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
@@ -75,6 +76,7 @@ contract BuyMeACoffee {
    AggregatorV3Interface internal priceFeed;
    address private priceFeedAddress;
    address payable private owner;
+   address private superUser;
    uint256 private itemsCount = 0;
    string private name;
    string private description;
@@ -83,12 +85,14 @@ contract BuyMeACoffee {
       string memory _name, 
       string memory _description, 
       address _owner,
+      address _superUser,
       AggregatorV3Interface _priceFeed
    ) {
       name = _name;
       description = _description;
       priceFeed = _priceFeed;
       owner = payable(_owner);
+      superUser = _superUser;
    }
 
    function setPriceFeedAddress (address _priceFeedAddress) public onlyOwner{
