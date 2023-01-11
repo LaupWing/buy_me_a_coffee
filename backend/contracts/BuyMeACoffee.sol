@@ -10,11 +10,25 @@ error BuyMeACoffee__NotOwner();
 
 contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
+   address superUser;
+   AggregatorV3Interface private priceFeed;
 
-   constructor(address _pricefeedAddress, string memory _name, string memory _description){
-      address newBuyMeACoffee = address(new BuyMeACoffee(_pricefeedAddress, _name, _description, msg.sender));
-      deployedBuyMeCoffees.push(newBuyMeACoffee);
+   constructor(address _priceFeedAddress){
+      superUser = msg.sender;
+      priceFeed = AggregatorV3Interface(_priceFeedAddress);
    }  
+
+   function createBuyMeACoffee(
+      string memory _name, 
+      string memory _description
+   ) public{
+      address newBuyMeACoffee = address(new BuyMeACoffee(
+         _name, 
+         _description, 
+         msg.sender
+      ));
+      deployedBuyMeCoffees.push(newBuyMeACoffee);
+   }
 
    function getDeployedBuyMeACoffee() public view returns (address[] memory){
       return deployedBuyMeCoffees;
