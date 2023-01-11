@@ -7,6 +7,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 error BuyMeACoffee__NotEnoughEthSend();
 error BuyMeACoffee__NotOwner();
+error BuyMeACoffee__NotSuperUser();
 
 contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
@@ -35,6 +36,8 @@ contract BuyMeACoffeeFactory {
    function getDeployedBuyMeACoffee() public view returns (address[] memory){
       return deployedBuyMeCoffees;
    }
+
+   function updatePricefeed(address _priceFeedAddress) public 
 }
 
 contract BuyMeACoffee {
@@ -65,8 +68,8 @@ contract BuyMeACoffee {
    }
 
    modifier onlySuperUser(){
-      if(msg.sender != owner){
-         revert BuyMeACoffee__NotOwner();
+      if(msg.sender != superUser){
+         revert BuyMeACoffee__NotSuperUser();
       }
       _;
    }
