@@ -53,8 +53,13 @@ interface Item {
          })
 
          it("can update the pricefeed", async () => {
+            await buyMeACoffee.setPriceFeedAddress(user1.address)
             await (buyMeACoffee.updatePriceFeed())
-            console.log(buyMeACoffee)
+            expect(await buyMeACoffee.getPriceFeed()).equal(user1.address)
+         })
+
+         it("reverts when not owner wants to change things", async () => {
+            
          })
       })
 
