@@ -51,7 +51,7 @@ contract BuyMeACoffeeFactory {
       priceFeed = AggregatorV3Interface(_priceFeedAddress);
       for(uint256 i; i < deployedBuyMeCoffees.length; i ++){
          BuyMeACoffee _contract = BuyMeACoffee(deployedBuyMeCoffees[i]);
-         _contract.updatePriceFeed(priceFeed);
+         _contract.updatePriceFeed(priceFeed, msg.sender);
       }
    }
 }
@@ -83,8 +83,8 @@ contract BuyMeACoffee {
       _;
    }
 
-   modifier onlySuperUser(){
-      if(msg.sender != superUser){
+   modifier onlySuperUser(address sender){
+      if(sender != superUser){
          revert BuyMeACoffee__NotSuperUser();
       }
       _;
@@ -121,7 +121,7 @@ contract BuyMeACoffee {
       description = _description;
    }
 
-   function updatePriceFeed (AggregatorV3Interface _priceFeed) public onlySuperUser{
+   function updatePriceFeed (AggregatorV3Interface _priceFeed, address sender) public onlySuperUser(sender){
       priceFeed = _priceFeed;
    }
 

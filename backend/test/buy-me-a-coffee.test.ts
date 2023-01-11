@@ -56,17 +56,16 @@ interface Item {
             expect(await buyMeACoffee.getDescription()).equal("Description test2")
          })
 
-      //    it("can get the latest price in dollars", async () =>{
-      //       const latestPrice = (await buyMeACoffee.getLatestPrice()).toString() 
-      //       const decimals = (await buyMeACoffee.getDecimals()).toString()
-      //       expect(Number(latestPrice) / 10**Number(decimals)).equal(200)
-      //    })
+         it("can get the latest price in dollars", async () =>{
+            const latestPrice = (await buyMeACoffee.getLatestPrice()).toString() 
+            const decimals = (await buyMeACoffee.getDecimals()).toString()
+            expect(Number(latestPrice) / 10**Number(decimals)).equal(200)
+         })
 
-      //    it("can update the pricefeed", async () => {
-      //       await buyMeACoffee.setPriceFeedAddress(user1.address)
-      //       await (buyMeACoffee.updatePriceFeed())
-      //       expect(await buyMeACoffee.getPriceFeed()).equal(user1.address)
-      //    })
+         it("can update the pricefeed", async () => {
+            await buyMeACoffeeFactory.updatePricefeed(user1.address)
+            expect(await buyMeACoffee.getPriceFeed()).equal(user1.address)
+         })
 
       //    it("reverts when not owner wants to change things", async () => {
       //       await expect(buyMeACoffee.connect(user1).setPriceFeedAddress(user1.address))
