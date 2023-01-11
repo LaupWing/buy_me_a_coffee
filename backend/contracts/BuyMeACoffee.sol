@@ -11,7 +11,14 @@ error BuyMeACoffee__NotOwner();
 contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
 
-   
+   constructor(address _pricefeedAddress, string memory _name){
+      address newBuyMeACoffee = address(new BuyMeACoffee(_pricefeedAddress, _name));
+      deployedBuyMeCoffees.push(newBuyMeACoffee);
+   }  
+
+   function getDeployedBuyMeACoffee() public view returns (address[] memory){
+      return deployedBuyMeCoffees;
+   }
 }
 
 contract BuyMeACoffee {
