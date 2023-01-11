@@ -47,8 +47,9 @@ interface Item {
          })
 
          it("can get the latest price in dollars", async () =>{
-            console.log((await buyMeACoffee.getLatestPrice()).toString())
-            console.log((await buyMeACoffee.getDecimals()).toString())
+            const latestPrice = (await buyMeACoffee.getLatestPrice()).toString() 
+            const decimals = (await buyMeACoffee.getDecimals()).toString() 
+            
          })
       })
 
