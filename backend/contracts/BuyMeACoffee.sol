@@ -63,6 +63,13 @@ contract BuyMeACoffee {
       _;
    }
 
+   modifier onlySuperUser(){
+      if(msg.sender != owner){
+         revert BuyMeACoffee__NotOwner();
+      }
+      _;
+   }
+
    Memo[] private memos;
    Items[] private listOfItems;
    AggregatorV3Interface internal priceFeed;
