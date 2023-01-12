@@ -1,10 +1,12 @@
 import "../../styles/globals.css"
 
+interface Props {
+   children: React.ReactNode
+}
+
 export default function RootLayout({
    children,
-}: {
-   children: React.ReactNode
-}) {
+}: Props) {
    return (
       <html>
          <head />
