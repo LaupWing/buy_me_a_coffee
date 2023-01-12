@@ -1,8 +1,7 @@
 import { NextPage } from "next"
 import Head from "next/head"
-import Layout from "../components/Layout"
 
-const Home:NextPage = ({params}) => {
+const Home:NextPage = ({params}:any) => {
    return (
       <>
          <Head>
