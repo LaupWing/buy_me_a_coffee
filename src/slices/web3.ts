@@ -1,5 +1,6 @@
 import { MetaMaskInpageProvider } from "@metamask/providers"
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, Dispatch } from "@reduxjs/toolkit"
+import { ethers } from "ethers"
 
 declare global {
    interface Window {
@@ -8,7 +9,9 @@ declare global {
 }
 
 const initialState = {
-
+   account: null,
+   chainId: null,
+   provider: null
 }
 
 export const web3Slice = createSlice({
@@ -16,3 +19,13 @@ export const web3Slice = createSlice({
    initialState,
    reducers: {}
 })
+
+export const loadWeb3 =
+   () => async (dispatch: Dispatch) => {
+      if(!window.ethereum){
+         return window.alert("Non-Ethereum browser detected. You should consider trying metamask!")
+      }
+      const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
+      const signer = provider.getSigner()
+      console.log(signer)
+   }
