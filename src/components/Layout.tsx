@@ -1,7 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { SiBuymeacoffee } from "react-icons/si"
+import { loadWeb3 } from "../slices/web3"
+import { useAppDispatch } from "../store/hooks"
 
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
+   const dispatch = useAppDispatch()
+   useEffect(()=>{
+      dispatch(loadWeb3())
+   })
+
    return (
       <div className="w-screen h-screen bg-neutral-100 flex flex-col">
          <header className="bg-white p-4 flex mx-auto w-full max-w-5xl rounded-lg shadow mt-4">
