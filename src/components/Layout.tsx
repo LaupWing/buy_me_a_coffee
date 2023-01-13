@@ -1,13 +1,18 @@
 import React, { useEffect } from "react"
 import { SiBuymeacoffee } from "react-icons/si"
-import { loadWeb3 } from "../slices/web3"
+import { loadAccount, loadWeb3 } from "../slices/web3"
 import { useAppDispatch } from "../store/hooks"
 
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    useEffect(()=>{
-      dispatch(loadWeb3())
-   })
+      const initialize = async () =>{
+         await dispatch(loadWeb3())
+         await dispatch(loadAccount())
+      }
+
+      initialize()
+   }, [])
 
    return (
       <div className="w-screen h-screen bg-neutral-100 flex flex-col">

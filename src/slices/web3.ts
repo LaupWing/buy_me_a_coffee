@@ -34,6 +34,9 @@ export const web3Slice = createSlice({
          provider: Web3Provider
       }>){
          state.chainId = action.payload.chainId 
+      },
+      setAccount(state, action:PayloadAction<string>){
+         state.account = action.payload
       }
    }
 })
@@ -54,9 +57,21 @@ export const loadWeb3 =
       }))
    }
 
+export const loadAccount = 
+   () => async (dispatch: Dispatch) => {
+      const accounts = await window.ethereum?.request<string[]>({
+         method: "eth_accounts"
+      })
+      
+      if(accounts!.length > 0){
+         dispatch(setAccount(accounts![0]!))
+      }
+   }
+
 
 export const {
-   setWeb3
+   setWeb3,
+   setAccount
 } = web3Slice.actions
 
 export default web3Slice.reducer
