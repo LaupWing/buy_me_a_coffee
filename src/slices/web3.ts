@@ -10,10 +10,18 @@ declare global {
    }
 }
 
-const initialState = {
-   account: null,
-   chainId: null,
-   provider: null
+export interface Web3State {
+   chainId: string
+   signer: JsonRpcSigner|null
+   provider: Web3Provider|null 
+   account: string
+}
+
+const initialState:Web3State = {
+   account: "",
+   chainId: "",
+   provider: null,
+   signer: null
 }
 
 export const web3Slice = createSlice({
@@ -25,7 +33,7 @@ export const web3Slice = createSlice({
          signer: JsonRpcSigner,
          provider: Web3Provider
       }>){
-
+         state.chainId = action.payload.chainId 
       }
    }
 })
@@ -38,6 +46,7 @@ export const loadWeb3 =
       const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
       const signer = provider.getSigner()
       const chainId = (await provider.getNetwork()).chainId?.toString()
+
       dispatch(setWeb3({
          chainId,
          signer,
