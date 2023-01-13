@@ -1,13 +1,14 @@
 import "../../styles/globals.css"
 import {SiBuymeacoffee} from "react-icons/si"
+import { useAppDispatch } from "../store/hooks"
 
 interface Props {
    children: React.ReactNode
 }
 
-export default function RootLayout({
+const RootLayout = ({
    children,
-}: Props) {
+}: Props) => {
    return (
       <html>
          <head />
@@ -26,3 +27,5 @@ export default function RootLayout({
       </html>
    )
 }
+
+export default RootLayout
