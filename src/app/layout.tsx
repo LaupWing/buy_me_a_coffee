@@ -1,6 +1,7 @@
 import "../../styles/globals.css"
 import {SiBuymeacoffee} from "react-icons/si"
 import Web3Provider from "./web3-provider"
+import Providers from "./providers"
 
 interface Props {
    children: React.ReactNode
@@ -13,7 +14,7 @@ const RootLayout = ({
       <html>
          <head />
          <body className="w-screen h-screen bg-neutral-100 flex flex-col">
-            <Web3Provider>
+            <Providers>
                <header className="bg-white p-4 flex mx-auto w-full max-w-5xl rounded-lg shadow mt-4">
                   <div className="text-neutral-700">
                      <SiBuymeacoffee size={30}/>
@@ -24,7 +25,7 @@ const RootLayout = ({
                   </div>
                </header>
                {children}
-            </Web3Provider>
+            </Providers>
          </body>
       </html>
    )
