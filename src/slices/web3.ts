@@ -29,3 +29,5 @@ export const loadWeb3 =
       const signer = provider.getSigner()
       console.log(signer)
    }
+
+export default web3Slice.reducer
