@@ -16,6 +16,9 @@ export default function RootLayout({
                <div className="text-neutral-700">
                   <SiBuymeacoffee size={30}/>
                </div>
+               <div className="flex ml-auto">
+                  <button className="btn">Create </button>
+               </div>
             </header>
             {children}
          </body>

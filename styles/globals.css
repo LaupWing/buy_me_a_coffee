@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn{
+   @apply text-neutral-800 font-bold capitalize text-sm tracking-wider px-4 py-1 rounded bg-yellow-300;
+}
