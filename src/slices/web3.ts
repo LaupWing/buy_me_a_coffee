@@ -25,9 +25,9 @@ export const loadWeb3 =
       if(!window.ethereum){
          return window.alert("Non-Ethereum browser detected. You should consider trying metamask!")
       }
-      const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
-      const signer = provider.getSigner()
-      console.log(signer)
+      // const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
+      // const signer = provider.getSigner()
+      // console.log(signer)
    }
 
 export default web3Slice.reducer
