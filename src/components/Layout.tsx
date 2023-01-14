@@ -28,19 +28,14 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                </div>
                <div className="flex items-center ml-auto space-x-6">
                   { account ? (
-                     <>
-                        <p className="font-bold text-xs text-neutral-600 tracking-wider capitalize">My Campaigns</p>
-                        <button className="btn">My Coffees</button>
-                     </>
+                     <button className="btn">My Coffees</button>
                   ) : (
-                     <>
-                        <button 
-                           className="btn"
-                           onClick={() => dispatch(connectWallet())}
-                        >
-                           connect
-                        </button>
-                     </>
+                     <button 
+                        className="btn"
+                        onClick={() => dispatch(connectWallet())}
+                     >
+                        connect
+                     </button>
                   )}
                </div>
             </header>
