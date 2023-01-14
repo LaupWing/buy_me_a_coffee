@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { SiBuymeacoffee } from "react-icons/si"
+import { BiSearchAlt2 } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "../slices/web3"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 
@@ -28,7 +29,13 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                </div>
                <div className="flex items-center ml-auto space-x-6">
                   { account ? (
-                     <button className="btn">My Coffees</button>
+                     <>
+                        <BiSearchAlt2 
+                           className="text-gray-400 hover:text-yellow-400 duration-200 cursor-pointer" 
+                           size={30}
+                        />
+                        <button className="btn">My Coffees</button>
+                     </>
                   ) : (
                      <button 
                         className="btn"
