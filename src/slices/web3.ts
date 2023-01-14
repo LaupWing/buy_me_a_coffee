@@ -68,6 +68,13 @@ export const loadAccount =
       }
    }
 
+export const connectWallet = 
+   () => async (dispatch: Dispatch) => {
+      const accounts = await window.ethereum?.request<string[]>({
+         method: "eth_requestAccounts"
+      })
+      dispatch(setAccount(accounts![0]!))
+   }
 
 export const {
    setWeb3,
