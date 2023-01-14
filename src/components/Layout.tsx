@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { SiBuymeacoffee } from "react-icons/si"
 import { loadAccount, loadWeb3 } from "../slices/web3"
-import { useAppDispatch } from "../store/hooks"
+import { useAppDispatch, useAppSelector } from "../store/hooks"
 
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
+   const { account } = useAppSelector(state => state.web3)
    const [loaded, setLoaded] = useState(false)
 
    useEffect(()=>{
@@ -26,8 +27,16 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                   <SiBuymeacoffee size={30}/>
                </div>
                <div className="flex items-center ml-auto space-x-6">
-                  <p className="font-bold text-xs text-neutral-600 tracking-wider capitalize">My Campaigns</p>
-                  <button className="btn">Create</button>
+                  { account ? (
+                     <>
+                        <p className="font-bold text-xs text-neutral-600 tracking-wider capitalize">My Campaigns</p>
+                        <button className="btn">Create</button>
+                     </>
+                  ) : (
+                     <>
+                        <button className="btn">connect</button>
+                     </>
+                  )}
                </div>
             </header>
             {children}
