@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { SiBuymeacoffee } from "react-icons/si"
-import { BiSearchAlt2 } from "react-icons/bi"
+import { BiSearchAlt } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "../slices/web3"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 
@@ -30,7 +30,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                <div className="flex items-center ml-auto space-x-6">
                   { account ? (
                      <>
-                        <BiSearchAlt2 
+                        <BiSearchAlt
                            className="text-gray-400 hover:text-yellow-400 duration-200 cursor-pointer" 
                            size={30}
                         />
