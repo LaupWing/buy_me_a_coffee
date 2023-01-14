@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { SiBuymeacoffee } from "react-icons/si"
-import { loadAccount, loadWeb3 } from "../slices/web3"
+import { connectWallet, loadAccount, loadWeb3 } from "../slices/web3"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
@@ -34,7 +34,12 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                      </>
                   ) : (
                      <>
-                        <button className="btn">connect</button>
+                        <button 
+                           className="btn"
+                           onClick={() => dispatch(connectWallet())}
+                        >
+                           connect
+                        </button>
                      </>
                   )}
                </div>
