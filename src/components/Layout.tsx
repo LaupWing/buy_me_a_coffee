@@ -30,7 +30,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                   { account ? (
                      <>
                         <p className="font-bold text-xs text-neutral-600 tracking-wider capitalize">My Campaigns</p>
-                        <button className="btn">Create</button>
+                        <button className="btn">My Coffees</button>
                      </>
                   ) : (
                      <>
