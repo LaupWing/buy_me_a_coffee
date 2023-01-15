@@ -50,12 +50,16 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                            <button 
                               className="btn"
                               onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
-                           >My Coffees</button>
+                           >
+                              My Coffees
+                           </button>
                         ) :(
                            <button 
                               className="btn"
                               onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
-                           >Create</button>
+                           >
+                              Create
+                           </button>
                         ) }
                      </>
                   ) : (
