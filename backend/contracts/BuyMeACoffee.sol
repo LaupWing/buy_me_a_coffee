@@ -12,6 +12,7 @@ error BuyMeACoffee__NotSuperUser();
 contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
    address superUser;
+   mapping(address => bool) registered;
    AggregatorV3Interface private priceFeed;
 
    modifier onlySuperUser(){
