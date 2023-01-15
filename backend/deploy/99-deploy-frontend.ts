@@ -1,9 +1,10 @@
 import "dotenv/config"
 import fs from "fs"
 import { ethers, network } from "hardhat"
+import { DeployFunction } from "hardhat-deploy/types"
 import { frontendContractAbi, frontendContractAddresses } from "../helper-hardhat-config"
 
-export default async function updateFrontend() {
+const updateFrontend:DeployFunction = async () => {
    if(process.env.UPDATE_FRONTEND === "true"){
       console.log("Updating frontend...")
       await updateAbi()
@@ -11,7 +12,7 @@ export default async function updateFrontend() {
    }
 }
 
-
+export default updateFrontend
 
 const updateAbi = async () =>{
    const buyMeACoffeeFactory = await ethers.getContract("BuyMeACoffeeFactory")
@@ -45,4 +46,4 @@ const updateContractAddresses = async () =>{
    }
 }
 
-updateFrontend.tags = [""]
+updateFrontend.tags = ["all", "frontend"]
