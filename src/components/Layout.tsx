@@ -24,7 +24,9 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    useEffect(() => {
       const fetchContracts = async () => {
          await dispatch(fetchBuyMeACoffeeFactory())
-         console.log(await buyMeACoffeeFactory?.getSuperUser())
+         setTimeout(async ()=>{
+            console.log(await buyMeACoffeeFactory?.getSuperUser())
+         },2000)
       }
       if(account){
          fetchContracts()
