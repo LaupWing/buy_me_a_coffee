@@ -58,6 +58,7 @@ interface Item {
             expect(await buyMeACoffee.getProfile()).equal(buyMeACoffeeProfile)
             expect(await buyMeACoffee.getThumbnail()).equal(buyMeACoffeeThumbnail)
             expect(await buyMeACoffee.getSuperUser()).equal(deployer)
+            console.log(await buyMeACoffeeFactory.registered(deployer))
          })
 
          it("emits event when new contract has been made", async () =>{

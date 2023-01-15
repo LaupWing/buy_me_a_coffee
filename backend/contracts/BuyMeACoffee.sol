@@ -13,7 +13,7 @@ error BuyMeACoffeeFactory_AlreadyRegistered();
 contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
    address superUser;
-   mapping(address => bool) registered;
+   mapping(address => bool) public registered;
    AggregatorV3Interface private priceFeed;
 
    modifier onlySuperUser(){
