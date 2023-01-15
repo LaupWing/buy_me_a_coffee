@@ -18,12 +18,12 @@ const updateAbi = async () =>{
    const buyMeACoffeeFactory = await ethers.getContract("BuyMeACoffeeFactory")
    fs.writeFileSync(
       `${frontendContractAbi}/BuyMeACoffeeFactory.json`,
-      buyMeACoffeeFactory.format(ethers.utils.FormatTypes.json)
+      buyMeACoffeeFactory.interface.format(ethers.utils.FormatTypes.json) as string
    )
    const buyMeACoffee = await ethers.getContract("BuyMeACoffee")
    fs.writeFileSync(
       `${frontendContractAbi}/BuyMeACoffee.json`,
-      buyMeACoffee.format(ethers.utils.FormatTypes.json)
+      buyMeACoffee.interface.format(ethers.utils.FormatTypes.json) as string
    )
 }
 
