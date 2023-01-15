@@ -9,7 +9,7 @@ type ChainId = keyof typeof contractAddresses
 
 export interface InitialState {
    buyMeACoffee: BuyMeACoffee|null,
-   buyMeACoffeeFactory: typeof BuyMeACoffeeFactoryAbi|null
+   buyMeACoffeeFactory: BuyMeACoffeeFactory|null
 }
 
 const initialState:InitialState = {
@@ -21,7 +21,7 @@ export const contractsSlice = createSlice({
    name: "contracts",
    initialState,
    reducers: {
-      setBuyMeACoffeeFactory(state, action:PayloadAction<typeof BuyMeACoffeeFactoryAbi>){
+      setBuyMeACoffeeFactory(state, action:PayloadAction<any>){
          state.buyMeACoffeeFactory = action.payload
       }
    }
@@ -42,12 +42,15 @@ export const fetchBuyMeACoffeeFactory =
             BuyMeACoffeeFactoryAbi as ContractInterface,
             signer
          )
-         
+         dispatch(setBuyMeACoffeeFactory(contract))
       } catch(e) {
          console.log(e)
       }
    }
 
+export const {
+   setBuyMeACoffeeFactory
+} = contractsSlice.actions
 
 
 export default contractsSlice.reducer
