@@ -1,15 +1,15 @@
-import { createSlice, Dispatch } from "@reduxjs/toolkit"
+import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { BuyMeACoffeeFactory, BuyMeACoffee } from "../../backend/typechain-types"
 import { store } from "../store/store"
 import { ContractInterface, ethers } from "ethers"
 import contractAddresses from "../../constants/networks.json"
-import buyMeACoffeeFactoryAbi from "../../constants/contracts/BuyMeACoffeeFactory.json"
+import BuyMeACoffeeFactoryAbi from "../../constants/contracts/BuyMeACoffeeFactory.json"
 
 type ChainId = keyof typeof contractAddresses
 
 export interface InitialState {
    buyMeACoffee: BuyMeACoffee|null,
-   buyMeACoffeeFactory: BuyMeACoffeeFactory|null
+   buyMeACoffeeFactory: typeof BuyMeACoffeeFactoryAbi|null
 }
 
 const initialState:InitialState = {
@@ -20,7 +20,11 @@ const initialState:InitialState = {
 export const contractsSlice = createSlice({
    name: "contracts",
    initialState,
-   reducers: {}
+   reducers: {
+      setBuyMeACoffeeFactory(state, action:PayloadAction<typeof BuyMeACoffeeFactoryAbi>){
+         state.buyMeACoffeeFactory = action.payload
+      }
+   }
 })
 
 export const fetchBuyMeACoffeeFactory =
@@ -35,12 +39,15 @@ export const fetchBuyMeACoffeeFactory =
 
          const contract = new ethers.Contract(
             addresses.BuyMeACoffeeFactory[addresses.BuyMeACoffeeFactory.length -1],
-            buyMeACoffeeFactoryAbi as ContractInterface,
+            BuyMeACoffeeFactoryAbi as ContractInterface,
             signer
          )
+         
       } catch(e) {
          console.log(e)
       }
    }
+
+
 
 export default contractsSlice.reducer
