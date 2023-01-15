@@ -9,12 +9,14 @@ type ChainId = keyof typeof contractAddresses
 
 export interface InitialState {
    buyMeACoffee: BuyMeACoffee|null,
-   buyMeACoffeeFactory: BuyMeACoffeeFactory|null
+   buyMeACoffeeFactory: BuyMeACoffeeFactory|null,
+   alreadyRegistered: boolean
 }
 
 const initialState:InitialState = {
    buyMeACoffee: null,
-   buyMeACoffeeFactory: null
+   buyMeACoffeeFactory: null,
+   alreadyRegistered: false
 }
 
 export const contractsSlice = createSlice({
@@ -23,6 +25,9 @@ export const contractsSlice = createSlice({
    reducers: {
       setBuyMeACoffeeFactory(state, action:PayloadAction<any>){
          state.buyMeACoffeeFactory = action.payload
+      },
+      setAlreadyRegistered(state, action:PayloadAction<boolean>){
+         state.alreadyRegistered = action.payload
       }
    }
 })
@@ -49,15 +54,16 @@ export const fetchBuyMeACoffeeFactory =
       }
    }
 
-export const test = 
+export const setInitialBuyMeACoffeeFactory = 
    () => async (dispatch: Dispatch, getState: typeof store.getState) =>{
       const {buyMeACoffeeFactory} = getState().contracts
-      console.log(buyMeACoffeeFactory)
-      console.log(await buyMeACoffeeFactory?.getDeployedBuyMeACoffee())
+      
+      dispatch(setAlreadyRegistered(await buyMeACoffeeFactory?.getGetRegistered()!))
    }
 
 export const {
-   setBuyMeACoffeeFactory
+   setBuyMeACoffeeFactory,
+   setAlreadyRegistered
 } = contractsSlice.actions
 
 

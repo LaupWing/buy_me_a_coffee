@@ -3,7 +3,7 @@ import { SiBuymeacoffee } from "react-icons/si"
 import { BiSearchAlt } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "../slices/web3"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
-import { fetchBuyMeACoffeeFactory, test } from "../slices/contracts"
+import { fetchBuyMeACoffeeFactory, setInitialBuyMeACoffeeFactory } from "../slices/contracts"
 
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
@@ -24,6 +24,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    useEffect(() => {
       const fetchContracts = async () => {
          await dispatch(fetchBuyMeACoffeeFactory())
+         await dispatch(setInitialBuyMeACoffeeFactory())
       }
       if(account){
          fetchContracts()
@@ -47,7 +48,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                         />
                         <button 
                            className="btn"
-                           onClick={()=> dispatch(test())}
+                           onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
                         >My Coffees</button>
                      </>
                   ) : (
