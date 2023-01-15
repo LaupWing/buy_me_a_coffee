@@ -8,6 +8,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 error BuyMeACoffee__NotEnoughEthSend();
 error BuyMeACoffee__NotOwner();
 error BuyMeACoffee__NotSuperUser();
+error BuyMeACoffeeFactory_AlreadyRegistered();
 
 contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
@@ -35,6 +36,9 @@ contract BuyMeACoffeeFactory {
       string memory _profile, 
       string memory _thumbnail
    ) public{
+      if(registered[msg.sender]){
+         revert BuyMeACoffeeFactory_AlreadyRegistered();
+      }
       address newBuyMeACoffee = address(new BuyMeACoffee(
          _name, 
          _description, 
