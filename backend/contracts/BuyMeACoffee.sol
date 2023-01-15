@@ -13,7 +13,7 @@ error BuyMeACoffeeFactory_AlreadyRegistered();
 contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
    address superUser;
-   mapping(address => bool) public registered;
+   mapping(address => bool) private registered;
    AggregatorV3Interface private priceFeed;
 
    modifier onlySuperUser(){
@@ -55,6 +55,10 @@ contract BuyMeACoffeeFactory {
 
    function getDeployedBuyMeACoffee() public view returns (address[] memory){
       return deployedBuyMeCoffees;
+   }
+
+   function getGetRegistered() public view returns (bool){
+      return registered[msg.sender];
    }
 
    function updatePricefeed(address _priceFeedAddress) public onlySuperUser{
