@@ -49,6 +49,7 @@ contract BuyMeACoffeeFactory {
          priceFeed
       ));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
+      registered[msg.sender] = true;
       emit BuyMeACoffeeCreated(newBuyMeACoffee);
    }
 
