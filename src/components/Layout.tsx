@@ -3,10 +3,12 @@ import { SiBuymeacoffee } from "react-icons/si"
 import { BiSearchAlt } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "../slices/web3"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
+import { fetchBuyMeACoffeeFactory } from "../slices/contracts"
 
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const { account } = useAppSelector(state => state.web3)
+   const { buyMeACoffeeFactory } = useAppSelector(state => state.contracts)
    const [loaded, setLoaded] = useState(false)
 
    useEffect(()=>{
@@ -18,6 +20,16 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
 
       initialize()
    }, [])
+
+   useEffect(() => {
+      const fetchContracts = async () => {
+         await dispatch(fetchBuyMeACoffeeFactory())
+         console.log(await buyMeACoffeeFactory?.getSuperUser())
+      }
+      if(account){
+         fetchContracts()
+      }
+   }, [account])
 
    return (
       <div className="w-screen h-screen bg-neutral-100 flex flex-col">

@@ -42,7 +42,7 @@ export const fetchBuyMeACoffeeFactory =
             BuyMeACoffeeFactoryAbi as ContractInterface,
             signer
          )
-         dispatch(setBuyMeACoffeeFactory(contract))
+         await dispatch(setBuyMeACoffeeFactory(contract))
       } catch(e) {
          console.log(e)
       }
