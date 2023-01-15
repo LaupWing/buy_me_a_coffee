@@ -33,6 +33,8 @@ export const web3Slice = createSlice({
          provider: Web3Provider
       }>){
          state.chainId = action.payload.chainId 
+         state.signer = action.payload.signer 
+         state.provider = action.payload.provider 
       },
       setAccount(state, action:PayloadAction<string>){
          state.account = action.payload

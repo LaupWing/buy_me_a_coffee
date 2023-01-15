@@ -36,13 +36,13 @@ export const fetchBuyMeACoffeeFactory =
          if(!addresses){
             throw new Error("Contract not available on this chain")
          }
-         console.log(addresses.BuyMeACoffeeFactory[addresses.BuyMeACoffeeFactory.length -1])
+
          const contract = new ethers.Contract(
             addresses.BuyMeACoffeeFactory[addresses.BuyMeACoffeeFactory.length -1],
             BuyMeACoffeeFactoryAbi as ContractInterface,
             signer
          )
-         console.log(contract)
+         
          dispatch(setBuyMeACoffeeFactory(contract))
       } catch(e) {
          console.log(e)
@@ -53,7 +53,7 @@ export const test =
    () => async (dispatch: Dispatch, getState: typeof store.getState) =>{
       const {buyMeACoffeeFactory} = getState().contracts
       console.log(buyMeACoffeeFactory)
-      console.log(await buyMeACoffeeFactory?.getSuperUser())
+      console.log(buyMeACoffeeFactory?.getSuperUser())
    }
 
 export const {
