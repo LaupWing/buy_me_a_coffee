@@ -1,6 +1,6 @@
 import "dotenv/config"
 import fs from "fs"
-import { ethers, network } from "hardhat"
+import { artifacts, ethers, network } from "hardhat"
 import { DeployFunction } from "hardhat-deploy/types"
 import { frontendContractAbi, frontendContractAddresses } from "../helper-hardhat-config"
 
@@ -20,10 +20,10 @@ const updateAbi = async () =>{
       `${frontendContractAbi}/BuyMeACoffeeFactory.json`,
       buyMeACoffeeFactory.interface.format(ethers.utils.FormatTypes.json) as string
    )
-   const buyMeACoffee = await ethers.getContract("BuyMeACoffee")
+   
    fs.writeFileSync(
       `${frontendContractAbi}/BuyMeACoffee.json`,
-      buyMeACoffee.interface.format(ethers.utils.FormatTypes.json) as string
+      JSON.stringify(artifacts.readArtifactSync("BuyMeACoffee"), null, 3)
    )
 }
 
