@@ -14,9 +14,9 @@ export default async function updateFrontend() {
 
 const updateAbi = async () =>{
    const buyMeACoffee = await ethers.getContract("BuyMeACoffeeFactory")
-   fs.writeFileSync(
-      ``,
-   )
+   // fs.writeFileSync(
+   //    ``,
+   // )
 }
 
 const updateContractAddresses = async () =>{
