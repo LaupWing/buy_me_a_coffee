@@ -61,6 +61,15 @@ interface Item {
             expect(await buyMeACoffeeFactory.getGetRegistered()).to.be.true
          })
 
+         it("reverts with custom error when deployer wants to create another campaign", async () => {
+            await expect(buyMeACoffeeFactory.createBuyMeACoffee(
+               buyMeACoffeeName, 
+               buyMeACoffeeDescription,
+               buyMeACoffeeProfile,
+               buyMeACoffeeThumbnail
+            )).to.be.revertedWithCustomError(buyMeACoffeeFactory, "BuyMeACoffeeFactory_AlreadyRegistered")
+         })
+
          it("emits event when new contract has been made", async () =>{
             const transaction = await buyMeACoffeeFactory.connect(user1).createBuyMeACoffee(
                "test name", 
