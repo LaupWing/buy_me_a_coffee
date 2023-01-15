@@ -8,7 +8,7 @@ import { fetchBuyMeACoffeeFactory, setInitialBuyMeACoffeeFactory } from "../slic
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const { account } = useAppSelector(state => state.web3)
-   const { buyMeACoffeeFactory } = useAppSelector(state => state.contracts)
+   const { alreadyRegistered } = useAppSelector(state => state.contracts)
    const [loaded, setLoaded] = useState(false)
 
    useEffect(()=>{
@@ -46,10 +46,17 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                            className="text-gray-400 hover:text-yellow-400 duration-200 cursor-pointer" 
                            size={30}
                         />
-                        <button 
-                           className="btn"
-                           onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
-                        >My Coffees</button>
+                        { alreadyRegistered ? (
+                           <button 
+                              className="btn"
+                              onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
+                           >My Coffees</button>
+                        ) :(
+                           <button 
+                              className="btn"
+                              onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
+                           >Create</button>
+                        ) }
                      </>
                   ) : (
                      <button 
