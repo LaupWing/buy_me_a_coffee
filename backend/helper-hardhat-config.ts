@@ -11,4 +11,6 @@ export const networkConfig = {
    }
 }
 
+export const frontendContractAddresses = "../constants/networks.json"
+
 export const developmentChains = ["hardhat", "localhost"]
