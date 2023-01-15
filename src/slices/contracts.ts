@@ -42,7 +42,7 @@ export const fetchBuyMeACoffeeFactory =
             BuyMeACoffeeFactoryAbi as ContractInterface,
             signer
          )
-         
+
          dispatch(setBuyMeACoffeeFactory(contract))
       } catch(e) {
          console.log(e)
@@ -53,7 +53,7 @@ export const test =
    () => async (dispatch: Dispatch, getState: typeof store.getState) =>{
       const {buyMeACoffeeFactory} = getState().contracts
       console.log(buyMeACoffeeFactory)
-      console.log(buyMeACoffeeFactory?.getSuperUser())
+      console.log(await buyMeACoffeeFactory?.getDeployedBuyMeACoffee())
    }
 
 export const {
