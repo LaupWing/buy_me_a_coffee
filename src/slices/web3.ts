@@ -1,7 +1,6 @@
 import { MetaMaskInpageProvider } from "@metamask/providers"
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { ethers } from "ethers"
-import { JsonRpcSigner } from "@ethersproject/providers/src.ts/json-rpc-provider"
+import { ethers, Signer } from "ethers"
 import { Web3Provider } from "@ethersproject/providers/src.ts/web3-provider"
 
 declare global {
@@ -12,7 +11,7 @@ declare global {
 
 export interface Web3State {
    chainId: string
-   signer: JsonRpcSigner|null
+   signer: Signer|undefined
    provider: Web3Provider|null 
    account: string
 }
@@ -21,7 +20,7 @@ const initialState:Web3State = {
    account: "",
    chainId: "",
    provider: null,
-   signer: null
+   signer: undefined
 }
 
 export const web3Slice = createSlice({
@@ -30,7 +29,7 @@ export const web3Slice = createSlice({
    reducers: {
       setWeb3(state, action:PayloadAction<{
          chainId: string,
-         signer: JsonRpcSigner,
+         signer: Signer,
          provider: Web3Provider
       }>){
          state.chainId = action.payload.chainId 
