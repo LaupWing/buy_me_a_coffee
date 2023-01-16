@@ -22,7 +22,10 @@ const Field:React.FC<Props> = ({
                value={inputValue}
             />
          ) :(
-            <textarea>
+            <textarea 
+               className="bg-neutral-100 p-2 border border-gray-200 focus:outline-none rounded resize-none h-24" 
+               placeholder="Your amazing description"
+            >
             </textarea>
          )}
       </div>

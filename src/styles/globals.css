@@ -7,5 +7,9 @@
 }
 
 .text-input{
-   @apply border w-full border-neutral-200 rounded px-2 py-1 bg-neutral-100;
+   @apply border w-full border-neutral-200 rounded px-2 py-1 bg-neutral-100 outline-none;
+}
+
+.focus-input{
+   @apply focus:outline-2 outline-yellow-200;
 }
