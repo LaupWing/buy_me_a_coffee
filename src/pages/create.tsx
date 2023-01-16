@@ -5,6 +5,7 @@ import { useAppSelector } from "../store/hooks"
 import ImageUploading, { ImageListType } from "react-images-uploading"
 import { useState } from "react"
 import Profile from "../components/Profile"
+import { FiUpload } from "react-icons/fi"
 
 const Create:NextPage = () => {
    const router = useRouter()
@@ -25,11 +26,16 @@ const Create:NextPage = () => {
       <div className="mt-10 container bg-white mx-auto rounded overflow-hidden shadow">
          <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
             <div 
-               className="w-full bg-center h-52 bg-cover relative border-b-2 border-neutral-300"
+               className="w-full flex bg-center h-52 bg-cover relative border-b-2 border-neutral-300"
                style={{
                   backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
                }}
             >
+               <div className="flex flex-col items-center z-50 m-auto bg-white/60 p-4 rounded backdrop-blur-lg">
+                  <FiUpload className="text-yellow-400" size={30}/>
+                  <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
+               </div>
+               <div className="bg-white/40 absolute inset-0"></div>
                <Profile
                   image={image}
                   onImageChange={onImageChange}
