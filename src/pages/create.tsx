@@ -25,7 +25,7 @@ const Create:NextPage = () => {
       <div className="mt-10 container bg-white mx-auto rounded overflow-hidden shadow">
          <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
             <div 
-               className="w-full h-52 bg-cover relative"
+               className="w-full h-52 bg-cover relative border-b-2 border-neutral-300"
                style={{
                   backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
                }}
