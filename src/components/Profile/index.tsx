@@ -5,7 +5,7 @@ import Upload from "./Upload"
 
 export interface Props {
    image: ImageListType,
-   onImageChange: any
+   onImageChange: (image:ImageListType) => void
 }
 
 const Profile:React.FC<Props> = ({image, onImageChange}) => {
