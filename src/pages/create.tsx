@@ -69,7 +69,7 @@ const Create:NextPage = () => {
                   )}
                </ImageUploading>
             </div>
-            <div className="flex p-6 flex-col space-y-8 max-w-lg">
+            <div className="flex px-6 py-12 flex-col space-y-8 max-w-lg">
                <Field
                   inputValue=""
                   label="Name"
@@ -80,7 +80,7 @@ const Create:NextPage = () => {
                   textarea
                />
             </div>
-            <button className="btn m-6 mt-10 ml-auto">Create campaign</button>
+            <button className="btn m-6 mt-2 ml-auto">Create campaign</button>
          </form>
       </div>
    )
