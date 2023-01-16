@@ -16,11 +16,11 @@ const Create:NextPage = () => {
          <form className="w-full space-y-8 max-w-lg">
             <Field
                inputValue=""
-               label="Test"
+               label="Name"
             />
             <Field
                inputValue=""
-               label="Test"
+               label="Description"
                textarea
             />
          </form>
