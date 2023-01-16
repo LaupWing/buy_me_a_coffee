@@ -23,7 +23,7 @@ const Create:NextPage = () => {
    }
 
    return (
-      <div className="mt-10 container bg-white mx-auto rounded overflow-hidden shadow">
+      <div className="mt-10 container bg-white mx-auto rounded-md overflow-hidden shadow">
          <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
             <div 
                className="w-full flex bg-center h-52 bg-cover relative border-b-2 border-neutral-300"

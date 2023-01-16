@@ -12,7 +12,7 @@ const Current:React.FC<Props> = ({ dragProps, onImageUpload, image }) => {
    return (
       <button 
          onClick={onImageUpload}
-         className={"w-24 h-24 border-neutral-300 border-2 flex items-center justify-center text-neutral-300 overflow-hidden rounded-full absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3"}
+         className={"w-24 h-24 border-neutral-300 border-2 flex items-center justify-center text-neutral-300 overflow-hidden rounded-full absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2"}
          {...dragProps}
       >
          <img 
