@@ -11,8 +11,12 @@ const Create:NextPage = () => {
    }
 
    return (
-      <div>
-
+      <div className="mt-10 container bg-white p-6 mx-auto rounded shadow">
+         <input 
+            type="text" 
+            placeholder="Name"
+            className="text-input"
+         />
       </div>
    )
 }
