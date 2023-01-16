@@ -13,10 +13,17 @@ const Create:NextPage = () => {
 
    return (
       <div className="mt-10 container bg-white p-6 mx-auto rounded shadow">
-         <Field
-            inputValue=""
-            label="Test"
-         />
+         <form className="w-full space-y-8 max-w-lg">
+            <Field
+               inputValue=""
+               label="Test"
+            />
+            <Field
+               inputValue=""
+               label="Test"
+               textarea
+            />
+         </form>
       </div>
    )
 }
