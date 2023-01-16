@@ -4,6 +4,7 @@ import { BiSearchAlt } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "../slices/web3"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 import { fetchBuyMeACoffeeFactory, setInitialBuyMeACoffeeFactory } from "../slices/contracts"
+import Link from "next/link"
 
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
@@ -36,9 +37,11 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
          {loaded ? (
             <>
             <header className="bg-white p-4 flex mx-auto w-full max-w-5xl rounded-lg shadow mt-4">
-               <div className="text-neutral-700">
-                  <SiBuymeacoffee size={30}/>
-               </div>
+               <Link href={"/"}>
+                  <div className="text-neutral-700">
+                     <SiBuymeacoffee size={30}/>
+                  </div>
+               </Link>
                <div className="flex items-center ml-auto space-x-6">
                   { account ? (
                      <>
@@ -54,12 +57,14 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
                               My Coffees
                            </button>
                         ) :(
-                           <button 
-                              className="btn"
-                              onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
-                           >
-                              Create
-                           </button>
+                           <Link href={"/create"}>
+                              <button 
+                                 className="btn"
+                                 onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
+                              >
+                                 Create
+                              </button>
+                           </Link>
                         ) }
                      </>
                   ) : (
