@@ -2,7 +2,6 @@ import { NextPage } from "next"
 import { useRouter } from "next/router"
 import Field from "../components/Field"
 import { useAppSelector } from "../store/hooks"
-import { BsCardImage, BsFillCameraFill, BsUpload } from "react-icons/bs"
 import ImageUploading, { ImageListType } from "react-images-uploading"
 import { useState } from "react"
 import Profile from "../components/Profile"
@@ -26,7 +25,7 @@ const Create:NextPage = () => {
       <div className="mt-10 container bg-white mx-auto rounded overflow-hidden shadow">
          <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
             <div 
-               className="w-full h-52 bg-cover relative border-b-2 border-neutral-300"
+               className="w-full bg-center h-52 bg-cover relative border-b-2 border-neutral-300"
                style={{
                   backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
                }}
