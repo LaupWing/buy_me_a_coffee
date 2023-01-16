@@ -24,7 +24,12 @@ const Create:NextPage = () => {
    return (
       <div className="mt-10 container bg-white mx-auto rounded overflow-hidden shadow">
          <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
-            <div className="w-full h-36">
+            <div 
+               className="w-full h-52 bg-cover relative"
+               style={{
+                  backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
+               }}
+            >
                <ImageUploading
                   multiple={false}
                   value={image}
@@ -38,7 +43,7 @@ const Create:NextPage = () => {
                         {image.length > 0 ? (
                            <button 
                               onClick={onImageUpload}
-                              className={"w-24 h-24 border-neutral-300 border-2 flex items-center justify-center text-neutral-300 overflow-hidden rounded-full relative"}
+                              className={"w-24 h-24 border-neutral-300 border-2 flex items-center justify-center text-neutral-300 overflow-hidden rounded-full absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3"}
                               {...dragProps}
                            >
                               <img 
@@ -53,7 +58,7 @@ const Create:NextPage = () => {
                         ) : (
                            <button 
                               onClick={onImageUpload}
-                              className={"w-24 h-24 border-neutral-300 border-2 flex items-center justify-center text-neutral-300 rounded-full relative"}
+                              className={"w-24 h-24 border-neutral-300 border-2 flex items-center justify-center text-neutral-300 rounded-full absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3"}
                               {...dragProps}
                            >
                               <BsCardImage size={50}/>
@@ -75,7 +80,7 @@ const Create:NextPage = () => {
                   textarea
                />
             </div>
-            <button className="btn mt-10 ml-auto">Create campaign</button>
+            <button className="btn m-6 mt-10 ml-auto">Create campaign</button>
          </form>
       </div>
    )
