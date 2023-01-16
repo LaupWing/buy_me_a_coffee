@@ -22,9 +22,9 @@ const Create:NextPage = () => {
    }
 
    return (
-      <div className="mt-10 container bg-white p-6 mx-auto rounded shadow">
+      <div className="mt-10 container bg-white mx-auto rounded shadow">
          <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
-            <div className="flex flex-col space-y-8 max-w-lg">
+            <div>
                <ImageUploading
                   multiple={false}
                   value={image}
@@ -63,6 +63,8 @@ const Create:NextPage = () => {
                      </>
                   )}
                </ImageUploading>
+            </div>
+            <div className="flex p-6 flex-col space-y-8 max-w-lg">
                <Field
                   inputValue=""
                   label="Name"
