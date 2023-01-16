@@ -1,5 +1,6 @@
 import { NextPage } from "next"
 import { useRouter } from "next/router"
+import Field from "../components/Field"
 import { useAppSelector } from "../store/hooks"
 
 const Create:NextPage = () => {
@@ -12,10 +13,9 @@ const Create:NextPage = () => {
 
    return (
       <div className="mt-10 container bg-white p-6 mx-auto rounded shadow">
-         <input 
-            type="text" 
-            placeholder="Name"
-            className="text-input"
+         <Field
+            inputValue=""
+            label="Test"
          />
       </div>
    )
