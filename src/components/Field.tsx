@@ -11,7 +11,7 @@ const Field:React.FC<Props> = ({
 }) => {
    return (
       <div className="flex flex-col">
-         <h2>{label}</h2>
+         <h2 className="mb-1 ml-1 text-sm font-bold uppercase tracking-wider text-neutral-400">{label}</h2>
          <input 
             type="text" 
             placeholder="Name"
