@@ -18,12 +18,12 @@ const Field:React.FC<Props> = ({
             <input 
                type="text" 
                placeholder="Name"
-               className="text-input"
+               className="text-input focus-input"
                value={inputValue}
             />
          ) :(
             <textarea 
-               className="bg-neutral-100 p-2 border border-gray-200 focus:outline-none rounded resize-none h-24" 
+               className="bg-neutral-100 p-2 border border-gray-200 outline-none rounded resize-none h-24 focus-input" 
                placeholder="Your amazing description"
             >
             </textarea>
