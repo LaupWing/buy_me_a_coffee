@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { FiUpload } from "react-icons/fi"
 import ImageUploading, { ImageListType } from "react-images-uploading"
 import Profile from "../Profile"
+import Current from "./Current"
+import Upload from "./Upload"
 
 export interface Props {
    profile: ImageListType,
@@ -29,25 +31,20 @@ const Thumbnail:React.FC<Props> = ({
                onImageUpload,
                dragProps
             })=>(
-               <div 
-                  className="w-full flex bg-center bg-cover"
-                  style={{
-                     backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
-                  }}
-               >
-                  <button 
-                     className="flex space-x-2 items-center z-50 m-auto bg-white/70 p-4 rounded backdrop-blur-lg"
-                     onClick={onImageUpload}
-                     {...dragProps}
-                  >
-                     <FiUpload 
-                        className="text-yellow-400" 
-                        size={30}
+               <>
+                  {thumbnail.length > 0 ? (
+                     <Current
+                        dragProps={dragProps}
+                        onImageUpload={onImageUpload}
+                        image={thumbnail}
                      />
-                     <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
-                  </button>
-                  <div className="bg-white/40 absolute inset-0"></div>
-               </div>
+                  ):(
+                     <Upload
+                        dragProps={dragProps}
+                        onImageUpload={onImageUpload}
+                     />
+                  )}
+               </>
             )}
          </ImageUploading>
          <Profile

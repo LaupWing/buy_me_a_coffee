@@ -16,17 +16,17 @@ const Current:React.FC<Props> = ({ dragProps, onImageUpload, image }) => {
             backgroundImage: `url(${image[0].dataURL})`
          }}
       >
-         <button 
-            className="flex space-x-2 items-center z-50 m-auto bg-white/70 p-4 rounded backdrop-blur-lg"
+         <button
+            className="z-50 m-auto"
             onClick={onImageUpload}
             {...dragProps}
          >
             <BsFillCameraFill
-               className="text-yellow-400" 
+               className="text-white" 
                size={30}
             />
          </button>
-         <div className="bg-white/40 absolute inset-0"></div>
+         <div className="bg-black/40 absolute inset-0"></div>
       </div>
    )
 }
