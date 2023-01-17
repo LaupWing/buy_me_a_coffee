@@ -12,6 +12,9 @@ const Create:NextPage = () => {
    const { alreadyRegistered } = useAppSelector(state => state.contracts)
    const [profile, setProfile] = useState<ImageListType>([])
    const [thumbnail, setThumbnail] = useState<ImageListType>([])
+   const [showError, setShowError] = useState(false)
+   const [triedSubmit, setTriedSubmit] = useState(false)
+
    const { 
       register,
       formState: {
@@ -37,7 +40,14 @@ const Create:NextPage = () => {
    }
 
    const submitHandler = async () => {
-
+      setTriedSubmit(true)
+      if(!showError && (profile.length === 0 || thumbnail.length === 0)){
+         setShowError(true)
+         return
+      }
+      if(triedSubmit){
+         console.log("go futher")
+      }
    }
 
    return (
@@ -68,6 +78,16 @@ const Create:NextPage = () => {
                   errors={errors}
                />
             </div>
+            {(showError && profile.length === 0) && 
+               <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
+                  Please set your profile otherwise the default would be used
+               </p>
+            }
+            {(showError && thumbnail.length === 0) && 
+               <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
+                  Please set your thumbnail otherwise the default would be used
+               </p>
+            }
             <button 
                className="btn m-6 mt-2 ml-auto"
                type="submit"
