@@ -27,7 +27,7 @@ const Create:NextPage = () => {
    const onThumbnailChange = (
       imageList: ImageListType
    ) => {
-      setProfile(imageList)
+      setThumbnail(imageList)
    }
 
    return (
