@@ -8,24 +8,23 @@ import Upload from "./Upload"
 export interface Props {
    profile: ImageListType,
    onProfileChange: (image:ImageListType) => void
+   thumbnail: ImageListType,
+   onThumbnailChange: (image:ImageListType) => void
 }
 
 const Thumbnail:React.FC<Props> = ({
    onProfileChange,
-   profile
+   profile,
+   onThumbnailChange,
+   thumbnail
 }) => {
-   const [thumbnail, setThumbnail] = useState<ImageListType>([])
-
-   const onImageChange = (image: ImageListType) => {
-      setThumbnail(image)
-   }
 
    return (
       <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
          <ImageUploading 
             multiple={false}
             value={thumbnail}
-            onChange={onImageChange}
+            onChange={onThumbnailChange}
          >
             {({
                onImageUpload,

@@ -34,6 +34,8 @@ const Create:NextPage = () => {
       <div className="mt-10 container bg-white mx-auto rounded-md overflow-hidden shadow">
          <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
             <Thumbnail
+               onThumbnailChange={onThumbnailChange}
+               thumbnail={thumbnail}
                onProfileChange={onProfileChange}
                profile={profile}
             />
