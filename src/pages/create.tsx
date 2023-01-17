@@ -31,7 +31,7 @@ const Create:NextPage = () => {
                   backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
                }}
             >
-               <div className="flex flex-col items-center z-50 m-auto bg-white/60 p-4 rounded backdrop-blur-lg">
+               <div className="flex space-x-2 items-center z-50 m-auto bg-white/70 p-4 rounded backdrop-blur-lg">
                   <FiUpload className="text-yellow-400" size={30}/>
                   <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
                </div>
