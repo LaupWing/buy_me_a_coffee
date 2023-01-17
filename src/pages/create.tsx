@@ -6,41 +6,37 @@ import ImageUploading, { ImageListType } from "react-images-uploading"
 import { useState } from "react"
 import Profile from "../components/Profile"
 import { FiUpload } from "react-icons/fi"
+import Thumbnail from "../components/Thumbnail"
 
 const Create:NextPage = () => {
    const router = useRouter()
    const { alreadyRegistered } = useAppSelector(state => state.contracts)
-   const [image, setImage] = useState<ImageListType>([])
+   const [profile, setProfile] = useState<ImageListType>([])
+   const [thumbnail, setThumbnail] = useState<ImageListType>([])
 
    if(alreadyRegistered){
       router.push("/")
    }
 
-   const onImageChange = (
+   const onProfileChange = (
       imageList: ImageListType
    ) => {
-      setImage(imageList)
+      setProfile(imageList)
+   }
+
+   const onThumbnailChange = (
+      imageList: ImageListType
+   ) => {
+      setProfile(imageList)
    }
 
    return (
       <div className="mt-10 container bg-white mx-auto rounded-md overflow-hidden shadow">
          <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
-            <div 
-               className="w-full flex bg-center h-52 bg-cover relative border-b-2 border-neutral-300"
-               style={{
-                  backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
-               }}
-            >
-               <div className="flex space-x-2 items-center z-50 m-auto bg-white/70 p-4 rounded backdrop-blur-lg">
-                  <FiUpload className="text-yellow-400" size={30}/>
-                  <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
-               </div>
-               <div className="bg-white/40 absolute inset-0"></div>
-               <Profile
-                  image={image}
-                  onImageChange={onImageChange}
-               />
-            </div>
+            <Thumbnail
+               onProfileChange={onProfileChange}
+               profile={profile}
+            />
             <div className="flex px-6 py-12 flex-col space-y-8 max-w-lg">
                <Field
                   inputValue=""
