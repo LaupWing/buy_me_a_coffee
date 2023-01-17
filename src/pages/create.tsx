@@ -2,10 +2,8 @@ import { NextPage } from "next"
 import { useRouter } from "next/router"
 import Field from "../components/Field"
 import { useAppSelector } from "../store/hooks"
-import ImageUploading, { ImageListType } from "react-images-uploading"
+import { ImageListType } from "react-images-uploading"
 import { useState } from "react"
-import Profile from "../components/Profile"
-import { FiUpload } from "react-icons/fi"
 import Thumbnail from "../components/Thumbnail"
 
 const Create:NextPage = () => {
