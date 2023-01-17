@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { FiUpload } from "react-icons/fi"
-import ReactImageUploading, { ImageListType } from "react-images-uploading"
+import ImageUploading, { ImageListType } from "react-images-uploading"
 import Profile from "../Profile"
 
 export interface Props {
@@ -19,33 +19,42 @@ const Thumbnail:React.FC<Props> = ({
    }
 
    return (
-      <ReactImageUploading 
-         multiple={false}
-         value={thumbnail}
-         onChange={onImageChange}
-      >
-         {()=>(
-            <div 
-               className="w-full flex bg-center h-52 bg-cover relative border-b-2 border-neutral-300"
-               style={{
-                  backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
-               }}
-            >
-               <div className="flex space-x-2 items-center z-50 m-auto bg-white/70 p-4 rounded backdrop-blur-lg">
-                  <FiUpload 
-                     className="text-yellow-400" 
-                     size={30}
-                  />
-                  <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
-               </div>
-               <div className="bg-white/40 absolute inset-0"></div>
-               <Profile
-                  image={profile}
-                  onImageChange={onProfileChange}
-               />
-            </div>   
-         )}
-      </ReactImageUploading>
+      <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
+         <ImageUploading 
+            multiple={false}
+            value={thumbnail}
+            onChange={onImageChange}
+         >
+            {({
+               onImageUpload,
+               dragProps
+            })=>(
+               <div 
+                  className="w-full flex bg-center bg-cover"
+                  style={{
+                     backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
+                  }}
+               >
+                  <button 
+                     className="flex space-x-2 items-center z-50 m-auto bg-white/70 p-4 rounded backdrop-blur-lg"
+                     onClick={onImageUpload}
+                     {...dragProps}
+                  >
+                     <FiUpload 
+                        className="text-yellow-400" 
+                        size={30}
+                     />
+                     <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
+                  </button>
+                  <div className="bg-white/40 absolute inset-0"></div>
+               </div>   
+            )}
+         </ImageUploading>
+         <Profile
+            image={profile}
+            onImageChange={onProfileChange}
+         />
+      </div>
    )
 }
 
