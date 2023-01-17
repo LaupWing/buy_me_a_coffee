@@ -3,7 +3,6 @@ import { FieldErrorsImpl } from "react-hook-form/dist/types";
 import { UseFormRegisterReturn } from "react-hook-form/dist/types/form"
 
 export interface Props {
-   inputValue: string,
    label: string,
    type: string,
    textarea?: boolean,
@@ -12,9 +11,11 @@ export interface Props {
 }
 
 const Field:React.FC<Props> = ({
-   inputValue,
    label,
-   textarea
+   textarea,
+   errors,
+   type,
+   register
 }) => {
    return (
       <div className="flex flex-col">
@@ -24,17 +25,19 @@ const Field:React.FC<Props> = ({
                type="text" 
                placeholder="Name"
                className="text-input focus-input"
-               value={inputValue}
+               {...register}
             />
          ) :(
             <textarea 
                className="bg-neutral-100 p-2 border border-gray-200 outline-none rounded resize-none h-24 focus-input" 
                placeholder="Your amazing description"
+               {...register}
             >
             </textarea>
          )}
+         {errors[type] && <p className="text-red-400 m-1 tracking-wider text-xs uppercase font-bold">{errors[type]?.message?.toString()}</p>}
       </div>
    )
 }
-
+   
 export default Field

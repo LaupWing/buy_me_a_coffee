@@ -36,9 +36,13 @@ const Create:NextPage = () => {
       setThumbnail(imageList)
    }
 
+   const submitHandler = async () => {
+
+   }
+
    return (
       <div className="mt-10 container bg-white mx-auto rounded-md overflow-hidden shadow">
-         <form onSubmit={e => e.preventDefault()} className="w-full flex flex-col">
+         <form onSubmit={handleSubmit(submitHandler)} className="w-full flex flex-col">
             <Thumbnail
                onThumbnailChange={onThumbnailChange}
                thumbnail={thumbnail}
@@ -47,21 +51,29 @@ const Create:NextPage = () => {
             />
             <div className="flex px-6 py-12 flex-col space-y-8 max-w-lg">
                <Field
-                  inputValue=""
                   label="Name"
                   type="name"
                   register={register("name", {
                      required: "Please enter name"
                   })}
                   errors={errors}
-               />
-               {/* <Field
-                  inputValue=""
+                  />
+               <Field
+                  type="description"
                   label="Description"
                   textarea
-               /> */}
+                  register={register("description", {
+                     required: "Please enter description"
+                  })}
+                  errors={errors}
+               />
             </div>
-            <button className="btn m-6 mt-2 ml-auto">Create campaign</button>
+            <button 
+               className="btn m-6 mt-2 ml-auto"
+               type="submit"
+            >
+               Create campaign
+            </button>
          </form>
       </div>
    )
