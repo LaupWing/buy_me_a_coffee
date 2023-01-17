@@ -1,8 +1,17 @@
 import React, { useState } from "react"
 import { FiUpload } from "react-icons/fi"
 import ReactImageUploading, { ImageListType } from "react-images-uploading"
+import Profile from "../Profile"
 
-const Thumbnail = () => {
+export interface Props {
+   profile: ImageListType,
+   onProfileChange: (image:ImageListType) => void
+}
+
+const Thumbnail:React.FC<Props> = ({
+   onProfileChange,
+   profile
+}) => {
    const [thumbnail, setThumbnail] = useState<ImageListType>([])
 
    const onImageChange = (image: ImageListType) => {
@@ -30,10 +39,10 @@ const Thumbnail = () => {
                   <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
                </div>
                <div className="bg-white/40 absolute inset-0"></div>
-               {/* <Profile
-                  image={image}
-                  onImageChange={onImageChange}
-               /> */}
+               <Profile
+                  image={profile}
+                  onImageChange={onProfileChange}
+               />
             </div>   
          )}
       </ReactImageUploading>
