@@ -5,12 +5,20 @@ import { useAppSelector } from "../store/hooks"
 import { ImageListType } from "react-images-uploading"
 import { useState } from "react"
 import Thumbnail from "../components/Thumbnail"
+import { useForm } from "react-hook-form"
 
 const Create:NextPage = () => {
    const router = useRouter()
    const { alreadyRegistered } = useAppSelector(state => state.contracts)
    const [profile, setProfile] = useState<ImageListType>([])
    const [thumbnail, setThumbnail] = useState<ImageListType>([])
+   const { 
+      register,
+      formState: {
+         errors
+      },
+      handleSubmit
+    } = useForm()
 
    if(alreadyRegistered){
       router.push("/")
@@ -41,12 +49,17 @@ const Create:NextPage = () => {
                <Field
                   inputValue=""
                   label="Name"
+                  type="name"
+                  register={register("name", {
+                     required: "Please enter name"
+                  })}
+                  errors={errors}
                />
-               <Field
+               {/* <Field
                   inputValue=""
                   label="Description"
                   textarea
-               />
+               /> */}
             </div>
             <button className="btn m-6 mt-2 ml-auto">Create campaign</button>
          </form>

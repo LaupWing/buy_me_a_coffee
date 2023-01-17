@@ -1,9 +1,14 @@
 import React from "react"
+import { FieldErrorsImpl } from "react-hook-form/dist/types";
+import { UseFormRegisterReturn } from "react-hook-form/dist/types/form"
 
-interface Props {
+export interface Props {
    inputValue: string,
    label: string,
-   textarea?: boolean
+   type: string,
+   textarea?: boolean,
+   register: UseFormRegisterReturn<string>
+   errors: Partial<FieldErrorsImpl<{ [x: string]: any; }>>
 }
 
 const Field:React.FC<Props> = ({
