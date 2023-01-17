@@ -46,7 +46,14 @@ const Create:NextPage = () => {
          return
       }
       if(triedSubmit){
-         console.log("go futher")
+         if(profile.length === 0 || thumbnail.length === 0){
+            const confirmed = confirm("Either profile or thumbnail is not set are you sure you want to continue?")
+            if(confirmed){
+
+            }
+         }else{
+            
+         }
       }
    }
 
