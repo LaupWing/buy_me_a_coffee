@@ -18,7 +18,7 @@ const pinata = new pinataSdk(
    process.env.PINATA_API_SECRET
 )
 
-const readFile = (req: NextApiRequest) => {
+const readFile = (req: NextApiRequest) : Promise<{fields: formidable.Fields, files: formidable.Files}> => {
    const form = formidable()
    return new Promise((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
