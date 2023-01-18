@@ -6,6 +6,7 @@ import { ImageListType } from "react-images-uploading"
 import { useState } from "react"
 import Thumbnail from "../components/Thumbnail"
 import { useForm } from "react-hook-form"
+import pinataSdk from "@pinata/sdk"
 
 const Create:NextPage = () => {
    const router = useRouter()
@@ -58,8 +59,8 @@ const Create:NextPage = () => {
    }
 
    const uploadToIpfs = async () => {
-      console.log(thumbnail)
-      console.log(profile)
+      // const test = await 
+      console.log()
    }
 
    return (
