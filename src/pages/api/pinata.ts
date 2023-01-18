@@ -42,11 +42,17 @@ export default async function handler(
    console.log(test)
    try{
       // @ts-ignore
-      // await pinata.pinFileToIPFS(fs.createReadStream(test.files.file.filepath as string), {
-      //    pinataMetadata: {
-      //       name: "test"
-      //    }
-      // })
+      await pinata.pinFileToIPFS(fs.createReadStream(test.files.profile.filepath as string), {
+         pinataMetadata: {
+            name: "profile"
+         }
+      })
+      // @ts-ignore
+      await pinata.pinFileToIPFS(fs.createReadStream(test.files.profile.filepath as string), {
+         pinataMetadata: {
+            name: "thumbnail"
+         }
+      })
       res.send({url:"ok"})
    }catch(e){
       console.log(e)
