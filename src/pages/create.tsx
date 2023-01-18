@@ -60,6 +60,16 @@ const Create:NextPage = () => {
 
    const uploadToIpfs = async () => {
       const formData = new FormData()
+      formData.append("profile", thumbnail[0].file!)
+      formData.append("name", "test")
+      axios.post("/api/pinata", {
+         file: thumbnail[0].file,
+         name: "test"
+      }, {
+         headers: {
+            "Content-Type": "multipart/form-data",
+         },
+      })
    }
 
    return (
