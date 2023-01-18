@@ -15,6 +15,7 @@ const Upload:React.FC<Props> = ({dragProps, onImageUpload}) => {
          style={{
             backgroundImage: "url(/assets/images/coffee_thumbnail.jpg)"
          }}
+         type="button"
          {...dragProps}
       >
          <FiUpload className="text-yellow-400 z-50" size={30}/>

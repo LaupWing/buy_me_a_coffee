@@ -22,6 +22,7 @@ const Upload:React.FC<Props> = ({
             className="flex space-x-2 items-center z-50 m-auto bg-white/70 p-4 rounded backdrop-blur-lg"
             onClick={onImageUpload}
             {...dragProps}
+            type="button"
          >
             <FiUpload
                className="text-yellow-400" 

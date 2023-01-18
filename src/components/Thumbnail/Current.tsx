@@ -20,6 +20,7 @@ const Current:React.FC<Props> = ({ dragProps, onImageUpload, image }) => {
             className="z-50 m-auto"
             onClick={onImageUpload}
             {...dragProps}
+            type="button"
          >
             <BsFillCameraFill
                className="text-white" 
