@@ -41,13 +41,13 @@ export default async function handler(
    const requestBody = await readFile(req)
    try{
       // @ts-ignore
-      await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.profile.filepath), {
+      const profileUri = await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.profile.filepath), {
          pinataMetadata: {
             name: `profile_${requestBody.fields.account}`
          }
       })
       // @ts-ignore
-      await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.thumbnail.filepath), {
+      const thumbnailUri = await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.thumbnail.filepath), {
          pinataMetadata: {
             name: `thumbnail_${requestBody.fields.account}`
          }
