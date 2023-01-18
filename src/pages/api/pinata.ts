@@ -38,19 +38,18 @@ export default async function handler(
    req: NextApiRequest,
    res: NextApiResponse<Data>
 ) {
-   const test = await readFile(req)
-   console.log(test)
+   const requestBody = await readFile(req)
    try{
       // @ts-ignore
-      await pinata.pinFileToIPFS(fs.createReadStream(test.files.profile.filepath as string), {
+      await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.profile.filepath), {
          pinataMetadata: {
-            name: "profile"
+            name: `profile_${requestBody.fields.account}`
          }
       })
       // @ts-ignore
-      await pinata.pinFileToIPFS(fs.createReadStream(test.files.profile.filepath as string), {
+      await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.thumbnail.filepath), {
          pinataMetadata: {
-            name: "thumbnail"
+            name: `thumbnail_${requestBody.fields.account}`
          }
       })
       res.send({url:"ok"})

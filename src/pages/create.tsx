@@ -11,6 +11,7 @@ import axios from "axios"
 const Create:NextPage = () => {
    const router = useRouter()
    const { alreadyRegistered } = useAppSelector(state => state.contracts)
+   const { account } = useAppSelector(state => state.web3)
    const [profile, setProfile] = useState<ImageListType>([])
    const [thumbnail, setThumbnail] = useState<ImageListType>([])
    const [showError, setShowError] = useState(false)
@@ -61,7 +62,8 @@ const Create:NextPage = () => {
    const uploadToIpfs = async () => {
       axios.post("/api/pinata", {
          profile: profile[0].file,
-         thumbnail: thumbnail[0].file
+         thumbnail: thumbnail[0].file,
+         account
       }, {
          headers: {
             "Content-Type": "multipart/form-data",
