@@ -21,7 +21,7 @@ const pinata = new pinataSdk(
 
 const readFile = (req: NextApiRequest) : Promise<{fields: formidable.Fields, files: formidable.Files}> => {
    const form = new formidable.IncomingForm({
-      multiples: false
+      multiples: true
    })
    return new Promise((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
@@ -39,6 +39,7 @@ export default async function handler(
    res: NextApiResponse<Data>
 ) {
    const test = await readFile(req)
+   console.log(test)
    try{
       // @ts-ignore
       // await pinata.pinFileToIPFS(fs.createReadStream(test.files.file.filepath as string), {
