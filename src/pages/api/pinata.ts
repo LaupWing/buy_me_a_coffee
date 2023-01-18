@@ -31,14 +31,10 @@ const readFile = (req: NextApiRequest) => {
    })
 }
 
-export default function handler(
+export default async function handler(
    req: NextApiRequest,
    res: NextApiResponse<Data>
 ) {
-   const form = formidable({
-
-   })
-   form.parse(req, (err, fields, files) => {
-
-   })
+   const test = await readFile(req)
+   console.log(test)
 }
