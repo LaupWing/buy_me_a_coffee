@@ -2,7 +2,12 @@
 
 const CreateItems = () => {
    return (
-      <div></div>
+      <main className="container mx-auto mt-6 flex flex-col">
+         <span className="text-4xl">&#x2615;</span>
+         <span className="text-4xl">&#x1F36A;</span>
+         <span className="text-4xl">&#x1F370;</span>
+         <span className="text-4xl">&#x2615;</span>
+      </main>
    )
 }
 
