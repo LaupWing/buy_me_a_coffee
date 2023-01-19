@@ -3,7 +3,7 @@ import { SiBuymeacoffee } from "react-icons/si"
 import { BiSearchAlt } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "../slices/web3"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
-import { fetchBuyMeACoffeeFactory, fetchBuyMeACoffees, setInitialBuyMeACoffeeFactory } from "../slices/contracts"
+import { fetchBuyMeACoffeeFactory, fetchCampaigns, setInitialBuyMeACoffeeFactory } from "../slices/contracts"
 import Link from "next/link"
 
 const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
@@ -26,7 +26,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
       const fetchContracts = async () => {
          await dispatch(fetchBuyMeACoffeeFactory())
          await dispatch(setInitialBuyMeACoffeeFactory())
-         await dispatch(fetchBuyMeACoffees())
+         await dispatch(fetchCampaigns())
       }
       if(account){
          fetchContracts()
