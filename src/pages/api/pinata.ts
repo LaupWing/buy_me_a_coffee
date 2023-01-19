@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import "dotenv/config"
-import pinataSdk from "@pinata/sdk"
+import pinataSdk, { PinataPinResponse } from "@pinata/sdk"
 import formidable from "formidable"
 import fs from "fs"
 
@@ -11,7 +11,8 @@ export const config ={
 }
 
 type Data = {
-   url: string
+   profileUri: PinataPinResponse
+   thumbnailUri: PinataPinResponse
 }
 
 const pinata = new pinataSdk(
@@ -52,7 +53,10 @@ export default async function handler(
             name: `thumbnail_${requestBody.fields.account}`
          }
       })
-      res.send({url:"ok"})
+      res.send({
+         thumbnailUri,
+         profileUri
+      })
    }catch(e){
       console.log(e)
    }
