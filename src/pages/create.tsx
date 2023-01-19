@@ -5,12 +5,18 @@ import { useAppSelector } from "../store/hooks"
 import { ImageListType } from "react-images-uploading"
 import { useState } from "react"
 import Thumbnail from "../components/Thumbnail"
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
+import { PinataPinResponse } from "@pinata/sdk"
+
+interface FormValues {
+   description: string
+   name: string
+ }
 
 const Create:NextPage = () => {
    const router = useRouter()
-   const { alreadyRegistered } = useAppSelector(state => state.contracts)
+   const { alreadyRegistered, buyMeACoffeeFactory } = useAppSelector(state => state.contracts)
    const { account } = useAppSelector(state => state.web3)
    const [profile, setProfile] = useState<ImageListType>([])
    const [thumbnail, setThumbnail] = useState<ImageListType>([])
@@ -23,7 +29,7 @@ const Create:NextPage = () => {
          errors
       },
       handleSubmit
-    } = useForm()
+    } = useForm<FormValues>()
 
    if(alreadyRegistered){
       router.push("/")
@@ -41,7 +47,7 @@ const Create:NextPage = () => {
       setThumbnail(imageList)
    }
 
-   const submitHandler = async () => {
+   const submitHandler:SubmitHandler<FormValues> = async ({description, name}) => {
       setTriedSubmit(true)
       if(!showError && (profile.length === 0 || thumbnail.length === 0)){
          setShowError(true)
@@ -51,16 +57,19 @@ const Create:NextPage = () => {
          if(profile.length === 0 || thumbnail.length === 0){
             const confirmed = confirm("Either profile or thumbnail is not set are you sure you want to continue?")
             if(confirmed){
-               uploadToIpfs()
+               uploadToIpfs(name, description)
             }
          }
       }else{
-         uploadToIpfs()
+         uploadToIpfs(name, description)
       }
    }
 
-   const uploadToIpfs = async () => {
-      const res = await axios.post("/api/pinata", {
+   const uploadToIpfs = async (name: string, description:string) => {
+      const response = await axios.post<{
+         profileUri: PinataPinResponse
+         thumbnailUri: PinataPinResponse
+      }>("/api/pinata", {
          profile: profile[0].file,
          thumbnail: thumbnail[0].file,
          account
@@ -69,8 +78,12 @@ const Create:NextPage = () => {
             "Content-Type": "multipart/form-data",
          },
       })
-
-      console.log(res)
+      await buyMeACoffeeFactory?.createBuyMeACoffee(
+         name, 
+         description, 
+         response.data.profileUri.IpfsHash,
+         response.data.thumbnailUri.IpfsHash
+      )
    }
 
    return (
