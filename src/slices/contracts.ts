@@ -4,6 +4,7 @@ import { store } from "../store/store"
 import { ContractInterface, ethers } from "ethers"
 import contractAddresses from "../../constants/networks.json"
 import BuyMeACoffeeFactoryAbi from "../../constants/contracts/BuyMeACoffeeFactory.json"
+import BuyMeACoffeeAbi from "../../constants/contracts/BuyMeACoffee.json"
 
 type ChainId = keyof typeof contractAddresses
 
@@ -49,6 +50,41 @@ export const fetchBuyMeACoffeeFactory =
          )
 
          dispatch(setBuyMeACoffeeFactory(contract))
+      } catch(e) {
+         console.log(e)
+      }
+   }
+
+export const fetchBuyMeACoffees =
+   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+      try {
+         const { buyMeACoffeeFactory } = getState().contracts
+         const { signer } = getState().web3
+         const addresses = await buyMeACoffeeFactory?.getDeployedBuyMeACoffee() 
+         const buyMeCoffeesProxy = addresses?.map(async a => {
+            const contract:BuyMeACoffee = new ethers.Contract(
+               a, 
+               BuyMeACoffeeAbi.abi as ContractInterface, 
+               signer
+            ) as BuyMeACoffee
+            const name = await contract.getName()
+            const description = await contract.getDescription()
+            const thumbnail = await contract.getThumbnail()
+            const profile = await contract.getProfile()
+            return {
+               name,
+               description,
+               thumbnail,
+               profile,
+            }
+         }) as Promise<{
+            name: string
+            description: string,
+            thumbnail: string,
+            profile: string,
+         }>[]
+         const buyMeACoffees = await Promise.all(buyMeCoffeesProxy)
+         console.log(buyMeACoffees)
       } catch(e) {
          console.log(e)
       }
