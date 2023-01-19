@@ -1,4 +1,4 @@
-import { NextPage } from "next"
+import { GetServerSideProps, NextPage } from "next"
 import Head from "next/head"
 
 const Home:NextPage = () => {
@@ -17,4 +17,14 @@ const Home:NextPage = () => {
       </>
    )
 }
+
 export default Home
+
+export const getServersideProps:GetServerSideProps =  async () =>{
+   
+   return {
+      props: {
+
+      }
+   }
+}
