@@ -5,6 +5,7 @@ import { ContractInterface, ethers } from "ethers"
 import contractAddresses from "../../constants/networks.json"
 import BuyMeACoffeeFactoryAbi from "../../constants/contracts/BuyMeACoffeeFactory.json"
 import BuyMeACoffeeAbi from "../../constants/contracts/BuyMeACoffee.json"
+import { BuyMeACoffeeType } from "../../typings"
 
 type ChainId = keyof typeof contractAddresses
 
@@ -77,14 +78,8 @@ export const fetchBuyMeACoffees =
                thumbnail,
                profile,
             }
-         }) as Promise<{
-            name: string
-            description: string,
-            thumbnail: string,
-            profile: string,
-         }>[]
+         }) as Promise<BuyMeACoffeeType>[]
          const buyMeACoffees = await Promise.all(buyMeCoffeesProxy)
-         console.log(buyMeACoffees)
       } catch(e) {
          console.log(e)
       }
