@@ -1,8 +1,11 @@
 import { useEffect } from "react"
 import { NextPage } from "next"
 import Head from "next/head"
+import { useAppSelector } from "../store/hooks"
 
 const Home:NextPage = () => {
+   const { campaigns } = useAppSelector(state => state.contracts)
+
    return (
       <>
          <Head>
@@ -14,6 +17,14 @@ const Home:NextPage = () => {
             />
             <link rel="icon" href="/favicon.ico" />
          </Head>
+         <main className="container mx-auto mt-6 grid grid-cols-3">
+            {campaigns.map(x=>(
+               <div className="bg-white shadow rounded aspect-[5/4]">
+                  <img src="" alt="" />
+                  {x.name}
+               </div>
+            ))}
+         </main>
       </>
    )
 }

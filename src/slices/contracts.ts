@@ -85,7 +85,8 @@ export const fetchCampaigns =
             }
          }) as Promise<BuyMeACoffeeType>[]
          const buyMeACoffees = await Promise.all(buyMeCoffeesProxy)
-
+         
+         dispatch(setCampaigns(buyMeACoffees))
       } catch(e) {
          console.log(e)
       }
