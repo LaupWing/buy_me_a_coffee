@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { NextPage } from "next"
 import Head from "next/head"
 import { useAppSelector } from "../store/hooks"
+import { gateWay } from "../../utils/ipfs"
 
 const Home:NextPage = () => {
    const { campaigns } = useAppSelector(state => state.contracts)
@@ -19,9 +20,24 @@ const Home:NextPage = () => {
          </Head>
          <main className="container mx-auto mt-6 grid grid-cols-3">
             {campaigns.map(x=>(
-               <div className="bg-white shadow rounded aspect-[5/4]">
-                  <img src="" alt="" />
-                  {x.name}
+               <div className="bg-white shadow overflow-hidden rounded aspect-[5/4]">
+                  <div className="relative h-1/2 w-full">
+                     <img 
+                        src={gateWay + x.thumbnail} 
+                        alt="thumbnail" 
+                        className="h-full w-full object-center object-cover"
+                     />
+                     <img 
+                        src={gateWay + x.profile} 
+                        alt="profile" 
+                        className="absolute object-cover transform translate-y-1/3 border-4 border-neutral-100 w-20 h-20 rounded-full bottom-0 right-5"
+                     />
+                  </div>
+                  <div className="p-2 border-t-4 border-neutral-100">
+                     <h2 className="text-yellow-400 font-bold">{x.name}</h2>
+                     <p>{x.description}</p>
+                  </div>
+                  
                </div>
             ))}
          </main>
