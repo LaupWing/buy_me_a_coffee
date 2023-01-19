@@ -60,7 +60,7 @@ const Create:NextPage = () => {
    }
 
    const uploadToIpfs = async () => {
-      axios.post("/api/pinata", {
+      const res = await axios.post("/api/pinata", {
          profile: profile[0].file,
          thumbnail: thumbnail[0].file,
          account
@@ -69,6 +69,8 @@ const Create:NextPage = () => {
             "Content-Type": "multipart/form-data",
          },
       })
+
+      console.log(res)
    }
 
    return (
