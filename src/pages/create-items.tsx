@@ -1,31 +1,31 @@
 const items = [
    {
       name: "coffee",
-      emoji: "&#x2615;"
+      emoji: 9749
    },
    {
       name: "cookie",
-      emoji: "&#x1F36A;"
+      emoji: 127850
    },
    {
       name: "pie",
-      emoji: "&#x1F370;"
+      emoji: 127856
    },
    {
       name: "donut",
-      emoji: "&#x1F369;"
+      emoji: 127849
    },
    {
       name: "icecream",
-      emoji: "&#x1F366;"
+      emoji: 127846
    },
    {
       name: "pancake",
-      emoji: "&#x1F95E;"
+      emoji: 129374
    },
    {
-      name: "chocolate",
-      emoji: "&#x1F36B;"
+      name: "bacon",
+      emoji: 129363
    },
 ]
 
@@ -42,7 +42,15 @@ const CreateItems = () => {
                      className="outline-none text-2xl" 
                   />
                   <div className="flex">
-                  <span data-name="pancake" className="text-4xl"></span>
+
+                     {items.map(item =>(
+                        <span 
+                           data-name={item.name} 
+                           className="text-4xl"
+                        >
+                           {String.fromCodePoint(item.emoji)}
+                        </span>
+                     ))}
                   </div>
                </li>
             </ul>
