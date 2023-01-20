@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
+import { Controller, SubmitHandler, useForm } from "react-hook-form"
 
 
 interface FormValues {
@@ -65,13 +65,13 @@ const AddItemsForm = () => {
          items: []
       }
    })
-
-   // const handleSubmit = (e:FormEvent) => {
-   //    e.preventDefault()
-
-   // }
+   
+   const submitHandler:SubmitHandler<FormValues> = async (data) => {
+      console.log(data)
+   }
    return (
       <form 
+         onSubmit={handleSubmit(submitHandler)}
          className="flex border rounded px-4 py-2 my-4"
       >
          <input 
@@ -83,6 +83,9 @@ const AddItemsForm = () => {
             <Controller
                control={control}
                name="items"
+               rules={{
+                  required: true,
+               }}
                render={({ field }) => (
                   <>
                      {items.map(item =>{
