@@ -1,10 +1,10 @@
 import React, { FormEvent, useState } from "react"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 
 
 interface FormValues {
    description: string
-   name: string
+   items: string[]
 }
 
 interface Item {
@@ -83,6 +83,11 @@ const AddItemsForm = () => {
                   }`}
                   htmlFor={item.name}
                >
+                  {/* <Controller
+                     control={control}
+                     name="name"
+                  /> */}
+
                   <input 
                      type="checkbox" 
                      id={item.name}
