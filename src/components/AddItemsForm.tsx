@@ -51,7 +51,6 @@ const AddItemsForm = () => {
          checked: false
       },
    ])
-   const [addingItems, setAddingItems] = useState<string[]>([])
    const [addedItems, setAddedItems] = useState<{price: number, items: string[]}[]>([])
    
    const { 
@@ -96,15 +95,6 @@ const AddItemsForm = () => {
                   />
                   {String.fromCodePoint(item.emoji)}
                </label>
-               // <button
-               //    data-name={item.name} 
-               //    className={`text-4xl duration-150 ${
-               //       addingItems.includes(item.name) ? "" : "opacity-10 hover:opacity-100"
-               //    }`}
-               //    onClick={() => setAddingItems(prev => ([...prev, item.name]))}
-               // >
-               //    {String.fromCodePoint(item.emoji)}
-               // </button>
             ))}
          </div>
          <button 
