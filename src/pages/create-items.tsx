@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { FormEvent, useState } from "react"
 
 const items = [
    {
@@ -35,11 +35,19 @@ const CreateItems = () => {
    const [addingItems, setAddingItems] = useState<string[]>([])
    const [addedItems, setAddedItems] = useState<{price: number, items: string[]}[]>([])
 
+   const handleSubmit = (e:FormEvent) => {
+      e.preventDefault()
+      
+   }
+
    return (
       <main className="container mx-auto mt-6 flex flex-col">
          <div className="bg-white p-4 w-full rounded shadow flex flex-col">
             <h2 className="uppercase font-bold tracking-wider text-neutral-500">Items</h2>
-            <form className="flex border rounded px-4 py-2 my-4">
+            <form 
+               className="flex border rounded px-4 py-2 my-4"
+               onClick={handleSubmit}
+            >
                <input 
                   type="number" 
                   placeholder="Price" 
@@ -58,8 +66,16 @@ const CreateItems = () => {
                      </button>
                   ))}
                </div>
-               <button className="btn ml-4">Add</button>
+               <button 
+                  className="btn ml-4"
+                  type="submit"
+               >
+                  Add
+               </button>
             </form>
+            <ul>
+               
+            </ul>
          </div>
       </main>
    )
