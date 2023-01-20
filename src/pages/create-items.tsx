@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 const items = [
    {
       name: "coffee",
@@ -30,6 +32,8 @@ const items = [
 ]
 
 const CreateItems = () => {
+   const [addedItems, setAddedItems] = useState<string[]>([])
+
    return (
       <main className="container mx-auto mt-6 flex flex-col">
          <div className="bg-white p-4 w-full rounded shadow flex flex-col">
@@ -41,15 +45,17 @@ const CreateItems = () => {
                      placeholder="Price" 
                      className="outline-none text-2xl" 
                   />
-                  <div className="flex">
-
+                  <div className="flex space-x-2">
                      {items.map(item =>(
-                        <span 
+                        <button
                            data-name={item.name} 
-                           className="text-4xl"
+                           className={`text-4xl duration-150 ${
+                              addedItems.includes(item.name) ? "" : "opacity-20 hover:opacity-100"
+                           }`}
+                           onClick={() => setAddedItems(prev => ([...prev, item.name]))}
                         >
                            {String.fromCodePoint(item.emoji)}
-                        </span>
+                        </button>
                      ))}
                   </div>
                </li>
