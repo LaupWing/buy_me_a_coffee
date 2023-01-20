@@ -32,32 +32,34 @@ const items = [
 ]
 
 const CreateItems = () => {
-   const [addedItems, setAddedItems] = useState<string[]>([])
+   const [addingItems, setAddingItems] = useState<string[]>([])
+   const [addedItems, setAddedItems] = useState<{price: number, items: string[]}[]>([])
 
    return (
       <main className="container mx-auto mt-6 flex flex-col">
          <div className="bg-white p-4 w-full rounded shadow flex flex-col">
             <h2 className="uppercase font-bold tracking-wider text-neutral-500">Items</h2>
             <ul className="p-4">
-               <li className="flex justify-between border rounded px-4 py-3">
+               <li className="flex border rounded px-4 py-3">
                   <input 
                      type="number" 
                      placeholder="Price" 
-                     className="outline-none text-2xl" 
+                     className="outline-none text-2xl mr-auto" 
                   />
                   <div className="flex space-x-2">
                      {items.map(item =>(
                         <button
                            data-name={item.name} 
                            className={`text-4xl duration-150 ${
-                              addedItems.includes(item.name) ? "" : "opacity-20 hover:opacity-100"
+                              addingItems.includes(item.name) ? "" : "opacity-20 hover:opacity-100"
                            }`}
-                           onClick={() => setAddedItems(prev => ([...prev, item.name]))}
+                           onClick={() => setAddingItems(prev => ([...prev, item.name]))}
                         >
                            {String.fromCodePoint(item.emoji)}
                         </button>
                      ))}
                   </div>
+                  <button className="btn ml-4">Add</button>
                </li>
             </ul>
          </div>
