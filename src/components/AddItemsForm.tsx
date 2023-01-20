@@ -1,48 +1,75 @@
 import React, { FormEvent, useState } from "react"
+import { useForm } from "react-hook-form"
 
-const items = [
-   {
-      name: "coffee",
-      emoji: 9749
-   },
-   {
-      name: "cookie",
-      emoji: 127850
-   },
-   {
-      name: "pie",
-      emoji: 127856
-   },
-   {
-      name: "donut",
-      emoji: 127849
-   },
-   {
-      name: "icecream",
-      emoji: 127846
-   },
-   {
-      name: "pancake",
-      emoji: 129374
-   },
-   {
-      name: "bacon",
-      emoji: 129363
-   },
-]
 
+interface FormValues {
+   description: string
+   name: string
+}
+
+interface Item {
+   name: string
+   emoji: number
+   checked: boolean
+}
+ 
 const AddItemsForm = () => {
+   const [items, setItems] = useState<Item[]>([
+      {
+         name: "coffee",
+         emoji: 9749,
+         checked: false
+      },
+      {
+         name: "cookie",
+         emoji: 127850,
+         checked: false
+      },
+      {
+         name: "pie",
+         emoji: 127856,
+         checked: false
+      },
+      {
+         name: "donut",
+         emoji: 127849,
+         checked: false
+      },
+      {
+         name: "icecream",
+         emoji: 127846,
+         checked: false
+      },
+      {
+         name: "pancake",
+         emoji: 129374,
+         checked: false
+      },
+      {
+         name: "bacon",
+         emoji: 129363,
+         checked: false
+      },
+   ])
    const [addingItems, setAddingItems] = useState<string[]>([])
    const [addedItems, setAddedItems] = useState<{price: number, items: string[]}[]>([])
+   
+   const { 
+      register,
+      control,
+      formState: {
+         errors
+      },
+      handleSubmit
+   } = useForm<FormValues>()
 
-   const handleSubmit = (e:FormEvent) => {
-      e.preventDefault()
+   // const handleSubmit = (e:FormEvent) => {
+   //    e.preventDefault()
 
-   }
+   // }
    return (
       <form 
          className="flex border rounded px-4 py-2 my-4"
-         onClick={handleSubmit}
       >
          <input 
             type="number" 
@@ -51,6 +78,7 @@ const AddItemsForm = () => {
          />
          <div className="flex space-x-2">
             {items.map(item =>(
+
                <button
                   data-name={item.name} 
                   className={`text-4xl duration-150 ${
