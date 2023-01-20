@@ -78,16 +78,33 @@ const AddItemsForm = () => {
          />
          <div className="flex space-x-2">
             {items.map(item =>(
-
-               <button
-                  data-name={item.name} 
-                  className={`text-4xl duration-150 ${
-                     addingItems.includes(item.name) ? "" : "opacity-10 hover:opacity-100"
+               <label 
+                  className={`text-4xl cursor-pointer duration-150 ${
+                     item.checked ? "" : "opacity-10 hover:opacity-100"
                   }`}
-                  onClick={() => setAddingItems(prev => ([...prev, item.name]))}
+                  htmlFor={item.name}
                >
+                  <input 
+                     type="checkbox" 
+                     id={item.name}
+                     className="sr-only"
+                     onChange={e => {
+                        setItems(prev => ([
+                           ...prev
+                        ].map(i => i === item ? {...item, checked: e.target.checked} : i)))
+                     }}
+                  />
                   {String.fromCodePoint(item.emoji)}
-               </button>
+               </label>
+               // <button
+               //    data-name={item.name} 
+               //    className={`text-4xl duration-150 ${
+               //       addingItems.includes(item.name) ? "" : "opacity-10 hover:opacity-100"
+               //    }`}
+               //    onClick={() => setAddingItems(prev => ([...prev, item.name]))}
+               // >
+               //    {String.fromCodePoint(item.emoji)}
+               // </button>
             ))}
          </div>
          <button 
