@@ -77,7 +77,8 @@ const AddItemsForm = () => {
          <input 
             type="number" 
             placeholder="Price" 
-            className="outline-none text-2xl mr-auto" 
+            className="outline-none text-2xl mr-auto"
+            
          />
          <div className="flex space-x-2">
             <Controller
@@ -97,7 +98,6 @@ const AddItemsForm = () => {
                               }`}
                               htmlFor={item.name}
                            >
-
                               <input 
                                  type="checkbox"
                                  id={item.name}
