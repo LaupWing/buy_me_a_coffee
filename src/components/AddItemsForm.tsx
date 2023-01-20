@@ -60,7 +60,11 @@ const AddItemsForm = () => {
          errors
       },
       handleSubmit
-   } = useForm<FormValues>()
+   } = useForm<FormValues>({
+      defaultValues: {
+         items: []
+      }
+   })
 
    // const handleSubmit = (e:FormEvent) => {
    //    e.preventDefault()
@@ -76,31 +80,45 @@ const AddItemsForm = () => {
             className="outline-none text-2xl mr-auto" 
          />
          <div className="flex space-x-2">
-            {items.map(item =>(
-               <label 
-                  className={`text-4xl cursor-pointer duration-150 ${
-                     item.checked ? "" : "opacity-10 hover:opacity-100"
-                  }`}
-                  htmlFor={item.name}
-               >
-                  {/* <Controller
-                     control={control}
-                     name="name"
-                  /> */}
+            <Controller
+               control={control}
+               name="items"
+               render={({ field }) => (
+                  <>
+                     {items.map(item =>{
+                        const checked = field.value.find(x => x === item.name)
+                        return (
+                           <label 
+                              className={`text-4xl cursor-pointer duration-150 ${
+                                 checked ? "" : "opacity-10 hover:opacity-100"
+                              }`}
+                              htmlFor={item.name}
+                           >
 
-                  <input 
-                     type="checkbox" 
-                     id={item.name}
-                     className="sr-only"
-                     onChange={e => {
-                        setItems(prev => ([
-                           ...prev
-                        ].map(i => i === item ? {...item, checked: e.target.checked} : i)))
-                     }}
-                  />
-                  {String.fromCodePoint(item.emoji)}
-               </label>
-            ))}
+                              <input 
+                                 type="checkbox"
+                                 id={item.name}
+                                 className="sr-only"
+                                 onChange={(e) => {
+                                    if(e.target.checked){
+                                       field.onChange([
+                                          ...field.value,
+                                          item.name
+                                       ])
+                                    }else{
+                                       field.onChange([
+                                          ...field.value
+                                       ].filter(val => val !== item.name))
+                                    }
+                                 }}
+                              />
+                              {String.fromCodePoint(item.emoji)}
+                           </label>
+                        )
+                     })}
+                  </>
+               )}
+            />
          </div>
          <button 
             className="btn ml-4"
