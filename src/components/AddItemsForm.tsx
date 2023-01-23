@@ -3,7 +3,7 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 
 
 interface FormValues {
-   description: string
+   value: number
    items: string[]
 }
 
@@ -78,14 +78,16 @@ const AddItemsForm = () => {
             type="number" 
             placeholder="Price" 
             className="outline-none text-2xl mr-auto"
-            
+            {...register("value", {
+               required: "You need to set a value!"
+            })}
          />
          <div className="flex space-x-2">
             <Controller
                control={control}
                name="items"
                rules={{
-                  required: true,
+                  required: "You need at least one item!",
                }}
                render={({ field }) => (
                   <>
