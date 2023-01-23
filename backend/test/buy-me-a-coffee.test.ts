@@ -161,9 +161,11 @@ interface Item {
          })
 
          it("removes first set of items from the list of items", async () => {
+            const _itemsCount = (await buyMeACoffee.getListOfItems()).length
+            
             await buyMeACoffee.removeItems("0")
             const listOfItems = await buyMeACoffee.getListOfItems() 
-            expect(listOfItems.length).equal(1)
+            expect(listOfItems.length).equal(_itemsCount - 1)
             expect(listOfItems[0].names).to.have.same.members(secondSetOfItems)
          })
 
