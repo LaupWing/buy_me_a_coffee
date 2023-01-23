@@ -27,6 +27,8 @@ interface Item {
       const buyMeACoffeeDescription = "test description"
       const buyMeACoffeeProfile = "test profile"
       const buyMeACoffeeThumbnail = "test thumbnail"
+      const buyMeACoffeeItems = [["coffee", "bagel"], ["coffee", "ice"], ["coffee"]]
+      const buyMeACoffeeItemsValues = [2, 3, 4]
 
       beforeEach(async () => { 
          const accounts = await getNamedAccounts()
@@ -37,7 +39,9 @@ interface Item {
             buyMeACoffeeName, 
             buyMeACoffeeDescription,
             buyMeACoffeeProfile,
-            buyMeACoffeeThumbnail
+            buyMeACoffeeThumbnail,
+            buyMeACoffeeItems,
+            buyMeACoffeeItemsValues
          )
          const transactionReceipt = await transaction.wait()
          buyMeACoffeeAddress = transactionReceipt.events?.find(x => x.event === "BuyMeACoffeeCreated")?.args?.buyMeACoffeeAddress
@@ -66,7 +70,9 @@ interface Item {
                buyMeACoffeeName, 
                buyMeACoffeeDescription,
                buyMeACoffeeProfile,
-               buyMeACoffeeThumbnail
+               buyMeACoffeeThumbnail,
+               buyMeACoffeeItems,
+               buyMeACoffeeItemsValues
             )).to.be.revertedWithCustomError(buyMeACoffeeFactory, "BuyMeACoffeeFactory_AlreadyRegistered")
          })
 
@@ -75,7 +81,9 @@ interface Item {
                "test name", 
                "test description",
                "test profile",
-               "test thumbnail"
+               "test thumbnail",
+               [["coffee"]],
+               [1]
             )
             const transactionReceipt = await transaction.wait()
             const address = transactionReceipt?.events?.find(x => x.event === "BuyMeACoffeeCreated")?.args?.buyMeACoffeeAddress 
