@@ -30,6 +30,9 @@ export const contractsSlice = createSlice({
       setBuyMeACoffeeFactory(state, action:PayloadAction<any>){
          state.buyMeACoffeeFactory = action.payload
       },
+      setBuyMeACoffee(state, action:PayloadAction<any>){
+         state.buyMeACoffee = action.payload
+      },
       setCampaigns(state, action:PayloadAction<BuyMeACoffeeType[]>){
          state.campaigns = action.payload
       },
