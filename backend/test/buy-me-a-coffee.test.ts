@@ -28,7 +28,11 @@ interface Item {
       const buyMeACoffeeProfile = "test profile"
       const buyMeACoffeeThumbnail = "test thumbnail"
       const buyMeACoffeeItems = [["coffee", "bagel"], ["coffee", "ice"], ["coffee"]]
-      const buyMeACoffeeItemsValues = [2, 3, 4]
+      const buyMeACoffeeItemsValues = [
+         ethers.utils.parseEther("2"), 
+         ethers.utils.parseEther("3"), 
+         ethers.utils.parseEther("4")
+      ]
 
       beforeEach(async () => { 
          const accounts = await getNamedAccounts()
@@ -193,7 +197,7 @@ interface Item {
             await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
             items = (await buyMeACoffee.getListOfItems())
          })
-         it.only("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
+         it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
             expect((await buyMeACoffee.getItemsCount()).toString()).equal(String(Number(itemsCount) + 1))
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: firstSetOfItemsCost
@@ -206,7 +210,8 @@ interface Item {
             expect(memos[0].items_id.toString()).equal(itemsId)
          })
 
-         it("reverts with error when not enough eth is sent", async () => {
+         it.only("reverts with error when not enough eth is sent", async () => {
+            console.log(await buyMeACoffee.getListOfItems())
             await expect(buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: ethers.utils.parseEther("0.001")
             })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")
