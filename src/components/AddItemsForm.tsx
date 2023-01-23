@@ -51,7 +51,6 @@ const AddItemsForm = () => {
          checked: false
       },
    ])
-   const [addedItems, setAddedItems] = useState<{price: number, items: string[]}[]>([])
    
    const { 
       register,
@@ -69,6 +68,8 @@ const AddItemsForm = () => {
    const submitHandler:SubmitHandler<FormValues> = async (data) => {
       console.log(data)
    }
+
+   console.log(errors)
    return (
       <form 
          onSubmit={handleSubmit(submitHandler)}
@@ -95,6 +96,7 @@ const AddItemsForm = () => {
                         const checked = field.value.find(x => x === item.name)
                         return (
                            <label 
+                              key={item.name}
                               className={`text-4xl cursor-pointer duration-150 ${
                                  checked ? "" : "opacity-10 hover:opacity-100"
                               }`}
