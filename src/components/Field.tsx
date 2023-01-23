@@ -35,7 +35,7 @@ const Field:React.FC<Props> = ({
             >
             </textarea>
          )}
-         {errors[type] && <p className="text-red-400 m-1 tracking-wider text-xs uppercase font-bold">{errors[type]?.message?.toString()}</p>}
+         {errors[type] && <p className="error">{errors[type]?.message?.toString()}</p>}
       </div>
    )
 }
