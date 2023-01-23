@@ -12,7 +12,7 @@ interface Item {
 }
 
 const AddItemsForm = () => {
-   const [items, setItems] = useState<Item[]>([
+   const [items] = useState<Item[]>([
       {
          name: "coffee",
          emoji: 9749,
@@ -51,6 +51,7 @@ const AddItemsForm = () => {
    } = useForm<FormValues>({
       defaultValues: {
          items: [],
+         value: 0
       },
    })
 
@@ -68,7 +69,7 @@ const AddItemsForm = () => {
             <input
                type="number"
                placeholder="Price"
-               className="outline-none text-2xl my-auto"
+               className="outline-none text-2xl my-auto mr-auto"
                {...register("value", {
                   required: "You need to set a value!",
                })}
