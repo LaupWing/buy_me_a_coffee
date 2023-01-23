@@ -190,11 +190,15 @@ interface Item {
          let itemsCount:string
          const name = "Laup"
          const message = "A nice message"
-         const itemsId = "0" 
+         let itemsId:string 
 
          beforeEach(async () => {
             itemsCount = (await buyMeACoffee.getItemsCount()).toString()
-            await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
+            const transaction = await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
+            const transactionReceipt = await transaction.wait()
+            const event = transactionReceipt.events?.find(e => e.event === "AddedItems")
+            itemsId = event?.args!.items_id.toString()
+
             items = (await buyMeACoffee.getListOfItems())
          })
          it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
@@ -211,7 +215,7 @@ interface Item {
          })
 
          it.only("reverts with error when not enough eth is sent", async () => {
-            console.log(await buyMeACoffee.getListOfItems())
+            // console.log(await buyMeACoffee.getListOfItems())
             await expect(buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: ethers.utils.parseEther("0.001")
             })).revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotEnoughEthSend")

@@ -113,7 +113,7 @@ contract BuyMeACoffee {
       _;
    }
 
-   event AddedItem(uint256 indexed items_id);
+   event AddedItems(uint256 indexed items_id);
 
    Memo[] private memos;
    Items[] private listOfItems;
@@ -207,7 +207,7 @@ contract BuyMeACoffee {
    function addItems(string[] memory names, uint256 cost) public onlyOwner{
       Items memory _items = Items(names, cost, itemsCount);
       listOfItems.push(_items);
-      emit AddedItem(itemsCount);
+      emit AddedItems(itemsCount);
       itemsCount++;
    }
 
