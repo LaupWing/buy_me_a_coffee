@@ -54,7 +54,7 @@ interface Item {
       })
       
       describe("Constructor", () => {
-         it("sets up starting values correctly", async () => {
+         it.only("sets up starting values correctly", async () => {
             expect(await buyMeACoffeeFactory.getDeployedBuyMeACoffee()).to.have.members([buyMeACoffeeAddress])
             expect(await buyMeACoffee.getName()).equal(buyMeACoffeeName)
             expect(await buyMeACoffee.getOwner()).equal(deployer)

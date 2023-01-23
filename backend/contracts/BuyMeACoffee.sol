@@ -152,7 +152,9 @@ contract BuyMeACoffee {
       Items[] memory _listOfItems = new Items[](_itemsValues.length);
 
       for(uint256 i; i < _listOfItems.length; i ++){
-         addItems(_items[i], _itemsValues[i]);
+         Items memory _newItems = Items(_items[i], _itemsValues[i], itemsCount);
+         listOfItems.push(_newItems);
+         itemsCount++;
       }
    }
 
