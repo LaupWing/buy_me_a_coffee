@@ -15,5 +15,5 @@
 }
 
 .error{
-   @apply text-red-400 m-1 tracking-wider text-xs uppercase font-bold;
+   @apply text-red-400 tracking-wider text-xs uppercase font-bold;
 }

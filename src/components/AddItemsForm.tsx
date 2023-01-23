@@ -75,14 +75,17 @@ const AddItemsForm = () => {
          onSubmit={handleSubmit(submitHandler)}
          className="flex border rounded px-4 py-2 my-4"
       >
-         <input 
-            type="number" 
-            placeholder="Price" 
-            className="outline-none text-2xl mr-auto"
-            {...register("value", {
-               required: "You need to set a value!"
-            })}
-         />
+         <div className="flex flex-col flex-1">
+            <input 
+               type="number" 
+               placeholder="Price" 
+               className="outline-none text-2xl my-auto"
+               {...register("value", {
+                  required: "You need to set a value!"
+               })}
+            />
+            {errors.value && <p className="error mt-2">{errors.value.message}</p>}
+         </div>
          <div className="flex space-x-2">
             <Controller
                control={control}
