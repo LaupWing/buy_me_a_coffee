@@ -34,7 +34,9 @@ contract BuyMeACoffeeFactory {
       string memory _name, 
       string memory _description,
       string memory _profile, 
-      string memory _thumbnail
+      string memory _thumbnail,
+      string[][] memory _items,
+      uint256[] memory _itemsValues
    ) public{
       if(registered[msg.sender]){
          revert BuyMeACoffeeFactory_AlreadyRegistered();
@@ -44,6 +46,8 @@ contract BuyMeACoffeeFactory {
          _description, 
          _profile,
          _thumbnail,
+         _items,
+         _itemsValues,
          msg.sender,
          superUser,
          priceFeed
@@ -124,7 +128,9 @@ contract BuyMeACoffee {
       string memory _name, 
       string memory _description, 
       string memory _profile, 
-      string memory _thumbnail, 
+      string memory _thumbnail,
+      string[][] memory _items,
+      uint256[] memory _itemsValues,
       address _owner,
       address _superUser,
       AggregatorV3Interface _priceFeed
@@ -136,6 +142,18 @@ contract BuyMeACoffee {
       priceFeed = _priceFeed;
       owner = payable(_owner);
       superUser = _superUser;
+      setInitialItems(_items, _itemsValues);
+   }
+
+   function setInitialItems(
+      string[][] memory _items, 
+      uint256[] memory _itemsValues
+   ) public{
+      Items[] memory _listOfItems = new Items[](_itemsValues.length);
+
+      for(uint256 i; i < _listOfItems.length; i ++){
+         addItems(_items[i], _itemsValues[i]);
+      }
    }
 
    function setName (string memory _name) public onlyOwner{
