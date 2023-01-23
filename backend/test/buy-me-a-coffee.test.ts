@@ -54,7 +54,7 @@ interface Item {
       })
       
       describe("Constructor", () => {
-         it.only("sets up starting values correctly", async () => {
+         it("sets up starting values correctly", async () => {
             expect(await buyMeACoffeeFactory.getDeployedBuyMeACoffee()).to.have.members([buyMeACoffeeAddress])
             expect(await buyMeACoffee.getName()).equal(buyMeACoffeeName)
             expect(await buyMeACoffee.getOwner()).equal(deployer)
@@ -136,25 +136,28 @@ interface Item {
 
       describe("Items", () => {
          let items:Item[]
+         let itemsCount:string
          const firstSetOfItems = ["cookies", "cappochino"]
          const secondSetOfItems = ["Coffee"]
          const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
          const secondSetOfItemsCost = ethers.utils.parseEther("0.001")
 
          beforeEach(async () => {
+            itemsCount = (await buyMeACoffee.getItemsCount()).toString()
             await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
             await buyMeACoffee.addItems(secondSetOfItems, secondSetOfItemsCost)
             items = (await buyMeACoffee.getListOfItems())
          })
 
          it("allows owner to add item to the contract", async () => {
-            expect(items[0].id.toString()).equal("0")
-            expect(items[0].names).to.have.same.members(firstSetOfItems)
-            expect(items[0].cost.toString()).equal(firstSetOfItemsCost)
+            const startingPoint = buyMeACoffeeItems.length
+            expect(items[startingPoint + 0].id.toString()).equal(itemsCount)
+            expect(items[startingPoint + 0].names).to.have.same.members(firstSetOfItems)
+            expect(items[startingPoint + 0].cost.toString()).equal(firstSetOfItemsCost)
 
-            expect(items[1].id.toString()).equal("1")
-            expect(items[1].names).to.have.same.members(secondSetOfItems)
-            expect(items[1].cost.toString()).equal(secondSetOfItemsCost)
+            expect(items[startingPoint + 1].id.toString()).equal(String(Number(itemsCount) + 1))
+            expect(items[startingPoint + 1].names).to.have.same.members(secondSetOfItems)
+            expect(items[startingPoint + 1].cost.toString()).equal(secondSetOfItemsCost)
          })
 
          it("removes first set of items from the list of items", async () => {
