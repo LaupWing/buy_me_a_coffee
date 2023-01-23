@@ -86,56 +86,59 @@ const AddItemsForm = () => {
             />
             {errors.value && <p className="error mt-2">{errors.value.message}</p>}
          </div>
-         <div className="flex space-x-2">
-            <Controller
-               control={control}
-               name="items"
-               rules={{
-                  required: "You need at least one item!",
-               }}
-               render={({ field }) => (
-                  <>
-                     {items.map(item =>{
-                        const checked = field.value.find(x => x === item.name)
-                        return (
-                           <label 
-                              key={item.name}
-                              className={`text-4xl cursor-pointer duration-150 ${
-                                 checked ? "" : "opacity-10 hover:opacity-100"
-                              }`}
-                              htmlFor={item.name}
-                           >
-                              <input 
-                                 type="checkbox"
-                                 id={item.name}
-                                 className="sr-only"
-                                 onChange={(e) => {
-                                    if(e.target.checked){
-                                       field.onChange([
-                                          ...field.value,
-                                          item.name
-                                       ])
-                                    }else{
-                                       field.onChange([
-                                          ...field.value
-                                       ].filter(val => val !== item.name))
-                                    }
-                                 }}
-                              />
-                              {String.fromCodePoint(item.emoji)}
-                           </label>
-                        )
-                     })}
-                  </>
-               )}
-            />
+         <div className="flex flex-col">
+            <div className="flex space-x-2">
+               <Controller
+                  control={control}
+                  name="items"
+                  rules={{
+                     required: "You need at least one item!",
+                  }}
+                  render={({ field }) => (
+                     <>
+                        {items.map(item =>{
+                           const checked = field.value.find(x => x === item.name)
+                           return (
+                              <label 
+                                 key={item.name}
+                                 className={`text-4xl cursor-pointer duration-150 ${
+                                    checked ? "" : "opacity-10 hover:opacity-100"
+                                 }`}
+                                 htmlFor={item.name}
+                              >
+                                 <input 
+                                    type="checkbox"
+                                    id={item.name}
+                                    className="sr-only"
+                                    onChange={(e) => {
+                                       if(e.target.checked){
+                                          field.onChange([
+                                             ...field.value,
+                                             item.name
+                                          ])
+                                       }else{
+                                          field.onChange([
+                                             ...field.value
+                                          ].filter(val => val !== item.name))
+                                       }
+                                    }}
+                                 />
+                                 {String.fromCodePoint(item.emoji)}
+                              </label>
+                           )
+                        })}
+                     </>
+                  )}
+               />
+               <button 
+                  className="btn ml-4"
+                  type="submit"
+               >
+                  Add
+               </button>
+            </div>
+            {errors.items && <p className="error mt-2">{errors.items.message}</p>}
          </div>
-         <button 
-            className="btn ml-4"
-            type="submit"
-         >
-            Add
-         </button>
       </form>
    )
 }
