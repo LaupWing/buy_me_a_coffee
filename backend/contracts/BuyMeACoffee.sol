@@ -113,6 +113,8 @@ contract BuyMeACoffee {
       _;
    }
 
+   event AddedItem(uint256 indexed items_id);
+
    Memo[] private memos;
    Items[] private listOfItems;
    AggregatorV3Interface internal priceFeed;
@@ -205,6 +207,7 @@ contract BuyMeACoffee {
    function addItems(string[] memory names, uint256 cost) public onlyOwner{
       Items memory _items = Items(names, cost, itemsCount);
       listOfItems.push(_items);
+      emit AddedItem(itemsCount);
       itemsCount++;
    }
 
