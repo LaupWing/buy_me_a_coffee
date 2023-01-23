@@ -183,16 +183,18 @@ interface Item {
          const firstSetOfItems = ["cookies", "cappochino"]
          const firstSetOfItemsCost = ethers.utils.parseEther("0.01")
          let items: Item[]
+         let itemsCount:string
          const name = "Laup"
          const message = "A nice message"
          const itemsId = "0" 
 
          beforeEach(async () => {
+            itemsCount = (await buyMeACoffee.getItemsCount()).toString()
             await buyMeACoffee.addItems(firstSetOfItems, firstSetOfItemsCost)
             items = (await buyMeACoffee.getListOfItems())
          })
-         it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
-            expect((await buyMeACoffee.getItemsCount()).toString()).equal("1")
+         it.only("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
+            expect((await buyMeACoffee.getItemsCount()).toString()).equal(String(Number(itemsCount) + 1))
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: firstSetOfItemsCost
             })
