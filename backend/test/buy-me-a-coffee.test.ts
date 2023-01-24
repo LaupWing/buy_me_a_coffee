@@ -65,7 +65,6 @@ interface Item {
             expect(await buyMeACoffeeFactory.getPriceFeed()).equal(mockV3Aggregator.address)
             expect(await buyMeACoffee.getProfile()).equal(buyMeACoffeeProfile)
             expect(await buyMeACoffee.getThumbnail()).equal(buyMeACoffeeThumbnail)
-            expect(await buyMeACoffee.getSuperUser()).equal(deployer)
             expect(await buyMeACoffeeFactory.getGetRegistered()).to.be.true
          })
 

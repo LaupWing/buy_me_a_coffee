@@ -48,8 +48,7 @@ contract BuyMeACoffeeFactory {
          _thumbnail,
          _items,
          _itemsValues,
-         msg.sender,
-         superUser
+         msg.sender
       ));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
       registered[msg.sender] = true;
@@ -120,19 +119,11 @@ contract BuyMeACoffee {
       _;
    }
 
-   modifier onlySuperUser(address sender){
-      if(sender != superUser){
-         revert BuyMeACoffee__NotSuperUser();
-      }
-      _;
-   }
-
    event AddedItems(uint256 indexed items_id);
 
    Memo[] private memos;
    Items[] private listOfItems;
    address payable private owner;
-   address private superUser;
    uint256 private itemsCount = 0;
    string private name;
    string private profile;
@@ -146,15 +137,13 @@ contract BuyMeACoffee {
       string memory _thumbnail,
       string[][] memory _items,
       uint256[] memory _itemsValues,
-      address _owner,
-      address _superUser
+      address _owner
    ) {
       name = _name;
       description = _description;
       profile = _profile;
       thumbnail = _thumbnail;
       owner = payable(_owner);
-      superUser = _superUser;
       setInitialItems(_items, _itemsValues);
    }
 
@@ -257,10 +246,6 @@ contract BuyMeACoffee {
 
    function getItemsCount() public view returns (uint256){
       return itemsCount;
-   }
-
-   function getSuperUser() public view returns (address){
-      return superUser;
    }
 
    function withdraw() public onlyOwner{
