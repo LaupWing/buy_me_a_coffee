@@ -122,10 +122,7 @@ interface Item {
 
          it("reverts when not superuser updates", async () => {
             await expect(buyMeACoffeeFactory.connect(user1).updatePriceFeed(user1.address))
-               .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotSuperUser")
-
-            await expect(buyMeACoffeeFactory.connect(user1).updatePriceFeed(user1.address))
-               .to.be.revertedWithCustomError(buyMeACoffeeFactory, "BuyMeACoffee__NotSuperUser")
+               .to.be.revertedWithCustomError(buyMeACoffeeFactory, "BuyMeACoffeeFactory__NotSuperUser")
          })
 
          it("reverts when not owner wants to change things", async () => {
