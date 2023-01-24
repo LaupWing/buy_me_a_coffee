@@ -1,14 +1,10 @@
 import React from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { FaEthereum } from "react-icons/fa"
 
 interface FormValues {
    value: number
    items: string[]
-}
-
-interface Item {
-   name: string
-   emoji: number
 }
 
 const AddItemsForm = () => {
@@ -64,14 +60,17 @@ const AddItemsForm = () => {
          className="flex border rounded px-4 py-2 my-4"
       >
          <div className="flex flex-col flex-1">
-            <input
-               type="number"
-               placeholder="Price"
-               className="outline-none text-2xl my-auto mr-auto"
-               {...register("value", {
-                  required: "You need to set a value!",
-               })}
-            />
+            <div className="flex items-center flex-1">
+               <FaEthereum className="text-gray-300 mr-2" size={30}/>
+               <input
+                  type="number"
+                  placeholder="Price"
+                  className="outline-none text-2xl my-auto mr-auto"
+                  {...register("value", {
+                     required: "You need to set a value!",
+                  })}
+               />
+            </div>
             {errors.value && (
                <p className="error mt-2">{errors.value.message}</p>
             )}
