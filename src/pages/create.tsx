@@ -15,7 +15,7 @@ interface FormValues {
    name: string
 }
 
-type ListOfItems = {
+export type ListOfItems = {
    names: string[],
    value: number
 }[]
@@ -112,7 +112,7 @@ const Create:NextPage = () => {
             profile={profile}
          />
          <div className="px-6 my-10 mt-16">
-            <AddItemsForm/>
+            <AddItemsForm setListOfItems={setListOfItems}/>
          </div>
          <form onSubmit={handleSubmit(submitHandler)} className="w-full flex flex-col">
             <div className="flex px-6 flex-col space-y-8 max-w-lg">

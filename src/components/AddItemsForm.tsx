@@ -2,6 +2,7 @@ import React from "react"
 import { useEffect, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FaEthereum } from "react-icons/fa"
+import { ListOfItems } from "../pages/create"
 import { fetchEthPrice } from "../slices/contracts"
 import { useAppDispatch } from "../store/hooks"
 
@@ -10,7 +11,11 @@ interface FormValues {
    items: string[]
 }
 
-const AddItemsForm = () => {
+interface Props {
+   setListOfItems: React.Dispatch<React.SetStateAction<ListOfItems>>
+}
+
+const AddItemsForm:React.FC<Props> = ({setListOfItems}) => {
    const items = [
       {
          name: "coffee",
@@ -66,6 +71,7 @@ const AddItemsForm = () => {
 
    const submitHandler: SubmitHandler<FormValues> = async (data) => {
       console.log(data)
+      // setListOfItems()
    }
 
    return (
