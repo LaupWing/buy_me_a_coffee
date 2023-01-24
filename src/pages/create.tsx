@@ -16,7 +16,7 @@ interface FormValues {
 }
 
 export type ListOfItems = {
-   names: string[],
+   items: string[],
    value: number
 }[]
 
@@ -78,6 +78,13 @@ const Create:NextPage = () => {
       }
    }
 
+   const addListOfItems = (items:{
+      items: string[],
+      value: number
+   }) => {
+      setListOfItems(prev => [...prev, items])
+   }
+
    const uploadToIpfs = async (name: string, description:string) => {
       const response = await axios.post<{
          profileUri: PinataPinResponse
@@ -112,7 +119,7 @@ const Create:NextPage = () => {
             profile={profile}
          />
          <div className="px-6 my-10 mt-16">
-            <AddItemsForm setListOfItems={setListOfItems}/>
+            <AddItemsForm addListOfItems={addListOfItems}/>
          </div>
          <form onSubmit={handleSubmit(submitHandler)} className="w-full flex flex-col">
             <div className="flex px-6 flex-col space-y-8 max-w-lg">

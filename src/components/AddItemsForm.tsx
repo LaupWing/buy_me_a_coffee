@@ -12,10 +12,13 @@ interface FormValues {
 }
 
 interface Props {
-   setListOfItems: React.Dispatch<React.SetStateAction<ListOfItems>>
+   addListOfItems: (props:{
+      items: string[],
+      value: number
+   }) => void 
 }
 
-const AddItemsForm:React.FC<Props> = ({setListOfItems}) => {
+const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
    const items = [
       {
          name: "coffee",
@@ -69,9 +72,8 @@ const AddItemsForm:React.FC<Props> = ({setListOfItems}) => {
       init()
    },[])
 
-   const submitHandler: SubmitHandler<FormValues> = async (data) => {
-      console.log(data)
-      // setListOfItems()
+   const submitHandler: SubmitHandler<FormValues> = async ({items, value}) => {
+      addListOfItems({items, value})
    }
 
    return (
