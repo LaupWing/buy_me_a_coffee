@@ -50,8 +50,7 @@ const AddItemsForm = () => {
       handleSubmit,
    } = useForm<FormValues>({
       defaultValues: {
-         items: [],
-         value: 0
+         items: []
       },
    })
 
