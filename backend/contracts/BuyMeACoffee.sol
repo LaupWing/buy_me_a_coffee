@@ -49,8 +49,7 @@ contract BuyMeACoffeeFactory {
          _items,
          _itemsValues,
          msg.sender,
-         superUser,
-         priceFeed
+         superUser
       ));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
       registered[msg.sender] = true;
@@ -69,12 +68,27 @@ contract BuyMeACoffeeFactory {
       return registered[msg.sender];
    }
 
-   function updatePricefeed(address _priceFeedAddress) public onlySuperUser{
-      priceFeed = AggregatorV3Interface(_priceFeedAddress);
-      for(uint256 i; i < deployedBuyMeCoffees.length; i ++){
-         BuyMeACoffee _contract = BuyMeACoffee(deployedBuyMeCoffees[i]);
-         _contract.updatePriceFeed(priceFeed, msg.sender);
-      }
+   function getPriceFeed() public view returns (AggregatorV3Interface){
+      return priceFeed;
+   }
+
+   function getLatestPrice() public view returns (int256){
+      (
+         ,
+         int256 price,
+         ,
+         ,
+      ) = priceFeed.latestRoundData();
+      return price;
+   }
+
+   function getDecimals() public view returns(uint8)  {
+      uint8 decimals = priceFeed.decimals();
+      return decimals;
+   }
+
+   function updatePriceFeed (AggregatorV3Interface _priceFeed) public onlySuperUser{
+      priceFeed = _priceFeed;
    }
 }
 
@@ -117,7 +131,6 @@ contract BuyMeACoffee {
 
    Memo[] private memos;
    Items[] private listOfItems;
-   AggregatorV3Interface internal priceFeed;
    address payable private owner;
    address private superUser;
    uint256 private itemsCount = 0;
@@ -134,14 +147,12 @@ contract BuyMeACoffee {
       string[][] memory _items,
       uint256[] memory _itemsValues,
       address _owner,
-      address _superUser,
-      AggregatorV3Interface _priceFeed
+      address _superUser
    ) {
       name = _name;
       description = _description;
       profile = _profile;
       thumbnail = _thumbnail;
-      priceFeed = _priceFeed;
       owner = payable(_owner);
       superUser = _superUser;
       setInitialItems(_items, _itemsValues);
@@ -174,10 +185,6 @@ contract BuyMeACoffee {
 
    function setThumbnail (string memory _thumbnail) public onlyOwner{
       thumbnail = _thumbnail;
-   }
-
-   function updatePriceFeed (AggregatorV3Interface _priceFeed, address sender) public onlySuperUser(sender){
-      priceFeed = _priceFeed;
    }
 
    function storeMemo(
@@ -220,21 +227,6 @@ contract BuyMeACoffee {
       }
    }
 
-   function getLatestPrice() public view returns (int256){
-      (
-         ,
-         int256 price,
-         ,
-         ,
-      ) = priceFeed.latestRoundData();
-      return price;
-   }
-
-   function getDecimals() public view returns(uint8)  {
-      uint8 decimals = priceFeed.decimals();
-      return decimals;
-   }
-
    function getMemos() public view returns(Memo[] memory){
       return memos;
    }
@@ -261,11 +253,6 @@ contract BuyMeACoffee {
 
    function getOwner() public view returns (address){
       return owner;
-   }
-
-   function getPriceFeed() public view returns (AggregatorV3Interface){
-      return priceFeed;
-
    }
 
    function getItemsCount() public view returns (uint256){
