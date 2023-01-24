@@ -53,6 +53,7 @@ const AddItemsForm = () => {
       },
    })
    const [ethPrice, setEthPrice] = useState(0)
+   const [value, setValue] = useState("")
 
    useEffect(() => {
       const init = async () => {
@@ -76,14 +77,20 @@ const AddItemsForm = () => {
          <div className="flex flex-col flex-1">
             <div className="flex items-center flex-1">
                <FaEthereum className="text-gray-300 mr-2" size={30}/>
-               <input
-                  type="number"
-                  placeholder="Price"
-                  className="outline-none text-2xl my-auto mr-auto"
-                  {...register("value", {
-                     required: "You need to set a value!",
-                  })}
-               />
+               <div className="text-2xl relative flex items-center">
+                  <input
+                     type="number"
+                     placeholder="Price"
+                     className="outline-none my-auto mr-auto"
+                     {...register("value", {
+                        required: "You need to set a value!",
+                     })}
+                     onChange={e => setValue(e.target.value)}
+                  />
+                  {value && <p className="absolute right-4 text-gray-200">
+                     {Number(value) * ethPrice} USD
+                  </p>}
+               </div>
             </div>
             {errors.value && (
                <p className="error mt-2">{errors.value.message}</p>
