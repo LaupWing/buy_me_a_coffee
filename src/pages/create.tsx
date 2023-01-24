@@ -78,16 +78,16 @@ const Create:NextPage = () => {
             "Content-Type": "multipart/form-data",
          },
       })
-      const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
-         name, 
-         description, 
-         response.data.profileUri.IpfsHash,
-         response.data.thumbnailUri.IpfsHash
-      )
-      console.log(transaction)
-      const transactionReceipt = await transaction?.wait()
-      const event = transactionReceipt?.events!.find(e => e.event === "BuyMeACoffeeCreated")
-      console.log(event?.args!.buyMeACoffeeAddress)
+      // const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
+      //    name, 
+      //    description, 
+      //    response.data.profileUri.IpfsHash,
+      //    response.data.thumbnailUri.IpfsHash
+      // )
+      // console.log(transaction)
+      // const transactionReceipt = await transaction?.wait()
+      // const event = transactionReceipt?.events!.find(e => e.event === "BuyMeACoffeeCreated")
+      // console.log(event?.args!.buyMeACoffeeAddress)
    }
 
    return (

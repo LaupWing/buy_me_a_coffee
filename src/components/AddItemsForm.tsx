@@ -59,7 +59,6 @@ const AddItemsForm = () => {
       console.log(data)
    }
 
-   console.log(errors)
    return (
       <form
          onSubmit={handleSubmit(submitHandler)}
