@@ -85,9 +85,10 @@ export const fetchEthPrice =
    () => async (_:Dispatch, getState: typeof store.getState) => {
       try {
          const { buyMeACoffeeFactory } = getState().contracts
-         // const ethPrice = await buyMeACoffeeFactory?.getLatestPrice()
-         // const decimals = await buyMeACoffeeFactory?.getDecimals()
-         console.log(buyMeACoffeeFactory.getLatestPrice())
+         const ethPrice = await buyMeACoffeeFactory?.getLatestPrice()
+         const decimals = await buyMeACoffeeFactory?.getDecimals()
+         
+         return ethPrice?.div(ethers.BigNumber.from(10).pow(decimals!)).toString()
         
       } catch(e) {
          console.log(e)
