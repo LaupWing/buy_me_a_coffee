@@ -62,7 +62,7 @@ interface Item {
             expect(await buyMeACoffeeFactory.getDeployedBuyMeACoffee()).to.have.members([buyMeACoffeeAddress])
             expect(await buyMeACoffee.getName()).equal(buyMeACoffeeName)
             expect(await buyMeACoffee.getOwner()).equal(deployer)
-            expect(await buyMeACoffee.getPriceFeed()).equal(mockV3Aggregator.address)
+            expect(await buyMeACoffeeFactory.getPriceFeed()).equal(mockV3Aggregator.address)
             expect(await buyMeACoffee.getProfile()).equal(buyMeACoffeeProfile)
             expect(await buyMeACoffee.getThumbnail()).equal(buyMeACoffeeThumbnail)
             expect(await buyMeACoffee.getSuperUser()).equal(deployer)
@@ -111,22 +111,22 @@ interface Item {
          })
 
          it("can get the latest price in dollars", async () =>{
-            const latestPrice = (await buyMeACoffee.getLatestPrice()).toString() 
-            const decimals = (await buyMeACoffee.getDecimals()).toString()
+            const latestPrice = (await buyMeACoffeeFactory.getLatestPrice()).toString() 
+            const decimals = (await buyMeACoffeeFactory.getDecimals()).toString()
             expect(Number(latestPrice) / 10**Number(decimals)).equal(200)
          })
 
          it("superuser can update the pricefeed", async () => {
-            await buyMeACoffeeFactory.updatePricefeed(user1.address)
-            expect(await buyMeACoffee.getPriceFeed()).equal(user1.address)
+            await buyMeACoffeeFactory.updatePriceFeed(user1.address)
+            expect(await buyMeACoffeeFactory.getPriceFeed()).equal(user1.address)
          })
 
          it("reverts when not superuser updates", async () => {
-            await expect(buyMeACoffeeFactory.connect(user1).updatePricefeed(user1.address))
+            await expect(buyMeACoffeeFactory.connect(user1).updatePriceFeed(user1.address))
                .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotSuperUser")
 
-            await expect(buyMeACoffee.connect(user1).updatePriceFeed(user1.address, user1.address))
-               .to.be.revertedWithCustomError(buyMeACoffee, "BuyMeACoffee__NotSuperUser")
+            await expect(buyMeACoffeeFactory.connect(user1).updatePriceFeed(user1.address))
+               .to.be.revertedWithCustomError(buyMeACoffeeFactory, "BuyMeACoffee__NotSuperUser")
          })
 
          it("reverts when not owner wants to change things", async () => {
@@ -214,7 +214,7 @@ interface Item {
             expect(memos[0].items_id.toString()).equal(itemsId)
          })
 
-         it.only("reverts with error when not enough eth is sent", async () => {
+         it("reverts with error when not enough eth is sent", async () => {
             // console.log(await buyMeACoffee.getListOfItems())
             await expect(buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: ethers.utils.parseEther("0.001")

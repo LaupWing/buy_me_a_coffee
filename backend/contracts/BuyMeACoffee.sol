@@ -7,7 +7,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 error BuyMeACoffee__NotEnoughEthSend();
 error BuyMeACoffee__NotOwner();
-error BuyMeACoffee__NotSuperUser();
+error BuyMeACoffeeFactory__NotSuperUser();
 error BuyMeACoffeeFactory_AlreadyRegistered();
 
 contract BuyMeACoffeeFactory {
@@ -18,7 +18,7 @@ contract BuyMeACoffeeFactory {
 
    modifier onlySuperUser(){
       if(msg.sender != superUser){
-         revert BuyMeACoffee__NotSuperUser();
+         revert BuyMeACoffeeFactory__NotSuperUser();
       }
       _;
    }
