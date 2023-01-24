@@ -13,7 +13,12 @@ import AddItemsForm from "../components/AddItemsForm"
 interface FormValues {
    description: string
    name: string
- }
+}
+
+type ListOfItems = {
+   names: string[],
+   value: number
+}[]
 
 const Create:NextPage = () => {
    const router = useRouter()
@@ -23,6 +28,7 @@ const Create:NextPage = () => {
    const [thumbnail, setThumbnail] = useState<ImageListType>([])
    const [showError, setShowError] = useState(false)
    const [triedSubmit, setTriedSubmit] = useState(false)
+   const [listOfItems, setListOfItems] = useState<ListOfItems>([])
    const dispatch = useAppDispatch()
 
    const { 
@@ -31,7 +37,12 @@ const Create:NextPage = () => {
          errors
       },
       handleSubmit
-   } = useForm<FormValues>()
+   } = useForm<FormValues>({
+      defaultValues: {
+         name: "",
+         description: ""
+      },
+   })
 
    if(alreadyRegistered){
       router.push("/")
