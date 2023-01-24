@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 
 interface FormValues {
@@ -12,7 +12,7 @@ interface Item {
 }
 
 const AddItemsForm = () => {
-   const [items] = useState<Item[]>([
+   const items = [
       {
          name: "coffee",
          emoji: 9749,
@@ -41,7 +41,7 @@ const AddItemsForm = () => {
          name: "bacon",
          emoji: 129363,
       },
-   ])
+   ]
 
    const {
       register,
