@@ -81,6 +81,19 @@ export const fetchBuyMeACoffee =
       }
    }
 
+export const fetchEthPrice =
+   () => async (_:Dispatch, getState: typeof store.getState) => {
+      try {
+         const { buyMeACoffeeFactory } = getState().contracts
+         // const ethPrice = await buyMeACoffeeFactory?.getLatestPrice()
+         // const decimals = await buyMeACoffeeFactory?.getDecimals()
+         console.log(buyMeACoffeeFactory.getLatestPrice())
+        
+      } catch(e) {
+         console.log(e)
+      }
+   }
+
 export const fetchCampaigns =
    () => async (dispatch: Dispatch, getState: typeof store.getState) => {
       try {

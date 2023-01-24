@@ -1,7 +1,8 @@
+import { useEffect } from "react"
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import Field from "../components/Field"
-import { useAppSelector } from "../store/hooks"
+import { useAppDispatch, useAppSelector } from "../store/hooks"
 import { ImageListType } from "react-images-uploading"
 import { useState } from "react"
 import Thumbnail from "../components/Thumbnail"
@@ -9,6 +10,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 import { PinataPinResponse } from "@pinata/sdk"
 import AddItemsForm from "../components/AddItemsForm"
+import { fetchEthPrice } from "../slices/contracts"
 
 interface FormValues {
    description: string
@@ -23,6 +25,7 @@ const Create:NextPage = () => {
    const [thumbnail, setThumbnail] = useState<ImageListType>([])
    const [showError, setShowError] = useState(false)
    const [triedSubmit, setTriedSubmit] = useState(false)
+   const dispatch = useAppDispatch()
 
    const { 
       register,
@@ -30,7 +33,16 @@ const Create:NextPage = () => {
          errors
       },
       handleSubmit
-    } = useForm<FormValues>()
+   } = useForm<FormValues>()
+
+   useEffect(() => {
+      const init = async () => {
+         const test = await dispatch(fetchEthPrice())
+         console.log(test)
+      }
+
+      init()
+   }, [])
 
    if(alreadyRegistered){
       router.push("/")
