@@ -62,7 +62,7 @@ const Create:NextPage = () => {
 
    const submitHandler:SubmitHandler<FormValues> = async ({description, name}) => {
       setTriedSubmit(true)
-      if(!showError && (profile.length === 0 || thumbnail.length === 0)){
+      if(!showError && (listOfItems.length === 0 || profile.length === 0 || thumbnail.length === 0)){
          setShowError(true)
          return
       }
@@ -149,6 +149,11 @@ const Create:NextPage = () => {
             {(showError && thumbnail.length === 0) && 
                <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
                   Please set your thumbnail otherwise the default would be used
+               </p>
+            }
+            {(showError && listOfItems.length === 0) && 
+               <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
+                  Please add at least one set of items
                </p>
             }
             <button 
