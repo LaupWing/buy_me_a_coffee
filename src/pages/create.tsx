@@ -8,6 +8,7 @@ import Thumbnail from "../components/Thumbnail"
 import { SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 import { PinataPinResponse } from "@pinata/sdk"
+import AddItemsForm from "../components/AddItemsForm"
 
 interface FormValues {
    description: string
@@ -99,25 +100,30 @@ const Create:NextPage = () => {
                onProfileChange={onProfileChange}
                profile={profile}
             />
-            <div className="flex px-6 py-12 flex-col space-y-8 max-w-lg">
-               <Field
-                  label="Name"
-                  type="name"
-                  register={register("name", {
-                     required: "Please enter name"
-                  })}
-                  errors={errors}
+            <main className="flex-1 flex flex-col my-10 mt-16">
+               <div className="flex px-6 flex-col space-y-8 max-w-lg">
+                  <Field
+                     label="Name"
+                     type="name"
+                     register={register("name", {
+                        required: "Please enter name"
+                     })}
+                     errors={errors}
+                     />
+                  <Field
+                     type="description"
+                     label="Description"
+                     textarea
+                     register={register("description", {
+                        required: "Please enter description"
+                     })}
+                     errors={errors}
                   />
-               <Field
-                  type="description"
-                  label="Description"
-                  textarea
-                  register={register("description", {
-                     required: "Please enter description"
-                  })}
-                  errors={errors}
-               />
-            </div>
+               </div>
+               <div className="px-6 mt-4">
+                  <AddItemsForm/>
+               </div>
+            </main>
             {(showError && profile.length === 0) && 
                <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
                   Please set your profile otherwise the default would be used
