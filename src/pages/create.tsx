@@ -99,7 +99,7 @@ const Create:NextPage = () => {
             onProfileChange={onProfileChange}
             profile={profile}
          />
-         <div className="px-6">
+         <div className="px-6 my-10 mt-16">
             <AddItemsForm/>
          </div>
          <form onSubmit={handleSubmit(submitHandler)} className="w-full flex flex-col">
