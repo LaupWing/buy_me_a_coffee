@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import Field from "../components/Field"
@@ -10,7 +9,6 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 import { PinataPinResponse } from "@pinata/sdk"
 import AddItemsForm from "../components/AddItemsForm"
-import { fetchEthPrice } from "../slices/contracts"
 
 interface FormValues {
    description: string
@@ -34,15 +32,6 @@ const Create:NextPage = () => {
       },
       handleSubmit
    } = useForm<FormValues>()
-
-   useEffect(() => {
-      const init = async () => {
-         const test = await dispatch(fetchEthPrice())
-         console.log(test)
-      }
-
-      init()
-   }, [])
 
    if(alreadyRegistered){
       router.push("/")

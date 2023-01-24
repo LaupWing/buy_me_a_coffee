@@ -1,6 +1,9 @@
 import React from "react"
+import { useEffect, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FaEthereum } from "react-icons/fa"
+import { fetchEthPrice } from "../slices/contracts"
+import { useAppDispatch } from "../store/hooks"
 
 interface FormValues {
    value: number
@@ -38,7 +41,7 @@ const AddItemsForm = () => {
          emoji: 129363,
       },
    ]
-
+   const dispatch = useAppDispatch()
    const {
       register,
       control,
@@ -49,6 +52,16 @@ const AddItemsForm = () => {
          items: []
       },
    })
+   const [ethPrice, setEthPrice] = useState(0)
+
+   useEffect(() => {
+      const init = async () => {
+         const _ethPrice = await dispatch(fetchEthPrice())
+         setEthPrice(Number(_ethPrice))
+      }
+
+      init()
+   },[])
 
    const submitHandler: SubmitHandler<FormValues> = async (data) => {
       console.log(data)
@@ -57,8 +70,9 @@ const AddItemsForm = () => {
    return (
       <form
          onSubmit={handleSubmit(submitHandler)}
-         className="flex border rounded px-4 py-2 my-4"
+         className="flex border rounded relative px-4 py-2 my-4"
       >
+         <div className="absolute top-0 z-50 transform -translate-y-1/2 text-neutral-300 bg-white px-2">1 eth = {ethPrice} USD</div>
          <div className="flex flex-col flex-1">
             <div className="flex items-center flex-1">
                <FaEthereum className="text-gray-300 mr-2" size={30}/>
