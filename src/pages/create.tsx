@@ -9,6 +9,8 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 import { PinataPinResponse } from "@pinata/sdk"
 import AddItemsForm from "../components/AddItemsForm"
+import Items from "../components/Items"
+import { ItemsType } from "../../typings"
 
 interface FormValues {
    description: string
@@ -16,10 +18,7 @@ interface FormValues {
    listOfItems: ListOfItems
 }
 
-export type ListOfItems = {
-   items: string[],
-   value: number
-}[]
+export type ListOfItems = ItemsType[]
 
 const Create:NextPage = () => {
    const router = useRouter()
@@ -134,10 +133,10 @@ const Create:NextPage = () => {
                   }}
                   render={({field}) => (
                      <>
-                        {field.value.map(val => (
-                           <li className="py-2 px-6 text-2xl">
-                              <p>{val.value}</p>
-                           </li>
+                        {field.value.map(items => (
+                           <Items
+                              {...items}
+                           />
                         ))}
                      </>
                   )}
