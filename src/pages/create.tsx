@@ -88,22 +88,25 @@ const Create:NextPage = () => {
    }) => {
       const {listOfItems:prev} = getValues()
       setValue("listOfItems", [...prev, listOfItems])
-      setError("listOfItems", false)
+      setError("listOfItems", {
+         type: "focus"
+      })
    }
 
    const uploadToIpfs = async (name: string, description:string) => {
-      const response = await axios.post<{
-         profileUri: PinataPinResponse
-         thumbnailUri: PinataPinResponse
-      }>("/api/pinata", {
-         profile: profile[0].file,
-         thumbnail: thumbnail[0].file,
-         account
-      }, {
-         headers: {
-            "Content-Type": "multipart/form-data",
-         },
-      })
+      // const response = await axios.post<{
+      //    profileUri: PinataPinResponse
+      //    thumbnailUri: PinataPinResponse
+      // }>("/api/pinata", {
+      //    profile: profile[0].file,
+      //    thumbnail: thumbnail[0].file,
+      //    account
+      // }, {
+      //    headers: {
+      //       "Content-Type": "multipart/form-data",
+      //    },
+      // })
+
       // const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
       //    name, 
       //    description, 
