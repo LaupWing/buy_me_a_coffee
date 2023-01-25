@@ -136,8 +136,6 @@ const Create:NextPage = () => {
                control={control}
                onThumbnailChange={onThumbnailChange}
                thumbnail={thumbnail}
-               onProfileChange={onProfileChange}
-               profile={profile}
             />
             <Profile
                image={profile}
