@@ -2,7 +2,7 @@ import React from "react"
 import { useEffect, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FaEthereum } from "react-icons/fa"
-import { ListOfItems } from "../pages/create"
+import { ITEMS } from "../../constants"
 import { fetchEthPrice } from "../slices/contracts"
 import { useAppDispatch } from "../store/hooks"
 
@@ -19,36 +19,6 @@ interface Props {
 }
 
 const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
-   const items = [
-      {
-         name: "coffee",
-         emoji: 9749,
-      },
-      {
-         name: "cookie",
-         emoji: 127850,
-      },
-      {
-         name: "pie",
-         emoji: 127856,
-      },
-      {
-         name: "donut",
-         emoji: 127849,
-      },
-      {
-         name: "icecream",
-         emoji: 127846,
-      },
-      {
-         name: "pancake",
-         emoji: 129374,
-      },
-      {
-         name: "bacon",
-         emoji: 129363,
-      },
-   ]
    const dispatch = useAppDispatch()
    const {
       register,
@@ -114,7 +84,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                   }}
                   render={({ field }) => (
                      <>
-                        {items.map((item) => {
+                        {ITEMS.map((item) => {
                            const checked = field.value.find(
                               (x) => x === item.name
                            )
