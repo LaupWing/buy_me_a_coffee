@@ -86,7 +86,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                                  className={`text-4xl cursor-pointer duration-150 ${
                                     checked
                                        ? ""
-                                       : "opacity-10 hover:opacity-100"
+                                       : "opacity-10 hover:opacity-30"
                                  }`}
                                  htmlFor={item.name}
                               >
