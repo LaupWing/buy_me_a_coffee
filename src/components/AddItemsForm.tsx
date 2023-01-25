@@ -21,6 +21,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
    const {
       register,
       control,
+      reset,
       formState: { errors },
       handleSubmit,
    } = useForm<FormValues>({
@@ -33,6 +34,8 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
 
    const submitHandler: SubmitHandler<FormValues> = async ({items, value}) => {
       addListOfItems({items, value})
+      setValue("")
+      reset()
    }
 
    return (
