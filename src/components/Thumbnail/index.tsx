@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Control } from "react-hook-form"
 import { FiUpload } from "react-icons/fi"
 import ImageUploading, { ImageListType } from "react-images-uploading"
 import Profile from "../Profile"
@@ -9,6 +10,7 @@ export interface Props {
    profile: ImageListType,
    onProfileChange: (image:ImageListType) => void
    thumbnail: ImageListType,
+   control: Control<any>
    onThumbnailChange: (image:ImageListType) => void
 }
 

@@ -1,4 +1,5 @@
 import React from "react"
+import { Controller } from "react-hook-form"
 import { BsFillCameraFill } from "react-icons/bs"
 import { ExportInterface, ImageListType } from "react-images-uploading/dist/typings"
 

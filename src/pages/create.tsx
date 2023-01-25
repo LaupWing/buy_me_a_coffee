@@ -131,6 +131,7 @@ const Create:NextPage = () => {
    return (
       <div className="mt-10 container bg-white rounded-md overflow-hidden shadow">
          <Thumbnail
+            control={control}
             onThumbnailChange={onThumbnailChange}
             thumbnail={thumbnail}
             onProfileChange={onProfileChange}
