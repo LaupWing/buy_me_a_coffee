@@ -11,11 +11,14 @@ import { PinataPinResponse } from "@pinata/sdk"
 import AddItemsForm from "../components/AddItemsForm"
 import Items from "../components/Items"
 import { ItemsType } from "../../typings"
+import { parseListOfItems } from "../../utils/parsers"
 
 interface FormValues {
    description: string
    name: string
    listOfItems: ListOfItems
+   profile: ImageListType
+   thumbnail: ImageListType
 }
 
 export type ListOfItems = ItemsType[]
@@ -64,7 +67,7 @@ const Create:NextPage = () => {
       setThumbnail(imageList)
    }
 
-   const submitHandler:SubmitHandler<FormValues> = async ({description, name}) => {
+   const submitHandler:SubmitHandler<FormValues> = async ({description, name, listOfItems}) => {
       setTriedSubmit(true)
       if(!showError && (profile.length === 0 || thumbnail.length === 0)){
          setShowError(true)
@@ -74,11 +77,11 @@ const Create:NextPage = () => {
          if(profile.length === 0 || thumbnail.length === 0){
             const confirmed = confirm("Either profile or thumbnail is not set are you sure you want to continue?")
             if(confirmed){
-               uploadToIpfs(name, description)
+               uploadToIpfs(name, description, listOfItems)
             }
          }
       }else{
-         uploadToIpfs(name, description)
+         uploadToIpfs(name, description, listOfItems)
       }
    }
 
@@ -93,7 +96,13 @@ const Create:NextPage = () => {
       })
    }
 
-   const uploadToIpfs = async (name: string, description:string) => {
+   const uploadToIpfs = async (
+      name: string, 
+      description:string,
+      listOfItems: ListOfItems
+   ) => {
+      const test = parseListOfItems(listOfItems)
+      console.log(test)
       // const response = await axios.post<{
       //    profileUri: PinataPinResponse
       //    thumbnailUri: PinataPinResponse
@@ -106,7 +115,7 @@ const Create:NextPage = () => {
       //       "Content-Type": "multipart/form-data",
       //    },
       // })
-      
+
       // const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
       //    name, 
       //    description, 
