@@ -22,37 +22,31 @@ const Thumbnail:React.FC<Props> = ({
 }) => {
 
    return (
-      <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
-         <ImageUploading 
-            multiple={false}
-            value={thumbnail}
-            onChange={onThumbnailChange}
-         >
-            {({
-               onImageUpload,
-               dragProps
-            })=>(
-               <>
-                  {thumbnail.length > 0 ? (
-                     <Current
-                        dragProps={dragProps}
-                        onImageUpload={onImageUpload}
-                        image={thumbnail}
-                     />
-                  ):(
-                     <Upload
-                        dragProps={dragProps}
-                        onImageUpload={onImageUpload}
-                     />
-                  )}
-               </>
-            )}
-         </ImageUploading>
-         <Profile
-            image={profile}
-            onImageChange={onProfileChange}
-         />
-      </div>
+      <ImageUploading 
+         multiple={false}
+         value={thumbnail}
+         onChange={onThumbnailChange}
+      >
+         {({
+            onImageUpload,
+            dragProps
+         })=>(
+            <>
+               {thumbnail.length > 0 ? (
+                  <Current
+                     dragProps={dragProps}
+                     onImageUpload={onImageUpload}
+                     image={thumbnail}
+                  />
+               ):(
+                  <Upload
+                     dragProps={dragProps}
+                     onImageUpload={onImageUpload}
+                  />
+               )}
+            </>
+         )}
+      </ImageUploading>
    )
 }
 

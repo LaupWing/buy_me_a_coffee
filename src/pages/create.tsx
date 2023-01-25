@@ -12,6 +12,7 @@ import AddItemsForm from "../components/AddItemsForm"
 import Items from "../components/Items"
 import { ItemsType } from "../../typings"
 import { parseListOfItems } from "../../utils/parsers"
+import Profile from "../components/Profile"
 
 interface FormValues {
    description: string
@@ -130,13 +131,19 @@ const Create:NextPage = () => {
 
    return (
       <div className="mt-10 container bg-white rounded-md overflow-hidden shadow">
-         <Thumbnail
-            control={control}
-            onThumbnailChange={onThumbnailChange}
-            thumbnail={thumbnail}
-            onProfileChange={onProfileChange}
-            profile={profile}
-         />
+         <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
+            <Thumbnail
+               control={control}
+               onThumbnailChange={onThumbnailChange}
+               thumbnail={thumbnail}
+               onProfileChange={onProfileChange}
+               profile={profile}
+            />
+            <Profile
+               image={profile}
+               onImageChange={onProfileChange}
+            />
+         </div>
          <div className="px-6 my-10 mt-16">
             <AddItemsForm addListOfItems={addListOfItems}/>
             {errors.listOfItems && <p className="error">{errors.listOfItems.message?.toString()}</p>}
