@@ -1,10 +1,9 @@
 import React from "react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FaEthereum } from "react-icons/fa"
 import { ITEMS } from "../../constants"
-import { fetchEthPrice } from "../slices/contracts"
-import { useAppDispatch, useAppSelector } from "../store/hooks"
+import { useAppSelector } from "../store/hooks"
 
 interface FormValues {
    value: number
@@ -19,7 +18,6 @@ interface Props {
 }
 
 const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
-   const dispatch = useAppDispatch()
    const {
       register,
       control,
