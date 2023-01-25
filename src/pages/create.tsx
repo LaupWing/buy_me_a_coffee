@@ -124,27 +124,27 @@ const Create:NextPage = () => {
          />
          <div className="px-6 my-10 mt-16">
             <AddItemsForm addListOfItems={addListOfItems}/>
-            <ul>
-               <Controller
-                  control={control}
-                  name="listOfItems"
-                  rules={{
-                     required: "You need at least one list of items!"
-                  }}
-                  render={({field}) => (
-                     <>
-                        {field.value.map(items => (
-                           <Items
-                              {...items}
-                           />
-                        ))}
-                     </>
-                  )}
-               />
-            </ul>
          </div>
          <form onSubmit={handleSubmit(submitHandler)} className="w-full flex flex-col">
             <div className="flex px-6 flex-col space-y-8 max-w-lg">
+               <ul>
+                  <Controller
+                     control={control}
+                     name="listOfItems"
+                     rules={{
+                        required: "You need at least one list of items!"
+                     }}
+                     render={({field}) => (
+                        <>
+                           {field.value.map(items => (
+                              <Items
+                                 {...items}
+                              />
+                           ))}
+                        </>
+                     )}
+                  />
+               </ul>
                <Field
                   label="Name"
                   type="name"
