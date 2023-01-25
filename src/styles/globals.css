@@ -17,3 +17,7 @@
 .error{
    @apply text-red-400 tracking-wider text-xs uppercase font-bold;
 }
+
+.container{ 
+   @apply mx-auto w-full max-w-5xl;
+}

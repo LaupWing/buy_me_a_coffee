@@ -37,7 +37,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
       <div className="w-screen h-screen bg-neutral-100 flex flex-col">
          {loaded ? (
             <>
-            <header className="bg-white p-4 flex mx-auto w-full max-w-5xl rounded-lg shadow mt-4">
+            <header className="bg-white container p-4 flex rounded-lg shadow mt-4">
                <Link href={"/"}>
                   <div className="text-neutral-700">
                      <SiBuymeacoffee size={30}/>

@@ -116,7 +116,7 @@ const Create:NextPage = () => {
    }
 
    return (
-      <div className="mt-10 container bg-white mx-auto rounded-md overflow-hidden shadow">
+      <div className="mt-10 container bg-white rounded-md overflow-hidden shadow">
          <Thumbnail
             onThumbnailChange={onThumbnailChange}
             thumbnail={thumbnail}
