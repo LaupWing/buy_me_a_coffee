@@ -35,6 +35,7 @@ const Create:NextPage = () => {
       control,
       getValues,
       setValue,
+      setError,
       formState: {
          errors
       },
@@ -87,6 +88,7 @@ const Create:NextPage = () => {
    }) => {
       const {listOfItems:prev} = getValues()
       setValue("listOfItems", [...prev, listOfItems])
+      setError("listOfItems", false)
    }
 
    const uploadToIpfs = async (name: string, description:string) => {
@@ -124,6 +126,7 @@ const Create:NextPage = () => {
          />
          <div className="px-6 my-10 mt-16">
             <AddItemsForm addListOfItems={addListOfItems}/>
+            {errors.listOfItems && <p className="error">{errors.listOfItems.message?.toString()}</p>}
          </div>
          <form onSubmit={handleSubmit(submitHandler)} className="w-full flex flex-col">
             <div className="flex px-6 flex-col space-y-8 max-w-lg">
