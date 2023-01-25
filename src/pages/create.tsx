@@ -135,7 +135,9 @@ const Create:NextPage = () => {
                   render={({field}) => (
                      <>
                         {field.value.map(val => (
-                           <div>{val.value}</div>
+                           <li className="py-2 px-6 text-2xl">
+                              <p>{val.value}</p>
+                           </li>
                         ))}
                      </>
                   )}
