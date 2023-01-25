@@ -13,6 +13,7 @@ import AddItemsForm from "../components/AddItemsForm"
 interface FormValues {
    description: string
    name: string
+   listOfItems: ListOfItems
 }
 
 export type ListOfItems = {
@@ -40,7 +41,8 @@ const Create:NextPage = () => {
    } = useForm<FormValues>({
       defaultValues: {
          name: "",
-         description: ""
+         description: "",
+         listOfItems: []
       },
    })
 
@@ -149,11 +151,6 @@ const Create:NextPage = () => {
             {(showError && thumbnail.length === 0) && 
                <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
                   Please set your thumbnail otherwise the default would be used
-               </p>
-            }
-            {(showError && listOfItems.length === 0) && 
-               <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
-                  Please add at least one set of items
                </p>
             }
             <button 
