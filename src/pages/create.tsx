@@ -34,6 +34,7 @@ const Create:NextPage = () => {
    const { 
       register,
       control,
+      getValues,
       setValue,
       formState: {
          errors
@@ -85,7 +86,8 @@ const Create:NextPage = () => {
       items: string[],
       value: number
    }) => {
-      setValue("listOfItems", [listOfItems])
+      const {listOfItems:prev} = getValues()
+      setValue("listOfItems", [...prev, listOfItems])
    }
 
    const uploadToIpfs = async (name: string, description:string) => {
