@@ -4,7 +4,7 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FaEthereum } from "react-icons/fa"
 import { ITEMS } from "../../constants"
 import { fetchEthPrice } from "../slices/contracts"
-import { useAppDispatch } from "../store/hooks"
+import { useAppDispatch, useAppSelector } from "../store/hooks"
 
 interface FormValues {
    value: number
@@ -30,17 +30,8 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
          items: []
       },
    })
-   const [ethPrice, setEthPrice] = useState(0)
    const [value, setValue] = useState("")
-
-   useEffect(() => {
-      const init = async () => {
-         const _ethPrice = await dispatch(fetchEthPrice())
-         setEthPrice(Number(_ethPrice))
-      }
-
-      init()
-   },[])
+   const { ethPrice } = useAppSelector(state => state.contracts)
 
    const submitHandler: SubmitHandler<FormValues> = async ({items, value}) => {
       addListOfItems({items, value})

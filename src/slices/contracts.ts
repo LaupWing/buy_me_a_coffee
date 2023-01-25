@@ -13,14 +13,16 @@ export interface InitialState {
    buyMeACoffee: BuyMeACoffee|null,
    buyMeACoffeeFactory: BuyMeACoffeeFactory|null,
    alreadyRegistered: boolean,
-   campaigns: BuyMeACoffeeType[]
+   campaigns: BuyMeACoffeeType[],
+   ethPrice: number
 }
 
 const initialState:InitialState = {
    buyMeACoffee: null,
    buyMeACoffeeFactory: null,
    alreadyRegistered: false,
-   campaigns: []
+   campaigns: [],
+   ethPrice: 0
 }
 
 export const contractsSlice = createSlice({
@@ -35,6 +37,9 @@ export const contractsSlice = createSlice({
       },
       setCampaigns(state, action:PayloadAction<BuyMeACoffeeType[]>){
          state.campaigns = action.payload
+      },
+      setEthPrice(state, action:PayloadAction<number>){
+         state.ethPrice = action.payload
       },
       setAlreadyRegistered(state, action:PayloadAction<boolean>){
          state.alreadyRegistered = action.payload
@@ -82,14 +87,14 @@ export const fetchBuyMeACoffee =
    }
 
 export const fetchEthPrice =
-   () => async (_:Dispatch, getState: typeof store.getState) => {
+   () => async (dispatch:Dispatch, getState: typeof store.getState) => {
       try {
          const { buyMeACoffeeFactory } = getState().contracts
          const ethPrice = await buyMeACoffeeFactory?.getLatestPrice()
          const decimals = await buyMeACoffeeFactory?.getDecimals()
          
-         return ethPrice?.div(ethers.BigNumber.from(10).pow(decimals!)).toString()
-        
+         const finalPrice = ethPrice?.div(ethers.BigNumber.from(10).pow(decimals!)).toString()
+         dispatch(setEthPrice(Number(finalPrice)))
       } catch(e) {
          console.log(e)
       }
@@ -136,6 +141,7 @@ export const setInitialBuyMeACoffeeFactory =
 export const {
    setBuyMeACoffeeFactory,
    setAlreadyRegistered,
+   setEthPrice,
    setCampaigns
 } = contractsSlice.actions
 
