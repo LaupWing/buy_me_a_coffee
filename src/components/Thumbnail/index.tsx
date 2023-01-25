@@ -5,32 +5,32 @@ import Current from "./Current"
 import Upload from "./Upload"
 
 export interface Props {
-   thumbnail: ImageListType,
+   image: ImageListType,
    control: Control<any>
-   onThumbnailChange: (image:ImageListType) => void
+   onImageChange: (image:ImageListType) => void
 }
 
 const Thumbnail:React.FC<Props> = ({
-   onThumbnailChange,
-   thumbnail
+   onImageChange,
+   image
 }) => {
 
    return (
       <ImageUploading 
          multiple={false}
-         value={thumbnail}
-         onChange={onThumbnailChange}
+         value={image}
+         onChange={onImageChange}
       >
          {({
             onImageUpload,
             dragProps
          })=>(
             <>
-               {thumbnail.length > 0 ? (
+               {image.length > 0 ? (
                   <Current
                      dragProps={dragProps}
                      onImageUpload={onImageUpload}
-                     image={thumbnail}
+                     image={image}
                   />
                ):(
                   <Upload

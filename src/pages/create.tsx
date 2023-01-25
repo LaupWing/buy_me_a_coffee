@@ -134,8 +134,8 @@ const Create:NextPage = () => {
          <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
             <Thumbnail
                control={control}
-               onThumbnailChange={onThumbnailChange}
-               thumbnail={thumbnail}
+               onImageChange={onThumbnailChange}
+               image={thumbnail}
             />
             <Profile
                image={profile}
