@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks"
 import { ImageListType } from "react-images-uploading"
 import { useState } from "react"
 import Thumbnail from "../components/Thumbnail"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 import { PinataPinResponse } from "@pinata/sdk"
 import AddItemsForm from "../components/AddItemsForm"
@@ -29,11 +29,11 @@ const Create:NextPage = () => {
    const [thumbnail, setThumbnail] = useState<ImageListType>([])
    const [showError, setShowError] = useState(false)
    const [triedSubmit, setTriedSubmit] = useState(false)
-   const [listOfItems, setListOfItems] = useState<ListOfItems>([])
    const dispatch = useAppDispatch()
 
    const { 
       register,
+      control,
       formState: {
          errors
       },
@@ -64,7 +64,7 @@ const Create:NextPage = () => {
 
    const submitHandler:SubmitHandler<FormValues> = async ({description, name}) => {
       setTriedSubmit(true)
-      if(!showError && (listOfItems.length === 0 || profile.length === 0 || thumbnail.length === 0)){
+      if(!showError && (profile.length === 0 || thumbnail.length === 0)){
          setShowError(true)
          return
       }
@@ -84,7 +84,7 @@ const Create:NextPage = () => {
       items: string[],
       value: number
    }) => {
-      setListOfItems(prev => [...prev, items])
+      
    }
 
    const uploadToIpfs = async (name: string, description:string) => {
@@ -122,6 +122,19 @@ const Create:NextPage = () => {
          />
          <div className="px-6 my-10 mt-16">
             <AddItemsForm addListOfItems={addListOfItems}/>
+            <ul>
+               <Controller
+                  control={control}
+                  name="listOfItems"
+                  rules={{
+                     required: "You need at least one list of items!"
+                  }}
+                  render={(x:any) => {
+                     console.log(x)
+                     return (<div>Test</div>)
+                  }}
+               />
+            </ul>
          </div>
          <form onSubmit={handleSubmit(submitHandler)} className="w-full flex flex-col">
             <div className="flex px-6 flex-col space-y-8 max-w-lg">
