@@ -34,6 +34,7 @@ const Create:NextPage = () => {
    const { 
       register,
       control,
+      setValue,
       formState: {
          errors
       },
@@ -80,11 +81,11 @@ const Create:NextPage = () => {
       }
    }
 
-   const addListOfItems = (items:{
+   const addListOfItems = (listOfItems:{
       items: string[],
       value: number
    }) => {
-      
+      setValue("listOfItems", [listOfItems])
    }
 
    const uploadToIpfs = async (name: string, description:string) => {
@@ -129,10 +130,13 @@ const Create:NextPage = () => {
                   rules={{
                      required: "You need at least one list of items!"
                   }}
-                  render={(x:any) => {
-                     console.log(x)
-                     return (<div>Test</div>)
-                  }}
+                  render={({field}) => (
+                     <>
+                        {field.value.map(val => (
+                           <div>{val.value}</div>
+                        ))}
+                     </>
+                  )}
                />
             </ul>
          </div>
