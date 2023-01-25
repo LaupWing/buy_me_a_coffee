@@ -4,3 +4,8 @@ export interface BuyMeACoffeeType {
    thumbnail: string,
    profile: string,
 }
+
+export interface ItemsType {
+   items: string[],
+   value: number
+}
