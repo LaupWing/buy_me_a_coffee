@@ -1,5 +1,5 @@
 import React from "react"
-import { Control } from "react-hook-form"
+import { Control, Controller } from "react-hook-form"
 import ImageUploading, { ImageListType } from "react-images-uploading"
 import Current from "./Current"
 import Upload from "./Upload"
@@ -12,35 +12,44 @@ export interface Props {
 
 const Thumbnail:React.FC<Props> = ({
    onImageChange,
-   image
+   image,
+   control
 }) => {
 
    return (
-      <ImageUploading 
-         multiple={false}
-         value={image}
-         onChange={onImageChange}
-      >
-         {({
-            onImageUpload,
-            dragProps
-         })=>(
-            <>
-               {image.length > 0 ? (
-                  <Current
-                     dragProps={dragProps}
-                     onImageUpload={onImageUpload}
-                     image={image}
-                  />
-               ):(
-                  <Upload
-                     dragProps={dragProps}
-                     onImageUpload={onImageUpload}
-                  />
+      <Controller
+         name="thumbnail"
+         control={control}
+         render={({field}) => (
+            <ImageUploading 
+               multiple={false}
+               value={image}
+               onChange={onImageChange}
+            >
+               {({
+                  onImageUpload,
+                  dragProps
+               })=>(
+                  <>
+                     {console.log(field)}  
+                     {image.length > 0 ? (
+                        <Current
+                           dragProps={dragProps}
+                           onImageUpload={onImageUpload}
+                           image={image}
+                        />
+                     ):(
+                        <Upload
+                           dragProps={dragProps}
+                           onImageUpload={onImageUpload}
+                        />
+                     )}
+                  </>
                )}
-            </>
+            </ImageUploading>
          )}
-      </ImageUploading>
+      />
+         
    )
 }
 

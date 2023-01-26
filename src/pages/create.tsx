@@ -48,6 +48,8 @@ const Create:NextPage = () => {
       defaultValues: {
          name: "",
          description: "",
+         thumbnail: undefined,
+         profile: undefined,
          listOfItems: []
       },
    })
