@@ -18,9 +18,9 @@ const Home:NextPage = () => {
             />
             <link rel="icon" href="/favicon.ico" />
          </Head>
-         <main className="container mx-auto mt-6 grid grid-cols-3">
+         <main className="container mx-auto gap-4 mt-6 grid grid-cols-3">
             {campaigns.map(x=>(
-               <div className="bg-white shadow overflow-hidden rounded aspect-[5/4]">
+               <div className="bg-white shadow overflow-hidden flex flex-col rounded aspect-[5/4]">
                   <div className="relative h-1/2 w-full">
                      <img 
                         src={gateWay + x.thumbnail} 
@@ -33,9 +33,9 @@ const Home:NextPage = () => {
                         className="absolute object-cover transform translate-y-1/3 border-4 border-neutral-100 w-20 h-20 rounded-full bottom-0 right-5"
                      />
                   </div>
-                  <div className="p-2 border-t-4 border-neutral-100">
+                  <div className="p-2 border-t-4 border-neutral-100 flex flex-col">
                      <h2 className="text-yellow-400 font-bold">{x.name}</h2>
-                     <p>{x.description}</p>
+                     <p className="leading-none line-clamp-4 mt-2">{x.description}</p>
                   </div>
                   
                </div>
