@@ -32,7 +32,14 @@ const Thumbnail:React.FC<Props> = ({
                   onImageUpload,
                   dragProps
                })=>(
-                  <>
+                  <div
+                     className="w-full flex bg-center bg-cover"
+                     style={{
+                        backgroundImage: field.value 
+                           ? `url(${field.value[0].dataURL})`
+                           : "url(/assets/images/coffee_thumbnail.jpg)"
+                     }}
+                  >
                      {field.value ? (
                         <Current
                            dragProps={dragProps}
@@ -45,7 +52,7 @@ const Thumbnail:React.FC<Props> = ({
                            onImageUpload={onImageUpload}
                         />
                      )}
-                  </>
+                  </div>
                )}
             </ImageUploading>
          )}

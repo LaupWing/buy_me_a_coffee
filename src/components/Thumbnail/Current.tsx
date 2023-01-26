@@ -11,12 +11,7 @@ export interface Props {
 
 const Current:React.FC<Props> = ({ dragProps, onImageUpload, image }) => {
    return (
-      <div 
-         className="w-full flex bg-center bg-cover"
-         style={{
-            backgroundImage: `url(${image[0].dataURL})`
-         }}
-      >
+      <>
          <button
             className="z-50 m-auto"
             onClick={onImageUpload}
@@ -29,7 +24,7 @@ const Current:React.FC<Props> = ({ dragProps, onImageUpload, image }) => {
             />
          </button>
          <div className="bg-black/40 absolute inset-0"></div>
-      </div>
+      </>
    )
 }
 
