@@ -5,14 +5,10 @@ import Current from "./Current"
 import Upload from "./Upload"
 
 export interface Props {
-   image: ImageListType,
    control: Control<any>
-   onImageChange: (image:ImageListType) => void
 }
 
 const Thumbnail:React.FC<Props> = ({
-   onImageChange,
-   image,
    control
 }) => {
 
