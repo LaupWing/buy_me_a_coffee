@@ -28,10 +28,6 @@ const Create:NextPage = () => {
    const router = useRouter()
    const { alreadyRegistered, buyMeACoffeeFactory } = useAppSelector(state => state.contracts)
    const { account } = useAppSelector(state => state.web3)
-   const [profile, setProfile] = useState<ImageListType>([])
-   const [thumbnail, setThumbnail] = useState<ImageListType>([])
-   const [showError, setShowError] = useState(false)
-   const [triedSubmit, setTriedSubmit] = useState(false)
    const dispatch = useAppDispatch()
 
    const { 
@@ -58,39 +54,13 @@ const Create:NextPage = () => {
       router.push("/")
    }
 
-   const onProfileChange = (
-      imageList: ImageListType
-   ) => {
-      setProfile(imageList)
-   }
-
-   const onThumbnailChange = (
-      imageList: ImageListType
-   ) => {
-      setThumbnail(imageList)
-   }
-
    const submitHandler:SubmitHandler<FormValues> = async ({
       description, 
       name, 
       listOfItems,
       thumbnail
    }) => {
-      setTriedSubmit(true)
-      if(!showError && (profile.length === 0 || thumbnail.length === 0)){
-         setShowError(true)
-         return
-      }
-      if(triedSubmit){
-         if(profile.length === 0 || thumbnail.length === 0){
-            const confirmed = confirm("Either profile or thumbnail is not set are you sure you want to continue?")
-            if(confirmed){
-               uploadToIpfs(name, description, listOfItems)
-            }
-         }
-      }else{
-         uploadToIpfs(name, description, listOfItems)
-      }
+      
    }
 
    const addListOfItems = (listOfItems:{
@@ -190,16 +160,6 @@ const Create:NextPage = () => {
                   errors={errors}
                />
             </div>
-            {(showError && profile.length === 0) && 
-               <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
-                  Please set your profile otherwise the default would be used
-               </p>
-            }
-            {(showError && thumbnail.length === 0) && 
-               <p className="text-red-400 text-right my-1 pr-6 tracking-wider text-xs uppercase font-bold">
-                  Please set your thumbnail otherwise the default would be used
-               </p>
-            }
             <button 
                className="btn m-6 mt-2 ml-auto"
                type="submit"
