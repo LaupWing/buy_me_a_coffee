@@ -23,7 +23,7 @@ const Upload:React.FC<Props> = ({dragProps, onImageUpload, error}) => {
          type="button"
          {...dragProps}
       >
-         <FiUpload className="text-yellow-400 z-50" size={30}/>
+         <FiUpload className="text-yellow-400 z-40" size={30}/>
          <div className="bg-white/40 absolute inset-0"></div>
       </button>
    )

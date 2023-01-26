@@ -13,7 +13,7 @@ const Upload:React.FC<Props> = ({
 }) => {
    return (
       <button 
-         className="flex space-x-2 items-center z-50 m-auto bg-white/70 p-4 rounded backdrop-blur-lg"
+         className="flex space-x-2 items-center z-40 m-auto bg-white/70 p-4 rounded backdrop-blur-lg"
          onClick={onImageUpload}
          {...dragProps}
          type="button"

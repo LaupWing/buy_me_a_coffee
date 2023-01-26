@@ -44,8 +44,8 @@ const Thumbnail:React.FC<Props> = ({
                            : "url(/assets/images/coffee_thumbnail.jpg)",
                      }}
                   >
-                     {errors.thumbnail && <p className="error z-50 p-2 absolute">{errors.thumbnail.message}</p>}
-                     {errors.profile && <p className="error z-50 p-2 absolute bottom-0 right-60">{errors.profile.message}</p>}
+                     {errors.thumbnail && <p className="error z-40 p-2 absolute">{errors.thumbnail.message}</p>}
+                     {errors.profile && <p className="error z-40 p-2 absolute bottom-0 right-60">{errors.profile.message}</p>}
                      {field.value ? (
                         <Current
                            dragProps={dragProps}

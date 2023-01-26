@@ -11,7 +11,7 @@ export interface Props {
 const Current:React.FC<Props> = ({ dragProps, onImageUpload }) => {
    return (
       <button
-         className="z-50 m-auto"
+         className="z-40 m-auto"
          onClick={onImageUpload}
          {...dragProps}
          type="button"

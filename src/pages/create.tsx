@@ -101,7 +101,10 @@ const Create:NextPage = () => {
    }
 
    return (
-      <div className="mt-10 container bg-white rounded-md overflow-hidden shadow">
+      <div className="mt-10 container relative bg-white rounded-md overflow-hidden shadow">
+         <div className="bg-white absolute inset-0 z-50">
+
+         </div>
          <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
             <Thumbnail 
                errors={errors} 

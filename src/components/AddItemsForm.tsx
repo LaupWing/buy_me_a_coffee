@@ -43,7 +43,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
          onSubmit={handleSubmit(submitHandler)}
          className="flex border rounded relative px-4 py-2 my-4"
       >
-         <div className="absolute top-0 z-50 transform -translate-y-1/2 text-neutral-300 bg-white px-2">1 eth = {ethPrice} USD</div>
+         <div className="absolute top-0 z-40 transform -translate-y-1/2 text-neutral-300 bg-white px-2">1 eth = {ethPrice} USD</div>
          <div className="flex flex-col flex-1">
             <div className="flex items-center flex-1">
                <FaEthereum className="text-gray-300 mr-2" size={30}/>
