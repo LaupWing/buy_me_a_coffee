@@ -1,6 +1,6 @@
 import React from "react"
 import { Control, Controller, FieldErrorsImpl } from "react-hook-form"
-import ImageUploading, { ImageListType } from "react-images-uploading"
+import ImageUploading from "react-images-uploading"
 import { FormValues } from "../../pages/create"
 import Current from "./Current"
 import Upload from "./Upload"

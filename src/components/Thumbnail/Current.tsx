@@ -11,20 +11,17 @@ export interface Props {
 
 const Current:React.FC<Props> = ({ dragProps, onImageUpload, image }) => {
    return (
-      <>
-         <button
-            className="z-50 m-auto"
-            onClick={onImageUpload}
-            {...dragProps}
-            type="button"
-         >
-            <BsFillCameraFill
-               className="text-white" 
-               size={30}
-            />
-         </button>
-         {/* <div className="bg-black/40 absolute inset-0"></div> */}
-      </>
+      <button
+         className="z-50 m-auto"
+         onClick={onImageUpload}
+         {...dragProps}
+         type="button"
+      >
+         <BsFillCameraFill
+            className="text-white" 
+            size={30}
+         />
+      </button>
    )
 }
 
