@@ -25,7 +25,7 @@ const Upload:React.FC<Props> = ({
             />
             <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
          </button>
-         <div className="bg-white/40 absolute inset-0"></div>
+         {/* <div className="bg-white/40 absolute inset-0"></div> */}
       </>
    )
 }

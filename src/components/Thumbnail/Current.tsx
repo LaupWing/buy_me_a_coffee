@@ -23,7 +23,7 @@ const Current:React.FC<Props> = ({ dragProps, onImageUpload, image }) => {
                size={30}
             />
          </button>
-         <div className="bg-black/40 absolute inset-0"></div>
+         {/* <div className="bg-black/40 absolute inset-0"></div> */}
       </>
    )
 }

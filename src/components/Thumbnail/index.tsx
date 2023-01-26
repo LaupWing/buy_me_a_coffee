@@ -36,14 +36,15 @@ const Thumbnail:React.FC<Props> = ({
                      className={`w-full flex bg-center rounded-t-md border-2 bg-cover ${
                         errors.thumbnail 
                            ? "border-red-500"
-                           : ""
+                           : "border-transparent"
                      }`}
                      style={{
                         backgroundImage: field.value 
                            ? `url(${field.value[0].dataURL})`
-                           : "url(/assets/images/coffee_thumbnail.jpg)"
+                           : "url(/assets/images/coffee_thumbnail.jpg)",
                      }}
                   >
+                     {errors.thumbnail && <p className="error z-50 p-2 absolute">{errors.thumbnail.message}</p>}
                      {field.value ? (
                         <Current
                            dragProps={dragProps}
@@ -56,6 +57,10 @@ const Thumbnail:React.FC<Props> = ({
                            onImageUpload={onImageUpload}
                         />
                      )}
+                     {field.value
+                        ? <div className="bg-black/40 absolute inset-0"></div>
+                        : <div className="bg-white/40 absolute inset-0"></div>
+                  }
                   </div>
                )}
             </ImageUploading>
