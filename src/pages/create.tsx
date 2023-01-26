@@ -74,12 +74,6 @@ const Create:NextPage = () => {
             "Content-Type": "multipart/form-data",
          },
       })
-      console.log(name, 
-         description, 
-         response.data.profileUri.IpfsHash,
-         response.data.thumbnailUri.IpfsHash,
-         all_items,
-         all_values)
       const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
          name, 
          description, 
