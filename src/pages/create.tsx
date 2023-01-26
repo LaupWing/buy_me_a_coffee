@@ -13,6 +13,8 @@ import Items from "../components/Items"
 import { ItemsType } from "../../typings"
 import { parseListOfItems } from "../../utils/parsers"
 import Profile from "../components/Profile"
+import { HashLoader } from "react-spinners"
+import { useState } from "react"
 
 export interface FormValues {
    description: string
@@ -28,6 +30,7 @@ const Create:NextPage = () => {
    const router = useRouter()
    const { alreadyRegistered, buyMeACoffeeFactory } = useAppSelector(state => state.contracts)
    const { account } = useAppSelector(state => state.web3)
+   const [creating, setCreating] = useState(false)
    const dispatch = useAppDispatch()
 
    const { 
@@ -61,6 +64,7 @@ const Create:NextPage = () => {
       thumbnail,
       profile
    }) => {
+      setCreating(true)
       const {all_items, all_values} = parseListOfItems(listOfItems)
       const response = await axios.post<{
          profileUri: PinataPinResponse
@@ -86,7 +90,8 @@ const Create:NextPage = () => {
       const transactionReceipt = await transaction?.wait()
       const event = transactionReceipt?.events!.find(x => x.event === "BuyMeACoffeeCreated")
       const address = event?.args![0]
-      console.log(address)
+      
+      setCreating(false)
    }
 
    const addListOfItems = (listOfItems:{
@@ -102,9 +107,9 @@ const Create:NextPage = () => {
 
    return (
       <div className="mt-10 container relative bg-white rounded-md overflow-hidden shadow">
-         <div className="bg-white absolute inset-0 z-50">
-
-         </div>
+         {creating && <div className="bg-white/70 absolute inset-0 z-50 flex items-center justify-center">
+            <HashLoader color="#FDE047" size={70}/>
+         </div>}
          <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
             <Thumbnail 
                errors={errors} 
