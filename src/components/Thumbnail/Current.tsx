@@ -1,5 +1,4 @@
 import React from "react"
-import { Controller } from "react-hook-form"
 import { BsFillCameraFill } from "react-icons/bs"
 import { ExportInterface, ImageListType } from "react-images-uploading/dist/typings"
 
@@ -9,7 +8,7 @@ export interface Props {
    image: ImageListType
 }
 
-const Current:React.FC<Props> = ({ dragProps, onImageUpload, image }) => {
+const Current:React.FC<Props> = ({ dragProps, onImageUpload }) => {
    return (
       <button
          className="z-50 m-auto"
