@@ -121,8 +121,9 @@ const Create:NextPage = () => {
                      }}
                      render={({field}) => (
                         <>
-                           {field.value.map(items => (
+                           {field.value.map((items, i) => (
                               <Items
+                                 key={i}
                                  {...items}
                               />
                            ))}
