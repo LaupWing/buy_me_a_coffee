@@ -15,6 +15,7 @@ import { parseListOfItems } from "../../utils/parsers"
 import Profile from "../components/Profile"
 import { HashLoader } from "react-spinners"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 export interface FormValues {
    description: string
@@ -90,7 +91,7 @@ const Create:NextPage = () => {
       const transactionReceipt = await transaction?.wait()
       const event = transactionReceipt?.events!.find(x => x.event === "BuyMeACoffeeCreated")
       const address = event?.args![0]
-      
+      toast(`Created your coffee camapgain at address ${address}`)
       setCreating(false)
    }
 
