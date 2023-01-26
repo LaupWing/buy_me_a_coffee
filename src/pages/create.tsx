@@ -92,6 +92,7 @@ const Create:NextPage = () => {
       const event = transactionReceipt?.events!.find(x => x.event === "BuyMeACoffeeCreated")
       const address = event?.args![0]
       toast(`Created your coffee camapgain at address ${address}`)
+      router.push("/")
       setCreating(false)
    }
 
@@ -108,7 +109,7 @@ const Create:NextPage = () => {
 
    return (
       <div className="mt-10 container relative bg-white rounded-md overflow-hidden shadow">
-         {creating && <div className="bg-white/70 absolute inset-0 z-50 flex items-center justify-center">
+         {creating && <div className="bg-white/90 absolute inset-0 z-50 flex items-center justify-center">
             <HashLoader color="#FDE047" size={70}/>
          </div>}
          <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
