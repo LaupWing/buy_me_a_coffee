@@ -20,23 +20,25 @@ const Thumbnail:React.FC<Props> = ({
       <Controller
          name="thumbnail"
          control={control}
+         rules={{
+            required: "You need to set a thumbnail!"
+         }}
          render={({field}) => (
             <ImageUploading 
                multiple={false}
-               value={image}
-               onChange={onImageChange}
+               value={field.value}
+               onChange={(image) => field.onChange(image)}
             >
                {({
                   onImageUpload,
                   dragProps
                })=>(
                   <>
-                     {console.log(field)}  
-                     {image.length > 0 ? (
+                     {field.value ? (
                         <Current
                            dragProps={dragProps}
                            onImageUpload={onImageUpload}
-                           image={image}
+                           image={field.value}
                         />
                      ):(
                         <Upload

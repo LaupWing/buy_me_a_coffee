@@ -70,7 +70,12 @@ const Create:NextPage = () => {
       setThumbnail(imageList)
    }
 
-   const submitHandler:SubmitHandler<FormValues> = async ({description, name, listOfItems}) => {
+   const submitHandler:SubmitHandler<FormValues> = async ({
+      description, 
+      name, 
+      listOfItems,
+      thumbnail
+   }) => {
       setTriedSubmit(true)
       if(!showError && (profile.length === 0 || thumbnail.length === 0)){
          setShowError(true)
