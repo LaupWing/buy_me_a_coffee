@@ -33,7 +33,11 @@ const Thumbnail:React.FC<Props> = ({
                   dragProps
                })=>(
                   <div
-                     className="w-full flex bg-center bg-cover"
+                     className={`w-full flex bg-center rounded-t-md border-2 bg-cover ${
+                        errors.thumbnail 
+                           ? "border-red-500"
+                           : ""
+                     }`}
                      style={{
                         backgroundImage: field.value 
                            ? `url(${field.value[0].dataURL})`
