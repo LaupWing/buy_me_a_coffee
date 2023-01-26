@@ -6,7 +6,7 @@ import Current from "./Current"
 import Upload from "./Upload"
 
 export interface Props {
-   control: Control<any>
+   control: Control<FormValues>
    errors: Partial<FieldErrorsImpl<FormValues>>
 }
 
@@ -45,6 +45,7 @@ const Thumbnail:React.FC<Props> = ({
                      }}
                   >
                      {errors.thumbnail && <p className="error z-50 p-2 absolute">{errors.thumbnail.message}</p>}
+                     {errors.profile && <p className="error z-50 p-2 absolute bottom-0 right-60">{errors.profile.message}</p>}
                      {field.value ? (
                         <Current
                            dragProps={dragProps}

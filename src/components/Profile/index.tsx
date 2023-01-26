@@ -11,11 +11,14 @@ export interface Props {
    errors: Partial<FieldErrorsImpl<FormValues>>
 }
 
-const Profile:React.FC<Props> = ({control}) => {
+const Profile:React.FC<Props> = ({control, errors}) => {
    return (
       <Controller
          control={control}
          name="profile"
+         rules={{
+            required: "You need to set a profile!"
+         }}
          render={({field})=>(
             <ImageUploading
                multiple={false}
@@ -37,6 +40,7 @@ const Profile:React.FC<Props> = ({control}) => {
                         <Upload
                            dragProps={dragProps}
                            onImageUpload={onImageUpload}
+                           error={!!errors[field.name]}
                         />
                      )}
                   </>
