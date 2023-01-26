@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import Field from "../components/Field"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 import { ImageListType } from "react-images-uploading"
-import { useState } from "react"
+import { ethers } from "ethers"
 import Thumbnail from "../components/Thumbnail"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
@@ -61,26 +61,38 @@ const Create:NextPage = () => {
       thumbnail,
       profile
    }) => {
-      const test = parseListOfItems(listOfItems)
-      // const response = await axios.post<{
-      //    profileUri: PinataPinResponse
-      //    thumbnailUri: PinataPinResponse
-      // }>("/api/pinata", {
-      //    profile: profile[0].file,
-      //    thumbnail: thumbnail[0].file,
-      //    account
-      // }, {
-      //    headers: {
-      //       "Content-Type": "multipart/form-data",
-      //    },
-      // })
-      console.log(test)
-      // const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
-      //    name, 
-      //    description, 
-      //    response.data.profileUri.IpfsHash,
-      //    response.data.thumbnailUri.IpfsHash
-      // )
+      const {all_items, all_values} = parseListOfItems(listOfItems)
+      const response = await axios.post<{
+         profileUri: PinataPinResponse
+         thumbnailUri: PinataPinResponse
+      }>("/api/pinata", {
+         profile: profile[0].file,
+         thumbnail: thumbnail[0].file,
+         account
+      }, {
+         headers: {
+            "Content-Type": "multipart/form-data",
+         },
+      })
+      console.log(name, 
+         description, 
+         response.data.profileUri.IpfsHash,
+         response.data.thumbnailUri.IpfsHash,
+         all_items,
+         all_values)
+      const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
+         name, 
+         description, 
+         response.data.profileUri.IpfsHash,
+         response.data.thumbnailUri.IpfsHash,
+         all_items,
+         all_values.map(x=>ethers.utils.parseEther(x))
+      )
+
+      const transactionReceipt = await transaction?.wait()
+      const event = transactionReceipt?.events!.find(x => x.event === "BuyMeACoffeeCreated")
+      const address = event?.args![0]
+      console.log(address)
    }
 
    const addListOfItems = (listOfItems:{

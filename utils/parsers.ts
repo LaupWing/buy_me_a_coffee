@@ -2,7 +2,7 @@ import { ItemsType } from "../typings";
 
 export const parseListOfItems = (listOfItems: ItemsType[]) : {
    all_items: string[][],
-   all_values: number[]
+   all_values: string[]
 } => {
    const converted = listOfItems.map((items, index)=>{
       return {
@@ -12,7 +12,7 @@ export const parseListOfItems = (listOfItems: ItemsType[]) : {
    })
    const all_items = converted.map(x => x.items)
    const all_values = converted.map(({index}) => (
-      listOfItems[index].value
+      listOfItems[index].value.toString()
    ))
 
    return {

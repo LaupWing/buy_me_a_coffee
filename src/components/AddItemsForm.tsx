@@ -49,6 +49,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                <FaEthereum className="text-gray-300 mr-2" size={30}/>
                <div className="text-2xl relative flex items-center">
                   <input
+                     step=".01"
                      type="number"
                      placeholder="Price"
                      className="outline-none my-auto mr-auto"
