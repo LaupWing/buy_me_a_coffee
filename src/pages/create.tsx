@@ -14,7 +14,7 @@ import { ItemsType } from "../../typings"
 import { parseListOfItems } from "../../utils/parsers"
 import Profile from "../components/Profile"
 
-interface FormValues {
+export interface FormValues {
    description: string
    name: string
    listOfItems: ListOfItems
@@ -139,7 +139,7 @@ const Create:NextPage = () => {
    return (
       <div className="mt-10 container bg-white rounded-md overflow-hidden shadow">
          <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
-            <Thumbnail control={control}/>
+            <Thumbnail errors={errors} control={control}/>
             <Profile
                image={profile}
                onImageChange={onProfileChange}

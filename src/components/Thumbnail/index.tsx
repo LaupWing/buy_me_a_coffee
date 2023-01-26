@@ -1,15 +1,18 @@
 import React from "react"
-import { Control, Controller } from "react-hook-form"
+import { Control, Controller, FieldErrorsImpl } from "react-hook-form"
 import ImageUploading, { ImageListType } from "react-images-uploading"
+import { FormValues } from "../../pages/create"
 import Current from "./Current"
 import Upload from "./Upload"
 
 export interface Props {
    control: Control<any>
+   errors: Partial<FieldErrorsImpl<FormValues>>
 }
 
 const Thumbnail:React.FC<Props> = ({
-   control
+   control,
+   errors
 }) => {
 
    return (
