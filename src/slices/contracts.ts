@@ -105,8 +105,9 @@ export const attachEvents =
       try {
          const { buyMeACoffeeFactory, campaigns } = getState().contracts
          buyMeACoffeeFactory?.on("BuyMeACoffeeCreated", (e) => {
-            console.log(e)
-            console.log(campaigns)
+            if(!campaigns.find(x => x.address === e)){
+               console.log("updating campaigns")
+            }
          })
       } catch(e) {
          console.log(e)

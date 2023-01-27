@@ -3,6 +3,7 @@ export interface BuyMeACoffeeType {
    description: string,
    thumbnail: string,
    profile: string,
+   address: string,
 }
 
 export interface ItemsType {
