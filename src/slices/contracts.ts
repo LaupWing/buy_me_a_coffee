@@ -70,20 +70,16 @@ export const fetchBuyMeACoffeeFactory =
    }
 
 export const fetchBuyMeACoffee =
-   (address: string) => async (dispatch: Dispatch, getState: typeof store.getState) => {
-      try {
-         const { signer } = getState().web3
+   (address: string) => async (_: Dispatch, getState: typeof store.getState):Promise<BuyMeACoffee> => {
+      const { signer } = getState().web3
 
-         const contract = new ethers.Contract(
-            address,
-            BuyMeACoffeeAbi.abi as ContractInterface,
-            signer
-         )
+      const contract = new ethers.Contract(
+         address,
+         BuyMeACoffeeAbi.abi as ContractInterface,
+         signer
+      )
 
-         dispatch(setBuyMeACoffeeFactory(contract))
-      } catch(e) {
-         console.log(e)
-      }
+      return contract as BuyMeACoffee
    }
 
 export const fetchEthPrice =
