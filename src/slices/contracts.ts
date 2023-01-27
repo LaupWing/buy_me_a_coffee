@@ -103,9 +103,10 @@ export const fetchEthPrice =
 export const attachEvents =
    () => async (dispatch:Dispatch, getState: typeof store.getState) => {
       try {
-         const { buyMeACoffeeFactory } = getState().contracts
+         const { buyMeACoffeeFactory, campaigns } = getState().contracts
          buyMeACoffeeFactory?.on("BuyMeACoffeeCreated", (e) => {
             console.log(e)
+            console.log(campaigns)
          })
       } catch(e) {
          console.log(e)
@@ -118,9 +119,9 @@ export const fetchCampaigns =
          const { buyMeACoffeeFactory } = getState().contracts
          const { signer } = getState().web3
          const addresses = await buyMeACoffeeFactory?.getDeployedBuyMeACoffee() 
-         const buyMeCoffeesProxy = addresses?.map(async a => {
+         const buyMeCoffeesProxy = addresses?.map(async address => {
             const contract:BuyMeACoffee = new ethers.Contract(
-               a, 
+               address, 
                BuyMeACoffeeAbi.abi as ContractInterface, 
                signer
             ) as BuyMeACoffee
@@ -129,6 +130,7 @@ export const fetchCampaigns =
             const thumbnail = await contract.getThumbnail()
             const profile = await contract.getProfile()
             return {
+               address,
                name,
                description,
                thumbnail,
