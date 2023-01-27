@@ -3,6 +3,7 @@ import { NextPage } from "next"
 import Head from "next/head"
 import { useAppSelector } from "../store/hooks"
 import { gateWay } from "../../utils/ipfs"
+import CampaignCard from "../components/CampaignCard"
 
 const Home:NextPage = () => {
    const { campaigns } = useAppSelector(state => state.contracts)
@@ -20,28 +21,7 @@ const Home:NextPage = () => {
          </Head>
          <main className="container mx-auto gap-4 mt-6 grid grid-cols-3">
             {campaigns.map(x=>(
-               <div 
-                  className="bg-white shadow overflow-hidden flex flex-col rounded aspect-[5/4]"
-                  key={x.address}
-               >
-                  <div className="relative h-1/2 w-full">
-                     <img 
-                        src={gateWay + x.thumbnail} 
-                        alt="thumbnail" 
-                        className="h-full w-full object-center object-cover"
-                     />
-                     <img 
-                        src={gateWay + x.profile} 
-                        alt="profile" 
-                        className="absolute object-cover transform translate-y-1/3 border-4 border-neutral-100 w-20 h-20 rounded-full bottom-0 right-5"
-                     />
-                  </div>
-                  <div className="p-2 border-t-4 border-neutral-100 flex flex-col">
-                     <h2 className="text-yellow-400 font-bold">{x.name}</h2>
-                     <p className="leading-none line-clamp-4 mt-2">{x.description}</p>
-                  </div>
-                  
-               </div>
+               <CampaignCard campaign={x}/>
             ))}
          </main>
       </>
