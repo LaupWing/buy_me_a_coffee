@@ -12,7 +12,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const { account } = useAppSelector(state => state.web3)
    const { alreadyRegistered, buyMeACoffeeFactory, campaigns } = useAppSelector(state => state.contracts)
    const [loaded, setLoaded] = useState(false)
-   const [loading, setLoading] = useState(true)
+   const [loading, setLoading] = useState(false)
 
    useEffect(()=>{
       const initialize = async () =>{
@@ -25,9 +25,15 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    }, [])
 
    const attachEvents = () =>{
-      buyMeACoffeeFactory?.on("BuyMeACoffeeCreated", (e) => {
+      buyMeACoffeeFactory?.on("BuyMeACoffeeCreated", async (e) => {
          if(!campaigns.find(x => x.address === e)){
-            console.log("updating campaigns")
+            try{
+               setLoading(true)
+               await dispatch(fetchCampaigns())
+            }catch(e: any){
+               alert(e.message)   
+            }
+            setLoading(false)
          }
       })
    }
@@ -49,7 +55,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
       <div className="w-screen h-screen bg-neutral-100 flex flex-col">
          {loaded ? (
             <>
-               <LoadingOverlay message="A new campaign is loading!"/>
+               {loading && <LoadingOverlay message="A new campaign is loading!"/>}
                <header className="bg-white container p-4 flex rounded-lg shadow mt-4">
                   <Link href={"/"}>
                      <div className="text-neutral-700">
