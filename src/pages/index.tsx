@@ -20,7 +20,10 @@ const Home:NextPage = () => {
          </Head>
          <main className="container mx-auto gap-4 mt-6 grid grid-cols-3">
             {campaigns.map(x=>(
-               <div className="bg-white shadow overflow-hidden flex flex-col rounded aspect-[5/4]">
+               <div 
+                  className="bg-white shadow overflow-hidden flex flex-col rounded aspect-[5/4]"
+                  key={x.address}
+               >
                   <div className="relative h-1/2 w-full">
                      <img 
                         src={gateWay + x.thumbnail} 
