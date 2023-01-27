@@ -91,7 +91,7 @@ const Create:NextPage = () => {
       const transactionReceipt = await transaction?.wait()
       const event = transactionReceipt?.events!.find(x => x.event === "BuyMeACoffeeCreated")
       const address = event?.args![0]
-      toast(`Created your coffee camapgain at address ${address}`)
+      toast(`Created at ${address}`)
       router.push("/")
       setCreating(false)
    }
