@@ -100,6 +100,18 @@ export const fetchEthPrice =
       }
    }
 
+export const attachEvents =
+   () => async (dispatch:Dispatch, getState: typeof store.getState) => {
+      try {
+         const { buyMeACoffeeFactory } = getState().contracts
+         buyMeACoffeeFactory?.on("BuyMeACoffeeCreated", (e) => {
+            console.log(e)
+         })
+      } catch(e) {
+         console.log(e)
+      }
+   }
+
 export const fetchCampaigns =
    () => async (dispatch: Dispatch, getState: typeof store.getState) => {
       try {
