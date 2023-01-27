@@ -116,12 +116,14 @@ export const fetchCampaigns =
             const description = await contract.getDescription()
             const thumbnail = await contract.getThumbnail()
             const profile = await contract.getProfile()
+            const owner = await contract.getOwner()
             return {
                address,
                name,
                description,
                thumbnail,
                profile,
+               owner
             }
          }) as Promise<BuyMeACoffeeType>[]
          const buyMeACoffees = await Promise.all(buyMeCoffeesProxy)

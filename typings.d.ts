@@ -4,6 +4,7 @@ export interface BuyMeACoffeeType {
    thumbnail: string,
    profile: string,
    address: string,
+   owner: string,
 }
 
 export interface ItemsType {
