@@ -27,13 +27,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const attachEvents = () =>{
       buyMeACoffeeFactory?.on("BuyMeACoffeeCreated", async (e) => {
          if(!campaigns.find(x => x.address === e)){
-            try{
-               setLoading(true)
-               await dispatch(fetchCampaigns())
-            }catch(e: any){
-               alert(e.message)   
-            }
-            setLoading(false)
+            
          }
       })
    }

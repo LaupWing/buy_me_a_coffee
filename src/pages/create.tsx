@@ -16,6 +16,7 @@ import Profile from "../components/Profile"
 import { HashLoader } from "react-spinners"
 import { useState } from "react"
 import { toast } from "react-toastify"
+import { fetchCampaigns } from "../slices/contracts"
 
 export interface FormValues {
    description: string
@@ -91,6 +92,7 @@ const Create:NextPage = () => {
       const transactionReceipt = await transaction?.wait()
       const event = transactionReceipt?.events!.find(x => x.event === "BuyMeACoffeeCreated")
       const address = event?.args![0]
+      await dispatch(fetchCampaigns())
       toast(`Created at ${address}`)
       router.push("/")
       setCreating(false)
