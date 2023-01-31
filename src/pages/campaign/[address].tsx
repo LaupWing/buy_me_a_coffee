@@ -1,6 +1,7 @@
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { ITEMS } from "../../../constants"
 import { gateWay } from "../../../utils/ipfs"
 import { fetchBuyMeACoffee } from "../../slices/contracts"
 import { useAppDispatch } from "../../store/hooks"
@@ -9,6 +10,7 @@ const Campaign:NextPage = () => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
+   const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
 
    useEffect(() => {
       const init = async () =>{
@@ -58,9 +60,14 @@ const Campaign:NextPage = () => {
                </ul>
             </nav>
             <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto">
-               <ul className="flex flex-col">
-                  <li></li>
-               </ul>
+               {campaign && <ul className="flex flex-col">
+                  <li className="flex rounded bg-yellow-400/20 p-3 border-2 border-yellow-400">
+                     <div className="flex items-center text-3xl">
+                        {campaign.listOfItems[0].names.map((item:any) => String.fromCodePoint(findItem(item)))}
+                     </div>
+                  </li>
+               </ul>}
+               
             </div>
          </main>
       </div>
