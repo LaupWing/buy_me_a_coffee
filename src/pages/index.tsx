@@ -21,7 +21,10 @@ const Home:NextPage = () => {
          </Head>
          <main className="container mx-auto gap-4 mt-6 grid grid-cols-3">
             {campaigns.map(x=>(
-               <CampaignCard campaign={x}/>
+               <CampaignCard 
+                  campaign={x}
+                  key={x.address}
+               />
             ))}
          </main>
       </>
