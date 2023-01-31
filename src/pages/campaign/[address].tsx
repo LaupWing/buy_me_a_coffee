@@ -17,11 +17,13 @@ const Campaign:NextPage = () => {
          const thumbnail = await buyMeACoffee.getThumbnail() 
          const profile = await buyMeACoffee.getProfile() 
          const name = await buyMeACoffee.getName() 
+         const description = await buyMeACoffee.getDescription() 
 
          setCampaign({
             thumbnail,
             profile,
-            name
+            name,
+            description
          })
          
       }
@@ -42,11 +44,14 @@ const Campaign:NextPage = () => {
                alt="profile picture" 
             />
          </div>
-         <main className="container mt-16">
-            <div className="flex flex-col">
+         <main className="mt-16">
+            <div className="container flex flex-col space-y-4">
                <h1 className="display text-center text-neutral-800">{campaign.name}</h1>
-               <p className="text-center"></p>
+               <p className="text-center">{campaign.description}</p>
             </div>
+            <nav>
+
+            </nav>
          </main>
       </div>
    )
