@@ -1,7 +1,6 @@
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import BuyMeACoffeeAbi from "../../../constants/contracts/BuyMeACoffee.json"
 import { gateWay } from "../../../utils/ipfs"
 import { fetchBuyMeACoffee } from "../../slices/contracts"
 import { useAppDispatch } from "../../store/hooks"
@@ -18,6 +17,8 @@ const Campaign:NextPage = () => {
          const profile = await buyMeACoffee.getProfile() 
          const name = await buyMeACoffee.getName() 
          const description = await buyMeACoffee.getDescription() 
+         const listOfItems = await buyMeACoffee.getListOfItems() 
+         console.log(listOfItems)
 
          setCampaign({
             thumbnail,
