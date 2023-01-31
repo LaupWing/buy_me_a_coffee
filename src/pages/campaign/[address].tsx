@@ -13,10 +13,13 @@ const Campaign:NextPage = () => {
 
    useEffect(() => {
       const init = async () =>{
-         const test = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
-         const thumbnail = await test.getThumbnail() 
+         const buyMeACoffee = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
+         const thumbnail = await buyMeACoffee.getThumbnail() 
+         const profile = await buyMeACoffee.getProfile() 
+
          setCampaign({
-            thumbnail
+            thumbnail,
+            profile
          })
          console.log()
       }
@@ -25,11 +28,18 @@ const Campaign:NextPage = () => {
 
    return (
       <div className="mt-6">
-         <img 
-            src={gateWay + campaign.thumbnail}  
-            className="w-full h-60 object-cover"
-            alt="thumbnail from campaign" 
-         />
+         <div className="relative">
+            <img 
+               src={gateWay + campaign.thumbnail}  
+               className="w-full h-60 object-cover"
+               alt="thumbnail from campaign" 
+            />
+            <img 
+               className="absolute bottom-0 rounded-full overflow-hidden left-1/2 w-36 h-36 object-cover transform -translate-x-1/2 translate-y-1/3 border-[5px] border-white"
+               src={gateWay + campaign.profile} 
+               alt="profile picture" 
+            />
+         </div>
       </div>
    )
 }
