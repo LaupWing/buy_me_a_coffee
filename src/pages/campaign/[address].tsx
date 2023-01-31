@@ -16,12 +16,14 @@ const Campaign:NextPage = () => {
          const buyMeACoffee = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
          const thumbnail = await buyMeACoffee.getThumbnail() 
          const profile = await buyMeACoffee.getProfile() 
+         const name = await buyMeACoffee.getName() 
 
          setCampaign({
             thumbnail,
-            profile
+            profile,
+            name
          })
-         console.log()
+         
       }
       init()
    },[])
@@ -40,6 +42,12 @@ const Campaign:NextPage = () => {
                alt="profile picture" 
             />
          </div>
+         <main className="container mt-16">
+            <div className="flex flex-col">
+               <h1 className="display text-center text-neutral-800">{campaign.name}</h1>
+               <p className="text-center"></p>
+            </div>
+         </main>
       </div>
    )
 }

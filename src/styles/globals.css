@@ -21,3 +21,7 @@
 .container{ 
    @apply mx-auto w-full max-w-5xl;
 }
+
+.display{
+   @apply text-3xl font-semibold;
+}
