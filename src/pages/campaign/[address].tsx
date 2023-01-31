@@ -49,8 +49,11 @@ const Campaign:NextPage = () => {
                <h1 className="display text-center text-neutral-800">{campaign.name}</h1>
                <p className="text-center">{campaign.description}</p>
             </div>
-            <nav>
-
+            <nav className="border-b-2 border-neutral-200 w-full flex mt-6">
+               <ul className="mx-auto flex items-center space-x-12 font-semibold text-neutral-400">
+                  <li className="border-b-[3px] border-yellow-400 text-yellow-400 pb-4">Home</li>
+                  <li className="border-b-[3px] border-transparent pb-4">Supporters</li>
+               </ul>
             </nav>
          </main>
       </div>
