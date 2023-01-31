@@ -56,6 +56,9 @@ const Campaign:NextPage = () => {
                   <li className="border-b-[3px] border-transparent pb-4">Supporters</li>
                </ul>
             </nav>
+            <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto">
+
+            </div>
          </main>
       </div>
    )
