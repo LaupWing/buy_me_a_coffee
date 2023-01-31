@@ -59,7 +59,7 @@ const Campaign:NextPage = () => {
                   <li className="border-b-[3px] border-transparent pb-4">Supporters</li>
                </ul>
             </nav>
-            <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto">
+            <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
                {campaign && <ul className="flex flex-col">
                   <li className="flex rounded bg-yellow-400/20 p-3 border-2 border-yellow-400">
                      <div className="flex items-center text-3xl">
@@ -67,7 +67,15 @@ const Campaign:NextPage = () => {
                      </div>
                   </li>
                </ul>}
-               
+               <div className="my-4 space-y-4">
+                  <input 
+                     type="text" 
+                     className="w-full bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded"
+                  />
+                  <textarea className="w-full h-44 resize-none bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded">
+
+                  </textarea>
+               </div>
             </div>
          </main>
       </div>
