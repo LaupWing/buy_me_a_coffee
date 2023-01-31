@@ -24,7 +24,8 @@ const Campaign:NextPage = () => {
             thumbnail,
             profile,
             name,
-            description
+            description,
+            listOfItems
          })
          
       }
@@ -57,10 +58,20 @@ const Campaign:NextPage = () => {
                </ul>
             </nav>
             <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto">
-
+               <ul className="flex flex-col">
+                  <li></li>
+               </ul>
             </div>
          </main>
       </div>
    )
 }
 export default Campaign
+
+const Item = () =>{
+   return (
+      <li>
+         
+      </li>
+   )
+}
