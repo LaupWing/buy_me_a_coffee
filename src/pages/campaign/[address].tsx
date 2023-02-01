@@ -22,9 +22,8 @@ const Campaign:NextPage = () => {
          const profile = await buyMeACoffee.getProfile() 
          const name = await buyMeACoffee.getName() 
          const description = await buyMeACoffee.getDescription() 
-         const listOfItems = await buyMeACoffee.getListOfItems() 
-         console.log(listOfItems)
-
+         const listOfItems = await buyMeACoffee.getListOfItems()
+         
          setCampaign({
             thumbnail,
             profile,
@@ -36,6 +35,8 @@ const Campaign:NextPage = () => {
       }
       init()
    },[])
+
+   console.log(campaign)
 
    return (
       <div className="mt-6">

@@ -1,3 +1,5 @@
+import { BigNumber } from "ethers"
+
 export interface BuyMeACoffeeType {
    name: string
    description: string,
@@ -10,4 +12,10 @@ export interface BuyMeACoffeeType {
 export interface ItemsType {
    items: string[],
    value: number
+}
+
+export interface ListOfItem {
+   id: BigNumber
+   names: string[]
+   cost: BigNumber
 }
