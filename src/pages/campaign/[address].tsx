@@ -4,7 +4,9 @@ import { useEffect, useState } from "react"
 import { ITEMS } from "../../../constants"
 import { gateWay } from "../../../utils/ipfs"
 import { fetchBuyMeACoffee } from "../../slices/contracts"
+import { ethers } from "ethers"
 import { useAppDispatch } from "../../store/hooks"
+import { FaEthereum } from "react-icons/fa"
 
 const Campaign:NextPage = () => {
    const router = useRouter()
@@ -63,11 +65,19 @@ const Campaign:NextPage = () => {
                {campaign && (
                   <ul className="flex flex-col space-y-2">
                      {campaign.listOfItems.map((listOfItem:any) => (
-                        <li className="flex rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30">
+                        <li 
+                           className="flex items-center justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
+                           key={listOfItem.id.toString()}
+                        >
                            <div className="flex items-center text-3xl">
                               {listOfItem.names.map((item:any) => String.fromCodePoint(findItem(item)))}
                            </div>
-                           <p>{listOfItem.cost.toString()}</p>
+                           <div className="flex items-center text-lg">
+                              <div className="flex items-center text-neutral-400 font-bold space-x-1">
+                                 <p>{ethers.utils.formatEther(listOfItem.cost).toString()}</p>
+                                 <FaEthereum/>
+                              </div>
+                           </div>
                         </li>
                      ))}
                   </ul>
