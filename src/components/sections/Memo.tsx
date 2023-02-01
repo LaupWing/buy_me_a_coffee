@@ -1,15 +1,11 @@
 import {FC} from "react"
 import { ethers } from "ethers"
 import { FaEthereum } from "react-icons/fa"
-import { ITEMS } from "../../../constants"
 import { ListOfItems } from "../../../typings"
 import { useAppSelector } from "../../store/hooks"
 import { findItem } from "../../lib/utils"
 
 const Memo = ({campaign}:any) => {
-   const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
-   const { ethPrice } = useAppSelector(state => state.contracts)
-
    return (
       <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
          <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.name} a treat!</h3>
