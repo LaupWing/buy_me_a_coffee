@@ -4,6 +4,7 @@ import { FaEthereum } from "react-icons/fa"
 import { ITEMS } from "../../../constants"
 import { ListOfItems } from "../../../typings"
 import { useAppSelector } from "../../store/hooks"
+import { findItem } from "../../lib/utils"
 
 const Memo = ({campaign}:any) => {
    const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
@@ -14,8 +15,8 @@ const Memo = ({campaign}:any) => {
          <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.name} a treat!</h3>
          {campaign && (
             <ul className="flex flex-col space-y-2">
-               {campaign.listOfItems.map((listOfItem:ListOfItems) => (
-                  
+               {campaign.listOfItems.map((listOfItems:ListOfItems) => (
+                  <ListOfItems listOfItems={listOfItems}/>
                ))}
             </ul>
          )}
@@ -39,24 +40,28 @@ interface ListOfItemsProps {
 
 const ListOfItems:FC<ListOfItemsProps> = ({
    listOfItems
-}) => (
-   <li 
-      className="flex items-center justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
-      key={listOfItems.id.toString()}
-   >
-      <div className="flex items-center text-3xl">
-         {listOfItems.names.map((item:any) => String.fromCodePoint(findItem(item)))}
-      </div>
-      <div className="flex items-center text-lg">
-         <div className="flex items-center text-neutral-400 font-bold space-x-1">
-            <p>{ethers.utils.formatEther(listOfItems.cost).toString()}</p>
-            <FaEthereum/>
+}) => {
+   const { ethPrice } = useAppSelector(state => state.contracts)
+   
+   return (
+      <li 
+         className="flex items-center justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
+         key={listOfItems.id.toString()}
+      >
+         <div className="flex items-center text-3xl">
+            {listOfItems.names.map((item:any) => String.fromCodePoint(findItem(item)))}
          </div>
-         <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
-            <p>$ {
-               Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice
-            }</p>
+         <div className="flex items-center text-lg">
+            <div className="flex items-center text-neutral-400 font-bold space-x-1">
+               <p>{ethers.utils.formatEther(listOfItems.cost).toString()}</p>
+               <FaEthereum/>
+            </div>
+            <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
+               <p>$ {
+                  Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice
+               }</p>
+            </div>
          </div>
-      </div>
-   </li>
-)
+      </li>
+   )
+}
