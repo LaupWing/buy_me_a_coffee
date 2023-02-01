@@ -15,7 +15,7 @@ export interface ItemsType {
    value: number
 }
 
-export interface ListOfItem {
+export interface ListOfItems {
    id: BigNumber
    names: string[]
    cost: BigNumber
