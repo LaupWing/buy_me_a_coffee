@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { BuyMeACoffeeType } from "../../typings"
-import { gateWay } from "../../utils/ipfs"
+import { gateWay } from "../utils/ipfs"
 import { ethers } from "ethers"
 import { useAppSelector } from "../store/hooks"
 import Link from "next/link"

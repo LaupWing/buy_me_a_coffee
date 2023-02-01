@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { NextPage } from "next"
 import Head from "next/head"
 import { useAppSelector } from "../store/hooks"
-import { gateWay } from "../../utils/ipfs"
+import { gateWay } from "../utils/ipfs"
 import CampaignCard from "../components/CampaignCard"
 
 const Home:NextPage = () => {

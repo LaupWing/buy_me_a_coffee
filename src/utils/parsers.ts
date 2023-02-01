@@ -1,4 +1,4 @@
-import { ItemsType } from "../typings";
+import { ItemsType } from "../../typings";
 
 export const parseListOfItems = (listOfItems: ItemsType[]) : {
    all_items: string[][],
