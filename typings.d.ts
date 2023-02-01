@@ -2,11 +2,12 @@ import { BigNumber } from "ethers"
 
 export interface BuyMeACoffeeType {
    name: string
-   description: string,
-   thumbnail: string,
-   profile: string,
-   address: string,
-   owner: string,
+   description: string
+   thumbnail: string
+   profile?: string
+   address?: string
+   owner?: string
+   listOfItems: ListOfItem[]
 }
 
 export interface ItemsType {
