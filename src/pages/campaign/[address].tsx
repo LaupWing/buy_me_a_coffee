@@ -61,11 +61,13 @@ const Campaign:NextPage = () => {
             </nav>
             <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
                {campaign && <ul className="flex flex-col">
-                  <li className="flex rounded bg-yellow-400/20 p-3 border-2 border-yellow-400">
-                     <div className="flex items-center text-3xl">
-                        {campaign.listOfItems[0].names.map((item:any) => String.fromCodePoint(findItem(item)))}
-                     </div>
-                  </li>
+                  {campaign.listOfItems.map((listOfItem:any) => (
+                     <li className="flex rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30">
+                        <div className="flex items-center text-3xl">
+                           {listOfItem.names.map((item:any) => String.fromCodePoint(findItem(item)))}
+                        </div>
+                     </li>
+                  ))}
                </ul>}
                <div className="my-4 space-y-4">
                   <input 
