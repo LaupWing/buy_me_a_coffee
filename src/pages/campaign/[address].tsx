@@ -63,6 +63,7 @@ const Campaign:NextPage = () => {
                </ul>
             </nav>
             <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
+               <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.name} a treat!</h3>
                {campaign && (
                   <ul className="flex flex-col space-y-2">
                      {campaign.listOfItems.map((listOfItem:any) => (
