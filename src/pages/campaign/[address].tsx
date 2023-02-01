@@ -5,7 +5,7 @@ import { ITEMS } from "../../../constants"
 import { gateWay } from "../../../utils/ipfs"
 import { fetchBuyMeACoffee } from "../../slices/contracts"
 import { ethers } from "ethers"
-import { useAppDispatch } from "../../store/hooks"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { FaEthereum } from "react-icons/fa"
 
 const Campaign:NextPage = () => {
@@ -13,6 +13,7 @@ const Campaign:NextPage = () => {
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
    const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
+   const { ethPrice } = useAppSelector(state => state.contracts)
 
    useEffect(() => {
       const init = async () =>{
@@ -76,6 +77,11 @@ const Campaign:NextPage = () => {
                               <div className="flex items-center text-neutral-400 font-bold space-x-1">
                                  <p>{ethers.utils.formatEther(listOfItem.cost).toString()}</p>
                                  <FaEthereum/>
+                              </div>
+                              <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
+                                 <p>$ {
+                                    Number(ethers.utils.formatEther(listOfItem.cost).toString()) * ethPrice
+                                 }</p>
                               </div>
                            </div>
                         </li>
