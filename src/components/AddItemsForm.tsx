@@ -6,7 +6,7 @@ import { ITEMS } from "../../constants"
 import { useAppSelector } from "../store/hooks"
 
 interface FormValues {
-   value: number
+   value: number|null
    items: string[]
 }
 
@@ -22,6 +22,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
       register,
       control,
       reset,
+      watch,
       formState: { errors },
       handleSubmit,
    } = useForm<FormValues>({
@@ -29,13 +30,15 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
          items: []
       },
    })
-   const [value, setValue] = useState("")
+   const value = watch("value")
    const { ethPrice } = useAppSelector(state => state.contracts)
 
    const submitHandler: SubmitHandler<FormValues> = async ({items, value}) => {
-      addListOfItems({items, value})
+      console.log("submitting")
+      addListOfItems({items, value:value!})
       reset({
-         items: []
+         items: [],
+         value: null
       })
    }
 
@@ -96,7 +99,6 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                                     id={item.name}
                                     className="sr-only"
                                     onChange={(e) => {
-                                       console.log("changing")
                                        if (e.target.checked) {
                                           field.onChange([
                                              ...field.value,
