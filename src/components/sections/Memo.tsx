@@ -2,12 +2,12 @@ import {FC} from "react"
 import { ethers } from "ethers"
 import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "../../../typings"
-import { useAppSelector } from "../../store/hooks"
-import { findItem } from "../../lib/utils"
+import { useAppSelector } from "~/store/hooks"
+import { findItem } from "~/lib/utils"
 
 export const Memo = ({campaign}:any) => {
    return (
-      <div className="w-full mt-6 shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
+      <div className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
          <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.name} a treat!</h3>
          {campaign && (
             <ul className="flex flex-col space-y-2">
@@ -25,6 +25,9 @@ export const Memo = ({campaign}:any) => {
 
             </textarea>
          </div>
+         <button className="btn">
+            Buy
+         </button>
       </div>
    )
 }
