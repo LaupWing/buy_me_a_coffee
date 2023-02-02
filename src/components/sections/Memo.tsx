@@ -54,7 +54,7 @@ const ListOfItems:FC<ListOfItemsProps> = ({
             </div>
             <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
                <p>$ {
-                  Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice
+                  Math.round(Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice)
                }</p>
             </div>
          </div>
