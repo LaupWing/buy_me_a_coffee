@@ -46,7 +46,7 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    }, [account])
 
    return (
-      <div className="w-screen h-screen bg-neutral-100 flex flex-col">
+      <div className="w-screen h-screen overflow-y-auto fixed inset-0 bg-neutral-100 flex flex-col">
          {loaded ? (
             <>
                {loading && <LoadingOverlay message="A new campaign is loading!"/>}
