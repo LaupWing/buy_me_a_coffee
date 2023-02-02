@@ -63,11 +63,20 @@ const ListOfItems:FC<ListOfItemsProps> = ({
    listOfItems
 }) => {
    const { ethPrice } = useAppSelector(state => state.contracts)
-   
+   console.log(listOfItems)
    return (
-      <li 
-         className="flex items-center justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
+      <>
+      <input 
+         type="radio" 
+         className="sr-only peer"
+         name="item"
+         checked={false}
+         id={`item${listOfItems.id.toString()}`} 
+      />
+      <label 
+         className="flex items-center peer-checked:bg-red-400 justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
          key={listOfItems.id.toString()}
+         htmlFor={`item${listOfItems.id.toString()}`}
       >
          <div className="flex items-center text-3xl">
             {listOfItems.names.map((item:any) => String.fromCodePoint(findItem(item)))}
@@ -83,6 +92,7 @@ const ListOfItems:FC<ListOfItemsProps> = ({
                }</p>
             </div>
          </div>
-      </li>
+      </label>
+      </>
    )
 }
