@@ -1,11 +1,10 @@
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { ITEMS } from "../../../constants"
 import { gateWay } from "../../utils/ipfs"
 import { fetchBuyMeACoffee } from "../../slices/contracts"
-import { useAppDispatch, useAppSelector } from "../../store/hooks"
-import Memo from "../../components/sections/Memo"
+import { useAppDispatch } from "../../store/hooks"
+import { Memo } from "~/components"
 
 const Campaign:NextPage = () => {
    const router = useRouter()
@@ -32,8 +31,6 @@ const Campaign:NextPage = () => {
       }
       init()
    },[])
-
-   console.log(campaign)
 
    return (
       <div className="my-6 pb-10">
