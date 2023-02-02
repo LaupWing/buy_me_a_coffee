@@ -58,7 +58,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                      })}
                      onChange={e => setValue(e.target.value)}
                   />
-                  {value && <p className="absolute right-4 text-gray-200">
+                  {value && <p className="absolute right-4 pointer-events-none text-gray-200">
                      {Math.floor(Number(value) * ethPrice)} USD
                   </p>}
                </div>
