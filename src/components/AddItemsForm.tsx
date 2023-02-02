@@ -53,12 +53,12 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                      step=".01"
                      type="number"
                      placeholder="Price"
-                     className="outline-none my-auto mr-auto"
+                     className="outline-none border-none focus:ring-0 my-auto mr-auto"
                      {...register("value", {
                         required: "You need to set a value!",
                      })}
                   />
-                  {value && <p className="absolute right-4 pointer-events-none text-gray-200">
+                  {value && <p className="absolute right-8 pointer-events-none text-gray-200">
                      {Math.floor(Number(value) * ethPrice)} USD
                   </p>}
                </div>
