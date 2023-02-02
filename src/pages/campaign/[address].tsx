@@ -105,11 +105,3 @@ const Campaign:NextPage = () => {
    )
 }
 export default Campaign
-
-const Item = () =>{
-   return (
-      <li>
-         
-      </li>
-   )
-}
