@@ -4,10 +4,25 @@ import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "../../../typings"
 import { useAppSelector } from "~/store/hooks"
 import { findItem } from "~/lib/utils"
+import { useForm } from "react-hook-form"
+
+interface MemoFormValues {
+   message: string
+   name: string
+   items: ListOfItems | null
+}
 
 export const Memo = ({campaign}:any) => {
+   const { register } = useForm<MemoFormValues>({
+      defaultValues: {
+         name: "",
+         message: "",
+         items: null
+      }
+   })
+
    return (
-      <div className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
+      <form className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
          <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.name} a treat!</h3>
          {campaign && (
             <ul className="flex flex-col space-y-2">
@@ -20,15 +35,22 @@ export const Memo = ({campaign}:any) => {
             <input 
                type="text" 
                className="w-full bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded"
+               {...register("name", {
+                  required: "Please enter your name :)",
+               })}
+               placeholder="Name"
             />
-            <textarea className="w-full h-44 resize-none bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded">
-
+            <textarea 
+               className="w-full h-44 resize-none bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded"
+               {...register("message")}
+               placeholder="Message"
+            >
             </textarea>
          </div>
          <button className="btn">
             Buy
          </button>
-      </div>
+      </form>
    )
 }
 export default Memo
