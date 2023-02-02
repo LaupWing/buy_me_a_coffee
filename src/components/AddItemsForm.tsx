@@ -34,8 +34,9 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
 
    const submitHandler: SubmitHandler<FormValues> = async ({items, value}) => {
       addListOfItems({items, value})
-      setValue("")
-      reset()
+      reset({
+         items: []
+      })
    }
 
    return (
@@ -56,7 +57,6 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                      {...register("value", {
                         required: "You need to set a value!",
                      })}
-                     onChange={e => setValue(e.target.value)}
                   />
                   {value && <p className="absolute right-4 pointer-events-none text-gray-200">
                      {Math.floor(Number(value) * ethPrice)} USD
@@ -96,6 +96,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                                     id={item.name}
                                     className="sr-only"
                                     onChange={(e) => {
+                                       console.log("changing")
                                        if (e.target.checked) {
                                           field.onChange([
                                              ...field.value,
