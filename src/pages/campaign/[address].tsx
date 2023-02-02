@@ -1,9 +1,9 @@
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { gateWay } from "../../utils/ipfs"
-import { fetchBuyMeACoffee } from "../../slices/contracts"
-import { useAppDispatch } from "../../store/hooks"
+import { gateWay } from "~/utils/ipfs"
+import { fetchBuyMeACoffee } from "~/slices/contracts"
+import { useAppDispatch } from "~/store/hooks"
 import { Memo } from "~/components"
 
 const Campaign:NextPage = () => {
