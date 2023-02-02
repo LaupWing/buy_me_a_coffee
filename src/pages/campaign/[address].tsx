@@ -39,7 +39,7 @@ const Campaign:NextPage = () => {
    console.log(campaign)
 
    return (
-      <div className="mt-6">
+      <div className="my-6 pb-10">
          <div className="relative">
             <img 
                src={gateWay + campaign.thumbnail}  
