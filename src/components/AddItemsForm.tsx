@@ -1,6 +1,5 @@
-import React from "react"
-import { useState } from "react"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { useState, FC } from "react"
+import { Controller, ControllerRenderProps, SubmitHandler, useForm } from "react-hook-form"
 import { FaEthereum } from "react-icons/fa"
 import { ITEMS } from "../../constants"
 import { useAppSelector } from "../store/hooks"
@@ -77,44 +76,12 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                   }}
                   render={({ field }) => (
                      <>
-                        {ITEMS.map((item) => {
-                           const checked = field.value.find(
-                              (x) => x === item.name
-                           )
-                           return (
-                              <label
-                                 key={item.name}
-                                 className={`text-4xl cursor-pointer duration-150 ${
-                                    checked
-                                       ? ""
-                                       : "opacity-10 hover:opacity-30"
-                                 }`}
-                                 htmlFor={item.name}
-                              >
-                                 <input
-                                    type="checkbox"
-                                    id={item.name}
-                                    className="sr-only"
-                                    checked={field.value.some(val => val === item.name)}
-                                    onChange={(e) => {
-                                       if (e.target.checked) {
-                                          field.onChange([
-                                             ...field.value,
-                                             item.name,
-                                          ])
-                                       } else {
-                                          field.onChange(
-                                             [...field.value].filter(
-                                                (val) => val !== item.name
-                                             )
-                                          )
-                                       }
-                                    }}
-                                 />
-                                 {String.fromCodePoint(item.emoji)}
-                              </label>
-                           )
-                        })}
+                        {ITEMS.map((item) => 
+                           <Item
+                              field={field}
+                              item={item}
+                           />
+                        )}
                      </>
                   )}
                />
@@ -130,3 +97,53 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
    )
 }
 export default AddItemsForm
+
+interface ItemProps {
+   item: {
+      name: string
+      emoji: number
+   }
+   field: ControllerRenderProps<FormValues, "items"> 
+} 
+
+const Item:FC<ItemProps> = ({
+   item,
+   field
+}) => {
+   const checked = field.value.find(
+      (x) => x === item.name
+   )
+   return (
+      <label
+         key={item.name}
+         className={`text-4xl cursor-pointer duration-150 ${
+            checked
+               ? ""
+               : "opacity-10 hover:opacity-30"
+         }`}
+         htmlFor={item.name}
+      >
+         <input
+            type="checkbox"
+            id={item.name}
+            className="sr-only"
+            checked={!!checked}
+            onChange={(e) => {
+               if (e.target.checked) {
+                  field.onChange([
+                     ...field.value,
+                     item.name,
+                  ])
+               } else {
+                  field.onChange(
+                     [...field.value].filter(
+                        (val) => val !== item.name
+                     )
+                  )
+               }
+            }}
+         />
+         {String.fromCodePoint(item.emoji)}
+      </label>
+   )
+}
