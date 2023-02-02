@@ -4,17 +4,13 @@ import { useEffect, useState } from "react"
 import { ITEMS } from "../../../constants"
 import { gateWay } from "../../utils/ipfs"
 import { fetchBuyMeACoffee } from "../../slices/contracts"
-import { ethers } from "ethers"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
-import { FaEthereum } from "react-icons/fa"
 import Memo from "../../components/sections/Memo"
 
 const Campaign:NextPage = () => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
-   const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
-   const { ethPrice } = useAppSelector(state => state.contracts)
 
    useEffect(() => {
       const init = async () =>{
