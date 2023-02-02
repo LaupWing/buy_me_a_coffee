@@ -34,12 +34,9 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
    const { ethPrice } = useAppSelector(state => state.contracts)
 
    const submitHandler: SubmitHandler<FormValues> = async ({items, value}) => {
-      console.log("submitting")
+      
       addListOfItems({items, value:value!})
-      reset({
-         items: [],
-         value: null
-      })
+      reset()
    }
 
    return (
@@ -98,6 +95,7 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
                                     type="checkbox"
                                     id={item.name}
                                     className="sr-only"
+                                    checked={field.value.some(val => val === item.name)}
                                     onChange={(e) => {
                                        if (e.target.checked) {
                                           field.onChange([
