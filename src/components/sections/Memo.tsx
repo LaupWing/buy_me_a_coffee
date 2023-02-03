@@ -66,33 +66,33 @@ const ListOfItems:FC<ListOfItemsProps> = ({
    console.log(listOfItems)
    return (
       <>
-      <input 
-         type="radio" 
-         className="sr-only peer"
-         name="item"
-         checked={false}
-         id={`item${listOfItems.id.toString()}`} 
-      />
-      <label 
-         className="flex items-center peer-checked:bg-red-400 justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
-         key={listOfItems.id.toString()}
-         htmlFor={`item${listOfItems.id.toString()}`}
-      >
-         <div className="flex items-center text-3xl">
-            {listOfItems.names.map((item:any) => String.fromCodePoint(findItem(item)))}
-         </div>
-         <div className="flex items-center text-lg">
-            <div className="flex items-center text-neutral-400 font-bold space-x-1">
-               <p>{ethers.utils.formatEther(listOfItems.cost).toString()}</p>
-               <FaEthereum/>
+         <input 
+            type="radio" 
+            className="sr-only peer"
+            name="item"
+            id={`item${listOfItems.id.toString()}`}
+            value={listOfItems.id.toString()}
+         />
+         <label 
+            className="flex items-center peer-checked:bg-red-400 justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
+            key={listOfItems.id.toString()}
+            htmlFor={`item${listOfItems.id.toString()}`}
+         >
+            <div className="flex items-center text-3xl">
+               {listOfItems.names.map((item:any) => String.fromCodePoint(findItem(item)))}
             </div>
-            <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
-               <p>$ {
-                  Math.round(Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice)
-               }</p>
+            <div className="flex items-center text-lg">
+               <div className="flex items-center text-neutral-400 font-bold space-x-1">
+                  <p>{ethers.utils.formatEther(listOfItems.cost).toString()}</p>
+                  <FaEthereum/>
+               </div>
+               <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
+                  <p>$ {
+                     Math.round(Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice)
+                  }</p>
+               </div>
             </div>
-         </div>
-      </label>
+         </label>
       </>
    )
 }
