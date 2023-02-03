@@ -4,7 +4,7 @@ import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "../../../typings"
 import { useAppSelector } from "~/store/hooks"
 import { findItem } from "~/lib/utils"
-import { Controller, ControllerRenderProps, useForm, UseFormRegister } from "react-hook-form"
+import { Controller, ControllerRenderProps, SubmitHandler, useForm, UseFormRegister } from "react-hook-form"
 
 interface MemoFormValues {
    message: string
@@ -15,6 +15,10 @@ interface MemoFormValues {
 export const Memo = ({campaign}:any) => {
    const { 
       register,
+      formState:{
+         errors
+      },
+      handleSubmit,
       control
     } = useForm<MemoFormValues>({
       defaultValues: {
@@ -24,22 +28,39 @@ export const Memo = ({campaign}:any) => {
       }
    })
 
+   const submitHandler: SubmitHandler<MemoFormValues> = async () => {
+
+   }
+
    return (
-      <form className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
+      <form 
+         className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white"
+         onSubmit={handleSubmit(submitHandler)}
+      >
          <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.name} a treat!</h3>
          {campaign && (
             <Controller
                control={control}
                name="items"
+               rules={{
+                  required: "Please select the treat!"
+               }}
                render={({ field })=>(
-                  <ul className="flex flex-col space-y-2">
-                     {campaign.listOfItems.map((listOfItems:ListOfItems) => (
-                        <ListOfItems 
-                           listOfItems={listOfItems}
-                           field={field}
-                        />
-                     ))}
-                  </ul>
+                  <>
+                     <ul className="flex flex-col space-y-2">
+                        {campaign.listOfItems.map((listOfItems:ListOfItems) => (
+                           <ListOfItems 
+                              listOfItems={listOfItems}
+                              field={field}
+                           />
+                        ))}
+                     </ul>
+                     {errors["items"] && (
+                        <p className="error">
+                           {errors["items"].message}
+                        </p>
+                     )}
+                  </>
                )}
             />
          )}
@@ -60,7 +81,7 @@ export const Memo = ({campaign}:any) => {
             </textarea>
          </div>
          <button className="btn">
-            Buy
+            Support
          </button>
       </form>
    )
