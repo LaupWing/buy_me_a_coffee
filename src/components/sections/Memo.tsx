@@ -35,7 +35,7 @@ export const Memo:FC<MemoProps> = ({campaign, storeMemo}) => {
    })
 
    const submitHandler: SubmitHandler<MemoFormValues> = async ({items, message, name}) => {
-      storeMemo(items, message, name)
+      storeMemo(items!, message, name)
    }
 
    return (

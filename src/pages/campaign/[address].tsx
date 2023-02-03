@@ -5,11 +5,13 @@ import { gateWay } from "~/utils/ipfs"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { useAppDispatch } from "~/store/hooks"
 import { Memo } from "~/components"
+import { BuyMeACoffee } from "../../../backend/typechain-types"
 
 const Campaign:NextPage = () => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
+   const [buyMeACoffee, setBuyMeACoffee] = useState<BuyMeACoffee|null>(null)
 
    useEffect(() => {
       const init = async () =>{
@@ -29,13 +31,13 @@ const Campaign:NextPage = () => {
             listOfItems,
             owner
          })
-         
+         setBuyMeACoffee(buyMeACoffee)
       }
       init()
    },[])
 
    const storeMemo = async (items: string, message: string, name: string) =>{
-
+      buyMeACoffee!.storeMemo(name, message, items)
    }
 
    return (
