@@ -16,7 +16,8 @@ export const Memo = ({campaign}:any) => {
    const { 
       register,
       formState:{
-         errors
+         errors,
+         isValid
       },
       handleSubmit,
       control
@@ -31,7 +32,7 @@ export const Memo = ({campaign}:any) => {
    const submitHandler: SubmitHandler<MemoFormValues> = async () => {
 
    }
-
+   
    return (
       <form 
          className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white"
