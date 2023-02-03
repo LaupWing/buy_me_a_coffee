@@ -64,7 +64,7 @@ export const Memo = ({campaign}:any) => {
                )}
             />
          )}
-         <div className="my-4 space-y-4">
+         <div className="my-4">
             <input 
                type="text" 
                className="w-full bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded"
@@ -73,12 +73,24 @@ export const Memo = ({campaign}:any) => {
                })}
                placeholder="Name"
             />
+            {errors["name"] && (
+               <p className="error">
+                  {errors["name"].message}
+               </p>
+            )}
             <textarea 
-               className="w-full h-44 resize-none bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded"
-               {...register("message")}
+               className="w-full mt-4 h-44 resize-none bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded"
+               {...register("message", {
+                  required: "Please enter your message :)",
+               })}
                placeholder="Message"
             >
             </textarea>
+            {errors["message"] && (
+               <p className="error">
+                  {errors["message"].message}
+               </p>
+            )}
          </div>
          <button className="btn">
             Support
