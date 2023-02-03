@@ -93,7 +93,7 @@ export const Memo = ({campaign}:any) => {
                </p>
             )}
          </div>
-         <button className="btn-disabled">
+         <button className={isValid ? "btn" : "btn-disabled"}>
             Support
          </button>
       </form>
