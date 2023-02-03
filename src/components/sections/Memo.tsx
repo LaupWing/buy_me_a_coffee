@@ -4,12 +4,12 @@ import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "../../../typings"
 import { useAppSelector } from "~/store/hooks"
 import { findItem } from "~/lib/utils"
-import { useForm } from "react-hook-form"
+import { useForm, UseFormRegister } from "react-hook-form"
 
 interface MemoFormValues {
    message: string
    name: string
-   items: ListOfItems | null
+   items: string | null
 }
 
 export const Memo = ({campaign}:any) => {
@@ -27,7 +27,10 @@ export const Memo = ({campaign}:any) => {
          {campaign && (
             <ul className="flex flex-col space-y-2">
                {campaign.listOfItems.map((listOfItems:ListOfItems) => (
-                  <ListOfItems listOfItems={listOfItems}/>
+                  <ListOfItems 
+                     listOfItems={listOfItems}
+                     register={register}
+                  />
                ))}
             </ul>
          )}
@@ -57,10 +60,12 @@ export default Memo
 
 interface ListOfItemsProps {
    listOfItems: ListOfItems
+   register: UseFormRegister<MemoFormValues>
 }
 
 const ListOfItems:FC<ListOfItemsProps> = ({
-   listOfItems
+   listOfItems,
+   register
 }) => {
    const { ethPrice } = useAppSelector(state => state.contracts)
    console.log(listOfItems)
@@ -69,9 +74,9 @@ const ListOfItems:FC<ListOfItemsProps> = ({
          <input 
             type="radio" 
             className="sr-only peer"
-            name="item"
             id={`item${listOfItems.id.toString()}`}
             value={listOfItems.id.toString()}
+            {...register("items")}
          />
          <label 
             className="flex items-center peer-checked:bg-red-400 justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
