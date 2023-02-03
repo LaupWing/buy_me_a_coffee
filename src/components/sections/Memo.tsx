@@ -4,7 +4,7 @@ import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "../../../typings"
 import { useAppSelector } from "~/store/hooks"
 import { findItem } from "~/lib/utils"
-import { Controller, useForm, UseFormRegister } from "react-hook-form"
+import { Controller, ControllerRenderProps, useForm, UseFormRegister } from "react-hook-form"
 
 interface MemoFormValues {
    message: string
@@ -31,11 +31,12 @@ export const Memo = ({campaign}:any) => {
             <Controller
                control={control}
                name="items"
-               render={()=>(
+               render={({ field })=>(
                   <ul className="flex flex-col space-y-2">
                      {campaign.listOfItems.map((listOfItems:ListOfItems) => (
                         <ListOfItems 
                            listOfItems={listOfItems}
+                           field={field}
                         />
                      ))}
                   </ul>
@@ -68,23 +69,35 @@ export default Memo
 
 interface ListOfItemsProps {
    listOfItems: ListOfItems
+   field: ControllerRenderProps<MemoFormValues, "items">
 }
 
 const ListOfItems:FC<ListOfItemsProps> = ({
    listOfItems,
+   field
 }) => {
    const { ethPrice } = useAppSelector(state => state.contracts)
-   console.log(listOfItems)
+   const checked = listOfItems.id.toString() === field.value
    return (
       <>
          <input 
             type="radio" 
-            className="sr-only"
+            className="sr-only peer"
             id={`item${listOfItems.id.toString()}`}
             value={listOfItems.id.toString()}
+            onChange={e => {
+               if(e.target.checked){
+                  field.onChange(listOfItems.id.toString())
+               }
+            }}
+            checked={checked}
          />
          <label 
-            className="flex items-center justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
+            className={"flex items-center cursor-pointer justify-between rounded p-3 border-2 " +  (checked 
+                  ? "border-yellow-400 bg-yellow-400/20"
+                  : "border-yellow-400/30 bg-yellow-400/5"
+               )
+            }
             key={listOfItems.id.toString()}
             htmlFor={`item${listOfItems.id.toString()}`}
          >
