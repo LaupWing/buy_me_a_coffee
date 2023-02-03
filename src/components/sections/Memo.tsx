@@ -4,7 +4,7 @@ import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "../../../typings"
 import { useAppSelector } from "~/store/hooks"
 import { findItem } from "~/lib/utils"
-import { useForm, UseFormRegister } from "react-hook-form"
+import { Controller, useForm, UseFormRegister } from "react-hook-form"
 
 interface MemoFormValues {
    message: string
@@ -13,7 +13,10 @@ interface MemoFormValues {
 }
 
 export const Memo = ({campaign}:any) => {
-   const { register } = useForm<MemoFormValues>({
+   const { 
+      register,
+      control
+    } = useForm<MemoFormValues>({
       defaultValues: {
          name: "",
          message: "",
@@ -25,14 +28,19 @@ export const Memo = ({campaign}:any) => {
       <form className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white">
          <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.name} a treat!</h3>
          {campaign && (
-            <ul className="flex flex-col space-y-2">
-               {campaign.listOfItems.map((listOfItems:ListOfItems) => (
-                  <ListOfItems 
-                     listOfItems={listOfItems}
-                     register={register}
-                  />
-               ))}
-            </ul>
+            <Controller
+               control={control}
+               name="items"
+               render={()=>(
+                  <ul className="flex flex-col space-y-2">
+                     {campaign.listOfItems.map((listOfItems:ListOfItems) => (
+                        <ListOfItems 
+                           listOfItems={listOfItems}
+                        />
+                     ))}
+                  </ul>
+               )}
+            />
          )}
          <div className="my-4 space-y-4">
             <input 
@@ -60,12 +68,10 @@ export default Memo
 
 interface ListOfItemsProps {
    listOfItems: ListOfItems
-   register: UseFormRegister<MemoFormValues>
 }
 
 const ListOfItems:FC<ListOfItemsProps> = ({
    listOfItems,
-   register
 }) => {
    const { ethPrice } = useAppSelector(state => state.contracts)
    console.log(listOfItems)
@@ -73,13 +79,12 @@ const ListOfItems:FC<ListOfItemsProps> = ({
       <>
          <input 
             type="radio" 
-            className="sr-only peer"
+            className="sr-only"
             id={`item${listOfItems.id.toString()}`}
             value={listOfItems.id.toString()}
-            {...register("items")}
          />
          <label 
-            className="flex items-center peer-checked:bg-red-400 justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
+            className="flex items-center justify-between rounded bg-yellow-400/5 p-3 border-2 border-yellow-400/30"
             key={listOfItems.id.toString()}
             htmlFor={`item${listOfItems.id.toString()}`}
          >
