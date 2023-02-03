@@ -33,7 +33,6 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
    const { ethPrice } = useAppSelector(state => state.contracts)
 
    const submitHandler: SubmitHandler<FormValues> = async ({items, value}) => {
-      
       addListOfItems({items, value:value!})
       reset()
    }

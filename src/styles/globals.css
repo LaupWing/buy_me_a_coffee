@@ -6,7 +6,7 @@
    @apply text-neutral-800 font-bold capitalize text-sm tracking-wider px-4 py-1 rounded bg-yellow-300 hover:bg-yellow-400 duration-200;
 }
 .btn-disabled{
-   @apply text-gray-300 cursor-default font-bold capitalize text-sm tracking-wider px-4 py-1 rounded bg-gray-200/60;
+   @apply text-gray-300 cursor-default font-bold capitalize text-sm tracking-wider px-4 py-1 rounded bg-gray-200/60 pointer-events-none;
 }
 
 .text-input{
