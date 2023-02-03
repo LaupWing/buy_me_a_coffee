@@ -1,4 +1,4 @@
-import {FC} from "react"
+import { FC } from "react"
 import { ethers } from "ethers"
 import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "../../../typings"
@@ -12,7 +12,12 @@ interface MemoFormValues {
    items: string | null
 }
 
-export const Memo = ({campaign}:any) => {
+interface MemoProps {
+   campaign: any
+   storeMemo: (items: string, message: string, name: string) => void
+}
+
+export const Memo:FC<MemoProps> = ({campaign, storeMemo}) => {
    const { 
       register,
       formState:{
@@ -29,8 +34,8 @@ export const Memo = ({campaign}:any) => {
       }
    })
 
-   const submitHandler: SubmitHandler<MemoFormValues> = async () => {
-      
+   const submitHandler: SubmitHandler<MemoFormValues> = async ({items, message, name}) => {
+      storeMemo(items, message, name)
    }
 
    return (

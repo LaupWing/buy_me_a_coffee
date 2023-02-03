@@ -34,7 +34,7 @@ const Campaign:NextPage = () => {
       init()
    },[])
 
-   const storeMemo = async () =>{
+   const storeMemo = async (items: string, message: string, name: string) =>{
 
    }
 
@@ -64,7 +64,10 @@ const Campaign:NextPage = () => {
                   <li className="border-b-[3px] border-transparent pb-4">Supporters</li>
                </ul>
             </nav>
-           <Memo campaign={campaign}/>
+           <Memo 
+               campaign={campaign}
+               storeMemo={storeMemo}
+            />
          </main>
       </div>
    )
