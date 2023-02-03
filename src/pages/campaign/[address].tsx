@@ -37,7 +37,9 @@ const Campaign:NextPage = () => {
    },[])
 
    const storeMemo = async (items: string, message: string, name: string) =>{
-      buyMeACoffee!.storeMemo(name, message, items)
+      buyMeACoffee!.storeMemo(name, message, items, {
+         value: campaign.listOfItems.find((x:any) => items === x.id.toString()).cost.toString()
+      })
    }
 
    return (
