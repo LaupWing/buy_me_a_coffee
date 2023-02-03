@@ -36,6 +36,9 @@ const CampaignLayout = () => {
       }
       init()
    },[])
-   return <div>CampaignLayout</div>
+
+   return (
+      <div>CampaignLayout</div>
+   )
 }
 export default CampaignLayout
