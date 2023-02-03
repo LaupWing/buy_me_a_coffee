@@ -32,7 +32,7 @@ export const Memo = ({campaign}:any) => {
    const submitHandler: SubmitHandler<MemoFormValues> = async () => {
 
    }
-   
+
    return (
       <form 
          className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white"
@@ -93,7 +93,7 @@ export const Memo = ({campaign}:any) => {
                </p>
             )}
          </div>
-         <button className="btn">
+         <button className="btn-disabled">
             Support
          </button>
       </form>
