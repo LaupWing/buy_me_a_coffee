@@ -1,13 +1,13 @@
 import { FC } from "react"
-import { BuyMeACoffeeType } from "../../typings"
-import { gateWay } from "../utils/ipfs"
+import { BuyMeACoffeeType } from "../../../typings"
+import { gateWay } from "../../utils/ipfs"
 import { ethers } from "ethers"
-import { useAppSelector } from "../store/hooks"
+import { useAppSelector } from "../../store/hooks"
 import Link from "next/link"
 
-const CampaignCard:FC<{campaign: BuyMeACoffeeType}> = ({ campaign }) => {
+export const CampaignCard:FC<{campaign: BuyMeACoffeeType}> = ({ campaign }) => {
    const { account } = useAppSelector(state => state.web3)
-   const owned = ethers.utils.getAddress(account) === ethers.utils.getAddress(campaign.owner)
+   const owned = ethers.utils.getAddress(account) === ethers.utils.getAddress(campaign.owner!)
    return (
       <Link href={`/campaign/${campaign.address}`}>
          <div 
@@ -36,4 +36,3 @@ const CampaignCard:FC<{campaign: BuyMeACoffeeType}> = ({ campaign }) => {
       </Link>
    )
 }
-export default CampaignCard

@@ -1,9 +1,7 @@
-import { useEffect } from "react"
 import { NextPage } from "next"
 import Head from "next/head"
-import { useAppSelector } from "../store/hooks"
-import { gateWay } from "../utils/ipfs"
-import CampaignCard from "../components/CampaignCard"
+import { useAppSelector } from "~/store/hooks"
+import { CampaignCard } from "~/components"
 
 const Home:NextPage = () => {
    const { campaigns } = useAppSelector(state => state.contracts)
@@ -21,7 +19,7 @@ const Home:NextPage = () => {
          </Head>
          <main className="container mx-auto gap-4 mt-6 grid grid-cols-3">
             {campaigns.map(x=>(
-               <CampaignCard 
+               <CampaignCard
                   campaign={x}
                   key={x.address}
                />
