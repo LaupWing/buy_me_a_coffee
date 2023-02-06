@@ -4,7 +4,6 @@ import Field from "../components/Field"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 import { ImageListType } from "react-images-uploading"
 import { ethers } from "ethers"
-import Thumbnail from "../components/Thumbnail"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 import { PinataPinResponse } from "@pinata/sdk"
@@ -16,7 +15,7 @@ import { HashLoader } from "react-spinners"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { fetchCampaigns } from "../slices/contracts"
-import { Profile } from "~/components"
+import { Profile, Thumbnail } from "~/components"
 
 export interface FormValues {
    description: string
@@ -115,7 +114,7 @@ const Create:NextPage = () => {
             <HashLoader color="#FDE047" size={70}/>
          </div>}
          <div className="w-full flex h-52 bg-cover relative border-b-2 border-neutral-300">
-            <Thumbnail 
+            <Thumbnail
                errors={errors} 
                control={control}
             />
