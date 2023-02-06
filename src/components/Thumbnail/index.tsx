@@ -1,17 +1,17 @@
 import React from "react"
 import { Control, Controller, FieldErrorsImpl } from "react-hook-form"
 import { BsFillCameraFill } from "react-icons/bs"
+import { FiUpload } from "react-icons/fi"
 import ImageUploading from "react-images-uploading"
 import { ExportInterface, ImageListType } from "react-images-uploading/dist/typings"
 import { FormValues } from "../../pages/create"
-import Upload from "./Upload"
 
 export interface ThumbnailProps {
    control: Control<FormValues>
    errors: Partial<FieldErrorsImpl<FormValues>>
 }
 
-const Thumbnail:React.FC<ThumbnailProps> = ({
+export const Thumbnail:React.FC<ThumbnailProps> = ({
    control,
    errors
 }) => {
@@ -72,9 +72,7 @@ const Thumbnail:React.FC<ThumbnailProps> = ({
    )
 }
 
-export default Thumbnail
-
-export interface CurrentProps {
+interface CurrentProps {
    dragProps: ExportInterface["dragProps"],
    onImageUpload: () => void,
    image: ImageListType
@@ -92,6 +90,31 @@ const Current:React.FC<CurrentProps> = ({ dragProps, onImageUpload }) => {
             className="text-white" 
             size={30}
          />
+      </button>
+   )
+}
+
+interface UploadProps {
+   dragProps: ExportInterface["dragProps"],
+   onImageUpload: () => void
+} 
+
+const Upload:React.FC<UploadProps> = ({
+   dragProps,
+   onImageUpload
+}) => {
+   return (
+      <button 
+         className="flex space-x-2 items-center z-40 m-auto bg-white/70 p-4 rounded backdrop-blur-lg"
+         onClick={onImageUpload}
+         {...dragProps}
+         type="button"
+      >
+         <FiUpload
+            className="text-yellow-400" 
+            size={30}
+         />
+         <p className="text-xs uppercase text-yellow-400 font-bold tracking-wider">Click here to upload a thumbnail</p>
       </button>
    )
 }
