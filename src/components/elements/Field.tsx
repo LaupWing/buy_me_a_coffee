@@ -10,7 +10,7 @@ export interface Props {
    errors: Partial<FieldErrorsImpl<{ [x: string]: any; }>>
 }
 
-const Field:React.FC<Props> = ({
+export const Field:React.FC<Props> = ({
    label,
    textarea,
    errors,
@@ -39,5 +39,3 @@ const Field:React.FC<Props> = ({
       </div>
    )
 }
-   
-export default Field

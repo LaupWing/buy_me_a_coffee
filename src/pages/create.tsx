@@ -1,6 +1,5 @@
 import { NextPage } from "next"
 import { useRouter } from "next/router"
-import Field from "../components/Field"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 import { ImageListType } from "react-images-uploading"
 import { ethers } from "ethers"
@@ -15,7 +14,7 @@ import { HashLoader } from "react-spinners"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { fetchCampaigns } from "../slices/contracts"
-import { Profile, Thumbnail } from "~/components"
+import { Field, Profile, Thumbnail } from "~/components"
 
 export interface FormValues {
    description: string
