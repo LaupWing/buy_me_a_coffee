@@ -13,7 +13,7 @@ import { BuyMeACoffee } from "../../../backend/typechain-types"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { gateWay } from "~/utils/ipfs"
 
-const CampaignContext = createContext({
+export const CampaignContext = createContext({
    campaign: null,
    contract: null,
    test: false,

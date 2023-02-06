@@ -1,19 +1,19 @@
 import { NextPage } from "next"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { gateWay } from "~/utils/ipfs"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { useAppDispatch } from "~/store/hooks"
 import { CampaignLayout, Memo } from "~/components"
 import { BuyMeACoffee } from "../../../backend/typechain-types"
-import { useCampaign } from "~/components/global/CampaignLayout"
+import { CampaignContext, useCampaign } from "~/components/global/CampaignLayout"
 
 const Campaign:NextPage = () => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
    const [buyMeACoffee, setBuyMeACoffee] = useState<BuyMeACoffee|null>(null)
-   const test = useCampaign()
+   const test = useContext(CampaignContext)
 
    useEffect(() => {
       console.log(test)
