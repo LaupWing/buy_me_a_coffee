@@ -41,6 +41,10 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
    },[])
 
    return (
-      <div></div>
+      <CampaignContext.Provider value={{
+         test
+      }}>
+         {children}
+      </CampaignContext.Provider>
    )
 }
