@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css"
 import type { AppProps } from "next/app"
 import { Provider } from "react-redux"
 import { store } from "../store/store"
-import Layout from "../components/global/Layout"
+import { Layout } from "~/components"
 import { ToastContainer } from "react-toastify"
 
 export default function App({ Component, pageProps }: AppProps) {
