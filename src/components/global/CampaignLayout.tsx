@@ -15,7 +15,10 @@ import { gateWay } from "~/utils/ipfs"
 
 const CampaignContext = createContext({
    campaign: null,
-   contract: null
+   contract: null,
+   test: false,
+   setTest: (test:boolean) => {},
+   heh: (test:any) => {}
 })
 
 export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
@@ -24,6 +27,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
    const [loading, setLoading] = useState(true)
+   const [test, setTest] = useState(false)
 
    useEffect(() => {
       const init = async () =>{
@@ -49,6 +53,10 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       init()
    },[])
 
+   const heh = () => {
+      console.log("heh")
+   }
+
 
    if(loading){
       return <div>Loading..</div>
@@ -57,7 +65,10 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       <CampaignContext.Provider 
          value={{
             campaign,
-            contract
+            contract,
+            test,
+            setTest,
+            heh
          }}
       >
          <div className="my-6 pb-10">
@@ -73,6 +84,8 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                   alt="profile picture" 
                />
             </div>
+            <button onClick={() => setTest(!test)}>Test</button>
+            {test? "true" : "false"}
             <main className="mt-16">
                <div className="container text-center flex flex-col space-y-2">
                   <h1 className="display text-center text-neutral-800">{campaign.name}</h1>

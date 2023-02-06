@@ -14,7 +14,7 @@ const Campaign:NextPage = () => {
    const [campaign, setCampaign] = useState<any>(false)
    const [buyMeACoffee, setBuyMeACoffee] = useState<BuyMeACoffee|null>(null)
    const test = useCampaign()
-   
+
    useEffect(() => {
       console.log(test)
       const init = async () =>{
@@ -47,6 +47,8 @@ const Campaign:NextPage = () => {
 
    return (
       <CampaignLayout>
+         {test.test ? "true" : "false"}
+         <button onClick={()=> test.heh(true)}>Heh</button>
          <Memo 
             campaign={campaign}
             storeMemo={storeMemo}
