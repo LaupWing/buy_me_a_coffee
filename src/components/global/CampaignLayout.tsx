@@ -21,6 +21,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<BuyMeACoffee|null>(null)
+   const [loading, setLoading] = useState(true)
 
    useEffect(() => {
       const init = async () =>{
@@ -41,6 +42,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
             owner
          })
          setContract(_contract)
+         setLoading(false)
       }
       init()
    },[])
@@ -49,6 +51,10 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       campaign,
       contract
    }), [router?.query!.address])
+
+   if(loading){
+      return <div>Loading..</div>
+   }
  
    return (
       <CampaignContext.Provider 

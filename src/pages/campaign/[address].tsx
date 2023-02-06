@@ -6,13 +6,15 @@ import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { useAppDispatch } from "~/store/hooks"
 import { CampaignLayout, Memo } from "~/components"
 import { BuyMeACoffee } from "../../../backend/typechain-types"
+import { useCampaign } from "~/components/global/CampaignLayout"
 
 const Campaign:NextPage = () => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
    const [buyMeACoffee, setBuyMeACoffee] = useState<BuyMeACoffee|null>(null)
-
+   const test = useCampaign()
+   console.log(test)
    useEffect(() => {
       const init = async () =>{
          const buyMeACoffee = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
