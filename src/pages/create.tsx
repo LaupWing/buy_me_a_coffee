@@ -12,11 +12,11 @@ import AddItemsForm from "../components/AddItemsForm"
 import Items from "../components/Items"
 import { ItemsType } from "../../typings"
 import { parseListOfItems } from "../utils/parsers"
-import Profile from "../components/Profile"
 import { HashLoader } from "react-spinners"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { fetchCampaigns } from "../slices/contracts"
+import { Profile } from "~/components"
 
 export interface FormValues {
    description: string

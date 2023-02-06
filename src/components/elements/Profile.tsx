@@ -7,12 +7,12 @@ import { ExportInterface } from "react-images-uploading/dist/typings"
 import { FormValues } from "../../pages/create"
 
 
-export interface Props {
+interface ProfileProps {
    control: Control<FormValues>
    errors: Partial<FieldErrorsImpl<FormValues>>
 }
 
-export const Profile:React.FC<Props> = ({control, errors}) => {
+export const Profile:React.FC<ProfileProps> = ({control, errors}) => {
    return (
       <Controller
          control={control}
@@ -79,7 +79,7 @@ const Current:React.FC<CurrentProps> = ({ dragProps, onImageUpload, image }) => 
    )
 }
 
-export interface UploadProps {
+interface UploadProps {
    dragProps: ExportInterface["dragProps"],
    onImageUpload: () => void
    error: boolean
