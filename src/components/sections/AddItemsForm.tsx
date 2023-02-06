@@ -1,22 +1,22 @@
 import { useState, FC } from "react"
 import { Controller, ControllerRenderProps, SubmitHandler, useForm } from "react-hook-form"
 import { FaEthereum } from "react-icons/fa"
-import { ITEMS } from "../../constants"
-import { useAppSelector } from "../store/hooks"
+import { ITEMS } from "../../../constants"
+import { useAppSelector } from "../../store/hooks"
 
 interface FormValues {
    value: number|null
    items: string[]
 }
 
-interface Props {
+interface AddItemsFormProps {
    addListOfItems: (props:{
       items: string[],
       value: number
    }) => void 
 }
 
-const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
+export const AddItemsForm:FC<AddItemsFormProps> = ({addListOfItems}) => {
    const {
       register,
       control,
@@ -95,7 +95,6 @@ const AddItemsForm:React.FC<Props> = ({addListOfItems}) => {
       </form>
    )
 }
-export default AddItemsForm
 
 interface ItemProps {
    item: {

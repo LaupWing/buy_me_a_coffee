@@ -6,7 +6,6 @@ import { ethers } from "ethers"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 import { PinataPinResponse } from "@pinata/sdk"
-import AddItemsForm from "../components/AddItemsForm"
 import Items from "../components/Items"
 import { ItemsType } from "../../typings"
 import { parseListOfItems } from "../utils/parsers"
@@ -14,7 +13,7 @@ import { HashLoader } from "react-spinners"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { fetchCampaigns } from "../slices/contracts"
-import { Field, Profile, Thumbnail } from "~/components"
+import { AddItemsForm, Field, Profile, Thumbnail } from "~/components"
 
 export interface FormValues {
    description: string
