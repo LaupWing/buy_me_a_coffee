@@ -1,16 +1,17 @@
 import React from "react"
 import { Control, Controller, FieldErrorsImpl } from "react-hook-form"
+import { BsFillCameraFill } from "react-icons/bs"
 import ImageUploading from "react-images-uploading"
+import { ExportInterface, ImageListType } from "react-images-uploading/dist/typings"
 import { FormValues } from "../../pages/create"
-import Current from "./Current"
 import Upload from "./Upload"
 
-export interface Props {
+export interface ThumbnailProps {
    control: Control<FormValues>
    errors: Partial<FieldErrorsImpl<FormValues>>
 }
 
-const Thumbnail:React.FC<Props> = ({
+const Thumbnail:React.FC<ThumbnailProps> = ({
    control,
    errors
 }) => {
@@ -72,3 +73,25 @@ const Thumbnail:React.FC<Props> = ({
 }
 
 export default Thumbnail
+
+export interface CurrentProps {
+   dragProps: ExportInterface["dragProps"],
+   onImageUpload: () => void,
+   image: ImageListType
+}
+
+const Current:React.FC<CurrentProps> = ({ dragProps, onImageUpload }) => {
+   return (
+      <button
+         className="z-40 m-auto"
+         onClick={onImageUpload}
+         {...dragProps}
+         type="button"
+      >
+         <BsFillCameraFill
+            className="text-white" 
+            size={30}
+         />
+      </button>
+   )
+}
