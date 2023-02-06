@@ -1,10 +1,10 @@
-import {FC} from "react"
+import { FC } from "react"
 import { FaEthereum } from "react-icons/fa"
-import { ITEMS } from "../../constants"
-import { ItemsType } from "../../typings"
-import { useAppSelector } from "../store/hooks"
+import { ITEMS } from "../../../constants"
+import { ItemsType } from "../../../typings"
+import { useAppSelector } from "../../store/hooks"
 
-const Items:FC<ItemsType> = ({value, items}) => {
+export const Items:FC<ItemsType> = ({value, items}) => {
    const {ethPrice} = useAppSelector(state => state.contracts)
    const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
 
@@ -21,4 +21,3 @@ const Items:FC<ItemsType> = ({value, items}) => {
       </li>
    )
 }
-export default Items
