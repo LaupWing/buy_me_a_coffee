@@ -1,7 +1,7 @@
 import { HashLoader } from "react-spinners"
 import { FC } from "react"
 
-const LoadingOverlay:FC<{
+export const LoadingOverlay:FC<{
    message: string
 }> = ({message}) => {
    return (
@@ -11,4 +11,3 @@ const LoadingOverlay:FC<{
       </div>
    )
 }
-export default LoadingOverlay

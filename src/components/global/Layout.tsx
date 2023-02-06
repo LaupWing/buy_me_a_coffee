@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { SiBuymeacoffee } from "react-icons/si"
 import { BiSearchAlt } from "react-icons/bi"
-import { connectWallet, loadAccount, loadWeb3 } from "../../slices/web3"
-import { useAppDispatch, useAppSelector } from "../../store/hooks"
-import { fetchBuyMeACoffeeFactory, fetchCampaigns, fetchEthPrice, setInitialBuyMeACoffeeFactory } from "../../slices/contracts"
+import { connectWallet, loadAccount, loadWeb3 } from "~/slices/web3"
+import { LoadingOverlay } from "~/components"
+import { useAppDispatch, useAppSelector } from "~/store/hooks"
+import { 
+   fetchBuyMeACoffeeFactory, 
+   fetchCampaigns, 
+   fetchEthPrice, 
+   setInitialBuyMeACoffeeFactory 
+} from "~/slices/contracts"
 import Link from "next/link"
-import LoadingOverlay from "../LoadingOverlay"
 
 export const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
