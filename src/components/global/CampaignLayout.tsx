@@ -1,4 +1,10 @@
-import { useState, useEffect, createContext, FC } from "react"
+import { 
+   useState, 
+   useEffect, 
+   createContext, 
+   FC, 
+   PropsWithChildren 
+} from "react"
 import { useRouter } from "next/router"
 import { useAppDispatch } from "~/store/hooks"
 import { BuyMeACoffee } from "../../../backend/typechain-types"
@@ -8,7 +14,7 @@ const CampaignContext = createContext({
    campaign: null
 })
 
-export const CampaignLayout:FC<React.PropsWithChildren> = () => {
+export const CampaignLayout:FC<PropsWithChildren> = () => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)

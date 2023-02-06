@@ -1,4 +1,9 @@
-import { useEffect, useState, FC } from "react"
+import { 
+   useEffect, 
+   useState, 
+   FC, 
+   PropsWithChildren 
+} from "react"
 import { SiBuymeacoffee } from "react-icons/si"
 import { BiSearchAlt } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "~/slices/web3"
@@ -12,7 +17,7 @@ import {
 } from "~/slices/contracts"
 import Link from "next/link"
 
-export const Layout:FC<React.PropsWithChildren> = ({children}) => {
+export const Layout:FC<PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const { account } = useAppSelector(state => state.web3)
    const { alreadyRegistered, buyMeACoffeeFactory, campaigns } = useAppSelector(state => state.contracts)
