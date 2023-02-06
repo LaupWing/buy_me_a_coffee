@@ -27,7 +27,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
    const [loading, setLoading] = useState(true)
-   const [test, setTest] = useState(false)
+   const [test, setTest] = useState(true)
 
    useEffect(() => {
       const init = async () =>{
