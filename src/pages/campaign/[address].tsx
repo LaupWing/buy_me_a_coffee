@@ -14,8 +14,8 @@ const Campaign:NextPage = () => {
    const [campaign, setCampaign] = useState<any>(false)
    const [buyMeACoffee, setBuyMeACoffee] = useState<BuyMeACoffee|null>(null)
    const test = useCampaign()
-   console.log(test)
    useEffect(() => {
+      console.log(test)
       const init = async () =>{
          const buyMeACoffee = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
          const thumbnail = await buyMeACoffee.getThumbnail() 

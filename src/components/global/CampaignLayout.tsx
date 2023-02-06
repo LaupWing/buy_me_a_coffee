@@ -13,14 +13,15 @@ import { BuyMeACoffee } from "../../../backend/typechain-types"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 
 const CampaignContext = createContext({
-   campaign: null
+   campaign: null,
+   contract: null
 })
 
 export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
-   const [contract, setContract] = useState<BuyMeACoffee|null>(null)
+   const [contract, setContract] = useState<any>(null)
    const [loading, setLoading] = useState(true)
 
    useEffect(() => {
@@ -47,18 +48,16 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       init()
    },[])
 
-   const value = useMemo(() => ({
-      campaign,
-      contract
-   }), [router?.query!.address])
 
    if(loading){
       return <div>Loading..</div>
    }
- 
    return (
       <CampaignContext.Provider 
-         value={value}
+         value={{
+            campaign,
+            contract
+         }}
       >
          {children}  
       </CampaignContext.Provider>
