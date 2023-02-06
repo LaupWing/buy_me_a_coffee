@@ -3,7 +3,9 @@ import {
    useEffect, 
    createContext, 
    FC, 
-   PropsWithChildren 
+   PropsWithChildren, 
+   useContext,
+   useMemo
 } from "react"
 import { useRouter } from "next/router"
 import { useAppDispatch } from "~/store/hooks"
@@ -14,21 +16,21 @@ const CampaignContext = createContext({
    campaign: null
 })
 
-export const CampaignLayout:FC<PropsWithChildren> = () => {
+export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
-   const [buyMeACoffee, setBuyMeACoffee] = useState<BuyMeACoffee|null>(null)
+   const [contract, setContract] = useState<BuyMeACoffee|null>(null)
 
    useEffect(() => {
       const init = async () =>{
-         const buyMeACoffee = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
-         const thumbnail = await buyMeACoffee.getThumbnail() 
-         const profile = await buyMeACoffee.getProfile() 
-         const name = await buyMeACoffee.getName() 
-         const owner = await buyMeACoffee.getOwner() 
-         const description = await buyMeACoffee.getDescription() 
-         const listOfItems = await buyMeACoffee.getListOfItems()
+         const _contract = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
+         const thumbnail = await _contract.getThumbnail() 
+         const profile = await _contract.getProfile() 
+         const name = await _contract.getName() 
+         const owner = await _contract.getOwner() 
+         const description = await _contract.getDescription() 
+         const listOfItems = await _contract.getListOfItems()
          
          setCampaign({
             thumbnail,
@@ -38,12 +40,25 @@ export const CampaignLayout:FC<PropsWithChildren> = () => {
             listOfItems,
             owner
          })
-         setBuyMeACoffee(buyMeACoffee)
+         setContract(_contract)
       }
       init()
    },[])
 
+   const value = useMemo(() => ({
+      campaign,
+      contract
+   }), [router?.query!.address])
+ 
    return (
-      <div>CampaignLayout</div>
+      <CampaignContext.Provider 
+         value={value}
+      >
+         {children}  
+      </CampaignContext.Provider>
    )
+}
+
+export const useCampaign = () => {
+   return useContext(CampaignContext)
 }
