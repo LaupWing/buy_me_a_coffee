@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { SiBuymeacoffee } from "react-icons/si"
 import { BiSearchAlt } from "react-icons/bi"
-import { connectWallet, loadAccount, loadWeb3 } from "../slices/web3"
-import { useAppDispatch, useAppSelector } from "../store/hooks"
-import { fetchBuyMeACoffeeFactory, fetchCampaigns, fetchEthPrice, setInitialBuyMeACoffeeFactory } from "../slices/contracts"
+import { connectWallet, loadAccount, loadWeb3 } from "../../slices/web3"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
+import { fetchBuyMeACoffeeFactory, fetchCampaigns, fetchEthPrice, setInitialBuyMeACoffeeFactory } from "../../slices/contracts"
 import Link from "next/link"
-import LoadingOverlay from "./LoadingOverlay"
+import LoadingOverlay from "../LoadingOverlay"
 
-const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
+export const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const { account } = useAppSelector(state => state.web3)
    const { alreadyRegistered, buyMeACoffeeFactory, campaigns } = useAppSelector(state => state.contracts)
@@ -99,5 +99,3 @@ const Layout:React.FC<React.PropsWithChildren> = ({children}) => {
       </div>
    )
 }
-
-export default Layout
