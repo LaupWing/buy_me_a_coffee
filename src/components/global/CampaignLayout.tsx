@@ -3,6 +3,7 @@ import {
    FC, 
    useState,
    PropsWithChildren,
+   memo
 } from "react"
 import { gateWay } from "~/utils/ipfs"
 import useCampaign from "~/hooks/useCampaign"
@@ -10,7 +11,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 
 
-export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
+export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    const router = useRouter()
    const _campaign = useCampaign()
    const [loading, setLoading] = useState(true)
@@ -91,4 +92,4 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
          </main>
       </div>
    )
-}
+})

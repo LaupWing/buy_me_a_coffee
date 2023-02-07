@@ -2,6 +2,7 @@ import {
    createContext, 
    FC, 
    PropsWithChildren, 
+   useCallback, 
    useContext, 
    useState 
 } from "react"
@@ -29,7 +30,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
 
-   const loadCampaign = async () =>{
+   const loadCampaign = useCallback(async () =>{
       const _contract = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
       const thumbnail = await _contract.getThumbnail() 
       const profile = await _contract.getProfile() 
@@ -47,7 +48,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
          owner
       })
       setContract(_contract)
-   }
+   }, [router?.query!.address])
 
    return (
       <CampaignContext.Provider 
