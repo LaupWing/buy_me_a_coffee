@@ -20,7 +20,6 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
    const [loading, setLoading] = useState(true)
-   const [test, setTest] = useState(true)
 
    useEffect(() => {
       const init = async () =>{
@@ -51,7 +50,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       return <div>Loading..</div>
    }
    return (
-      <CampaignProvider>
+      <>
          <div className="my-6 pb-10">
             <div className="relative">
                <img 
@@ -65,8 +64,6 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                   alt="profile picture" 
                />
             </div>
-            <button onClick={() => setTest(!test)}>Test</button>
-            {test? "true" : "false"}
             <main className="mt-16">
                <div className="container text-center flex flex-col space-y-2">
                   <h1 className="display text-center text-neutral-800">{campaign.name}</h1>
@@ -82,6 +79,6 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                {children}
             </main>
          </div>
-      </CampaignProvider>
+      </>
    )
 }
