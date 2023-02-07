@@ -9,18 +9,10 @@ import {
 } from "react"
 import { useRouter } from "next/router"
 import { useAppDispatch } from "~/store/hooks"
-import { BuyMeACoffee } from "../../../backend/typechain-types"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { gateWay } from "~/utils/ipfs"
 import { CampaignProvider } from "~/hooks/useCampaign"
 
-export const CampaignContext = createContext({
-   campaign: null,
-   contract: null,
-   test: false,
-   setTest: (test:boolean) => {},
-   heh: (test:any) => {}
-})
 
 export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const router = useRouter()
@@ -53,10 +45,6 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       }
       init()
    },[])
-
-   const heh = () => {
-      console.log("heh")
-   }
 
 
    if(loading){
@@ -96,8 +84,4 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
          </div>
       </CampaignProvider>
    )
-}
-
-export const useCampaign = () => {
-   return useContext(CampaignContext)
 }

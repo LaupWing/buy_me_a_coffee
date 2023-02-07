@@ -6,7 +6,6 @@ import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { useAppDispatch } from "~/store/hooks"
 import { CampaignLayout, Memo } from "~/components"
 import { BuyMeACoffee } from "../../../backend/typechain-types"
-import { CampaignContext } from "~/components/global/CampaignLayout"
 import useCampaign from "~/hooks/useCampaign"
 
 const Campaign:NextPage = () => {
