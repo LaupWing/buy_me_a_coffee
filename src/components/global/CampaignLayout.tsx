@@ -58,7 +58,15 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                         }
                      }}
                   >
-                     <li className="border-b-[3px] border-yellow-400 text-yellow-400 pb-4">Home</li>
+                     <li 
+                        className={"border-b-[3px] pb-4 " + (
+                           router.pathname === "/campaign/[address]" 
+                              ? "border-yellow-400 text-yellow-400"
+                              : "border-transparent"
+                        )}
+                     >
+                        Home
+                     </li>
                   </Link>
                   <Link
                      href={{
@@ -68,7 +76,15 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                         }
                      }}
                   >
-                     <li className="border-b-[3px] border-transparent pb-4">Supporters</li>
+                     <li 
+                        className={"border-b-[3px] border-transparent pb-4 " +(
+                           router.pathname === "/campaign/[address]/supporters" 
+                              ? "border-yellow-400 text-yellow-400"
+                              : "border-transparent"
+                        )}
+                     >
+                        Supporters
+                     </li>
                   </Link>
                </ul>
             </nav>
