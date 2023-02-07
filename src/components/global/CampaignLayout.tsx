@@ -11,7 +11,7 @@ import { useRouter } from "next/router"
 import { useAppDispatch } from "~/store/hooks"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { gateWay } from "~/utils/ipfs"
-import { CampaignProvider } from "~/hooks/useCampaign"
+import useCampaign, { CampaignProvider } from "~/hooks/useCampaign"
 
 
 export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
@@ -20,6 +20,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
    const [loading, setLoading] = useState(true)
+   const _campaign = useCampaign()
 
    useEffect(() => {
       const init = async () =>{
@@ -43,10 +44,11 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
          setLoading(false)
       }
       init()
+      _campaign.loadCampaign()
    },[])
 
 
-   if(loading){
+   if(_campaign.loading){
       return <div>Loading..</div>
    }
    return (
