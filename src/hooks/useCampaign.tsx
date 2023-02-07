@@ -1,11 +1,11 @@
-import { createContext, FC, PropsWithChildren, useEffect, useState } from "react"
+import { createContext, FC, PropsWithChildren, useContext, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { useAppDispatch } from "~/store/hooks"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { gateWay } from "~/utils/ipfs"
 
 const CampaignContext = createContext({
-
+   test: false
 })
 
 export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
@@ -47,4 +47,8 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
          {children}
       </CampaignContext.Provider>
    )
+}
+
+export default () => {
+   return useContext(CampaignContext)
 }
