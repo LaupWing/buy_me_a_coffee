@@ -10,6 +10,7 @@ import {
    SubmitHandler, 
    useForm 
 } from "react-hook-form"
+import useCampaign from "~/hooks/useCampaign"
 
 interface MemoFormValues {
    message: string
@@ -17,12 +18,10 @@ interface MemoFormValues {
    items: string | null
 }
 
-interface MemoProps {
-   campaign: any
-   storeMemo: (items: string, message: string, name: string) => void
-}
 
-export const Memo:FC<MemoProps> = ({campaign, storeMemo}) => {
+export const Memo = () => {
+   const campaign = useCampaign()
+
    const { 
       register,
       formState:{
@@ -40,7 +39,9 @@ export const Memo:FC<MemoProps> = ({campaign, storeMemo}) => {
    })
 
    const submitHandler: SubmitHandler<MemoFormValues> = async ({items, message, name}) => {
-      storeMemo(items!, message, name)
+      campaign.contract!.storeMemo(name, message, items!, {
+         value: campaign.campaign!.listOfItems.find((x:any) => items === x.id.toString()).cost.toString()
+      })
    }
 
    return (
@@ -48,8 +49,8 @@ export const Memo:FC<MemoProps> = ({campaign, storeMemo}) => {
          className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white"
          onSubmit={handleSubmit(submitHandler)}
       >
-         <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.name} a treat!</h3>
-         {campaign && (
+         <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.campaign!.name} a treat!</h3>
+         {campaign.campaign && (
             <Controller
                control={control}
                name="items"
@@ -59,7 +60,7 @@ export const Memo:FC<MemoProps> = ({campaign, storeMemo}) => {
                render={({ field })=>(
                   <>
                      <ul className="flex flex-col space-y-2">
-                        {campaign.listOfItems.map((listOfItems:ListOfItems) => (
+                        {campaign.campaign!.listOfItems.map((listOfItems:ListOfItems) => (
                            <ListOfItems 
                               listOfItems={listOfItems}
                               field={field}

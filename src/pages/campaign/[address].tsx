@@ -47,10 +47,7 @@ const Campaign:NextPage = () => {
 
    return (
       <CampaignLayout>
-         <Memo 
-            campaign={campaign}
-            storeMemo={storeMemo}
-         />
+         <Memo/>
       </CampaignLayout>
    )
 }
