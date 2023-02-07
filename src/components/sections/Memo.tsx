@@ -4,7 +4,12 @@ import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "../../../typings"
 import { useAppSelector } from "~/store/hooks"
 import { findItem } from "~/lib/utils"
-import { Controller, ControllerRenderProps, SubmitHandler, useForm, UseFormRegister } from "react-hook-form"
+import { 
+   Controller, 
+   ControllerRenderProps, 
+   SubmitHandler, 
+   useForm 
+} from "react-hook-form"
 
 interface MemoFormValues {
    message: string
