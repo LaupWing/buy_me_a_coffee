@@ -1,6 +1,6 @@
 import useCampaign from "~/hooks/useCampaign"
 
-const Supporters = () => {
+export const SupportersList = () => {
    const _campaign = useCampaign()
    console.log(_campaign)
 
@@ -8,4 +8,3 @@ const Supporters = () => {
       <div className="mx-auto w-full mt-6 max-w-lg">Supporters</div>
    )
 }
-export default Supporters

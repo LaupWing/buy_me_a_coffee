@@ -1,10 +1,10 @@
 import { NextPage } from "next"
-import { CampaignLayout } from "~/components"
+import { CampaignLayout, SupportersList } from "~/components"
 
 const Supporters:NextPage = () => {
    return (
       <CampaignLayout>
-         <Supporters/>
+         <SupportersList/>
       </CampaignLayout>
    )
 }
