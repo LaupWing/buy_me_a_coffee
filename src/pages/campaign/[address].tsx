@@ -6,14 +6,15 @@ import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { useAppDispatch } from "~/store/hooks"
 import { CampaignLayout, LayoutTest, Memo } from "~/components"
 import { BuyMeACoffee } from "../../../backend/typechain-types"
-import { CampaignContext, useCampaign } from "~/components/global/CampaignLayout"
+import { CampaignContext } from "~/components/global/CampaignLayout"
+import useCampaign from "~/hooks/useCampaign"
 
 const Campaign:NextPage = () => {
    const router = useRouter()
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
    const [buyMeACoffee, setBuyMeACoffee] = useState<BuyMeACoffee|null>(null)
-   const test = useContext(CampaignContext)
+   const test = useCampaign()
 
    useEffect(() => {
       console.log(test)
@@ -47,8 +48,6 @@ const Campaign:NextPage = () => {
 
    return (
       <LayoutTest>
-         {test.test ? "true" : "false"}
-         <button onClick={()=> test.heh(true)}>Heh</button>
          <Memo 
             campaign={campaign}
             storeMemo={storeMemo}

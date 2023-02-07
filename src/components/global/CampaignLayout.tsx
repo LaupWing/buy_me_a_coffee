@@ -63,7 +63,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       return <div>Loading..</div>
    }
    return (
-      <CampaignProvider>
+      <div>
          <div className="my-6 pb-10">
             <div className="relative">
                <img 
@@ -94,7 +94,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                {children}
             </main>
          </div>
-      </CampaignProvider>
+      </div>
    )
 }
 
