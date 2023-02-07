@@ -16,12 +16,14 @@ export interface CampaignContextInterface {
    loadCampaign: () => Promise<void>
    contract: null|BuyMeACoffee
    campaign: null|CampaignType
+   loaded: boolean
 } 
 
 const CampaignContext = createContext<CampaignContextInterface>({
    loadCampaign: async () => {},
    campaign: null,
-   contract: null
+   contract: null,
+   loaded: false
 })
 
 export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
@@ -29,7 +31,8 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
-
+   const [loaded, setLoaded] = useState(false)
+   
    const loadCampaign = useCallback(async () =>{
       const _contract = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
       const thumbnail = await _contract.getThumbnail() 
@@ -48,6 +51,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
          owner
       })
       setContract(_contract)
+      setLoaded(true)
    }, [router?.query!.address])
 
    return (
@@ -55,7 +59,8 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
          value={{
             loadCampaign,
             campaign,
-            contract
+            contract,
+            loaded
          }}
       >
          {children}

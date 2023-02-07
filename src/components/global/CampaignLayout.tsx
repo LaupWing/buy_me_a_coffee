@@ -14,18 +14,15 @@ import { useRouter } from "next/router"
 export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    const router = useRouter()
    const _campaign = useCampaign()
-   const [loading, setLoading] = useState(true)
 
    useEffect(() => {
       const init = async () =>{
          await _campaign.loadCampaign()
-         setLoading(false)
       }
       init()
    },[])
-   console.log("rendering")
 
-   if(loading){
+   if(!_campaign.loaded){
       return <div>Loading..</div>
    }
    return (
