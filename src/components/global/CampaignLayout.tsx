@@ -1,6 +1,7 @@
 import {
    useEffect,
    FC, 
+   useState,
    PropsWithChildren,
 } from "react"
 import { gateWay } from "~/utils/ipfs"
@@ -9,13 +10,18 @@ import useCampaign from "~/hooks/useCampaign"
 
 export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const _campaign = useCampaign()
+   const [loading, setLoading] = useState(true)
 
    useEffect(() => {
-      _campaign.loadCampaign()
+      const init = async () =>{
+         await _campaign.loadCampaign()
+         setLoading(false)
+      }
+      init()
    },[])
 
 
-   if(_campaign.loading){
+   if(loading){
       return <div>Loading..</div>
    }
    return (

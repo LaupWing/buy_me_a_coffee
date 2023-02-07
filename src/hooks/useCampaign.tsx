@@ -12,15 +12,13 @@ import { BuyMeACoffee } from "../../backend/typechain-types"
 import { CampaignType } from "../../typings"
 
 export interface CampaignContextInterface {
-   loadCampaign: () => void
-   loading: boolean
+   loadCampaign: () => Promise<void>
    contract: null|BuyMeACoffee
    campaign: null|CampaignType
 } 
 
 const CampaignContext = createContext<CampaignContextInterface>({
-   loadCampaign: () => {},
-   loading: false,
+   loadCampaign: async () => {},
    campaign: null,
    contract: null
 })
@@ -30,7 +28,6 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
    const dispatch = useAppDispatch()
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
-   const [loading, setLoading] = useState(true)
 
    const loadCampaign = async () =>{
       const _contract = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
@@ -50,14 +47,12 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
          owner
       })
       setContract(_contract)
-      setLoading(false)
    }
 
    return (
       <CampaignContext.Provider 
          value={{
             loadCampaign,
-            loading,
             campaign,
             contract
          }}
