@@ -12,7 +12,6 @@ import { useRouter } from "next/router"
 
 export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
    const router = useRouter()
-   console.log(router)
    const _campaign = useCampaign()
    const [loading, setLoading] = useState(true)
 
