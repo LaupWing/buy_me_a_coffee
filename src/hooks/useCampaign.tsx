@@ -8,10 +8,21 @@ import {
 import { useRouter } from "next/router"
 import { useAppDispatch } from "~/store/hooks"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
+import { BuyMeACoffee } from "../../backend/typechain-types"
+import { CampaignType } from "../../typings"
 
-const CampaignContext = createContext({
+export interface CampaignContextInterface {
+   loadCampaign: () => void
+   loading: boolean
+   contract: null|BuyMeACoffee
+   campaign: null|CampaignType
+} 
+
+const CampaignContext = createContext<CampaignContextInterface>({
    loadCampaign: () => {},
-   loading: false
+   loading: false,
+   campaign: null,
+   contract: null
 })
 
 export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
@@ -46,7 +57,9 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
       <CampaignContext.Provider 
          value={{
             loadCampaign,
-            loading
+            loading,
+            campaign,
+            contract
          }}
       >
          {children}

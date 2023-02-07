@@ -1,11 +1,11 @@
 import { FC } from "react"
-import { BuyMeACoffeeType } from "../../../typings"
+import { CampaignType } from "../../../typings"
 import { gateWay } from "../../utils/ipfs"
 import { ethers } from "ethers"
 import { useAppSelector } from "../../store/hooks"
 import Link from "next/link"
 
-export const CampaignCard:FC<{campaign: BuyMeACoffeeType}> = ({ campaign }) => {
+export const CampaignCard:FC<{campaign: CampaignType}> = ({ campaign }) => {
    const { account } = useAppSelector(state => state.web3)
    const owned = ethers.utils.getAddress(account) === ethers.utils.getAddress(campaign.owner!)
    return (

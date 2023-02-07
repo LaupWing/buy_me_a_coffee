@@ -1,6 +1,6 @@
 import { BigNumber } from "ethers"
 
-export interface BuyMeACoffeeType {
+export interface CampaignType {
    name: string
    description: string
    thumbnail: string

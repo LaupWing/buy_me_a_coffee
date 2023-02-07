@@ -5,7 +5,7 @@ import { ContractInterface, ethers } from "ethers"
 import contractAddresses from "../../constants/networks.json"
 import BuyMeACoffeeFactoryAbi from "../../constants/contracts/BuyMeACoffeeFactory.json"
 import BuyMeACoffeeAbi from "../../constants/contracts/BuyMeACoffee.json"
-import { BuyMeACoffeeType } from "../../typings"
+import { CampaignType } from "../../typings"
 
 type ChainId = keyof typeof contractAddresses
 
@@ -13,7 +13,7 @@ export interface InitialState {
    buyMeACoffee: BuyMeACoffee|null,
    buyMeACoffeeFactory: BuyMeACoffeeFactory|null,
    alreadyRegistered: boolean,
-   campaigns: BuyMeACoffeeType[],
+   campaigns: CampaignType[],
    ethPrice: number
 }
 
@@ -35,7 +35,7 @@ export const contractsSlice = createSlice({
       setBuyMeACoffee(state, action:PayloadAction<any>){
          state.buyMeACoffee = action.payload
       },
-      setCampaigns(state, action:PayloadAction<BuyMeACoffeeType[]>){
+      setCampaigns(state, action:PayloadAction<CampaignType[]>){
          state.campaigns = action.payload
       },
       setEthPrice(state, action:PayloadAction<number>){
@@ -121,7 +121,7 @@ export const fetchCampaigns =
                profile,
                owner
             }
-         }) as Promise<BuyMeACoffeeType>[]
+         }) as Promise<CampaignType>[]
          const buyMeACoffees = await Promise.all(buyMeCoffeesProxy)
          
          dispatch(setCampaigns(buyMeACoffees))
