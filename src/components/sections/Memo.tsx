@@ -64,6 +64,7 @@ export const Memo = () => {
                            <ListOfItems 
                               listOfItems={listOfItems}
                               field={field}
+                              key={listOfItems.id.toString()}
                            />
                         ))}
                      </ul>

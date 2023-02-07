@@ -22,7 +22,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       }
       init()
    },[])
-
+   console.log("rendering")
 
    if(loading){
       return <div>Loading..</div>
