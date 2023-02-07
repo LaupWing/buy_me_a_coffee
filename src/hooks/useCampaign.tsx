@@ -32,7 +32,12 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
    const [loaded, setLoaded] = useState(false)
-   
+   const [prevRoute, setPrevRoute] = useState("")
+
+   if(loaded && (prevRoute !== router.asPath)){
+      setLoaded(false)
+   }
+
    const loadCampaign = useCallback(async () =>{
       const _contract = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
       const thumbnail = await _contract.getThumbnail() 
@@ -42,6 +47,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
       const description = await _contract.getDescription() 
       const listOfItems = await _contract.getListOfItems()
       
+      setPrevRoute(router.asPath)
       setCampaign({
          thumbnail,
          profile,
