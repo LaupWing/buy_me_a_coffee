@@ -33,8 +33,11 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
    const [contract, setContract] = useState<any>(null)
    const [loaded, setLoaded] = useState(false)
    const [prevRoute, setPrevRoute] = useState("")
-
-   if(loaded && (prevRoute !== router.asPath)){
+   
+   if(loaded 
+      && router.query.address 
+      && (prevRoute !== router.query.address))
+   {
       setLoaded(false)
    }
 
@@ -47,7 +50,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
       const description = await _contract.getDescription() 
       const listOfItems = await _contract.getListOfItems()
       
-      setPrevRoute(router.asPath)
+      setPrevRoute(router.query.address! as string)
       setCampaign({
          thumbnail,
          profile,
