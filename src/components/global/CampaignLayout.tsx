@@ -6,9 +6,13 @@ import {
 } from "react"
 import { gateWay } from "~/utils/ipfs"
 import useCampaign from "~/hooks/useCampaign"
+import Link from "next/link"
+import { useRouter } from "next/router"
 
 
 export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
+   const router = useRouter()
+   console.log(router)
    const _campaign = useCampaign()
    const [loading, setLoading] = useState(true)
 
@@ -46,8 +50,25 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
             </div>
             <nav className="border-b-2 border-neutral-200 w-full flex mt-6">
                <ul className="mx-auto flex items-center space-x-12 font-semibold text-neutral-400">
-                  <li className="border-b-[3px] border-yellow-400 text-yellow-400 pb-4">Home</li>
-                  <li className="border-b-[3px] border-transparent pb-4">Supporters</li>
+                  <Link 
+                     href={{
+                        query: {
+                           address: router.query.address
+                        }
+                     }}
+                  >
+                     <li className="border-b-[3px] border-yellow-400 text-yellow-400 pb-4">Home</li>
+                  </Link>
+                  <Link
+                     href={{
+                        pathname: `${router.pathname}/supporters`,
+                        query: {
+                           address: router.query.address
+                        }
+                     }}
+                  >
+                     <li className="border-b-[3px] border-transparent pb-4">Supporters</li>
+                  </Link>
                </ul>
             </nav>
             {children}
