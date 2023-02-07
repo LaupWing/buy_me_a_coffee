@@ -20,3 +20,10 @@ export interface ListOfItems {
    names: string[]
    cost: BigNumber
 }
+
+export interface MemoType {
+   items_id: BigNumber
+   message: string
+   timestamp: BigNumber
+   from: string
+}

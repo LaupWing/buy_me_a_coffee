@@ -49,6 +49,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
       const owner = await _contract.getOwner() 
       const description = await _contract.getDescription() 
       const listOfItems = await _contract.getListOfItems()
+      console.log(await _contract.getMemos())
       
       setPrevRoute(router.query.address! as string)
       setCampaign({
