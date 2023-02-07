@@ -1,7 +1,10 @@
 import { NextPage } from "next"
+import { CampaignLayout } from "~/components"
 
 const Supporters:NextPage = () => {
-   return <div>Supporters</div>
+   return (
+      <CampaignLayout>Supporters</CampaignLayout>
+   )
 }
 
 export default Supporters
