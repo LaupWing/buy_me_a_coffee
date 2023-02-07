@@ -12,6 +12,7 @@ import { useAppDispatch } from "~/store/hooks"
 import { BuyMeACoffee } from "../../../backend/typechain-types"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { gateWay } from "~/utils/ipfs"
+import { CampaignProvider } from "~/hooks/useCampaign"
 
 export const CampaignContext = createContext({
    campaign: null,
@@ -62,15 +63,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
       return <div>Loading..</div>
    }
    return (
-      <CampaignContext.Provider 
-         value={{
-            campaign,
-            contract,
-            test,
-            setTest,
-            heh
-         }}
-      >
+      <CampaignProvider>
          <div className="my-6 pb-10">
             <div className="relative">
                <img 
@@ -101,7 +94,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                {children}
             </main>
          </div>
-      </CampaignContext.Provider>
+      </CampaignProvider>
    )
 }
 
