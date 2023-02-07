@@ -52,6 +52,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                <ul className="mx-auto flex items-center space-x-12 font-semibold text-neutral-400">
                   <Link 
                      href={{
+                        pathname: `/campaign/[address]`,
                         query: {
                            address: router.query.address
                         }
@@ -61,7 +62,7 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
                   </Link>
                   <Link
                      href={{
-                        pathname: `${router.pathname}/supporters`,
+                        pathname: `/campaign/[address]/supporters`,
                         query: {
                            address: router.query.address
                         }
