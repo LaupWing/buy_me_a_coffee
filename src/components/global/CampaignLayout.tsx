@@ -101,9 +101,3 @@ export const CampaignLayout:FC<PropsWithChildren> = ({children}) => {
 export const useCampaign = () => {
    return useContext(CampaignContext)
 }
-
-export const LayoutTest:FC<PropsWithChildren> = ({children}) =>(
-   <CampaignLayout>
-      {children}
-   </CampaignLayout>
-)

@@ -3,16 +3,15 @@ import {
    FC, 
    PropsWithChildren, 
    useContext, 
-   useEffect, 
    useState 
 } from "react"
 import { useRouter } from "next/router"
 import { useAppDispatch } from "~/store/hooks"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
-import { gateWay } from "~/utils/ipfs"
 
 const CampaignContext = createContext({
-   loadCampaign: () => {}
+   loadCampaign: () => {},
+   loading: false
 })
 
 export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
@@ -21,8 +20,6 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
    const [campaign, setCampaign] = useState<any>(false)
    const [contract, setContract] = useState<any>(null)
    const [loading, setLoading] = useState(true)
-   const [test, setTest] = useState(true)
-
 
    const loadCampaign = async () =>{
       const _contract = await dispatch(fetchBuyMeACoffee(router?.query!.address as string))
@@ -48,7 +45,8 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
    return (
       <CampaignContext.Provider 
          value={{
-            loadCampaign
+            loadCampaign,
+            loading
          }}
       >
          {children}

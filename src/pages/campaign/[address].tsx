@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import { gateWay } from "~/utils/ipfs"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { useAppDispatch } from "~/store/hooks"
-import { CampaignLayout, LayoutTest, Memo } from "~/components"
+import { CampaignLayout, Memo } from "~/components"
 import { BuyMeACoffee } from "../../../backend/typechain-types"
 import { CampaignContext } from "~/components/global/CampaignLayout"
 import useCampaign from "~/hooks/useCampaign"
@@ -47,12 +47,12 @@ const Campaign:NextPage = () => {
    }
 
    return (
-      <LayoutTest>
+      <CampaignLayout>
          <Memo 
             campaign={campaign}
             storeMemo={storeMemo}
          />
-      </LayoutTest>
+      </CampaignLayout>
    )
 }
 export default Campaign
