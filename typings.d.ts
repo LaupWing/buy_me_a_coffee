@@ -15,6 +15,12 @@ export interface ItemsType {
    value: number
 }
 
+export interface ItemsTypeFetched {
+   items: string[],
+   cost: BigNumber
+   id: BigNumber
+}
+
 export interface ListOfItems {
    id: BigNumber
    names: string[]
