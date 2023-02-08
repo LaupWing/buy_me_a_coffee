@@ -27,6 +27,7 @@ export const SupportersList = () => {
 
    return (
       <ul className="mx-auto divide-y w-full mt-6 max-w-lg bg-white border shadow rounded">
+         <li className="p-2 text-yellow-400 font-bold">Total supported: ({memos.length})</li>
          {memos.map((memo:MemoTypeWithItems) => (
             <li 
                className="flex flex-col p-2"
