@@ -11,6 +11,8 @@ import {
    useForm 
 } from "react-hook-form"
 import useCampaign from "~/hooks/useCampaign"
+import { HashLoader } from "react-spinners"
+import { useState } from "react"
 
 interface MemoFormValues {
    message: string
@@ -21,6 +23,7 @@ interface MemoFormValues {
 
 export const Memo = () => {
    const campaign = useCampaign()
+   const [loading, setLoading] = useState(false)
 
    const { 
       register,
@@ -39,16 +42,19 @@ export const Memo = () => {
    })
 
    const submitHandler: SubmitHandler<MemoFormValues> = async ({items, message, name}) => {
-      campaign.contract!.storeMemo(name, message, items!, {
+      await campaign.contract!.storeMemo(name, message, items!, {
          value: campaign.campaign!.listOfItems.find((x:any) => items === x.id.toString()).cost.toString()
       })
    }
 
    return (
       <form 
-         className="w-full mt-6 flex flex-col shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white"
+         className="w-full mt-6 flex flex-col relative overflow-hidden shadow max-w-lg p-4 border border-neutral-300 rounded mx-auto bg-white"
          onSubmit={handleSubmit(submitHandler)}
       >
+         <div className="inset-0 absolute bg-white/90 flex items-center justify-center">
+            <HashLoader color="#FDE047" size={70}/>
+         </div>
          <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.campaign!.name} a treat!</h3>
          {campaign.campaign && (
             <Controller
