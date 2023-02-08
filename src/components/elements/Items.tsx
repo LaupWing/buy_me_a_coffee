@@ -13,7 +13,7 @@ export const Items:FC<ItemsType> = ({value, items}) => {
          <div className="flex items-center">
             <FaEthereum className="mr-2" size={24}/>
             <p className="font-bold">{value}</p>
-            <p className="text-base whitespace-pre-wrap opacity-60"> = {value * ethPrice} USD</p>
+            <p className="text-base whitespace-pre-wrap opacity-60"> = {Math.round(value * ethPrice)} USD</p>
          </div>
          <div className="flex items-center">
             {items.map(item => String.fromCodePoint(findItem(item)))}
