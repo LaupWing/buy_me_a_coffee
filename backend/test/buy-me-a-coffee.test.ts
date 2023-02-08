@@ -197,6 +197,7 @@ interface Item {
 
             items = (await buyMeACoffee.getListOfItems())
          })
+
          it("allows users to store memo aka give the owner some eth by buyin him/her an item", async () => {
             expect((await buyMeACoffee.getItemsCount()).toString()).equal(String(Number(itemsCount) + 1))
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
@@ -208,6 +209,17 @@ interface Item {
             expect(memos[0].name).equal(name)
             expect(memos[0].message).equal(message)
             expect(memos[0].items_id.toString()).equal(itemsId)
+         })
+
+         it.only("emits MemoCreated event after memo has been stored", async () => {
+            const currentBlock = await ethers.provider.getBlockNumber()
+            const block = await ethers.provider.getBlock(currentBlock)
+            const transaction = await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
+               value: firstSetOfItemsCost
+            })
+            
+            await expect(transaction).to.emit(buyMeACoffee, "MemoCreated")
+               .withArgs(block.timestamp + 1, name, message, itemsId)
          })
 
          it("reverts with error when not enough eth is sent", async () => {

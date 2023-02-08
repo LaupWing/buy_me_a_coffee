@@ -187,7 +187,7 @@ contract BuyMeACoffee {
       string memory _message, 
       uint256 _itemsId
    ) public payable {
-      Items memory items;
+      Items memory items; 
       for(uint256 i; i < listOfItems.length; i ++){
          if(listOfItems[i].id == _itemsId){
             items = listOfItems[i];
