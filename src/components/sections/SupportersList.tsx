@@ -39,8 +39,9 @@ export const SupportersList = () => {
                      items={memo.items.names}
                   />    
                </ul>
-               <div className="flex flex-col">
-                  <p>{memo.name}</p>
+               <div className="flex flex-col p-4">
+                  <p className="font-bold text-neutral-400">{memo.name}</p>
+                  <p>{memo.message}</p>
                </div>
             </li>
          ))}
