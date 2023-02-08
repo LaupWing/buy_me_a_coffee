@@ -60,6 +60,7 @@ interface Item {
       describe("Constructor", () => {
          it("sets up starting values correctly", async () => {
             expect(await buyMeACoffeeFactory.getDeployedBuyMeACoffee()).to.have.members([buyMeACoffeeAddress])
+            expect(await buyMeACoffeeFactory.getSuperUser()).equal(deployer)
             expect(await buyMeACoffee.getName()).equal(buyMeACoffeeName)
             expect(await buyMeACoffee.getOwner()).equal(deployer)
             expect(await buyMeACoffeeFactory.getPriceFeed()).equal(mockV3Aggregator.address)
@@ -211,7 +212,7 @@ interface Item {
             expect(memos[0].items_id.toString()).equal(itemsId)
          })
 
-         it.only("emits MemoCreated event after memo has been stored", async () => {
+         it("emits MemoCreated event after memo has been stored", async () => {
             const currentBlock = await ethers.provider.getBlockNumber()
             const block = await ethers.provider.getBlock(currentBlock)
             const transaction = await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
