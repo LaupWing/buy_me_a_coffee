@@ -120,6 +120,12 @@ contract BuyMeACoffee {
    }
 
    event AddedItems(uint256 indexed items_id);
+   event MemoCreated(
+      uint256 indexed timestamp,
+      string name,
+      string message,
+      uint256 items_id
+   );
 
    Memo[] private memos;
    Items[] private listOfItems;
