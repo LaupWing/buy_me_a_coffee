@@ -1,11 +1,11 @@
-import { GetServerSideProps, NextPage } from "next"
+import { NextPage } from "next"
 import Head from "next/head"
 import { useAppSelector } from "~/store/hooks"
 import { CampaignCard } from "~/components"
 
-const Home:NextPage<{test: string}> = ({test}) => {
+const Home:NextPage = () => {
    const { campaigns } = useAppSelector(state => state.contracts)
-   console.log(test)
+   
    return (
       <>
          <Head>
@@ -30,11 +30,3 @@ const Home:NextPage<{test: string}> = ({test}) => {
 }
 
 export default Home
-
-export const getServerSideProps:GetServerSideProps = async () => {
-   return {
-      props: {
-         test: "test"
-      }
-   }
-}
