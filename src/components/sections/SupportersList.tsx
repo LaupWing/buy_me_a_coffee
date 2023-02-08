@@ -26,7 +26,7 @@ export const SupportersList = () => {
    }, [])
 
    return (
-      <ul className="mx-auto w-full mt-6 max-w-lg bg-white border shadow rounded">
+      <ul className="mx-auto divide-y w-full mt-6 max-w-lg bg-white border shadow rounded">
          {memos.map((memo:MemoTypeWithItems) => (
             <li 
                className="flex flex-col p-2"
