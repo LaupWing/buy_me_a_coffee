@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { ethers } from "ethers"
 import { FaEthereum } from "react-icons/fa"
-import { ListOfItems } from "../../../typings"
+import { ListOfItems } from "types"
 import { useAppSelector } from "~/store/hooks"
 import { findItem } from "~/lib/utils"
 import { 

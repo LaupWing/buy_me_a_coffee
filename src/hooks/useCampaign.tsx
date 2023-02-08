@@ -10,7 +10,7 @@ import { useRouter } from "next/router"
 import { useAppDispatch } from "~/store/hooks"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { BuyMeACoffee } from "../../backend/typechain-types"
-import { CampaignType } from "../../typings"
+import { CampaignType } from "types"
 
 export interface CampaignContextInterface {
    loadCampaign: () => Promise<void>

@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { CampaignType } from "../../../typings"
+import { CampaignType } from "types"
 import { gateWay } from "../../utils/ipfs"
 import { ethers } from "ethers"
 import { useAppSelector } from "../../store/hooks"

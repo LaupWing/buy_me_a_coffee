@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import useCampaign from "~/hooks/useCampaign"
-import { MemoType, MemoTypeWithItems } from "../../../typings"
+import { MemoType, MemoTypeWithItems } from "types"
 
 export const SupportersList = () => {
    const _campaign = useCampaign()

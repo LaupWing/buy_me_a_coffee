@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { FaEthereum } from "react-icons/fa"
 import { ITEMS } from "../../../constants"
-import { ItemsType } from "../../../typings"
+import { ItemsType } from "types"
 import { useAppSelector } from "../../store/hooks"
 
 export const Items:FC<ItemsType> = ({value, items}) => {

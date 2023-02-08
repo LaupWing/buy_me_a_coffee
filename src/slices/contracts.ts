@@ -5,7 +5,7 @@ import { ContractInterface, ethers } from "ethers"
 import contractAddresses from "../../constants/networks.json"
 import BuyMeACoffeeFactoryAbi from "../../constants/contracts/BuyMeACoffeeFactory.json"
 import BuyMeACoffeeAbi from "../../constants/contracts/BuyMeACoffee.json"
-import { CampaignType } from "../../typings"
+import { CampaignType } from "types"
 
 type ChainId = keyof typeof contractAddresses
 

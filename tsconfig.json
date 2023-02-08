@@ -26,6 +26,9 @@
       "paths": {
          "~/*": [
             "./src/*"
+         ],
+         "types": [
+            "./typings.d.ts"
          ]
       }
    },
