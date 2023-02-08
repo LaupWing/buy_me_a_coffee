@@ -29,16 +29,19 @@ export const SupportersList = () => {
       <ul className="mx-auto w-full mt-6 max-w-lg bg-white border shadow rounded">
          {memos.map((memo:MemoTypeWithItems) => (
             <li 
-               className="flex flex-col"
+               className="flex flex-col p-2"
                key={memo.timestamp.toString()}
             >
-               <p>{memo.from}</p>
+               <p className="font-bold text-xs text-neutral-300">{memo.from}</p>
                <ul>
                   <Items 
                      value={Number(ethers.utils.formatEther(memo.items.cost))} 
                      items={memo.items.names}
                   />    
                </ul>
+               <div className="flex flex-col">
+                  <p>{memo.name}</p>
+               </div>
             </li>
          ))}
       </ul>
