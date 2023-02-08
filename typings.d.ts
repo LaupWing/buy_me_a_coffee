@@ -33,3 +33,7 @@ export interface MemoType {
    timestamp: BigNumber
    from: string
 }
+
+export interface MemoTypeWithItems extends MemoType {
+   items: ItemsTypeFetched[]
+}
