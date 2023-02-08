@@ -16,7 +16,7 @@ export interface ItemsType {
 }
 
 export interface ItemsTypeFetched {
-   items: string[],
+   names: string[],
    cost: BigNumber
    id: BigNumber
 }
@@ -35,5 +35,5 @@ export interface MemoType {
 }
 
 export interface MemoTypeWithItems extends MemoType {
-   items: ItemsTypeFetched[]
+   items: ItemsTypeFetched
 }
