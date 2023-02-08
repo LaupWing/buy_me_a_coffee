@@ -1,15 +1,16 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import useCampaign from "~/hooks/useCampaign"
-import { MemoType } from "../../../typings"
+import { MemoType, MemoTypeWithItems } from "../../../typings"
 
 export const SupportersList = () => {
    const _campaign = useCampaign()
+   const [memos, setMemos] = useState<MemoTypeWithItems[]>([])
 
    useEffect(() => {
       const init = async () => {
-         const memos = await _campaign.contract?.getMemos() 
+         const _memos = await _campaign.contract?.getMemos() 
          const listOfItems = await _campaign.contract?.getListOfItems()
-         const memosWithItems = memos?.map((memo:MemoType) => {
+         const memosWithItems = _memos?.map((memo:MemoType) => {
             return {
                ...memo,
                items: listOfItems?.find((x: any) => x.id.eq(memo.items_id) )
