@@ -204,6 +204,7 @@ contract BuyMeACoffee {
          "",
          _itemsId
       ));
+      emit MemoCreated(block.timestamp, _name, _message, _itemsId);
    }
 
    function addItems(string[] memory names, uint256 cost) public onlyOwner{
