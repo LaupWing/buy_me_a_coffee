@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, FC } from "react"
 import useCampaign from "~/hooks/useCampaign"
 import { MemoType, MemoTypeWithItems } from "types"
 import { Items } from "~/components"
@@ -63,5 +63,50 @@ export const SupportersList = () => {
             </li>
          ))}
       </ul>
+   )
+}
+
+
+interface MemoProps {
+   memo: MemoTypeWithItems
+}
+
+const Memo:FC<MemoProps> = ({
+   memo
+}) => {
+   const _campaign = useCampaign()
+   const { account } = useAppSelector(state => state.web3)
+   const isOwner = ethers.utils.getAddress(_campaign.campaign?.owner!) === ethers.utils.getAddress(account)
+
+   return (
+      <li 
+         className="flex flex-col p-2"
+         key={memo.timestamp.toString()}
+      >
+         <p 
+            className={"font-bold text-xs " + (
+               ethers.utils.getAddress(memo.from) === ethers.utils.getAddress(account) 
+                  ? "text-yellow-400/60"
+                  : "text-neutral-300"
+            )}
+         >
+            {memo.from}
+         </p>
+         <ul>
+            <Items 
+               value={Number(ethers.utils.formatEther(memo.items.cost))} 
+               items={memo.items.names}
+            />    
+         </ul>
+         <div className="flex flex-col p-4">
+            <p className="font-bold text-neutral-400">{memo.name}</p>
+            <p>{memo.message}</p>
+         </div>
+         {isOwner && (
+            <button className="text-xs uppercase font-bold text-right mr-2 text-yellow-400">
+               Reply
+            </button>
+         )}
+      </li>
    )
 }
