@@ -46,6 +46,10 @@ export const Memo = () => {
       await campaign.contract!.storeMemo(name, message, items!, {
          value: campaign.campaign!.listOfItems.find((x:any) => items === x.id.toString()).cost.toString()
       })
+      campaign.contract!.on("MemoCreated", async (e) => {
+         console.log(e)
+         console.log("event triggered")
+      })
       setLoading(false)
    }
 
