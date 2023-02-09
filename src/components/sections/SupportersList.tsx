@@ -84,7 +84,12 @@ const Memo:FC<MemoProps> = ({
             </button>
          ) : (
             <div className="flex space-x-1">
-               <button className="btn">cancel</button>
+               <button 
+                  className="btn-hollow"
+                  onClick={() => setShowReply(false)}
+               >
+                  cancel
+               </button>
                <input 
                   type="text" 
                   className="p-1 px-2 rounded border-neutral-300 bg-neutral-50 placeholder:text-gray-300 flex-1"
