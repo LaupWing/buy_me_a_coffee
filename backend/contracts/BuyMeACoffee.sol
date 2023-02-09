@@ -255,7 +255,7 @@ contract BuyMeACoffee {
       return itemsCount;
    }
 
-   function setReply(uint256 index, string memory reply) public {
+   function setReply(uint256 index, string memory reply) public onlyOwner {
       Memo storage memo = memos[index]; 
       memo.response = reply;
    }
