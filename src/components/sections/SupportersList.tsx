@@ -83,9 +83,15 @@ const Memo:FC<MemoProps> = ({
                Reply
             </button>
          ) : (
-            <input 
-               type="text" 
-            />
+            <div className="flex space-x-1">
+               <button className="btn">cancel</button>
+               <input 
+                  type="text" 
+                  className="p-1 px-2 rounded border-neutral-300 bg-neutral-50 placeholder:text-gray-300 flex-1"
+                  placeholder="Reply to comment"
+               />
+               <button className="btn">Reply</button>
+            </div>
          )}
       </li>
    )
