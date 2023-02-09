@@ -49,6 +49,7 @@ const Memo:FC<MemoProps> = ({
    const _campaign = useCampaign()
    const { account } = useAppSelector(state => state.web3)
    const isOwner = ethers.utils.getAddress(_campaign.campaign?.owner!) === ethers.utils.getAddress(account)
+   const [showReply, setShowReply] = useState(false)
 
    return (
       <li 
@@ -74,10 +75,17 @@ const Memo:FC<MemoProps> = ({
             <p className="font-bold text-neutral-400">{memo.name}</p>
             <p>{memo.message}</p>
          </div>
-         {isOwner && (
-            <button className="text-xs uppercase font-bold text-right mr-2 text-yellow-400">
+         {(isOwner && !showReply) ? (
+            <button 
+               className="text-xs uppercase font-bold text-right mr-2 text-yellow-400"
+               onClick={() => setShowReply(true)}
+            >
                Reply
             </button>
+         ) : (
+            <input 
+               type="text" 
+            />
          )}
       </li>
    )
