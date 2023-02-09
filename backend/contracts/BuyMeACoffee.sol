@@ -255,6 +255,11 @@ contract BuyMeACoffee {
       return itemsCount;
    }
 
+   function setReply(uint256 index, string memory reply) public {
+      Memo storage memo = memos[index]; 
+      memo.response = reply;
+   }
+
    function withdraw() public onlyOwner{
       owner.transfer(address(this).balance);
    }
