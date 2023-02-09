@@ -30,8 +30,9 @@ export const Memo = () => {
       register,
       formState:{
          errors,
-         isValid
+         isValid,
       },
+      reset,
       handleSubmit,
       control
     } = useForm<MemoFormValues>({
