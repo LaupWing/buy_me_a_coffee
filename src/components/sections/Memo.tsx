@@ -54,6 +54,7 @@ export const Memo = () => {
       }
       campaign.contract!.on("MemoCreated", setLoadingToFalse)
       toast.success("Thank you for supporting me")
+      reset()
    }
 
    return (
