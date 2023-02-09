@@ -12,7 +12,7 @@ export const SupportersList = () => {
       const init = async () => {
          const _memos = await _campaign.contract?.getMemos() 
          const listOfItems = await _campaign.contract?.getListOfItems()
-         console.log(listOfItems)
+         
          const memosWithItems:any = _memos?.map((memo:MemoType) => {
             return {
                ...memo,
