@@ -13,6 +13,7 @@ import {
 import useCampaign from "~/hooks/useCampaign"
 import { HashLoader } from "react-spinners"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 interface MemoFormValues {
    message: string
@@ -51,6 +52,7 @@ export const Memo = () => {
          campaign.contract!.off("MemoCreated", setLoadingToFalse)
       }
       campaign.contract!.on("MemoCreated", setLoadingToFalse)
+      toast.success("Thank you for supporting me")
    }
 
    return (
