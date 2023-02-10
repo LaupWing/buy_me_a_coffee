@@ -1,9 +1,7 @@
 import { 
    useEffect, 
    useState, 
-   FC,
-   Dispatch,
-   SetStateAction 
+   FC
 } from "react"
 import useCampaign from "~/hooks/useCampaign"
 import { MemoType, MemoTypeWithItems } from "types"
