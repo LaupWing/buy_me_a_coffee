@@ -1,3 +1,3 @@
-export { AddMemo } from "./Memo"
+export { AddMemo } from "./AddMemo"
 export { AddItemsForm } from "./AddItemsForm"
 export { SupportersList } from "./SupportersList"
