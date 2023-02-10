@@ -51,10 +51,10 @@ export const Memo = () => {
       const setLoadingToFalse = () => {
          setLoading(false)
          campaign.contract!.off("MemoCreated", setLoadingToFalse)
+         toast.success("Thank you for supporting me")
+         reset()
       }
       campaign.contract!.on("MemoCreated", setLoadingToFalse)
-      toast.success("Thank you for supporting me")
-      reset()
    }
 
    return (

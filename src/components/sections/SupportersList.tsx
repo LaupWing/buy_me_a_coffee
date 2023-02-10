@@ -57,13 +57,17 @@ const Memo:FC<MemoProps> = ({
    const [showReply, setShowReply] = useState(false)
 
    const {
-      register
+      register,
+      handleSubmit
    } = useForm<FormValues>({
       defaultValues:{
          repsonse: ""
       }
    })
    
+   const submitHandler = () => {
+
+   }
 
    return (
       <li 
@@ -97,7 +101,10 @@ const Memo:FC<MemoProps> = ({
                Reply
             </button>
          ) : (
-            <form className="flex space-x-1">
+            <form 
+               className="flex space-x-1"
+               onSubmit={handleSubmit(submitHandler)}
+            >
                <button 
                   className="btn-hollow"
                   onClick={() => setShowReply(false)}
