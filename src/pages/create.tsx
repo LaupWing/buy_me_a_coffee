@@ -11,7 +11,7 @@ import { parseListOfItems } from "../utils/parsers"
 import { HashLoader } from "react-spinners"
 import { useState } from "react"
 import { toast } from "react-toastify"
-import { fetchCampaigns } from "../slices/contracts"
+import { fetchCampaigns, setAlreadyRegistered } from "../slices/contracts"
 import { 
    AddItemsForm, 
    Field, 
@@ -96,6 +96,7 @@ const Create:NextPage = () => {
       const address = event?.args![0]
       await dispatch(fetchCampaigns())
       toast(`Created at ${address}`)
+      dispatch(setAlreadyRegistered(true))
       router.push("/")
       setCreating(false)
    }

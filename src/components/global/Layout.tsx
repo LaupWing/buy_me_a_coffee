@@ -20,7 +20,11 @@ import Link from "next/link"
 export const Layout:FC<PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const { account } = useAppSelector(state => state.web3)
-   const { alreadyRegistered, buyMeACoffeeFactory, campaigns } = useAppSelector(state => state.contracts)
+   const { 
+      alreadyRegistered, 
+      buyMeACoffeeFactory, 
+      campaigns 
+   } = useAppSelector(state => state.contracts)
    const [loaded, setLoaded] = useState(false)
    const [loading, setLoading] = useState(false)
 
