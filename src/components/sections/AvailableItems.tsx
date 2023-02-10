@@ -22,7 +22,7 @@ interface MemoFormValues {
 }
 
 
-export const AddMemo = () => {
+export const AvailableItems = () => {
    const campaign = useCampaign()
    const [loading, setLoading] = useState(false)
 
