@@ -96,7 +96,6 @@ const Memo:FC<MemoProps> = ({
    const submitHandler: SubmitHandler<FormValues> = ({ response }) => {
       submitResponse(response, index)
    }
-   console.log(memo.response)
 
    return (
       <li 
