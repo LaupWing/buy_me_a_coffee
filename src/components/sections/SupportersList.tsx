@@ -121,8 +121,14 @@ const Memo:FC<MemoProps> = ({
          <div className="flex flex-col p-4">
             <p className="font-bold text-neutral-400">{memo.name}</p>
             <p>{memo.message}</p>
+            {memo.response && (
+               <div className="flex items-center">
+                  <div className="w-12 border border-neutral-200 mr-2"></div>
+                  <p>{memo.response}</p>
+               </div>
+            )}
          </div>
-         {isOwner && (
+         {(isOwner && memo.response === "") && (
             <>
                {!showReply ? (
                   <button 
