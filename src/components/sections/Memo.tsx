@@ -22,7 +22,7 @@ interface MemoFormValues {
 }
 
 
-export const Memo = () => {
+export const AddMemo = () => {
    const campaign = useCampaign()
    const [loading, setLoading] = useState(false)
 
@@ -129,7 +129,6 @@ export const Memo = () => {
       </form>
    )
 }
-export default Memo
 
 interface ListOfItemsProps {
    listOfItems: ListOfItems
