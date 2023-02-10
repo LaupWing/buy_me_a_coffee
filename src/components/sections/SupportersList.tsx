@@ -10,7 +10,7 @@ import { MemoType, MemoTypeWithItems } from "types"
 import { Items } from "~/components"
 import { ethers } from "ethers"
 import { useAppSelector } from "~/store/hooks"
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { HashLoader } from "react-spinners"
 
 export const SupportersList = () => {
@@ -31,6 +31,11 @@ export const SupportersList = () => {
       setMemos(memosWithItems)
    }
 
+   const submitResponse = (response:string, index:number) => {
+      setLoading(true)
+      console.log(response)
+   }
+
    useEffect(() => {
       fetchMemos()
    }, [])
@@ -49,6 +54,7 @@ export const SupportersList = () => {
                memo={memo}
                setLoading={setLoading}
                index={i}
+               submitResponse={submitResponse}
             />
          ))}
       </ul>
@@ -60,6 +66,7 @@ interface MemoProps {
    memo: MemoTypeWithItems
    setLoading: Dispatch<SetStateAction<boolean>>
    index: number
+   submitResponse: (response:string, index:number) => void
 }
 
 interface FormValues {
@@ -69,7 +76,8 @@ interface FormValues {
 const Memo:FC<MemoProps> = ({
    memo,
    setLoading,
-   index
+   index,
+   submitResponse
 }) => {
    const _campaign = useCampaign()
    const { account } = useAppSelector(state => state.web3)
@@ -88,8 +96,8 @@ const Memo:FC<MemoProps> = ({
       }
    })
    
-   const submitHandler = () => {
-      
+   const submitHandler: SubmitHandler<FormValues> = ({ response }) => {
+      submitResponse(response, index)
    }
 
    return (
