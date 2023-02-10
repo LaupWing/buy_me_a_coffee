@@ -126,7 +126,7 @@ contract BuyMeACoffee {
       string message,
       uint256 items_id
    );
-   event MemoResponseCreated (
+   event MemoResponse (
       uint256 indexed timestamp,
       string indexed response
    );
@@ -262,7 +262,7 @@ contract BuyMeACoffee {
    function setResponse(uint256 index, string memory response) public onlyOwner {
       Memo storage memo = memos[index]; 
       memo.response = response;
-      emit MemoResponseCreated(block.timestamp, response);
+      emit MemoResponse(block.timestamp, response);
    }
 
    function withdraw() public onlyOwner{

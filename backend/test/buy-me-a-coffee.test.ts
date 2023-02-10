@@ -228,8 +228,13 @@ interface Item {
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: firstSetOfItemsCost
             })
-            await buyMeACoffee.setResponse(0, response)
+            const currentBlock = await ethers.provider.getBlockNumber()
+            const block = await ethers.provider.getBlock(currentBlock)
+            const transaction = await buyMeACoffee.setResponse(0, response)
+
             expect((await buyMeACoffee.getMemos())[0].response).equal(response)
+            expect(transaction).to.emit(buyMeACoffee, "MemoResponse")
+               .withArgs(block.timestamp + 1, response)
             
          })
 
