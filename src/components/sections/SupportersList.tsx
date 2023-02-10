@@ -59,7 +59,10 @@ const Memo:FC<MemoProps> = ({
 
    const {
       register,
-      handleSubmit
+      handleSubmit,
+      formState:{
+         errors
+      }
    } = useForm<FormValues>({
       defaultValues:{
          repsonse: ""
@@ -103,24 +106,29 @@ const Memo:FC<MemoProps> = ({
             </button>
          ) : (
             <form 
-               className="flex space-x-1"
+               className="flex flex-col"
                onSubmit={handleSubmit(submitHandler)}
             >
-               <button 
-                  className="btn-hollow"
-                  onClick={() => setShowReply(false)}
-               >
-                  cancel
-               </button>
-               <input 
-                  type="text" 
-                  className="p-1 px-2 rounded border-neutral-300 bg-neutral-50 placeholder:text-gray-300 flex-1"
-                  placeholder="Reply to comment"
-                  {...register("repsonse", {
-                     required: "You need to fill in something!"
-                  })}
-               />
-               <button className="btn">Reply</button>
+               <div className="flex space-x-1">
+                  <button 
+                     className="btn-hollow"
+                     onClick={() => setShowReply(false)}
+                  >
+                     cancel
+                  </button>
+                  <input 
+                     type="text" 
+                     className="p-1 px-2 rounded border-neutral-300 bg-neutral-50 placeholder:text-gray-300 flex-1"
+                     placeholder="Reply to comment"
+                     {...register("repsonse", {
+                        required: "You need to fill in something!"
+                     })}
+                  />
+                  <button className="btn">Reply</button>
+               </div>
+               {errors.repsonse && (
+                  <p className="error mt-2">{errors.repsonse.message}</p>
+               )}
             </form>
          )}
       </li>
