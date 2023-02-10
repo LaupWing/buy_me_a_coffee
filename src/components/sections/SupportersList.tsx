@@ -10,6 +10,7 @@ import { ethers } from "ethers"
 import { useAppSelector } from "~/store/hooks"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { HashLoader } from "react-spinners"
+import { toast } from "react-toastify"
 
 export const SupportersList = () => {
    const _campaign = useCampaign()
@@ -32,8 +33,13 @@ export const SupportersList = () => {
    const submitResponse = async (response:string, index:number) => {
       setLoading(true)
       await _campaign.contract?.setResponse(index, response)
-      await fetchMemos()
-      setLoading(false)
+      const responseCreated = async () => {
+         await fetchMemos()
+         _campaign.contract!.off("MemoResponse", responseCreated)
+         toast.success("Thank you for supporting me")
+         setLoading(false)
+      }
+      _campaign.contract?.on("MemoResponse", responseCreated)
    }
 
    useEffect(() => {
