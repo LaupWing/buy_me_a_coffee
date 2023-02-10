@@ -4,6 +4,7 @@ import { MemoType, MemoTypeWithItems } from "types"
 import { Items } from "~/components"
 import { ethers } from "ethers"
 import { useAppSelector } from "~/store/hooks"
+import { useForm } from "react-hook-form"
 
 export const SupportersList = () => {
    const _campaign = useCampaign()
@@ -43,6 +44,10 @@ interface MemoProps {
    memo: MemoTypeWithItems
 }
 
+interface FormValues {
+   repsonse: string
+}
+
 const Memo:FC<MemoProps> = ({
    memo
 }) => {
@@ -50,6 +55,15 @@ const Memo:FC<MemoProps> = ({
    const { account } = useAppSelector(state => state.web3)
    const isOwner = ethers.utils.getAddress(_campaign.campaign?.owner!) === ethers.utils.getAddress(account)
    const [showReply, setShowReply] = useState(false)
+
+   const {
+      register
+   } = useForm<FormValues>({
+      defaultValues:{
+         repsonse: ""
+      }
+   })
+   
 
    return (
       <li 
@@ -83,7 +97,7 @@ const Memo:FC<MemoProps> = ({
                Reply
             </button>
          ) : (
-            <div className="flex space-x-1">
+            <form className="flex space-x-1">
                <button 
                   className="btn-hollow"
                   onClick={() => setShowReply(false)}
@@ -94,9 +108,12 @@ const Memo:FC<MemoProps> = ({
                   type="text" 
                   className="p-1 px-2 rounded border-neutral-300 bg-neutral-50 placeholder:text-gray-300 flex-1"
                   placeholder="Reply to comment"
+                  {...register("repsonse", {
+                     required: "You need to fill in something!"
+                  })}
                />
                <button className="btn">Reply</button>
-            </div>
+            </form>
          )}
       </li>
    )
