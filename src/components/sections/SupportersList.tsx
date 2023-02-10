@@ -31,9 +31,11 @@ export const SupportersList = () => {
       setMemos(memosWithItems)
    }
 
-   const submitResponse = (response:string, index:number) => {
+   const submitResponse = async (response:string, index:number) => {
       setLoading(true)
-      console.log(response)
+      await _campaign.contract?.setResponse(index, response)
+      await fetchMemos()
+      setLoading(false)
    }
 
    useEffect(() => {
