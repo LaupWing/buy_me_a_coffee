@@ -1,4 +1,10 @@
-import { useEffect, useState, FC } from "react"
+import { 
+   useEffect, 
+   useState, 
+   FC,
+   Dispatch,
+   SetStateAction 
+} from "react"
 import useCampaign from "~/hooks/useCampaign"
 import { MemoType, MemoTypeWithItems } from "types"
 import { Items } from "~/components"
@@ -41,6 +47,7 @@ export const SupportersList = () => {
             <Memo
                key={i}
                memo={memo}
+               setLoading={setLoading}
             />
          ))}
       </ul>
@@ -50,6 +57,7 @@ export const SupportersList = () => {
 
 interface MemoProps {
    memo: MemoTypeWithItems
+   setLoading: Dispatch<SetStateAction<boolean>>
 }
 
 interface FormValues {
