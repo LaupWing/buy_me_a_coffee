@@ -223,13 +223,14 @@ interface Item {
                .withArgs(block.timestamp + 1, name, message, itemsId)
          })
 
-         it.only("allows the owner to response to a donation", async () => {
+         it("allows the owner to response to a donation", async () => {
             const response = "Test" 
             await buyMeACoffee.connect(user1).storeMemo(name, message, itemsId, {
                value: firstSetOfItemsCost
             })
-            // console.log(await buyMeACoffee.setReply(0, "Test"))
-            // console.log(await buyMeACoffee.getMemos())
+            await buyMeACoffee.setResponse(0, response)
+            expect((await buyMeACoffee.getMemos())[0].response).equal(response)
+            
          })
 
          it("reverts with error when not enough eth is sent", async () => {
