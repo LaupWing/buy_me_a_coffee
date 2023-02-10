@@ -121,39 +121,43 @@ const Memo:FC<MemoProps> = ({
             <p className="font-bold text-neutral-400">{memo.name}</p>
             <p>{memo.message}</p>
          </div>
-         {(isOwner || !showReply) ? (
-            <button 
-               className="text-xs uppercase font-bold text-right mr-2 text-yellow-400"
-               onClick={() => setShowReply(true)}
-            >
-               Reply
-            </button>
-         ) : (
-            <form 
-               className="flex flex-col"
-               onSubmit={handleSubmit(submitHandler)}
-            >
-               <div className="flex space-x-1">
+         {isOwner && (
+            <>
+               {!showReply ? (
                   <button 
-                     className="btn-hollow"
-                     onClick={() => setShowReply(false)}
+                     className="text-xs uppercase font-bold text-right mr-2 text-yellow-400"
+                     onClick={() => setShowReply(true)}
                   >
-                     cancel
+                     Reply
                   </button>
-                  <input 
-                     type="text" 
-                     className="p-1 px-2 rounded border-neutral-300 bg-neutral-50 placeholder:text-gray-300 flex-1"
-                     placeholder="Reply to comment"
-                     {...register("response", {
-                        required: "You need to fill in something!"
-                     })}
-                  />
-                  <button className="btn">Reply</button>
-               </div>
-               {errors.response && (
-                  <p className="error mt-2">{errors.response.message}</p>
+               ) : (
+                  <form 
+                     className="flex flex-col"
+                     onSubmit={handleSubmit(submitHandler)}
+                  >
+                     <div className="flex space-x-1">
+                        <button 
+                           className="btn-hollow"
+                           onClick={() => setShowReply(false)}
+                        >
+                           cancel
+                        </button>
+                        <input 
+                           type="text" 
+                           className="p-1 px-2 rounded border-neutral-300 bg-neutral-50 placeholder:text-gray-300 flex-1"
+                           placeholder="Reply to comment"
+                           {...register("response", {
+                              required: "You need to fill in something!"
+                           })}
+                        />
+                        <button className="btn">Reply</button>
+                     </div>
+                     {errors.response && (
+                        <p className="error mt-2">{errors.response.message}</p>
+                     )}
+                  </form>
                )}
-            </form>
+            </>
          )}
       </li>
    )
