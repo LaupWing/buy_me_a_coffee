@@ -36,7 +36,7 @@ export const SupportersList = () => {
       const responseCreated = async () => {
          await fetchMemos()
          _campaign.contract!.off("MemoResponse", responseCreated)
-         toast.success("Thank you for supporting me")
+         toast.success("Response has been created!")
          setLoading(false)
       }
       _campaign.contract?.on("MemoResponse", responseCreated)
