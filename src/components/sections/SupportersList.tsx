@@ -48,6 +48,7 @@ export const SupportersList = () => {
                key={i}
                memo={memo}
                setLoading={setLoading}
+               index={i}
             />
          ))}
       </ul>
@@ -58,6 +59,7 @@ export const SupportersList = () => {
 interface MemoProps {
    memo: MemoTypeWithItems
    setLoading: Dispatch<SetStateAction<boolean>>
+   index: number
 }
 
 interface FormValues {
@@ -65,7 +67,9 @@ interface FormValues {
 }
 
 const Memo:FC<MemoProps> = ({
-   memo
+   memo,
+   setLoading,
+   index
 }) => {
    const _campaign = useCampaign()
    const { account } = useAppSelector(state => state.web3)
@@ -85,7 +89,7 @@ const Memo:FC<MemoProps> = ({
    })
    
    const submitHandler = () => {
-
+      
    }
 
    return (
