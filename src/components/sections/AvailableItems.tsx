@@ -95,37 +95,6 @@ export const AvailableItems = () => {
                )}
             />
          )}
-         <div className="my-4">
-            <input 
-               type="text" 
-               className="w-full bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded"
-               {...register("name", {
-                  required: "Please enter your name :)",
-               })}
-               placeholder="Name"
-            />
-            {errors["name"] && (
-               <p className="error">
-                  {errors["name"].message}
-               </p>
-            )}
-            <textarea 
-               className="w-full mt-4 h-44 resize-none bg-neutral-200/40 p-2 border-2 border-neutral-200 rounded"
-               {...register("message", {
-                  required: "Please enter your message :)",
-               })}
-               placeholder="Message"
-            >
-            </textarea>
-            {errors["message"] && (
-               <p className="error">
-                  {errors["message"].message}
-               </p>
-            )}
-         </div>
-         <button className={isValid ? "btn" : "btn-disabled"}>
-            Support
-         </button>
       </form>
    )
 }
@@ -136,49 +105,28 @@ interface ListOfItemsProps {
 }
 
 const ListOfItems:FC<ListOfItemsProps> = ({
-   listOfItems,
-   field
+   listOfItems
 }) => {
    const { ethPrice } = useAppSelector(state => state.contracts)
-   const checked = listOfItems.id.toString() === field.value
    return (
-      <>
-         <input 
-            type="radio" 
-            className="sr-only peer"
-            id={`item${listOfItems.id.toString()}`}
-            value={listOfItems.id.toString()}
-            onChange={e => {
-               if(e.target.checked){
-                  field.onChange(listOfItems.id.toString())
-               }
-            }}
-            checked={checked}
-         />
-         <label 
-            className={"flex items-center cursor-pointer justify-between rounded p-3 border-2 " +  (checked 
-                  ? "border-yellow-400 bg-yellow-400/20"
-                  : "border-yellow-400/30 bg-yellow-400/5"
-               )
-            }
-            key={listOfItems.id.toString()}
-            htmlFor={`item${listOfItems.id.toString()}`}
-         >
-            <div className="flex items-center text-3xl">
-               {listOfItems.names.map((item:any) => String.fromCodePoint(findItem(item)))}
+      <div 
+         className="flex items-center border-yellow-400/30 bg-yellow-400/5 justify-between rounded p-3 border-2"
+         key={listOfItems.id.toString()}
+      >
+         <div className="flex items-center text-3xl">
+            {listOfItems.names.map((item:any) => String.fromCodePoint(findItem(item)))}
+         </div>
+         <div className="flex items-center text-lg">
+            <div className="flex items-center text-neutral-400 font-bold space-x-1">
+               <p>{ethers.utils.formatEther(listOfItems.cost).toString()}</p>
+               <FaEthereum/>
             </div>
-            <div className="flex items-center text-lg">
-               <div className="flex items-center text-neutral-400 font-bold space-x-1">
-                  <p>{ethers.utils.formatEther(listOfItems.cost).toString()}</p>
-                  <FaEthereum/>
-               </div>
-               <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
-                  <p>$ {
-                     Math.round(Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice)
-                  }</p>
-               </div>
+            <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
+               <p>$ {
+                  Math.round(Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice)
+               }</p>
             </div>
-         </label>
-      </>
+         </div>
+      </div>
    )
 }
