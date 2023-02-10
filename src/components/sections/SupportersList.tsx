@@ -10,21 +10,21 @@ export const SupportersList = () => {
    const _campaign = useCampaign()
    const [memos, setMemos] = useState<MemoTypeWithItems[]>([])
 
+   const fetchMemos = async () => {
+      const _memos = await _campaign.contract?.getMemos() 
+      const listOfItems = await _campaign.contract?.getListOfItems()
+      
+      const memosWithItems:any = _memos?.map((memo:MemoType) => {
+         return {
+            ...memo,
+            items: listOfItems?.find((x: any) => x.id.eq(memo.items_id) )
+         }
+      })
+      setMemos(memosWithItems)
+   }
+   
    useEffect(() => {
-      const init = async () => {
-         const _memos = await _campaign.contract?.getMemos() 
-         const listOfItems = await _campaign.contract?.getListOfItems()
-         
-         const memosWithItems:any = _memos?.map((memo:MemoType) => {
-            return {
-               ...memo,
-               items: listOfItems?.find((x: any) => x.id.eq(memo.items_id) )
-            }
-         })
-         setMemos(memosWithItems)
-      }
-
-      init()
+      fetchMemos()
    }, [])
    
    return (
