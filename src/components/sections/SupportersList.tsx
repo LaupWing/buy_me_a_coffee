@@ -5,10 +5,12 @@ import { Items } from "~/components"
 import { ethers } from "ethers"
 import { useAppSelector } from "~/store/hooks"
 import { useForm } from "react-hook-form"
+import { HashLoader } from "react-spinners"
 
 export const SupportersList = () => {
    const _campaign = useCampaign()
    const [memos, setMemos] = useState<MemoTypeWithItems[]>([])
+   const [loading, setLoading] = useState(false)
 
    const fetchMemos = async () => {
       const _memos = await _campaign.contract?.getMemos() 
@@ -22,13 +24,18 @@ export const SupportersList = () => {
       })
       setMemos(memosWithItems)
    }
-   
+
    useEffect(() => {
       fetchMemos()
    }, [])
    
    return (
-      <ul className="mx-auto divide-y w-full mt-6 max-w-lg bg-white border shadow rounded">
+      <ul className="mx-auto divide-y relative w-full mt-6 max-w-lg bg-white border shadow rounded">
+         {loading && (
+            <div className="inset-0 absolute bg-white/90 flex items-center justify-center">
+               <HashLoader color="#FDE047" size={70}/>
+            </div>
+         )}
          <li className="p-2 text-yellow-400 font-bold">Total supported: ({memos.length})</li>
          {memos.map((memo:MemoTypeWithItems, i: number) => (
             <Memo
@@ -46,7 +53,7 @@ interface MemoProps {
 }
 
 interface FormValues {
-   repsonse: string
+   response: string
 }
 
 const Memo:FC<MemoProps> = ({
@@ -65,7 +72,7 @@ const Memo:FC<MemoProps> = ({
       }
    } = useForm<FormValues>({
       defaultValues:{
-         repsonse: ""
+         response: ""
       }
    })
    
@@ -120,14 +127,14 @@ const Memo:FC<MemoProps> = ({
                      type="text" 
                      className="p-1 px-2 rounded border-neutral-300 bg-neutral-50 placeholder:text-gray-300 flex-1"
                      placeholder="Reply to comment"
-                     {...register("repsonse", {
+                     {...register("response", {
                         required: "You need to fill in something!"
                      })}
                   />
                   <button className="btn">Reply</button>
                </div>
-               {errors.repsonse && (
-                  <p className="error mt-2">{errors.repsonse.message}</p>
+               {errors.response && (
+                  <p className="error mt-2">{errors.response.message}</p>
                )}
             </form>
          )}
