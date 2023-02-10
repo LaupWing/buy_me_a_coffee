@@ -52,7 +52,6 @@ export const SupportersList = () => {
             <Memo
                key={i}
                memo={memo}
-               setLoading={setLoading}
                index={i}
                submitResponse={submitResponse}
             />
@@ -64,7 +63,6 @@ export const SupportersList = () => {
 
 interface MemoProps {
    memo: MemoTypeWithItems
-   setLoading: Dispatch<SetStateAction<boolean>>
    index: number
    submitResponse: (response:string, index:number) => void
 }
@@ -75,7 +73,6 @@ interface FormValues {
 
 const Memo:FC<MemoProps> = ({
    memo,
-   setLoading,
    index,
    submitResponse
 }) => {
