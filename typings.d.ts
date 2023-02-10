@@ -33,6 +33,7 @@ export interface MemoType {
    timestamp: BigNumber
    from: string
    name: string
+   response: string
 }
 
 export interface MemoTypeWithItems extends MemoType {
