@@ -67,7 +67,7 @@ export const AvailableItems = () => {
                <HashLoader color="#FDE047" size={70}/>
             </div>
          )}
-         <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Buy {campaign.campaign!.name} a treat!</h3>
+         <h3 className="text-3xl font-semibold mb-8 text-neutral-600 tracking-tight">Edit items</h3>
          {campaign.campaign && (
             <Controller
                control={control}
