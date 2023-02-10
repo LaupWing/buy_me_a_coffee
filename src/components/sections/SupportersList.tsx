@@ -30,8 +30,9 @@ export const SupportersList = () => {
    return (
       <ul className="mx-auto divide-y w-full mt-6 max-w-lg bg-white border shadow rounded">
          <li className="p-2 text-yellow-400 font-bold">Total supported: ({memos.length})</li>
-         {memos.map((memo:MemoTypeWithItems) => (
+         {memos.map((memo:MemoTypeWithItems, i: number) => (
             <Memo
+               key={i}
                memo={memo}
             />
          ))}
@@ -93,7 +94,7 @@ const Memo:FC<MemoProps> = ({
             <p className="font-bold text-neutral-400">{memo.name}</p>
             <p>{memo.message}</p>
          </div>
-         {(isOwner && !showReply) ? (
+         {(isOwner || !showReply) ? (
             <button 
                className="text-xs uppercase font-bold text-right mr-2 text-yellow-400"
                onClick={() => setShowReply(true)}
