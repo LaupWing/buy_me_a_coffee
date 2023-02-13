@@ -24,8 +24,8 @@ export interface FormValues {
    description: string
    name: string
    listOfItems: ListOfItems
-   profile: ImageListType
-   thumbnail: ImageListType
+   profile: ImageListType & string
+   thumbnail: ImageListType & string
 }
 
 export type ListOfItems = ItemsType[]
