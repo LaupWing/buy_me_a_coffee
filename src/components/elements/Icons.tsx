@@ -1,4 +1,5 @@
 import { IconType } from "react-icons"
+import { BiSearchAlt } from "react-icons/bi"
 import { BsFillCameraFill } from "react-icons/bs"
 import { FaEthereum } from "react-icons/fa"
 import { FiUpload } from "react-icons/fi"
@@ -25,5 +26,11 @@ export const IconUpload:IconType = (props) => {
 export const IconCoffee:IconType = (props) => {
    return (
       <SiBuymeacoffee {...props}/>
+   )
+}
+
+export const IconSearch:IconType = (props) => {
+   return (
+      <BiSearchAlt {...props}/>
    )
 }

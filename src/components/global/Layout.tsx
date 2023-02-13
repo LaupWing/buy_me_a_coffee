@@ -4,9 +4,8 @@ import {
    FC, 
    PropsWithChildren 
 } from "react"
-import { BiSearchAlt } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "~/slices/web3"
-import { IconCoffee, LoadingOverlay } from "~/components"
+import { IconCoffee, IconSearch, LoadingOverlay } from "~/components"
 import { useAppDispatch, useAppSelector } from "~/store/hooks"
 import { 
    fetchBuyMeACoffeeFactory, 
@@ -72,7 +71,7 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
                   <div className="flex items-center ml-auto space-x-6">
                      { account ? (
                         <>
-                           <BiSearchAlt
+                           <IconSearch
                               className="text-gray-400 hover:text-yellow-400 duration-200 cursor-pointer" 
                               size={30}
                            />
