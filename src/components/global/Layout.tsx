@@ -4,10 +4,9 @@ import {
    FC, 
    PropsWithChildren 
 } from "react"
-import { SiBuymeacoffee } from "react-icons/si"
 import { BiSearchAlt } from "react-icons/bi"
 import { connectWallet, loadAccount, loadWeb3 } from "~/slices/web3"
-import { LoadingOverlay } from "~/components"
+import { IconCoffee, LoadingOverlay } from "~/components"
 import { useAppDispatch, useAppSelector } from "~/store/hooks"
 import { 
    fetchBuyMeACoffeeFactory, 
@@ -67,7 +66,7 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
                <header className="bg-white container p-4 flex rounded-lg shadow mt-4">
                   <Link href={"/"}>
                      <div className="text-neutral-700">
-                        <SiBuymeacoffee size={30}/>
+                        <IconCoffee size={30}/>
                      </div>
                   </Link>
                   <div className="flex items-center ml-auto space-x-6">
