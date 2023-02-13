@@ -1,10 +1,9 @@
 import React from "react"
 import { Control, Controller, FieldErrorsImpl } from "react-hook-form"
-import { FiUpload } from "react-icons/fi"
 import ImageUploading, { ImageListType } from "react-images-uploading"
 import { ExportInterface } from "react-images-uploading/dist/typings"
 import { FormValues } from "../../pages/create"
-import { IconCamera } from "~/components"
+import { IconCamera, IconUpload } from "~/components"
 
 
 interface ProfileProps {
@@ -100,7 +99,7 @@ const Upload:React.FC<UploadProps> = ({dragProps, onImageUpload, error}) => {
          type="button"
          {...dragProps}
       >
-         <FiUpload className="text-yellow-400 z-40" size={30}/>
+         <IconUpload className="text-yellow-400 z-40" size={30}/>
          <div className="bg-white/40 absolute inset-0"></div>
       </button>
    )

@@ -1,10 +1,9 @@
 import React from "react"
 import { Control, Controller, FieldErrorsImpl } from "react-hook-form"
-import { FiUpload } from "react-icons/fi"
 import ImageUploading from "react-images-uploading"
 import { ExportInterface, ImageListType } from "react-images-uploading/dist/typings"
 import { FormValues } from "../../pages/create"
-import { IconCamera } from "~/components"
+import { IconCamera, IconUpload } from "~/components"
 
 export interface ThumbnailProps {
    control: Control<FormValues>
@@ -110,7 +109,7 @@ const Upload:React.FC<UploadProps> = ({
          {...dragProps}
          type="button"
       >
-         <FiUpload
+         <IconUpload
             className="text-yellow-400" 
             size={30}
          />
