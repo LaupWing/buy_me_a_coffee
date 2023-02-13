@@ -17,8 +17,8 @@ export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    const router = useRouter()
    const _campaign = useCampaign()
    const { account } = useAppSelector(state => state.web3)
-
-   // const owner = isOwner(account, _campaign.campaign?.address!)
+   
+   const owner = _campaign.campaign && isOwner(account, _campaign?.campaign?.owner!)
 
    useEffect(() => {
       const init = async () =>{
@@ -33,7 +33,7 @@ export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    return (
       <div className="my-6 pb-10">
          <div className="relative">
-            {true && <button className="absolute top-3 left-2 btn">Edit</button>}
+            {owner && <button className="absolute top-3 left-2 btn">Edit</button>}
             <img 
                src={gateWay + _campaign.campaign?.thumbnail}  
                className="w-full h-60 object-cover"

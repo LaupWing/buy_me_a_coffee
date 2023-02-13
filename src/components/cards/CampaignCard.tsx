@@ -2,12 +2,12 @@ import { FC } from "react"
 import { CampaignType } from "types"
 import { gateWay } from "../../utils/ipfs"
 import Link from "next/link"
-import isOwner from "~/utils/compareAddress"
+import compareAddress from "~/utils/compareAddress"
 import { useAppSelector } from "~/store/hooks"
 
 export const CampaignCard:FC<{campaign: CampaignType}> = ({ campaign }) => {
    const { account } = useAppSelector(state => state.web3)
-   const owned = isOwner(account, campaign.owner!)
+   const owned = compareAddress(account, campaign.owner!)
    return (
       <Link href={`/campaign/${campaign.address}`}>
          <div 
