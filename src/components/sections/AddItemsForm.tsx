@@ -1,5 +1,10 @@
-import { useState, FC } from "react"
-import { Controller, ControllerRenderProps, SubmitHandler, useForm } from "react-hook-form"
+import { FC } from "react"
+import { 
+   Controller, 
+   ControllerRenderProps, 
+   SubmitHandler, 
+   useForm 
+} from "react-hook-form"
 import { FaEthereum } from "react-icons/fa"
 import { ITEMS } from "../../../constants"
 import { useAppSelector } from "../../store/hooks"
