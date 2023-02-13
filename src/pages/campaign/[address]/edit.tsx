@@ -32,6 +32,19 @@ const Campaign:NextPage = () => {
                alt="profile picture" 
             />
          </div>
+         <main className="mt-16">
+            <div className="w-full max-w-md mx-auto text-center flex flex-col space-y-4">
+               <input 
+                  type="text" 
+                  value={_campaign.campaign?.name}
+               />
+               <p className="italic text-neutral-400 font-semibold">{_campaign.campaign?.owner}</p>
+               <textarea 
+                  className="h-32 resize-none"
+                  value={_campaign.campaign?.description}
+               />
+            </div>
+         </main>
       </div>
    )
 }
