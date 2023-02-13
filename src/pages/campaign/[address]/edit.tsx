@@ -32,20 +32,28 @@ const Campaign:NextPage = () => {
       handleSubmit
    } = useForm<FormValues>({
       defaultValues: {
-         name: _campaign.campaign?.name,
+         name: "",
          description: "",
-         thumbnail: gateWay + _campaign.campaign?.thumbnail,
-         profile: gateWay + _campaign.campaign?.profile,
+         thumbnail: "",
+         profile: "",
          listOfItems: []
       },
    })
    useEffect(() => {
       const init = async () =>{
          await _campaign.loadCampaign()
-         setValue("description", _campaign.campaign?.description!)
       }
       init()
    },[])
+   
+   useEffect(() => {
+      if(_campaign.campaign){
+         setValue("name", _campaign.campaign?.name!)
+         setValue("description", _campaign.campaign?.description!)
+         setValue("thumbnail", gateWay + _campaign.campaign?.thumbnail!)
+         setValue("profile", gateWay + _campaign.campaign?.profile!)
+      }
+   }, [_campaign.campaign])
 
    if(!_campaign.loaded){
       return <div>Loading..</div>
