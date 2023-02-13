@@ -9,11 +9,16 @@ import { gateWay } from "~/utils/ipfs"
 import useCampaign from "~/hooks/useCampaign"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import isOwner from "~/utils/compareAddress"
+import { useAppSelector } from "~/store/hooks"
 
 
 export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    const router = useRouter()
    const _campaign = useCampaign()
+   const { account } = useAppSelector(state => state.web3)
+
+   // const owner = isOwner(account, _campaign.campaign?.address!)
 
    useEffect(() => {
       const init = async () =>{
@@ -28,7 +33,7 @@ export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    return (
       <div className="my-6 pb-10">
          <div className="relative">
-            <button className="absolute top-3 left-2 btn">Edit</button>
+            {true && <button className="absolute top-3 left-2 btn">Edit</button>}
             <img 
                src={gateWay + _campaign.campaign?.thumbnail}  
                className="w-full h-60 object-cover"
