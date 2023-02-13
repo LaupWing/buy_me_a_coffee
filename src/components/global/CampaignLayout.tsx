@@ -17,6 +17,8 @@ export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    const router = useRouter()
    const _campaign = useCampaign()
    const { account } = useAppSelector(state => state.web3)
+
+   console.log(router)
    
    const owner = _campaign.campaign && isOwner(account, _campaign?.campaign?.owner!)
 
@@ -33,7 +35,18 @@ export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    return (
       <div className="my-6 pb-10">
          <div className="relative">
-            {owner && <button className="absolute top-3 left-2 btn">Edit</button>}
+            {owner && (
+               <Link
+                  href={{
+                     pathname: `/campaign/[address]/edit`,
+                     query: {
+                        address: router.query.address
+                     }
+                  }}
+               >
+                  <button className="absolute top-3 left-2 btn">Edit</button>
+               </Link>
+            )}
             <img 
                src={gateWay + _campaign.campaign?.thumbnail}  
                className="w-full h-60 object-cover"
