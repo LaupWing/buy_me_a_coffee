@@ -1,6 +1,6 @@
 import { NextPage } from "next"
-import { useEffect } from "react"
-import { useForm } from "react-hook-form"
+import { FC, useEffect } from "react"
+import { useForm, UseFormRegisterReturn } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
 import { Field } from "~/components"
@@ -101,12 +101,19 @@ const Campaign:NextPage = () => {
 }
 export default Campaign
 
-const EditThumbnail = () => {
+interface EditThumbnailProps {
+   register: UseFormRegisterReturn<string>
+}
+
+const EditThumbnail:FC<EditThumbnailProps> = () => {
    return (
-      <img 
-         src={gateWay + _campaign.campaign?.thumbnail}  
-         className="w-full h-60 object-cover"
-         alt="thumbnail from campaign" 
-      />
+      <>
+      
+         <img 
+            src={gateWay + _campaign.campaign?.thumbnail}  
+            className="w-full h-60 object-cover"
+            alt="thumbnail from campaign" 
+         />
+      </>
    )
 }
