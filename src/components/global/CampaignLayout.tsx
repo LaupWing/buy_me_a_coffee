@@ -28,6 +28,7 @@ export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    return (
       <div className="my-6 pb-10">
          <div className="relative">
+            <button className="absolute top-3 left-2 btn">Edit</button>
             <img 
                src={gateWay + _campaign.campaign?.thumbnail}  
                className="w-full h-60 object-cover"
