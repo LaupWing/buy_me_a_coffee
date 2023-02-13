@@ -100,3 +100,13 @@ const Campaign:NextPage = () => {
    )
 }
 export default Campaign
+
+const EditThumbnail = () => {
+   return (
+      <img 
+         src={gateWay + _campaign.campaign?.thumbnail}  
+         className="w-full h-60 object-cover"
+         alt="thumbnail from campaign" 
+      />
+   )
+}
