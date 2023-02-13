@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { ethers } from "ethers"
-import { FaEthereum } from "react-icons/fa"
 import { ListOfItems } from "types"
 import { useAppSelector } from "~/store/hooks"
 import { findItem } from "~/lib/utils"
@@ -14,6 +13,7 @@ import useCampaign from "~/hooks/useCampaign"
 import { HashLoader } from "react-spinners"
 import { useState } from "react"
 import { toast } from "react-toastify"
+import { IconEthereum } from "~/components"
 
 interface MemoFormValues {
    message: string
@@ -119,7 +119,7 @@ const ListOfItems:FC<ListOfItemsProps> = ({
          <div className="flex items-center text-lg">
             <div className="flex items-center text-neutral-400 font-bold space-x-1">
                <p>{ethers.utils.formatEther(listOfItems.cost).toString()}</p>
-               <FaEthereum/>
+               <IconEthereum/>
             </div>
             <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
                <p>$ {

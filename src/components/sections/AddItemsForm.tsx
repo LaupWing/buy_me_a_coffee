@@ -5,9 +5,9 @@ import {
    SubmitHandler, 
    useForm 
 } from "react-hook-form"
-import { FaEthereum } from "react-icons/fa"
 import { ITEMS } from "../../../constants"
-import { useAppSelector } from "../../store/hooks"
+import { useAppSelector } from "~/store/hooks"
+import { IconEthereum } from "~/components"
 
 interface FormValues {
    value: number|null
@@ -50,7 +50,7 @@ export const AddItemsForm:FC<AddItemsFormProps> = ({addListOfItems}) => {
          <div className="absolute top-0 z-40 transform -translate-y-1/2 text-neutral-300 bg-white px-2">1 eth = {ethPrice} USD</div>
          <div className="flex flex-col flex-1">
             <div className="flex items-center flex-1">
-               <FaEthereum className="text-gray-300 mr-2" size={30}/>
+               <IconEthereum className="text-gray-300 mr-2" size={30}/>
                <div className="text-2xl relative flex items-center">
                   <input
                      step=".01"
