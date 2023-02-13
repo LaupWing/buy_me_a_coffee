@@ -1,10 +1,10 @@
 import React from "react"
 import { Control, Controller, FieldErrorsImpl } from "react-hook-form"
-import { BsFillCameraFill } from "react-icons/bs"
 import { FiUpload } from "react-icons/fi"
 import ImageUploading from "react-images-uploading"
 import { ExportInterface, ImageListType } from "react-images-uploading/dist/typings"
 import { FormValues } from "../../pages/create"
+import { IconCamera } from "~/components"
 
 export interface ThumbnailProps {
    control: Control<FormValues>
@@ -86,7 +86,7 @@ const Current:React.FC<CurrentProps> = ({ dragProps, onImageUpload }) => {
          {...dragProps}
          type="button"
       >
-         <BsFillCameraFill
+         <IconCamera
             className="text-white" 
             size={30}
          />

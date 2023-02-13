@@ -1,10 +1,10 @@
 import React from "react"
 import { Control, Controller, FieldErrorsImpl } from "react-hook-form"
-import { BsFillCameraFill } from "react-icons/bs"
 import { FiUpload } from "react-icons/fi"
 import ImageUploading, { ImageListType } from "react-images-uploading"
 import { ExportInterface } from "react-images-uploading/dist/typings"
 import { FormValues } from "../../pages/create"
+import { IconCamera } from "~/components"
 
 
 interface ProfileProps {
@@ -73,7 +73,7 @@ const Current:React.FC<CurrentProps> = ({ dragProps, onImageUpload, image }) => 
             alt="Profile image" 
          />
          <div className="inset-0 absolute text-white flex items-center justify-center bg-black/20">
-            <BsFillCameraFill size={30}/>
+            <IconCamera size={30}/>
          </div>
       </button>
    )
