@@ -12,7 +12,7 @@ export interface FormValues {
    name: string
    listOfItems: ListOfItems
    profile: ImageListType | string
-   thumbnail: ImageListType | string
+   thumbnail: ImageListType
 }
 
 export type ListOfItems = ItemsType[]
@@ -34,7 +34,7 @@ const Campaign:NextPage = () => {
       defaultValues: {
          name: "",
          description: "",
-         thumbnail: "",
+         thumbnail: undefined,
          profile: "",
          listOfItems: []
       },
@@ -50,7 +50,9 @@ const Campaign:NextPage = () => {
       if(_campaign.campaign){
          setValue("name", _campaign.campaign?.name!)
          setValue("description", _campaign.campaign?.description!)
-         setValue("thumbnail", gateWay + _campaign.campaign?.thumbnail!)
+         setValue("thumbnail", [{
+            dataURL: gateWay + _campaign.campaign?.thumbnail!
+         }])
          setValue("profile", gateWay + _campaign.campaign?.profile!)
       }
    }, [_campaign.campaign])
