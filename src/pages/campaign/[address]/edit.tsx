@@ -9,7 +9,7 @@ import {
 } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
-import { Field } from "~/components"
+import { Field, IconCamera, IconUpload } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
 import ImageUploading from "react-images-uploading"
@@ -133,13 +133,27 @@ const EditCampaignThumbnail:FC<EditCampaignThumbnailProps> = ({
                   value={field.value}
                   onChange={(image) => field.onChange(image)}
                >
-                  {() => {
+                  {({ onImageUpload }) => {
                      return field.value ? (
-                        <img 
-                           src={field.value[0].dataURL}  
-                           className="w-full h-60 object-cover"
-                           alt="thumbnail from campaign" 
-                        />
+                        <>
+                           <img 
+                              src={field.value[0].dataURL}  
+                              className="w-full h-60 object-cover"
+                              alt="thumbnail from campaign" 
+                           />
+                           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                              <button
+                                 className="z-40 m-auto"
+                                 onClick={onImageUpload}
+                                 type="button"
+                              >
+                                 <IconCamera
+                                    className="text-white" 
+                                    size={30}
+                                 />
+                              </button>
+                           </div>
+                        </>
                      ) : null
                   }}
                </ImageUploading>
