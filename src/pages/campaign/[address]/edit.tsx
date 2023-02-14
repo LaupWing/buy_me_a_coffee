@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { FC, useEffect } from "react"
+import { FC, useEffect, useState } from "react"
 import { SubmitHandler, useForm, UseFormRegisterReturn } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
@@ -19,6 +19,7 @@ export type ListOfItems = ItemsType[]
 
 const Campaign:NextPage = () => {
    const _campaign = useCampaign()
+   const [loaded, setLoaded] = useState(false)
 
    const { 
       register,
@@ -60,6 +61,7 @@ const Campaign:NextPage = () => {
                setValue("thumbnail", file)
                console.log(file)
                console.log(URL.createObjectURL(file))
+               setLoaded(true)
                // access file here
             })
       }
@@ -69,7 +71,7 @@ const Campaign:NextPage = () => {
       }
    }, [_campaign.campaign])
 
-   if(!_campaign.loaded){
+   if(!loaded){
       return <div>Loading..</div>
    }
 
