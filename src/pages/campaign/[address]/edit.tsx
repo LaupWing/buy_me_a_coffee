@@ -47,11 +47,15 @@ const Campaign:NextPage = () => {
    },[])
    
    useEffect(() => {
-      if(_campaign.campaign){
+      const setValues = async () => {
          setValue("name", _campaign.campaign?.name!)
          setValue("description", _campaign.campaign?.description!)
          setValue("thumbnail", gateWay + _campaign.campaign?.thumbnail!)
          setValue("profile", gateWay + _campaign.campaign?.profile!)
+      }
+
+      if(_campaign.campaign){
+         setValues()
       }
    }, [_campaign.campaign])
 
@@ -59,8 +63,8 @@ const Campaign:NextPage = () => {
       return <div>Loading..</div>
    }
 
-   const onSubmit:SubmitHandler<FormValues> = () => {
-
+   const onSubmit:SubmitHandler<FormValues> = ({thumbnail}) => {
+      console.log(thumbnail)
    } 
 
    return (
