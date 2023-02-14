@@ -88,7 +88,7 @@ const Campaign:NextPage = () => {
                alt="profile picture" 
             />
          </div>
-         <main className="mt-16">
+         <main className="mt-16 bg-white max-w-2xl mx-auto p-10 rounded border shadow">
             <div className="w-full max-w-md mx-auto text-center flex flex-col space-y-4">
                <Field
                   label="Name"
@@ -110,7 +110,6 @@ const Campaign:NextPage = () => {
                />
             </div>
          </main>
-         <button type="submit">Submit</button>
       </form>
    )
 }
