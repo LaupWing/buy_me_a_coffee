@@ -1,6 +1,6 @@
 import { NextPage } from "next"
 import { FC, useEffect } from "react"
-import { SubmitHandler, useForm, UseFormRegisterReturn } from "react-hook-form"
+import { Controller, SubmitHandler, useForm, UseFormRegisterReturn } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
 import { Field } from "~/components"
@@ -69,6 +69,17 @@ const Campaign:NextPage = () => {
          onSubmit={handleSubmit(onSubmit)}
       >
          <div className="relative">
+            <Controller
+               name="thumbnail"
+               control={control}
+               render={({field})=>{
+                  console.log(field)
+                  return (
+                     <div>
+                     </div>
+                  )
+               }}
+            />
             <input 
                type="file" 
                className="absolute top-0"
