@@ -179,13 +179,21 @@ const EditCampaignProfile:FC<EditCampaignProfileProps> = ({
                   value={field.value}
                   onChange={(image) => field.onChange(image)}
                >
-                  {() => {
+                  {({ onImageUpload }) => {
                      return field.value ? (
-                        <img 
-                           className="absolute bottom-0 rounded-full overflow-hidden left-1/2 w-36 h-36 object-cover transform -translate-x-1/2 translate-y-1/3 border-[5px] border-white"
-                           src={field.value[0].dataURL} 
-                           alt="profile picture" 
-                        />
+                        <button 
+                           className="absolute bottom-0 rounded-full overflow-hidden left-1/2 w-36 h-36 transform -translate-x-1/2 translate-y-1/3 border-[5px] border-white"
+                           onClick={onImageUpload}
+                        >
+                           <img 
+                              className="object-cover"
+                              src={field.value[0].dataURL} 
+                              alt="profile picture" 
+                           />
+                           <div className="inset-0 absolute text-white flex items-center justify-center bg-black/20">
+                              <IconCamera size={30}/>
+                           </div>
+                        </button>
                      ) : null
                   }}
                </ImageUploading>
