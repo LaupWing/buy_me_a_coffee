@@ -1,6 +1,6 @@
 import { NextPage } from "next"
 import { FC, useEffect } from "react"
-import { useForm, UseFormRegisterReturn } from "react-hook-form"
+import { SubmitHandler, useForm, UseFormRegisterReturn } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
 import { Field } from "~/components"
@@ -59,10 +59,21 @@ const Campaign:NextPage = () => {
       return <div>Loading..</div>
    }
 
+   const onSubmit:SubmitHandler<FormValues> = () => {
+
+   } 
 
    return (
-      <div className="my-6 pb-10">
+      <form 
+         className="my-6 pb-10"
+         onSubmit={handleSubmit(onSubmit)}
+      >
          <div className="relative">
+            <input 
+               type="file" 
+               className="absolute top-0"
+               {...register("thumbnail")}
+            />
             <img 
                src={gateWay + _campaign.campaign?.thumbnail}  
                className="w-full h-60 object-cover"
@@ -96,7 +107,8 @@ const Campaign:NextPage = () => {
                />
             </div>
          </main>
-      </div>
+         <button type="submit">Submit</button>
+      </form>
    )
 }
 export default Campaign
