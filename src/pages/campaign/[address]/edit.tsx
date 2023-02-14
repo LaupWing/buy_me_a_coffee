@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect } from "react"
 import { SubmitHandler, useForm, UseFormRegisterReturn } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
@@ -12,14 +12,13 @@ export interface FormValues {
    name: string
    listOfItems: ListOfItems
    profile: ImageListType | string
-   thumbnail: File
+   thumbnail: ImageListType | string
 }
 
 export type ListOfItems = ItemsType[]
 
 const Campaign:NextPage = () => {
    const _campaign = useCampaign()
-   const [loaded, setLoaded] = useState(false)
 
    const { 
       register,
@@ -35,7 +34,7 @@ const Campaign:NextPage = () => {
       defaultValues: {
          name: "",
          description: "",
-         thumbnail: undefined,
+         thumbnail: "",
          profile: "",
          listOfItems: []
       },
@@ -48,30 +47,15 @@ const Campaign:NextPage = () => {
    },[])
    
    useEffect(() => {
-      const setValues = async () => {
+      if(_campaign.campaign){
          setValue("name", _campaign.campaign?.name!)
          setValue("description", _campaign.campaign?.description!)
-         
+         setValue("thumbnail", gateWay + _campaign.campaign?.thumbnail!)
          setValue("profile", gateWay + _campaign.campaign?.profile!)
-         fetch(gateWay + _campaign.campaign?.thumbnail!)
-            .then(async response => {
-               const contentType = response.headers.get('content-type')
-               const blob = await response.blob()
-               const file = new File([blob], "thumbnail")
-               setValue("thumbnail", file)
-               console.log(file)
-               console.log(URL.createObjectURL(file))
-               setLoaded(true)
-               // access file here
-            })
-      }
-
-      if(_campaign.campaign){
-         setValues()
       }
    }, [_campaign.campaign])
 
-   if(!loaded){
+   if(!_campaign.loaded){
       return <div>Loading..</div>
    }
 
