@@ -1,11 +1,18 @@
 import { NextPage } from "next"
 import { FC, useEffect } from "react"
-import { Controller, SubmitHandler, useForm, UseFormRegisterReturn } from "react-hook-form"
+import { 
+   Control, 
+   Controller, 
+   SubmitHandler, 
+   useForm, 
+   UseFormRegisterReturn 
+} from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
 import { Field } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
+import ImageUploading from "react-images-uploading"
 
 export interface FormValues {
    description: string
@@ -71,27 +78,10 @@ const Campaign:NextPage = () => {
          onSubmit={handleSubmit(onSubmit)}
       >
          <div className="relative">
-            <Controller
-               name="thumbnail"
+            <EditCampaignThumbnail
                control={control}
-               render={({field})=>{
-                  console.log(field)
-                  return (
-                     <div>
-                     </div>
-                  )
-               }}
             />
-            <input 
-               type="file" 
-               className="absolute top-0"
-               {...register("thumbnail")}
-            />
-            <img 
-               src={gateWay + _campaign.campaign?.thumbnail}  
-               className="w-full h-60 object-cover"
-               alt="thumbnail from campaign" 
-            />
+            
             <img 
                className="absolute bottom-0 rounded-full overflow-hidden left-1/2 w-36 h-36 object-cover transform -translate-x-1/2 translate-y-1/3 border-[5px] border-white"
                src={gateWay + _campaign.campaign?.profile} 
@@ -125,3 +115,37 @@ const Campaign:NextPage = () => {
    )
 }
 export default Campaign
+
+interface EditCampaignThumbnailProps {
+   control: Control<FormValues>
+}
+
+const EditCampaignThumbnail:FC<EditCampaignThumbnailProps> = ({
+   control
+}) => {
+   return (
+      <Controller
+         control={control}
+         name="thumbnail"
+         render={({ field }) => {
+            return(
+               <ImageUploading 
+                  multiple={false}
+                  value={field.value}
+                  onChange={(image) => field.onChange(image)}
+               >
+                  {() => {
+                     return field.value ? (
+                        <img 
+                           src={field.value[0].dataURL}  
+                           className="w-full h-60 object-cover"
+                           alt="thumbnail from campaign" 
+                        />
+                     ) : null
+                  }}
+               </ImageUploading>
+            )
+         }}
+      />
+   )
+}
