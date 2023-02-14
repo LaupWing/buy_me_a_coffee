@@ -100,20 +100,3 @@ const Campaign:NextPage = () => {
    )
 }
 export default Campaign
-
-interface EditThumbnailProps {
-   register: UseFormRegisterReturn<string>
-}
-
-const EditThumbnail:FC<EditThumbnailProps> = () => {
-   return (
-      <>
-      
-         <img 
-            src={gateWay + _campaign.campaign?.thumbnail}  
-            className="w-full h-60 object-cover"
-            alt="thumbnail from campaign" 
-         />
-      </>
-   )
-}
