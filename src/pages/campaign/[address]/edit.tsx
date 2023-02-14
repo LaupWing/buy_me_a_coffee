@@ -12,7 +12,7 @@ export interface FormValues {
    name: string
    listOfItems: ListOfItems
    profile: ImageListType | string
-   thumbnail: ImageListType | string
+   thumbnail: File
 }
 
 export type ListOfItems = ItemsType[]
@@ -34,7 +34,7 @@ const Campaign:NextPage = () => {
       defaultValues: {
          name: "",
          description: "",
-         thumbnail: "",
+         thumbnail: undefined,
          profile: "",
          listOfItems: []
       },
@@ -50,8 +50,18 @@ const Campaign:NextPage = () => {
       const setValues = async () => {
          setValue("name", _campaign.campaign?.name!)
          setValue("description", _campaign.campaign?.description!)
-         setValue("thumbnail", gateWay + _campaign.campaign?.thumbnail!)
+         
          setValue("profile", gateWay + _campaign.campaign?.profile!)
+         fetch(gateWay + _campaign.campaign?.thumbnail!)
+            .then(async response => {
+               const contentType = response.headers.get('content-type')
+               const blob = await response.blob()
+               const file = new File([blob], "thumbnail")
+               setValue("thumbnail", file)
+               console.log(file)
+               console.log(URL.createObjectURL(file))
+               // access file here
+            })
       }
 
       if(_campaign.campaign){
