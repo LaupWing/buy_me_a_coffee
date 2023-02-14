@@ -5,11 +5,10 @@ import {
    Controller, 
    SubmitHandler, 
    useForm, 
-   UseFormRegisterReturn 
 } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
-import { Field, IconCamera, IconUpload } from "~/components"
+import { Field, IconCamera } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
 import ImageUploading from "react-images-uploading"
@@ -161,4 +160,12 @@ const EditCampaignThumbnail:FC<EditCampaignThumbnailProps> = ({
          }}
       />
    )
+}
+
+interface EditCampaignProfileProps {
+   control: Control<FormValues>
+}
+
+const EditCampaignProfile = () => {
+
 }
