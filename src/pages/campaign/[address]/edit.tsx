@@ -17,7 +17,7 @@ export interface FormValues {
    description: string
    name: string
    listOfItems: ListOfItems
-   profile: ImageListType | string
+   profile: ImageListType
    thumbnail: ImageListType
 }
 
@@ -41,7 +41,7 @@ const Campaign:NextPage = () => {
          name: "",
          description: "",
          thumbnail: undefined,
-         profile: "",
+         profile: undefined,
          listOfItems: []
       },
    })
@@ -59,7 +59,9 @@ const Campaign:NextPage = () => {
          setValue("thumbnail", [{
             dataURL: gateWay + _campaign.campaign?.thumbnail!
          }])
-         setValue("profile", gateWay + _campaign.campaign?.profile!)
+         setValue("profile", [{
+            dataURL: gateWay + _campaign.campaign?.profile!
+         }])
       }
    }, [_campaign.campaign])
 
@@ -80,11 +82,8 @@ const Campaign:NextPage = () => {
             <EditCampaignThumbnail
                control={control}
             />
-            
-            <img 
-               className="absolute bottom-0 rounded-full overflow-hidden left-1/2 w-36 h-36 object-cover transform -translate-x-1/2 translate-y-1/3 border-[5px] border-white"
-               src={gateWay + _campaign.campaign?.profile} 
-               alt="profile picture" 
+            <EditCampaignProfile
+               control={control}
             />
          </div>
          <main className="mt-16 bg-white max-w-2xl mx-auto p-10 rounded border shadow">
@@ -166,6 +165,32 @@ interface EditCampaignProfileProps {
    control: Control<FormValues>
 }
 
-const EditCampaignProfile = () => {
-
+const EditCampaignProfile:FC<EditCampaignProfileProps> = ({
+   control
+}) => {
+   return (
+      <Controller
+         control={control}
+         name="profile"
+         render={({ field }) => {
+            return (
+               <ImageUploading
+                  multiple={false}
+                  value={field.value}
+                  onChange={(image) => field.onChange(image)}
+               >
+                  {() => {
+                     return field.value ? (
+                        <img 
+                           className="absolute bottom-0 rounded-full overflow-hidden left-1/2 w-36 h-36 object-cover transform -translate-x-1/2 translate-y-1/3 border-[5px] border-white"
+                           src={field.value[0].dataURL} 
+                           alt="profile picture" 
+                        />
+                     ) : null
+                  }}
+               </ImageUploading>
+            )
+         }}
+      />
+   )
 }
