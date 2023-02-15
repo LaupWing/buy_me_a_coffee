@@ -86,7 +86,7 @@ const Campaign:NextPage = () => {
                control={control}
             />
          </div>
-         <main className="mt-16 bg-white max-w-2xl mx-auto p-10 rounded border shadow">
+         <main className="mt-16 bg-white max-w-2xl mx-auto p-10 rounded border shadow flex flex-col">
             <div className="w-full max-w-md mx-auto text-center flex flex-col space-y-4">
                <Field
                   label="Name"
@@ -125,6 +125,7 @@ const Campaign:NextPage = () => {
                      ))}
                </ul>
             </div>
+            <button className="btn ml-auto mt-4">Submit</button>
          </main>
       </form>
    )
