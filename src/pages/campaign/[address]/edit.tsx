@@ -12,6 +12,7 @@ import { Field, IconCamera, Items } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
 import ImageUploading from "react-images-uploading"
+import { parseItems } from "~/lib/utils"
 
 export interface FormValues {
    description: string
@@ -108,11 +109,13 @@ const Campaign:NextPage = () => {
             </div>
             <div className="flex flex-col">
                <ul className="flex flex-col space-y-2">
-                  {/* {_campaign.campaign!.listOfItems.map((listOfItems:ListOfItems) => (
-                     <Items 
-                        {...listOfItems}
-                     />
-                  ))} */}
+                  {_campaign.campaign!.listOfItems
+                     .map(parseItems)
+                     .map((listOfItems:any) => (
+                        <Items 
+                           {...listOfItems}
+                        />
+                     ))}
                </ul>
             </div>
          </main>
