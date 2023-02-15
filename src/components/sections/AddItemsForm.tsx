@@ -11,12 +11,12 @@ import { IconEthereum } from "~/components"
 
 interface FormValues {
    value: number|null
-   items: string[]
+   names: string[]
 }
 
 interface AddItemsFormProps {
    addListOfItems: (props:{
-      items: string[],
+      names: string[],
       value: number
    }) => void 
 }
@@ -31,14 +31,14 @@ export const AddItemsForm:FC<AddItemsFormProps> = ({addListOfItems}) => {
       handleSubmit,
    } = useForm<FormValues>({
       defaultValues: {
-         items: []
+         names: []
       },
    })
    const value = watch("value")
    const { ethPrice } = useAppSelector(state => state.contracts)
 
-   const submitHandler: SubmitHandler<FormValues> = async ({items, value}) => {
-      addListOfItems({items, value:value!})
+   const submitHandler: SubmitHandler<FormValues> = async ({names, value}) => {
+      addListOfItems({names, value:value!})
       reset()
    }
 
@@ -74,7 +74,7 @@ export const AddItemsForm:FC<AddItemsFormProps> = ({addListOfItems}) => {
             <div className="flex space-x-2">
                <Controller
                   control={control}
-                  name="items"
+                  name="names"
                   rules={{
                      required: "You need at least one item!",
                   }}
@@ -93,8 +93,8 @@ export const AddItemsForm:FC<AddItemsFormProps> = ({addListOfItems}) => {
                   Add
                </button>
             </div>
-            {errors.items && (
-               <p className="error mt-2">{errors.items.message}</p>
+            {errors.names && (
+               <p className="error mt-2">{errors.names.message}</p>
             )}
          </div>
       </form>
@@ -106,7 +106,7 @@ interface ItemProps {
       name: string
       emoji: number
    }
-   field: ControllerRenderProps<FormValues, "items"> 
+   field: ControllerRenderProps<FormValues, "names"> 
 } 
 
 const Item:FC<ItemProps> = ({

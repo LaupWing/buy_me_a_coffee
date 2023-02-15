@@ -8,7 +8,7 @@ import {
 } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
-import { Field, IconCamera } from "~/components"
+import { Field, IconCamera, Items } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
 import ImageUploading from "react-images-uploading"
@@ -107,7 +107,13 @@ const Campaign:NextPage = () => {
                />
             </div>
             <div className="flex flex-col">
-
+               <ul className="flex flex-col space-y-2">
+                  {/* {_campaign.campaign!.listOfItems.map((listOfItems:ListOfItems) => (
+                     <Items 
+                        {...listOfItems}
+                     />
+                  ))} */}
+               </ul>
             </div>
          </main>
       </form>
