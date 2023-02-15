@@ -7,6 +7,7 @@ import {
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
 import { 
+   AddItemsForm,
    EditCampaignProfile, 
    EditCampaignThumbnail, 
    Field, 
@@ -110,7 +111,8 @@ const Campaign:NextPage = () => {
                   errors={errors}
                />
             </div>
-            <div className="flex flex-col my-4">
+            <div className="flex flex-col my-10">
+               <AddItemsForm addListOfItems={() => {}}/>
                <ul className="flex flex-col space-y-2">
                   {_campaign.campaign!.listOfItems
                      .map(parseItems)
@@ -128,7 +130,7 @@ const Campaign:NextPage = () => {
                      ))}
                </ul>
             </div>
-            <button className="btn ml-auto mt-4">Submit</button>
+            <button className="btn ml-auto">Submit</button>
          </main>
       </form>
    )
