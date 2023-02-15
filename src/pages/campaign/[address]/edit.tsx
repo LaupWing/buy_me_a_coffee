@@ -1,17 +1,20 @@
 import { NextPage } from "next"
-import { FC, useEffect } from "react"
+import { useEffect } from "react"
 import { 
-   Control, 
-   Controller, 
    SubmitHandler, 
    useForm, 
 } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
-import { EditCampaignProfile, EditCampaignThumbnail, Field, IconCamera, IconTrashcan, Items } from "~/components"
+import { 
+   EditCampaignProfile, 
+   EditCampaignThumbnail, 
+   Field, 
+   IconTrashcan, 
+   Items 
+} from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
-import ImageUploading from "react-images-uploading"
 import { parseItems } from "~/lib/utils"
 
 export interface EditFormValues {
