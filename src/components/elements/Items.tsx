@@ -4,7 +4,7 @@ import { ItemsType } from "types"
 import { useAppSelector } from "../../store/hooks"
 import { IconEthereum } from "~/components"
 
-export const Items:FC<ItemsType> = ({value, items}) => {
+export const Items:FC<ItemsType> = ({value, names}) => {
    const {ethPrice} = useAppSelector(state => state.contracts)
    const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
 
@@ -16,7 +16,7 @@ export const Items:FC<ItemsType> = ({value, items}) => {
             <p className="text-base whitespace-pre-wrap opacity-60"> = {Math.round(value * ethPrice)} USD</p>
          </div>
          <div className="flex items-center">
-            {items.map(item => String.fromCodePoint(findItem(item)))}
+            {names.map(item => String.fromCodePoint(findItem(item)))}
          </div>
       </li>
    )
