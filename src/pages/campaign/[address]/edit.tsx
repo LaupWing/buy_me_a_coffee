@@ -29,7 +29,6 @@ const Campaign:NextPage = () => {
    const { 
       register,
       control,
-      getValues,
       setValue,
       formState: {
          errors
