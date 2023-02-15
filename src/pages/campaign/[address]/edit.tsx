@@ -34,6 +34,8 @@ const Campaign:NextPage = () => {
       register,
       control,
       setValue,
+      getValues,
+      setError,
       formState: {
          errors
       },
@@ -70,6 +72,14 @@ const Campaign:NextPage = () => {
 
    if(!_campaign.loaded){
       return <div>Loading..</div>
+   }
+
+   const addListOfItems = (listOfItems: ItemsType) => {
+      const {listOfItems:prev} = getValues()
+      setValue("listOfItems", [...prev, listOfItems])
+      setError("listOfItems", {
+         type: "focus"
+      })
    }
 
    const onSubmit:SubmitHandler<EditFormValues> = ({thumbnail}) => {
@@ -111,7 +121,7 @@ const Campaign:NextPage = () => {
                />
             </div>
             <div className="flex flex-col my-10">
-               <AddItemsForm addListOfItems={() => {}}/>
+               <AddItemsForm addListOfItems={addListOfItems}/>
                <Controller
                   control={control}
                   name="listOfItems"
