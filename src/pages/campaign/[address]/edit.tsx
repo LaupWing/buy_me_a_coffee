@@ -8,7 +8,7 @@ import {
 } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
-import { Field, IconCamera, Items } from "~/components"
+import { Field, IconCamera, IconTrashcan, Items } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
 import ImageUploading from "react-images-uploading"
@@ -112,10 +112,11 @@ const Campaign:NextPage = () => {
                   {_campaign.campaign!.listOfItems
                      .map(parseItems)
                      .map((listOfItems:any) => (
-                        <li className="border-2 p-0.5 rounded">
+                        <li className="border-2 p-0.5 rounded items-stretch flex">
                            <Items 
                               {...listOfItems}
                            />
+                           <IconTrashcan />
                         </li>
                      ))}
                </ul>

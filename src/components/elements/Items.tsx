@@ -9,7 +9,7 @@ export const Items:FC<ItemsType> = ({cost, names}) => {
    const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
    
    return (
-      <li className="py-2 px-2 text-2xl flex items-center justify-between text-gray-300 ">
+      <li className="py-2 px-2 text-2xl flex items-center justify-between text-gray-300 flex-1">
          <div className="flex items-center">
             <IconEthereum className="mr-2" size={24}/>
             <p className="font-bold">{cost}</p>
