@@ -24,8 +24,8 @@ export interface FormValues {
    description: string
    name: string
    listOfItems: ListOfItems
-   profile: ImageListType & string
-   thumbnail: ImageListType & string
+   profile: ImageListType 
+   thumbnail: ImageListType
 }
 
 export type ListOfItems = ItemsType[]
@@ -102,7 +102,7 @@ const Create:NextPage = () => {
    }
 
    const addListOfItems = (listOfItems:{
-      items: string[],
+      names: string[],
       value: number
    }) => {
       const {listOfItems:prev} = getValues()

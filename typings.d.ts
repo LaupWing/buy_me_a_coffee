@@ -11,7 +11,7 @@ export interface CampaignType {
 }
 
 export interface ItemsType {
-   items: string[],
+   names: string[],
    value: number
 }
 
