@@ -7,5 +7,5 @@ export const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji
 export const parseItems = ( item : ListOfItems) => ({
    ...item,
    id: item.id.toString(),
-   cost: ethers.utils.formatEther(item.cost.toString()),
+   cost: Number(ethers.utils.formatEther(item.cost.toString())),
 })

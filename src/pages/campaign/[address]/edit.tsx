@@ -63,7 +63,8 @@ const Campaign:NextPage = () => {
          setValue("profile", [{
             dataURL: gateWay + _campaign.campaign?.profile!
          }])
-         console.log(_campaign.campaign?.listOfItems)
+         setValue("listOfItems", _campaign.campaign?.listOfItems.map(parseItems))
+         console.log()
       }
    }, [_campaign.campaign])
 
