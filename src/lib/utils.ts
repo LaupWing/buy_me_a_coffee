@@ -1,3 +1,4 @@
+import { ethers } from "ethers"
 import { ListOfItems } from "types"
 import { ITEMS } from "../../constants"
 
@@ -6,5 +7,5 @@ export const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji
 export const parseItems = ( item : ListOfItems) => ({
    ...item,
    id: item.id.toString(),
-   cost: item.cost.toString(),
+   cost: ethers.utils.formatEther(item.cost.toString()),
 })
