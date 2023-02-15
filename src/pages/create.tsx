@@ -101,10 +101,7 @@ const Create:NextPage = () => {
       setCreating(false)
    }
 
-   const addListOfItems = (listOfItems:{
-      names: string[],
-      value: number
-   }) => {
+   const addListOfItems = (listOfItems: ItemsType) => {
       const {listOfItems:prev} = getValues()
       setValue("listOfItems", [...prev, listOfItems])
       setError("listOfItems", {

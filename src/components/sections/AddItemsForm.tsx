@@ -8,6 +8,7 @@ import {
 import { ITEMS } from "../../../constants"
 import { useAppSelector } from "~/store/hooks"
 import { IconEthereum } from "~/components"
+import { ItemsType } from "types"
 
 interface FormValues {
    value: number|null
@@ -15,13 +16,10 @@ interface FormValues {
 }
 
 interface AddItemsFormProps {
-   addListOfItems: (props:{
-      names: string[],
-      value: number
-   }) => void 
+   addListOfItems: (props: ItemsType) => void 
 }
 
-export const AddItemsForm:FC<AddItemsFormProps> = ({addListOfItems}) => {
+export const AddItemsForm:FC<AddItemsFormProps> = ({ addListOfItems }) => {
    const {
       register,
       control,
