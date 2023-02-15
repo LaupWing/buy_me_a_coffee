@@ -36,7 +36,7 @@ export const AddItemsForm:FC<AddItemsFormProps> = ({ addListOfItems }) => {
    const { ethPrice } = useAppSelector(state => state.contracts)
 
    const submitHandler: SubmitHandler<FormValues> = async ({names, value}) => {
-      addListOfItems({names, value:value!})
+      addListOfItems({names, cost:value!})
       reset()
    }
 

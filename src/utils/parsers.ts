@@ -14,7 +14,7 @@ export const parseListOfItems = (
    })
    const all_items = converted.map((x) => x.items)
    const all_values = converted.map(({ index }) =>
-      listOfItems[index].value.toString()
+      listOfItems[index].cost.toString()
    )
 
    return {
