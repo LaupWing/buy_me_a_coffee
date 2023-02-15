@@ -8,13 +8,13 @@ import {
 } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
-import { Field, IconCamera, IconTrashcan, Items } from "~/components"
+import { EditCampaignThumbnail, Field, IconCamera, IconTrashcan, Items } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
 import ImageUploading from "react-images-uploading"
 import { parseItems } from "~/lib/utils"
 
-export interface FormValues {
+export interface EditFormValues {
    description: string
    name: string
    listOfItems: ListOfItems
@@ -35,7 +35,7 @@ const Campaign:NextPage = () => {
          errors
       },
       handleSubmit
-   } = useForm<FormValues>({
+   } = useForm<EditFormValues>({
       defaultValues: {
          name: "",
          description: "",
@@ -69,7 +69,7 @@ const Campaign:NextPage = () => {
       return <div>Loading..</div>
    }
 
-   const onSubmit:SubmitHandler<FormValues> = ({thumbnail}) => {
+   const onSubmit:SubmitHandler<EditFormValues> = ({thumbnail}) => {
       console.log(thumbnail)
    } 
 
@@ -132,56 +132,8 @@ const Campaign:NextPage = () => {
 }
 export default Campaign
 
-interface EditCampaignThumbnailProps {
-   control: Control<FormValues>
-}
-
-const EditCampaignThumbnail:FC<EditCampaignThumbnailProps> = ({
-   control
-}) => {
-   return (
-      <Controller
-         control={control}
-         name="thumbnail"
-         render={({ field }) => {
-            return(
-               <ImageUploading 
-                  multiple={false}
-                  value={field.value}
-                  onChange={(image) => field.onChange(image)}
-               >
-                  {({ onImageUpload }) => {
-                     return field.value ? (
-                        <>
-                           <img 
-                              src={field.value[0].dataURL}  
-                              className="w-full h-60 object-cover"
-                              alt="thumbnail from campaign" 
-                           />
-                           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                              <button
-                                 className="z-40 m-auto"
-                                 onClick={onImageUpload}
-                                 type="button"
-                              >
-                                 <IconCamera
-                                    className="text-white" 
-                                    size={30}
-                                 />
-                              </button>
-                           </div>
-                        </>
-                     ) : null
-                  }}
-               </ImageUploading>
-            )
-         }}
-      />
-   )
-}
-
 interface EditCampaignProfileProps {
-   control: Control<FormValues>
+   control: Control<EditFormValues>
 }
 
 const EditCampaignProfile:FC<EditCampaignProfileProps> = ({

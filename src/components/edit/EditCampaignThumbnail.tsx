@@ -1,11 +1,11 @@
 import { FC } from "react"
 import { Control, Controller } from "react-hook-form"
 import ImageUploading from "react-images-uploading"
-import { FormValues } from "~/pages/campaign/[address]/edit"
+import { EditFormValues } from "~/pages/campaign/[address]/edit"
 import { IconCamera } from "~/components"
 
 interface EditCampaignThumbnailProps {
-   control: Control<FormValues>
+   control: Control<EditFormValues>
 }
 
 export const EditCampaignThumbnail:FC<EditCampaignThumbnailProps> = ({
