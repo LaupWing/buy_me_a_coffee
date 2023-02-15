@@ -43,7 +43,7 @@ export const AddItemsForm:FC<AddItemsFormProps> = ({ addListOfItems }) => {
    return (
       <form
          onSubmit={handleSubmit(submitHandler)}
-         className="flex border rounded relative px-4 py-2 my-4 flex-wrap space-y-2"
+         className="flex border rounded relative px-4 py-2 my-4 flex-wrap space-y-2 lg:space-y-0"
       >
          <div className="absolute top-0 z-40 transform -translate-y-1/2 text-neutral-300 bg-white px-2">1 eth = {ethPrice} USD</div>
          <div className="flex flex-col flex-1">
