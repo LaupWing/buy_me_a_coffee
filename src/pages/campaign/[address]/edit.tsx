@@ -60,6 +60,7 @@ const Campaign:NextPage = () => {
          setValue("profile", [{
             dataURL: gateWay + _campaign.campaign?.profile!
          }])
+         console.log(_campaign.campaign?.listOfItems)
       }
    }, [_campaign.campaign])
 
@@ -104,6 +105,9 @@ const Campaign:NextPage = () => {
                   })}
                   errors={errors}
                />
+            </div>
+            <div className="flex flex-col">
+
             </div>
          </main>
       </form>
