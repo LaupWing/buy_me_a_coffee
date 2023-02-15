@@ -7,7 +7,7 @@ import { IconEthereum } from "~/components"
 export const Items:FC<ItemsType> = ({value, names}) => {
    const {ethPrice} = useAppSelector(state => state.contracts)
    const findItem = (item:string) => ITEMS.find(x => x.name === item)?.emoji || 0
-
+   
    return (
       <li className="py-2 px-2 text-2xl flex items-center justify-between text-gray-300 ">
          <div className="flex items-center">
