@@ -9,7 +9,7 @@ export const parseListOfItems = (
    const converted = listOfItems.map((items, index) => {
       return {
          index,
-         items: items.items,
+         items: items.names,
       }
    })
    const all_items = converted.map((x) => x.items)
