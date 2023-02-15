@@ -21,12 +21,10 @@ import { parseItems } from "~/lib/utils"
 export interface EditFormValues {
    description: string
    name: string
-   listOfItems: ListOfItems
+   listOfItems: ItemsType[]
    profile: ImageListType
    thumbnail: ImageListType
 }
-
-export type ListOfItems = ItemsType[]
 
 const Campaign:NextPage = () => {
    const _campaign = useCampaign()

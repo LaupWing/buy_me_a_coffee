@@ -128,7 +128,10 @@ const Create:NextPage = () => {
             <AddItemsForm addListOfItems={addListOfItems}/>
             {errors.listOfItems && <p className="error">{errors.listOfItems.message?.toString()}</p>}
          </div>
-         <form onSubmit={handleSubmit(submitHandler)} className="w-full flex flex-col">
+         <form 
+            onSubmit={handleSubmit(submitHandler)} 
+            className="w-full flex flex-col"
+         >
             <div className="flex px-6 flex-col space-y-8 max-w-lg">
                <ul>
                   <Controller
