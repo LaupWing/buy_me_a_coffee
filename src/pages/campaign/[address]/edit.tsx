@@ -107,14 +107,16 @@ const Campaign:NextPage = () => {
                   errors={errors}
                />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col my-4">
                <ul className="flex flex-col space-y-2">
                   {_campaign.campaign!.listOfItems
                      .map(parseItems)
                      .map((listOfItems:any) => (
-                        <Items 
-                           {...listOfItems}
-                        />
+                        <li className="border-2 p-0.5 rounded">
+                           <Items 
+                              {...listOfItems}
+                           />
+                        </li>
                      ))}
                </ul>
             </div>
