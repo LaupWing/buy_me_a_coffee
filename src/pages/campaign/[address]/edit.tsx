@@ -1,6 +1,7 @@
 import { NextPage } from "next"
 import { useEffect } from "react"
 import { 
+   Controller,
    SubmitHandler, 
    useForm, 
 } from "react-hook-form"
@@ -64,7 +65,6 @@ const Campaign:NextPage = () => {
             dataURL: gateWay + _campaign.campaign?.profile!
          }])
          setValue("listOfItems", _campaign.campaign?.listOfItems.map(parseItems))
-         console.log()
       }
    }, [_campaign.campaign])
 
@@ -112,22 +112,30 @@ const Campaign:NextPage = () => {
             </div>
             <div className="flex flex-col my-10">
                <AddItemsForm addListOfItems={() => {}}/>
-               <ul className="flex flex-col space-y-2">
-                  {_campaign.campaign!.listOfItems
-                     .map(parseItems)
-                     .map((listOfItems:any) => (
-                        <li className="border-2 rounded divide-x-2 items-stretch flex">
-                           <Items 
-                              {...listOfItems}
-                           />
-                           <div className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white">
-                              <IconTrashcan 
-                                 size={20}
-                              />
-                           </div>
-                        </li>
-                     ))}
-               </ul>
+               <Controller
+                  control={control}
+                  name="listOfItems"
+                  rules={{
+                     required: "You need at least one list of items!"
+                  }}
+                  render={({field}) => (
+                     <ul className="flex flex-col space-y-2">
+                        {field.value
+                           .map((listOfItems) => (
+                              <li className="border-2 rounded divide-x-2 items-stretch flex">
+                                 <Items 
+                                    {...listOfItems}
+                                 />
+                                 <div className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white">
+                                    <IconTrashcan 
+                                       size={20}
+                                    />
+                                 </div>
+                              </li>
+                           ))}
+                     </ul>
+                  )}
+               />
             </div>
             <button className="btn ml-auto">Submit</button>
          </main>
