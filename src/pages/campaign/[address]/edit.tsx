@@ -112,11 +112,15 @@ const Campaign:NextPage = () => {
                   {_campaign.campaign!.listOfItems
                      .map(parseItems)
                      .map((listOfItems:any) => (
-                        <li className="border-2 p-0.5 rounded items-stretch flex">
+                        <li className="border-2 rounded divide-x-2 items-stretch flex">
                            <Items 
                               {...listOfItems}
                            />
-                           <IconTrashcan />
+                           <div className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white">
+                              <IconTrashcan 
+                                 size={20}
+                              />
+                           </div>
                         </li>
                      ))}
                </ul>
