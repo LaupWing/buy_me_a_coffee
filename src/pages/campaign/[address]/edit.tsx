@@ -84,10 +84,12 @@ const Campaign:NextPage = () => {
 
    const onSubmit:SubmitHandler<EditFormValues> = ({thumbnail}) => {
       console.log(thumbnail)
-   } 
+   }
+
+   console.log(errors)
 
    return (
-      <div className="my-6 pb-10">
+      <form className="my-6 pb-10" onSubmit={handleSubmit(onSubmit)}>
          <div className="relative">
             <EditCampaignThumbnail
                control={control}
@@ -118,7 +120,7 @@ const Campaign:NextPage = () => {
                />
             </div>
             <div className="flex flex-col my-10">
-               <AddItemsForm addListOfItems={addListOfItems}/>
+               {/* <AddItemsForm addListOfItems={addListOfItems}/> */}
                <Controller
                   control={control}
                   name="listOfItems"
@@ -144,11 +146,11 @@ const Campaign:NextPage = () => {
                   )}
                />
             </div>
-            <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}>
+            {/* <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}> */}
                <button className="btn">Submit</button>
-            </form>
+            {/* </form> */}
          </main>
-      </div>
+      </form>
    )
 }
 export default Campaign
