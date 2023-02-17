@@ -87,10 +87,7 @@ const Campaign:NextPage = () => {
    } 
 
    return (
-      <form 
-         className="my-6 pb-10"
-         onSubmit={handleSubmit(onSubmit)}
-      >
+      <div className="my-6 pb-10">
          <div className="relative">
             <EditCampaignThumbnail
                control={control}
@@ -132,7 +129,7 @@ const Campaign:NextPage = () => {
                      <ul className="flex flex-col space-y-2">
                         {field.value
                            .map((listOfItems) => (
-                              <li className="border-2 rounded divide-x-2 items-stretch flex">
+                              <div className="border-2 rounded divide-x-2 items-stretch flex">
                                  <Items 
                                     {...listOfItems}
                                  />
@@ -141,15 +138,17 @@ const Campaign:NextPage = () => {
                                        size={20}
                                     />
                                  </div>
-                              </li>
+                              </div>
                            ))}
                      </ul>
                   )}
                />
             </div>
-            <button className="btn ml-auto">Submit</button>
+            <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}>
+               <button className="btn">Submit</button>
+            </form>
          </main>
-      </form>
+      </div>
    )
 }
 export default Campaign
