@@ -120,7 +120,7 @@ const Campaign:NextPage = () => {
                />
             </div>
             <div className="flex flex-col my-10">
-               {/* <AddItemsForm addListOfItems={addListOfItems}/> */}
+               <AddItemsForm addListOfItems={addListOfItems}/>
                <Controller
                   control={control}
                   name="listOfItems"
