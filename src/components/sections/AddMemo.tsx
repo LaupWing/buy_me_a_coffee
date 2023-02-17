@@ -150,7 +150,12 @@ const ListOfItems:FC<ListOfItemsProps> = ({
             value={listOfItems.id.toString()}
             onChange={e => {
                if(e.target.checked){
-                  field.onChange(listOfItems.id.toString())
+                  if(field.value === listOfItems.id.toString()){
+                     console.log("E")
+                     field.onChange(null)
+                  }else{
+                     field.onChange(listOfItems.id.toString())
+                  }
                }
             }}
             checked={checked}
