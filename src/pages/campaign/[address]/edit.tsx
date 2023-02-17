@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { 
    Controller,
    SubmitHandler, 
@@ -29,6 +29,8 @@ export interface EditFormValues {
 
 const Campaign:NextPage = () => {
    const _campaign = useCampaign()
+   const [deletedItems, setDeletedItems] = useState([])
+   const [addedItems, setAddedItems] = useState([])
 
    const { 
       register,
@@ -49,6 +51,7 @@ const Campaign:NextPage = () => {
          listOfItems: []
       },
    })
+
    useEffect(() => {
       const init = async () =>{
          await _campaign.loadCampaign()
