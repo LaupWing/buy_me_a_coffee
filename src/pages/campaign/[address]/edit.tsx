@@ -133,14 +133,13 @@ const Campaign:NextPage = () => {
                                  <Items 
                                     {...listOfItems}
                                  />
-                                 <div className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white">
-                                    <IconTrashcan 
-                                       size={20}
-                                       onClick={() => {
-                                          console.log(field.onChange(listOfItems))
-                                          console.log(i)
-                                       }}
-                                    />
+                                 <div 
+                                    className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white"
+                                    onClick={() => {
+                                       field.onChange(field.value.filter((_, i2) => i !== i2))
+                                    }}
+                                 >
+                                    <IconTrashcan size={20}/>
                                  </div>
                               </div>
                            ))}

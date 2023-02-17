@@ -156,7 +156,7 @@ const ListOfItems:FC<ListOfItemsProps> = ({
             checked={checked}
          />
          <label 
-            className={"flex items-center cursor-pointer justify-between rounded p-3 border-2 " +  (checked 
+            className={"flex select-none items-center cursor-pointer justify-between rounded p-3 border-2 " +  (checked 
                   ? "border-yellow-400 bg-yellow-400/20"
                   : "border-yellow-400/30 bg-yellow-400/5"
                )
