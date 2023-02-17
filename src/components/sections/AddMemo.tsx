@@ -163,6 +163,12 @@ const ListOfItems:FC<ListOfItemsProps> = ({
             }
             key={listOfItems.id.toString()}
             htmlFor={`item${listOfItems.id.toString()}`}
+            onClick={(e) => {
+               if(listOfItems.id.toString() === field.value){
+                  field.onChange(null)
+                  e.preventDefault()
+               }
+            }}
          >
             <div className="flex items-center text-3xl">
                {listOfItems.names.map((item:any) => String.fromCodePoint(findItem(item)))}
