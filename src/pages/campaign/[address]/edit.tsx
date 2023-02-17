@@ -86,8 +86,6 @@ const Campaign:NextPage = () => {
       console.log(thumbnail)
    }
 
-   console.log(errors)
-
    return (
       <div className="my-6 pb-10">
          <div className="relative">
@@ -130,7 +128,7 @@ const Campaign:NextPage = () => {
                   render={({field}) => (
                      <ul className="flex flex-col space-y-2">
                         {field.value
-                           .map((listOfItems) => (
+                           .map((listOfItems, i) => (
                               <div className="border-2 rounded divide-x-2 items-stretch flex">
                                  <Items 
                                     {...listOfItems}
@@ -138,6 +136,10 @@ const Campaign:NextPage = () => {
                                  <div className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white">
                                     <IconTrashcan 
                                        size={20}
+                                       onClick={() => {
+                                          console.log(field.onChange(listOfItems))
+                                          console.log(i)
+                                       }}
                                     />
                                  </div>
                               </div>
