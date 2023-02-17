@@ -42,8 +42,8 @@ const Campaign:NextPage = () => {
       handleSubmit
    } = useForm<EditFormValues>({
       defaultValues: {
-         name: "",
-         description: "",
+         name: undefined,
+         description: undefined,
          thumbnail: undefined,
          profile: undefined,
          listOfItems: []
@@ -89,7 +89,7 @@ const Campaign:NextPage = () => {
    console.log(errors)
 
    return (
-      <form className="my-6 pb-10" onSubmit={handleSubmit(onSubmit)}>
+      <div className="my-6 pb-10">
          <div className="relative">
             <EditCampaignThumbnail
                control={control}
@@ -146,11 +146,11 @@ const Campaign:NextPage = () => {
                   )}
                />
             </div>
-            {/* <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}> */}
+            <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}>
                <button className="btn">Submit</button>
-            {/* </form> */}
+            </form>
          </main>
-      </form>
+      </div>
    )
 }
 export default Campaign
