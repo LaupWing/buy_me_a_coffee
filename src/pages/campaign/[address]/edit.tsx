@@ -125,39 +125,11 @@ const Campaign:NextPage = () => {
             </div>
             <div className="flex flex-col my-10">
                <AddItemsForm addListOfItems={addListOfItems}/>
-               <Controller
+               <CurrentListOfItems 
+                  addedItems={addedItems}
                   control={control}
-                  name="listOfItems"
-                  rules={{
-                     required: "You need at least one list of items!"
-                  }}
-                  render={({field}) => (
-                     <ul className="flex flex-col space-y-2">
-                        {field.value
-                           .map((listOfItems, i) => (
-                              <div className="border-2 rounded divide-x-2 items-stretch flex">
-                                 <Items 
-                                    {...listOfItems}
-                                 />
-                                 <div 
-                                    className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white"
-                                    onClick={() => {
-                                       field.onChange(field.value.filter((_, i2) => i !== i2))
-                                       const check = (x: ItemsType) => JSON.stringify(x) !== JSON.stringify(listOfItems)
-
-                                       if(addedItems.find(check)){
-                                          setAddedItems(prev => prev.filter(check))
-                                       }else{
-                                          setDeletedItems(prev => [...prev, listOfItems])
-                                       }
-                                    }}
-                                 >
-                                    <IconTrashcan size={20}/>
-                                 </div>
-                              </div>
-                           ))}
-                     </ul>
-                  )}
+                  setAddedItems={setAddedItems}
+                  setDeletedItems={setDeletedItems}
                />
             </div>
             <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}>
