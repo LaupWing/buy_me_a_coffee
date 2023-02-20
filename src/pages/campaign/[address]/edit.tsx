@@ -29,8 +29,8 @@ export interface EditFormValues {
 
 const Campaign:NextPage = () => {
    const _campaign = useCampaign()
-   const [deletedItems, setDeletedItems] = useState([])
-   const [addedItems, setAddedItems] = useState([])
+   const [deletedItems, setDeletedItems] = useState<ItemsType[]>([])
+   const [addedItems, setAddedItems] = useState<ItemsType[]>([])
 
    const { 
       register,
@@ -83,6 +83,7 @@ const Campaign:NextPage = () => {
       setError("listOfItems", {
          type: "focus"
       })
+      setAddedItems(prev => [...prev, listOfItems])
    }
 
    const onSubmit:SubmitHandler<EditFormValues> = ({thumbnail}) => {
@@ -140,6 +141,13 @@ const Campaign:NextPage = () => {
                                     className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white"
                                     onClick={() => {
                                        field.onChange(field.value.filter((_, i2) => i !== i2))
+                                       const check = (x: ItemsType) => JSON.stringify(x) !== JSON.stringify(listOfItems)
+
+                                       if(addedItems.find(check)){
+                                          setAddedItems(prev => prev.filter(check))
+                                       }else{
+                                          setDeletedItems(prev => [...prev, listOfItems])
+                                       }
                                     }}
                                  >
                                     <IconTrashcan size={20}/>
