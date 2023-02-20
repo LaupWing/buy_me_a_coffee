@@ -132,6 +132,27 @@ const Campaign:NextPage = () => {
                   setDeletedItems={setDeletedItems}
                />
             </div>
+            {deletedItems.length > 0 && (
+               <div className="my-4 space-y-1">
+                  <div className="flex flex-col space-y-0.5">
+                     <h2 className="uppercase font-bold text-sm text-red-400">Deleted items</h2>
+                     <p className="text-sm text-red-300">This is an list of items that are currently listed in the contract. All of the items below will be removed, therfore the connection between the supporters and the items they bougth will be lost. You can undo this by pressing the undo button.</p>
+                  </div>
+                  {deletedItems
+                     .map((listOfItems) => (
+                        <div className="border-2 bg-gray-100 rounded divide-x-2 items-stretch flex">
+                           <Items 
+                              {...listOfItems}
+                           />
+                           <div 
+                              className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white"
+                           >
+                              <IconTrashcan size={20}/>
+                           </div>
+                        </div>
+                     ))}
+               </div>
+            )}
             <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}>
                <button className="btn">Submit</button>
             </form>
@@ -165,7 +186,7 @@ const CurrentListOfItems:FC<CurrentListOfItemsProps> = ({
             <ul className="flex flex-col space-y-2">
                {field.value
                   .map((listOfItems, i) => (
-                     <div className="border-2 rounded divide-x-2 items-stretch flex">
+                     <div className="border-2 bg-gray rounded divide-x-2 items-stretch flex">
                         <Items 
                            {...listOfItems}
                         />
