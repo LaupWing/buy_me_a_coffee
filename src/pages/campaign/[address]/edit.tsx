@@ -10,7 +10,7 @@ import { ImageListType } from "react-images-uploading"
 import { ItemsType } from "types"
 import { 
    AddItemsForm,
-   EditCampaignProfile, 
+   EditProfile, 
    EditCampaignThumbnail, 
    Field, 
    IconTrashcan, 
@@ -98,7 +98,7 @@ const Campaign:NextPage = () => {
             <EditCampaignThumbnail
                control={control}
             />
-            <EditCampaignProfile
+            <EditProfile
                control={control}
             />
          </div>

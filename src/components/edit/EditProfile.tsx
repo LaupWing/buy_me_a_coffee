@@ -8,7 +8,7 @@ interface EditCampaignProfileProps {
    control: Control<EditFormValues>
 }
 
-export const EditCampaignProfile:FC<EditCampaignProfileProps> = ({
+export const EditProfile:FC<EditCampaignProfileProps> = ({
    control
 }) => {
    return (

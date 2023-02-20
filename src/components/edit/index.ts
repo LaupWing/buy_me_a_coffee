@@ -1,2 +1,2 @@
 export { EditCampaignThumbnail } from "./EditCampaignThumbnail"
-export { EditCampaignProfile } from "./EditCampaignProfile"
+export { EditProfile } from "./EditProfile"
