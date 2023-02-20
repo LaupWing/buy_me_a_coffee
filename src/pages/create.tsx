@@ -149,6 +149,7 @@ const Create:NextPage = () => {
                                     {...items}
                                  />
                                  <button 
+                                    type="button"
                                     className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white"
                                     onClick={() => {
                                        field.onChange(field.value.filter((_, i2) => i !== i2))

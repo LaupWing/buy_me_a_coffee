@@ -178,7 +178,7 @@ const ListOfItems:FC<ListOfItemsProps> = ({
                   <p>{ethers.utils.formatEther(listOfItems.cost).toString()}</p>
                   <IconEthereum/>
                </div>
-               <div className="w-14 flex justify-end items-center text-neutral-300 font-bold space-x-1">
+               <div className="w-20 flex justify-end items-center text-neutral-300 font-bold space-x-1">
                   <p>$ {
                      Math.round(Number(ethers.utils.formatEther(listOfItems.cost).toString()) * ethPrice)
                   }</p>
