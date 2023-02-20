@@ -15,6 +15,7 @@ import { fetchCampaigns, setAlreadyRegistered } from "../slices/contracts"
 import { 
    AddItemsForm, 
    Field, 
+   IconTrashcan, 
    Items, 
    Profile, 
    Thumbnail 
@@ -133,7 +134,7 @@ const Create:NextPage = () => {
             className="w-full flex flex-col"
          >
             <div className="flex px-6 flex-col space-y-8 max-w-lg">
-               <ul>
+               <ul className="flex flex-col space-y-1">
                   <Controller
                      control={control}
                      name="listOfItems"
@@ -143,10 +144,19 @@ const Create:NextPage = () => {
                      render={({field}) => (
                         <>
                            {field.value.map((items, i) => (
-                              <Items
-                                 key={i}
-                                 {...items}
-                              />
+                              <div className="border-2 rounded divide-x-2 items-stretch flex">
+                                 <Items 
+                                    {...items}
+                                 />
+                                 <button 
+                                    className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white"
+                                    onClick={() => {
+                                       field.onChange(field.value.filter((_, i2) => i !== i2))
+                                    }}
+                                 >
+                                    <IconTrashcan size={20}/>
+                                 </button>
+                              </div>
                            ))}
                         </>
                      )}
