@@ -87,7 +87,6 @@ const Campaign:NextPage = () => {
       setError("listOfItems", {
          type: "focus"
       })
-      setAddedItems(prev => [...prev, listOfItems])
    }
 
    const undo = (listOfItems: ItemsType) => {
@@ -96,7 +95,8 @@ const Campaign:NextPage = () => {
    }
 
    const onSubmit:SubmitHandler<EditFormValues> = ({thumbnail}) => {
-      console.log(thumbnail)
+      console.log(addedItems)
+      console.log(deletedItems)
    }
 
    return (
@@ -131,7 +131,10 @@ const Campaign:NextPage = () => {
                />
             </div>
             <div className="flex flex-col my-10">
-               <AddItemsForm addListOfItems={addListOfItems}/>
+               <AddItemsForm addListOfItems={(listOfItems) => {
+                  addListOfItems(listOfItems)
+                  setAddedItems(prev => [...prev, listOfItems])
+               }}/>
                <CurrentListOfItems
                   addedItems={addedItems}
                   control={control}
