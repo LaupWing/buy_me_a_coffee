@@ -3,12 +3,11 @@ import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
 import { 
    Control,
    Controller,
-   ControllerRenderProps,
    SubmitHandler, 
    useForm, 
 } from "react-hook-form"
 import { ImageListType } from "react-images-uploading"
-import { ItemsType, ListOfItems } from "types"
+import { ItemsType } from "types"
 import { 
    AddItemsForm,
    EditCampaignProfile, 
@@ -176,6 +175,7 @@ const CurrentListOfItems:FC<CurrentListOfItemsProps> = ({
    setAddedItems,
    setDeletedItems
 }) => {
+   console.log("rendering")
    return (
       <Controller
          control={control}
