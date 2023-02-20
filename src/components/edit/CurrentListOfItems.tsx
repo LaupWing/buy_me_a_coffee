@@ -11,7 +11,7 @@ interface CurrentListOfItemsProps {
    setDeletedItems: Dispatch<SetStateAction<ItemsType[]>>
 }
 
-const CurrentListOfItems:FC<CurrentListOfItemsProps> = ({
+export const CurrentListOfItems:FC<CurrentListOfItemsProps> = ({
    control,
    addedItems,
    setAddedItems,
