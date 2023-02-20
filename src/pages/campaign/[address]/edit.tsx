@@ -15,6 +15,7 @@ import {
    EditCampaignThumbnail, 
    Field, 
    IconTrashcan, 
+   IconUndo, 
    Items 
 } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
@@ -140,14 +141,14 @@ const Campaign:NextPage = () => {
                   </div>
                   {deletedItems
                      .map((listOfItems) => (
-                        <div className="border-2 bg-gray-100 rounded divide-x-2 items-stretch flex">
+                        <div className="border-2 overflow-hidden bg-gray-100 rounded divide-x-2 items-stretch flex">
                            <Items 
                               {...listOfItems}
                            />
                            <div 
-                              className="flex text-red-400 items-center px-4 cursor-pointer hover:bg-red-400 duration-200 hover:text-white"
+                              className="flex text-blue-400 items-center px-4 cursor-pointer hover:bg-blue-400 duration-200 hover:text-white"
                            >
-                              <IconTrashcan size={20}/>
+                              <IconUndo size={20}/>
                            </div>
                         </div>
                      ))}
@@ -186,7 +187,7 @@ const CurrentListOfItems:FC<CurrentListOfItemsProps> = ({
             <ul className="flex flex-col space-y-2">
                {field.value
                   .map((listOfItems, i) => (
-                     <div className="border-2 bg-gray rounded divide-x-2 items-stretch flex">
+                     <div className="border-2 bg-gray overflow-hidden rounded divide-x-2 items-stretch flex">
                         <Items 
                            {...listOfItems}
                         />

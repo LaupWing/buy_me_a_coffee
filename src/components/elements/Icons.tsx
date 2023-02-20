@@ -1,10 +1,9 @@
 import { IconType } from "react-icons"
 import { BiSearchAlt } from "react-icons/bi"
 import { BsFillCameraFill, BsTrashFill } from "react-icons/bs"
-import { FaEthereum } from "react-icons/fa"
+import { FaEthereum, FaUndo } from "react-icons/fa"
 import { FiUpload } from "react-icons/fi"
 import { SiBuymeacoffee } from "react-icons/si"
-import { AiOutlineUndo } from "react-icons/ai"
 
 export const IconEthereum:IconType = (props) =>{
    return (
@@ -44,6 +43,6 @@ export const IconTrashcan:IconType = (props) => {
 
 export const IconUndo:IconType = (props) => {
    return (
-      <AiOutlineUndo {...props}/>
+      <FaUndo {...props}/>
    )
 }
