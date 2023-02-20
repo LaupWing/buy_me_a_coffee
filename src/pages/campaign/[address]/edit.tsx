@@ -90,6 +90,11 @@ const Campaign:NextPage = () => {
       setAddedItems(prev => [...prev, listOfItems])
    }
 
+   const undo = (listOfItems: ItemsType) => {
+      setDeletedItems(prev => [...prev].filter(x => x !== listOfItems))
+      addListOfItems(listOfItems)
+   }
+
    const onSubmit:SubmitHandler<EditFormValues> = ({thumbnail}) => {
       console.log(thumbnail)
    }
@@ -137,7 +142,7 @@ const Campaign:NextPage = () => {
             {deletedItems.length > 0 && (
                <DeletedListedItems 
                   deletedItems={deletedItems}
-                  setDeletedItems={setDeletedItems}
+                  undo={undo}
                />
             )}
             <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}>
