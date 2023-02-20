@@ -1,13 +1,15 @@
-import { FC } from "react"
+import { Dispatch, FC, SetStateAction } from "react"
 import { ItemsType } from "types"
 import { IconUndo, Items } from "../elements"
 
 interface DeletedListedItemsProps {
    deletedItems: ItemsType[]
+   setDeletedItems: Dispatch<SetStateAction<ItemsType[]>>
 }
 
 export const DeletedListedItems:FC<DeletedListedItemsProps> = ({
-   deletedItems
+   deletedItems,
+   setDeletedItems
 }) => {
    return (
       <div className="my-4 space-y-1">
@@ -23,6 +25,7 @@ export const DeletedListedItems:FC<DeletedListedItemsProps> = ({
                   />
                   <div 
                      className="flex text-blue-400 items-center px-4 cursor-pointer hover:bg-blue-400 duration-200 hover:text-white"
+                     onClick={() => setDeletedItems(prev => [...prev].filter(x => x !== listOfItems))}
                   >
                      <IconUndo size={20}/>
                   </div>

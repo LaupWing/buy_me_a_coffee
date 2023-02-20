@@ -11,6 +11,7 @@ import { ItemsType } from "types"
 import { 
    AddItemsForm,
    CurrentListOfItems,
+   DeletedListedItems,
    EditProfile, 
    EditThumbnail, 
    Field, 
@@ -134,25 +135,10 @@ const Campaign:NextPage = () => {
                />
             </div>
             {deletedItems.length > 0 && (
-               <div className="my-4 space-y-1">
-                  <div className="flex flex-col space-y-0.5">
-                     <h2 className="uppercase font-bold text-sm text-red-400">Deleted items</h2>
-                     <p className="text-sm text-red-300">This is an list of items that are currently listed in the contract. All of the items below will be removed, therfore the connection between the supporters and the items they bougth will be lost. You can undo this by pressing the undo button.</p>
-                  </div>
-                  {deletedItems
-                     .map((listOfItems) => (
-                        <div className="border-2 overflow-hidden bg-gray-100 rounded divide-x-2 items-stretch flex">
-                           <Items 
-                              {...listOfItems}
-                           />
-                           <div 
-                              className="flex text-blue-400 items-center px-4 cursor-pointer hover:bg-blue-400 duration-200 hover:text-white"
-                           >
-                              <IconUndo size={20}/>
-                           </div>
-                        </div>
-                     ))}
-               </div>
+               <DeletedListedItems 
+                  deletedItems={deletedItems}
+                  setDeletedItems={setDeletedItems}
+               />
             )}
             <form className="ml-auto" onSubmit={handleSubmit(onSubmit)}>
                <button className="btn">Submit</button>
