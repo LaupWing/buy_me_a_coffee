@@ -11,7 +11,7 @@ import { ItemsType } from "types"
 import { 
    AddItemsForm,
    EditProfile, 
-   EditCampaignThumbnail, 
+   EditThumbnail, 
    Field, 
    IconTrashcan, 
    IconUndo, 
@@ -95,7 +95,7 @@ const Campaign:NextPage = () => {
    return (
       <div className="my-6 pb-10">
          <div className="relative">
-            <EditCampaignThumbnail
+            <EditThumbnail
                control={control}
             />
             <EditProfile

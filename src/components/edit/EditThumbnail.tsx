@@ -4,11 +4,11 @@ import ImageUploading from "react-images-uploading"
 import { EditFormValues } from "~/pages/campaign/[address]/edit"
 import { IconCamera } from "~/components"
 
-interface EditCampaignThumbnailProps {
+interface EditThumbnailProps {
    control: Control<EditFormValues>
 }
 
-export const EditCampaignThumbnail:FC<EditCampaignThumbnailProps> = ({
+export const EditThumbnail:FC<EditThumbnailProps> = ({
    control
 }) => {
    return (
