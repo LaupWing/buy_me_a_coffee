@@ -22,6 +22,9 @@ import {
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
 import { parseItems } from "~/lib/utils"
+import axios from "axios"
+import { useAppSelector } from "~/store/hooks"
+import { PinataPinResponse } from "@pinata/sdk"
 
 export interface EditFormValues {
    description: string
@@ -35,6 +38,7 @@ const Campaign:NextPage = () => {
    const _campaign = useCampaign()
    const [deletedItems, setDeletedItems] = useState<ItemsType[]>([])
    const [addedItems, setAddedItems] = useState<ItemsType[]>([])
+   const { account } = useAppSelector(state => state.web3)
 
    const { 
       register,
@@ -94,14 +98,29 @@ const Campaign:NextPage = () => {
       addListOfItems(listOfItems)
    }
 
-   const onSubmit:SubmitHandler<EditFormValues> = ({
+   const onSubmit:SubmitHandler<EditFormValues> = async ({
       thumbnail, 
       description, 
       name, 
       profile
    }) => {
-      console.log(thumbnail)
-      console.log(deletedItems)
+      if(thumbnail[0].file){
+         console.log(thumbnail)
+      }
+      console.log("heh")
+      const response = await axios.post<{
+         profileUri: PinataPinResponse
+         thumbnailUri: PinataPinResponse
+      }>("/api/pinata", {
+         profile: profile[0].file || null,
+         thumbnail: thumbnail[0].file || null,
+         account
+      }, {
+         headers: {
+            "Content-Type": "multipart/form-data",
+         },
+      })
+      console.log(response)
    }
 
    return (

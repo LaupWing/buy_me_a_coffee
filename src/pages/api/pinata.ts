@@ -11,8 +11,8 @@ export const config ={
 }
 
 type Data = {
-   profileUri: PinataPinResponse
-   thumbnailUri: PinataPinResponse
+   profileUri: PinataPinResponse | boolean
+   thumbnailUri: PinataPinResponse | boolean
 }
 
 const pinata = new pinataSdk(
@@ -40,19 +40,28 @@ export default async function handler(
    res: NextApiResponse<Data>
 ) {
    const requestBody = await readFile(req)
+   
    try{
+      let profileUri = false
+      let thumbnailUri = false
       // @ts-ignore
-      const profileUri = await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.profile.filepath), {
-         pinataMetadata: {
-            name: `profile_${requestBody.fields.account}`
-         }
-      })
+      if(requestBody.files?.profile?.filepath){
+         // @ts-ignore
+         profileUri = await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.profile.filepath), {
+            pinataMetadata: {
+               name: `profile_${requestBody.fields.account}`
+            }
+         })
+      }
       // @ts-ignore
-      const thumbnailUri = await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.thumbnail.filepath), {
-         pinataMetadata: {
-            name: `thumbnail_${requestBody.fields.account}`
-         }
-      })
+      if(requestBody.files?.thumbnail?.filepath){
+         // @ts-ignore
+         thumbnailUri = await pinata.pinFileToIPFS(fs.createReadStream(requestBody.files.thumbnail.filepath), {
+            pinataMetadata: {
+               name: `thumbnail_${requestBody.fields.account}`
+            }
+         })
+      }
       res.send({
          thumbnailUri,
          profileUri
