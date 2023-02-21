@@ -90,7 +90,7 @@ const Create:NextPage = () => {
          response.data.profileUri.IpfsHash,
          response.data.thumbnailUri.IpfsHash,
          all_items,
-         all_values.map(x=>ethers.utils.parseEther(x))
+         all_values
       )
 
       const transactionReceipt = await transaction?.wait()

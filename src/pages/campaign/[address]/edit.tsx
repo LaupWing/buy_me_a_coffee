@@ -131,6 +131,15 @@ const Campaign:NextPage = () => {
          all_values,
          deletedItems.map(x => Number(x.id!))
       )
+      console.log({
+         name,
+         description,
+         profile: response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
+         thumbnail: response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL!.replace(gateWay, ""),
+         all_items,
+         all_values,
+         deletedItems: deletedItems.map(x => Number(x.id!))
+      })
    }
 
    return (
