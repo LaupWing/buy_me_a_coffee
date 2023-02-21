@@ -13,6 +13,7 @@ export interface CampaignType {
 export interface ItemsType {
    names: string[],
    cost: number
+   id?: string
 }
 
 export interface ItemsTypeFetched {

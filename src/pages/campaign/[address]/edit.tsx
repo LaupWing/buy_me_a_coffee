@@ -117,36 +117,20 @@ const Campaign:NextPage = () => {
             "Content-Type": "multipart/form-data",
          },
       })
-      // string memory _name, 
-      // string memory _description,
-      // string memory _profile, 
-      // string memory _thumbnail,
-      // string[][] memory _items,
-      // uint256[] memory _itemsValues,
-      // uint256[] memory _deletedItems
+      
       const {
          all_items, 
          all_values
       } = parseListOfItems(addedItems)
-      const updateObj = {
+      _campaign.contract?.update(
          name,
          description,
-         profile: response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
-         thumbnail: response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL!.replace(gateWay, ""),
-         deletedItems,
+         response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
+         response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL!.replace(gateWay, ""),
          all_items,
-         all_values
-      }
-      // _campaign.contract?.update(
-      //    name,
-      //    description,
-      //    response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
-      //    response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL!.replace(gateWay, ""),
-      //    all_items,
-      //    all_values,
-      //    deletedItems.map(x => x.cost)
-      // )
-      console.log(updateObj)
+         all_values,
+         deletedItems.map(x => Number(x.id!))
+      )
    }
 
    return (
