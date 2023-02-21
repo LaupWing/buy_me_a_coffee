@@ -94,8 +94,13 @@ const Campaign:NextPage = () => {
       addListOfItems(listOfItems)
    }
 
-   const onSubmit:SubmitHandler<EditFormValues> = ({thumbnail}) => {
-      console.log(addedItems)
+   const onSubmit:SubmitHandler<EditFormValues> = ({
+      thumbnail, 
+      description, 
+      name, 
+      profile
+   }) => {
+      console.log(thumbnail)
       console.log(deletedItems)
    }
 
