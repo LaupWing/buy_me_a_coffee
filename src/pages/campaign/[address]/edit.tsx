@@ -25,6 +25,7 @@ import { parseItems } from "~/lib/utils"
 import axios from "axios"
 import { useAppSelector } from "~/store/hooks"
 import { PinataPinResponse } from "@pinata/sdk"
+import { parseListOfItems } from "~/utils/parsers"
 
 export interface EditFormValues {
    description: string
@@ -123,14 +124,18 @@ const Campaign:NextPage = () => {
       // string[][] memory _items,
       // uint256[] memory _itemsValues,
       // uint256[] memory _deletedItems
-      
+      const {
+         all_items, 
+         all_values
+      } = parseListOfItems(addedItems)
       const updateObj = {
          name,
          description,
-         profile: response.data.profileUri.IpfsHash.replace(gateWay, "") || profile[0].dataURL,
-         thumbnail: response.data.thumbnailUri.IpfsHash.replace(gateWay, "") || thumbnail[0].dataURL,
+         profile: response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
+         thumbnail: response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL!.replace(gateWay, ""),
          deletedItems,
-         addedItems,
+         all_items,
+         all_values
       }
       console.log(updateObj)
    }
