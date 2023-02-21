@@ -20,6 +20,7 @@ import {
    Profile, 
    Thumbnail 
 } from "~/components"
+import { gateWay } from "~/utils/ipfs"
 
 export interface FormValues {
    description: string

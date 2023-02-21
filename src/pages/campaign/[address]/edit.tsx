@@ -104,10 +104,6 @@ const Campaign:NextPage = () => {
       name, 
       profile
    }) => {
-      if(thumbnail[0].file){
-         console.log(thumbnail)
-      }
-
       const response = await axios.post<{
          profileUri: PinataPinResponse
          thumbnailUri: PinataPinResponse
@@ -131,11 +127,12 @@ const Campaign:NextPage = () => {
       const updateObj = {
          name,
          description,
-         profile: response.data.profileUri.IpfsHash || profile[0].dataURL,
-         thumbnail: response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL,
+         profile: response.data.profileUri.IpfsHash.replace(gateWay, "") || profile[0].dataURL,
+         thumbnail: response.data.thumbnailUri.IpfsHash.replace(gateWay, "") || thumbnail[0].dataURL,
          deletedItems,
          addedItems,
       }
+      console.log(updateObj)
    }
 
    return (
