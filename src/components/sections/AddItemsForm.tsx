@@ -78,8 +78,9 @@ export const AddItemsForm:FC<AddItemsFormProps> = ({ addListOfItems }) => {
                   }}
                   render={({ field }) => (
                      <>
-                        {ITEMS.map((item) => 
+                        {ITEMS.map((item, i) => 
                            <Item
+                              key={i}
                               field={field}
                               item={item}
                            />

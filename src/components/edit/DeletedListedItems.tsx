@@ -18,8 +18,11 @@ export const DeletedListedItems:FC<DeletedListedItemsProps> = ({
             <p className="text-sm text-red-300">This is an list of items that are currently listed in the contract. All of the items below will be removed, therfore the connection between the supporters and the items they bougth will be lost. You can undo this by pressing the undo button.</p>
          </div>
          {deletedItems
-            .map((listOfItems) => (
-               <div className="border-2 overflow-hidden bg-gray-100 rounded divide-x-2 items-stretch flex">
+            .map((listOfItems, i) => (
+               <div 
+                  className="border-2 overflow-hidden bg-gray-100 rounded divide-x-2 items-stretch flex"
+                  key={i}
+               >
                   <Items
                      {...listOfItems}
                   />

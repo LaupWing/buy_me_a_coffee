@@ -28,7 +28,10 @@ export const CurrentListOfItems:FC<CurrentListOfItemsProps> = ({
             <ul className="flex flex-col space-y-2">
                {field.value
                   .map((listOfItems, i) => (
-                     <div className="border-2 bg-gray overflow-hidden rounded divide-x-2 items-stretch flex">
+                     <div 
+                        className="border-2 bg-gray overflow-hidden rounded divide-x-2 items-stretch flex"
+                        key={i}
+                     >
                         <Items 
                            {...listOfItems}
                         />
