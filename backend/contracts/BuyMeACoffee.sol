@@ -154,10 +154,10 @@ contract BuyMeACoffee {
       profile = _profile;
       thumbnail = _thumbnail;
       owner = payable(_owner);
-      setInitialItems(_items, _itemsValues);
+      formatItems(_items, _itemsValues);
    }
 
-   function setInitialItems(
+   function formatItems(
       string[][] memory _items, 
       uint256[] memory _itemsValues
    ) public{
@@ -209,6 +209,26 @@ contract BuyMeACoffee {
          _itemsId
       ));
       emit MemoCreated(block.timestamp, _name, _message, _itemsId);
+   }
+
+   function update(
+      string memory _name, 
+      string memory _description,
+      string memory _profile, 
+      string memory _thumbnail,
+      string[][] memory _items,
+      uint256[] memory _itemsValues,
+      uint256[] memory _deletedItems
+   ) public onlyOwner {
+      formatItems(_items, _itemsValues);
+      name = _name;
+      description = _description;
+      profile = _profile;
+      thumbnail = _thumbnail;
+
+      for(uint256 i; i < _deletedItems.length; i ++){
+         removeItems(_deletedItems[i]);
+      }
    }
 
    function addItems(string[] memory names, uint256 cost) public onlyOwner{

@@ -107,7 +107,7 @@ const Campaign:NextPage = () => {
       if(thumbnail[0].file){
          console.log(thumbnail)
       }
-      console.log("heh")
+      
       const response = await axios.post<{
          profileUri: PinataPinResponse
          thumbnailUri: PinataPinResponse
