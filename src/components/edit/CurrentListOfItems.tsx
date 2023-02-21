@@ -40,8 +40,8 @@ export const CurrentListOfItems:FC<CurrentListOfItemsProps> = ({
                            onClick={() => {
                               field.onChange(field.value.filter((_, i2) => i !== i2))
                               const check = (x: ItemsType) => JSON.stringify(x) !== JSON.stringify(listOfItems)
-
-                              if(addedItems.find(check)){
+                              
+                              if(addedItems.find((x: ItemsType) => JSON.stringify(x) === JSON.stringify(listOfItems))){
                                  setAddedItems(prev => prev.filter(check))
                               }else{
                                  setDeletedItems(prev => [...prev, listOfItems])
