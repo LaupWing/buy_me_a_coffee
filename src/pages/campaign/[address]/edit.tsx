@@ -107,7 +107,7 @@ const Campaign:NextPage = () => {
       if(thumbnail[0].file){
          console.log(thumbnail)
       }
-      
+
       const response = await axios.post<{
          profileUri: PinataPinResponse
          thumbnailUri: PinataPinResponse
@@ -120,7 +120,22 @@ const Campaign:NextPage = () => {
             "Content-Type": "multipart/form-data",
          },
       })
-      console.log(response)
+      // string memory _name, 
+      // string memory _description,
+      // string memory _profile, 
+      // string memory _thumbnail,
+      // string[][] memory _items,
+      // uint256[] memory _itemsValues,
+      // uint256[] memory _deletedItems
+      
+      const updateObj = {
+         name,
+         description,
+         profile: response.data.profileUri.IpfsHash || profile[0].dataURL,
+         thumbnail: response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL,
+         deletedItems,
+         addedItems,
+      }
    }
 
    return (
