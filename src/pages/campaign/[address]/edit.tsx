@@ -137,6 +137,15 @@ const Campaign:NextPage = () => {
          all_items,
          all_values
       }
+      // _campaign.contract?.update(
+      //    name,
+      //    description,
+      //    response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
+      //    response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL!.replace(gateWay, ""),
+      //    all_items,
+      //    all_values,
+      //    deletedItems.map(x => x.cost)
+      // )
       console.log(updateObj)
    }
 
