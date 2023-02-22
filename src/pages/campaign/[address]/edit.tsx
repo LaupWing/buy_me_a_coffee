@@ -27,6 +27,7 @@ import axios from "axios"
 import { useAppSelector } from "~/store/hooks"
 import { PinataPinResponse } from "@pinata/sdk"
 import { parseListOfItems } from "~/utils/parsers"
+import { toast } from "react-toastify"
 
 export interface EditFormValues {
    description: string
@@ -135,6 +136,7 @@ const Campaign:NextPage = () => {
          deletedItems.map(x => Number(x.id!))
       )
       await transaction?.wait()
+      toast("Succesfully updated!")
       setLoading(false)
    }
 
