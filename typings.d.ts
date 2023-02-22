@@ -7,7 +7,7 @@ export interface CampaignType {
    profile?: string
    address?: string
    owner?: string
-   balance?: BigNumber
+   balance?: string
    listOfItems: ListOfItem[]
 }
 

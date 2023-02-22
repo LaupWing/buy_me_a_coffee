@@ -11,6 +11,7 @@ import { useAppDispatch } from "~/store/hooks"
 import { fetchBuyMeACoffee } from "~/slices/contracts"
 import { BuyMeACoffee } from "../../backend/typechain-types"
 import { CampaignType } from "types"
+import { ethers } from "ethers"
 
 export interface CampaignContextInterface {
    loadCampaign: () => Promise<void>
@@ -49,7 +50,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
       const owner = await _contract.getOwner() 
       const description = await _contract.getDescription() 
       const listOfItems = await _contract.getListOfItems()
-      const balance = await _contract.getBalance()
+      const balance = ethers.utils.formatEther(await _contract.getBalance())
       
       setPrevRoute(router.query.address! as string)
       setCampaign({
