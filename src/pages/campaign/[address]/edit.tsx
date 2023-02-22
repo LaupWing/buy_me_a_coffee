@@ -39,6 +39,7 @@ export interface EditFormValues {
 const Campaign:NextPage = () => {
    const _campaign = useCampaign()
    const [deletedItems, setDeletedItems] = useState<ItemsType[]>([])
+   const [loading, setLoading] = useState<boolean>(false)
    const [addedItems, setAddedItems] = useState<ItemsType[]>([])
    const { account } = useAppSelector(state => state.web3)
 
@@ -106,6 +107,7 @@ const Campaign:NextPage = () => {
       name, 
       profile
    }) => {
+      setLoading(true)
       const response = await axios.post<{
          profileUri: PinataPinResponse
          thumbnailUri: PinataPinResponse
@@ -123,7 +125,7 @@ const Campaign:NextPage = () => {
          all_items, 
          all_values
       } = parseListOfItems(addedItems)
-      await _campaign.contract?.update(
+      const transaction = await _campaign.contract?.update(
          name,
          description,
          response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
@@ -132,11 +134,14 @@ const Campaign:NextPage = () => {
          all_values,
          deletedItems.map(x => Number(x.id!))
       )
+      const transactionReceipt = await transaction?.wait()
+      console.log(transactionReceipt?.events)
+      setLoading(false)
    }
 
    return (
       <div className="my-6 pb-10">
-         <LoadingOverlay message="Updating"/>
+         {loading && <LoadingOverlay message="Updating"/>}
          <div className="relative">
             <EditThumbnail
                control={control}
