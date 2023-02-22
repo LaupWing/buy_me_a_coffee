@@ -68,11 +68,10 @@ const Campaign:NextPage = () => {
    useEffect(() => {
       const init = async () =>{
          await _campaign.loadCampaign()
-         console.log(await _campaign.contract?.getBalance())
-         // console.log(ethers.utils.formatEther((await _campaign.contract!.getBalance()).toString()))
       }
       init()
    },[])
+   console.log(_campaign.campaign?.balance)
    
    useEffect(() => {
       if(_campaign.campaign){

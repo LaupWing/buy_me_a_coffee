@@ -49,6 +49,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
       const owner = await _contract.getOwner() 
       const description = await _contract.getDescription() 
       const listOfItems = await _contract.getListOfItems()
+      const balance = await _contract.getBalance()
       
       setPrevRoute(router.query.address! as string)
       setCampaign({
@@ -57,7 +58,8 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
          name,
          description,
          listOfItems,
-         owner
+         owner,
+         balance
       })
       setContract(_contract)
       setLoaded(true)
