@@ -123,7 +123,7 @@ const Campaign:NextPage = () => {
          all_items, 
          all_values
       } = parseListOfItems(addedItems)
-      _campaign.contract?.update(
+      await _campaign.contract?.update(
          name,
          description,
          response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
@@ -132,20 +132,11 @@ const Campaign:NextPage = () => {
          all_values,
          deletedItems.map(x => Number(x.id!))
       )
-      console.log({
-         name,
-         description,
-         profile: response.data.profileUri.IpfsHash || profile[0].dataURL!.replace(gateWay, ""),
-         thumbnail: response.data.thumbnailUri.IpfsHash || thumbnail[0].dataURL!.replace(gateWay, ""),
-         all_items,
-         all_values,
-         deletedItems: deletedItems.map(x => Number(x.id!))
-      })
    }
 
    return (
       <div className="my-6 pb-10">
-         <LoadingOverlay message="Loading"/>
+         <LoadingOverlay message="Updating"/>
          <div className="relative">
             <EditThumbnail
                control={control}
