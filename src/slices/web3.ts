@@ -51,6 +51,10 @@ export const loadWeb3 =
       const signer = provider.getSigner()
       const chainId = (await provider.getNetwork()).chainId?.toString()
 
+      window.ethereum.on('accountsChanged', function (accounts) {
+         window.location.reload()
+      })
+
       dispatch(setWeb3({
          chainId,
          signer,

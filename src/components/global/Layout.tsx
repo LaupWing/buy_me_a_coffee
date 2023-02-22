@@ -5,7 +5,7 @@ import {
    PropsWithChildren 
 } from "react"
 import { connectWallet, loadAccount, loadWeb3 } from "~/slices/web3"
-import { IconCoffee, IconSearch, LoadingOverlay } from "~/components"
+import { IconCoffee, IconSearch } from "~/components"
 import { useAppDispatch, useAppSelector } from "~/store/hooks"
 import { 
    fetchBuyMeACoffeeFactory, 
@@ -24,7 +24,6 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
       campaigns 
    } = useAppSelector(state => state.contracts)
    const [loaded, setLoaded] = useState(false)
-   const [loading, setLoading] = useState(false)
 
    useEffect(()=>{
       const initialize = async () =>{
@@ -61,7 +60,6 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
       <div className="w-screen h-screen overflow-y-auto fixed inset-0 bg-neutral-100 flex flex-col">
          {loaded ? (
             <>
-               {loading && <LoadingOverlay message="A new campaign is loading!"/>}
                <header className="bg-white container p-4 flex rounded-lg shadow mt-4">
                   <Link href={"/"}>
                      <div className="text-neutral-700">
