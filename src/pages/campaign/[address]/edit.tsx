@@ -134,8 +134,7 @@ const Campaign:NextPage = () => {
          all_values,
          deletedItems.map(x => Number(x.id!))
       )
-      const transactionReceipt = await transaction?.wait()
-      console.log(transactionReceipt?.events)
+      await transaction?.wait()
       setLoading(false)
    }
 
