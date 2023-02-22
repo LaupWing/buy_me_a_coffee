@@ -119,8 +119,8 @@ const Memo:FC<MemoProps> = ({
          </p>
          <ul>
             <Items 
-               value={Number(ethers.utils.formatEther(memo.items.cost))} 
-               items={memo.items.names}
+               cost={Number(ethers.utils.formatEther(memo.items.cost))} 
+               names={memo.items.names}
             />    
          </ul>
          <div className="flex flex-col p-4">
