@@ -72,7 +72,7 @@ export const CampaignProvider:FC<PropsWithChildren> = ({ children }) =>{
             loadCampaign,
             campaign,
             contract,
-            loaded
+            loaded,
          }}
       >
          {children}

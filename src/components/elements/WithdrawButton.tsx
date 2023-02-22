@@ -12,6 +12,8 @@ export const WithdrawButton = () => {
       setLoading(true)
       const transaction = await _campaign.contract?.withdraw()
       await transaction?.wait()
+      await _campaign.loadCampaign()
+
       setLoading(false)
       toast("Withdraw success!")
    }
