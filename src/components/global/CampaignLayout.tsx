@@ -17,8 +17,6 @@ export const CampaignLayout:FC<PropsWithChildren> = memo(({children}) => {
    const router = useRouter()
    const _campaign = useCampaign()
    const { account } = useAppSelector(state => state.web3)
-
-   console.log(router)
    
    const owner = _campaign.campaign && isOwner(account, _campaign?.campaign?.owner!)
 
