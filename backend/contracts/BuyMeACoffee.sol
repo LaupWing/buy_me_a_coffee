@@ -130,6 +130,13 @@ contract BuyMeACoffee {
       uint256 indexed timestamp,
       string indexed response
    );
+   event UpdatedCampaign (
+      uint256 indexed timestamp,
+      string indexed name,
+      string indexed description,
+      string thumbnail,
+      string profile
+   );
 
    Memo[] private memos;
    Items[] private listOfItems;
@@ -229,6 +236,14 @@ contract BuyMeACoffee {
       for(uint256 i; i < _deletedItems.length; i ++){
          removeItems(_deletedItems[i]);
       }
+
+      emit UpdatedCampaign(
+         block.timestamp, 
+         _name, 
+         _description, 
+         _thumbnail, 
+         _profile
+      );
    }
 
    function addItems(string[] memory names, uint256 cost) public onlyOwner{
