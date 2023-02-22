@@ -294,6 +294,10 @@ contract BuyMeACoffee {
       return itemsCount;
    }
 
+   function getBalance() public view returns (uint256){
+      return address(this).balance;
+   }
+
    function setResponse(uint256 index, string memory response) public onlyOwner {
       Memo storage memo = memos[index]; 
       memo.response = response;
