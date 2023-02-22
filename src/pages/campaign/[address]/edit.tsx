@@ -71,7 +71,6 @@ const Campaign:NextPage = () => {
       }
       init()
    },[])
-   console.log(_campaign.campaign?.balance)
    
    useEffect(() => {
       if(_campaign.campaign){
