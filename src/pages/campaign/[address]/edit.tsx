@@ -28,6 +28,7 @@ import { useAppSelector } from "~/store/hooks"
 import { PinataPinResponse } from "@pinata/sdk"
 import { parseListOfItems } from "~/utils/parsers"
 import { toast } from "react-toastify"
+import { ethers } from "ethers"
 
 export interface EditFormValues {
    description: string
@@ -67,6 +68,8 @@ const Campaign:NextPage = () => {
    useEffect(() => {
       const init = async () =>{
          await _campaign.loadCampaign()
+         console.log(await _campaign.contract?.getBalance())
+         // console.log(ethers.utils.formatEther((await _campaign.contract!.getBalance()).toString()))
       }
       init()
    },[])
