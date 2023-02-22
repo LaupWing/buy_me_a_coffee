@@ -2,7 +2,6 @@ import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 import { ImageListType } from "react-images-uploading"
-import { ethers } from "ethers"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 import { PinataPinResponse } from "@pinata/sdk"
@@ -20,7 +19,6 @@ import {
    Profile, 
    Thumbnail 
 } from "~/components"
-import { gateWay } from "~/utils/ipfs"
 
 export interface FormValues {
    description: string

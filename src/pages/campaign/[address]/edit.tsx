@@ -17,7 +17,8 @@ import {
    Field, 
    IconTrashcan, 
    IconUndo, 
-   Items 
+   Items, 
+   LoadingOverlay
 } from "~/components"
 import useCampaign from "~/hooks/useCampaign"
 import { gateWay } from "~/utils/ipfs"
@@ -144,6 +145,7 @@ const Campaign:NextPage = () => {
 
    return (
       <div className="my-6 pb-10">
+         <LoadingOverlay message="Loading"/>
          <div className="relative">
             <EditThumbnail
                control={control}
