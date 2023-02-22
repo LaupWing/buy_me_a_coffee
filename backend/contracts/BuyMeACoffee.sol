@@ -138,6 +138,10 @@ contract BuyMeACoffee {
       string profile
    );
 
+   event WithdrawEth (
+      uint256 indexed timestamp
+   );
+
    Memo[] private memos;
    Items[] private listOfItems;
    address payable private owner;
@@ -306,6 +310,7 @@ contract BuyMeACoffee {
 
    function withdraw() public onlyOwner{
       owner.transfer(address(this).balance);
+      emit WithdrawEth(block.timestamp);
    }
 }
  
