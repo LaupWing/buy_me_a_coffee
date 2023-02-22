@@ -15,6 +15,7 @@ import {
    EditProfile, 
    EditThumbnail, 
    Field, 
+   IconEthereum, 
    IconTrashcan, 
    IconUndo, 
    Items, 
@@ -142,7 +143,7 @@ const Campaign:NextPage = () => {
    }
 
    return (
-      <div className="my-6 pb-10">
+      <div className="my-6 pb-10 flex flex-col">
          {loading && <LoadingOverlay message="Updating"/>}
          <div className="relative">
             <EditThumbnail
@@ -195,6 +196,10 @@ const Campaign:NextPage = () => {
                <button className="btn">Submit</button>
             </form>
          </main>
+
+         <button className="mx-auto mt-10 bg-indigo-500 hover:bg-indigo-600 text-white shadow rounded uppercase font-bold w-44 py-1.5 text-xl tracking-wider flex items-center justify-center">
+            {_campaign.campaign?.balance} <IconEthereum className="ml-2"/>
+         </button>
       </div>
    )
 }
