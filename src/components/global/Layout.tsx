@@ -74,12 +74,13 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
                               size={30}
                            />
                            { alreadyRegistered ? (
-                              <button 
-                                 className="btn"
-                                 onClick={()=> dispatch(setInitialBuyMeACoffeeFactory())}
-                              >
-                                 My Coffees
-                              </button>
+                              <Link href={`/campaign`}>
+                                 <button 
+                                    className="btn"
+                                 >
+                                    My Coffees
+                                 </button>
+                              </Link>
                            ) :(
                               <Link href={"/create"}>
                                  <button 

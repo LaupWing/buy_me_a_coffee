@@ -14,6 +14,7 @@ contract BuyMeACoffeeFactory {
    address[] private deployedBuyMeCoffees;
    address superUser;
    mapping(address => bool) private registered;
+   mapping(address => address) private campaignToOwner;
    AggregatorV3Interface private priceFeed;
 
    modifier onlySuperUser(){
