@@ -37,7 +37,7 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
    }, [])
 
    const attachEvents = () =>{
-      buyMeACoffeeFactory?.on("BuyMeACoffeeCreated", async (e) => {
+      buyMeACoffeeFactory?.on("BuyMeACoffeeCreated", async (e:any) => {
          if(!campaigns.find(x => x.address === e)){
             
          }
