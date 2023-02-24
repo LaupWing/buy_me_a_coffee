@@ -21,7 +21,8 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
    const { 
       alreadyRegistered, 
       buyMeACoffeeFactory, 
-      campaigns 
+      campaigns,
+      myCampaignAddress
    } = useAppSelector(state => state.contracts)
    const [loaded, setLoaded] = useState(false)
 
@@ -74,7 +75,7 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
                               size={30}
                            />
                            { alreadyRegistered ? (
-                              <Link href={`/campaign`}>
+                              <Link href={`/campaign/${myCampaignAddress}`}>
                                  <button 
                                     className="btn"
                                  >
