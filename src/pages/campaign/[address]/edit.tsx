@@ -30,7 +30,7 @@ import { useAppSelector } from "~/store/hooks"
 import { PinataPinResponse } from "@pinata/sdk"
 import { parseListOfItems } from "~/utils/parsers"
 import { toast } from "react-toastify"
-import { ethers } from "ethers"
+import { useRouter } from "next/router"
 
 export interface EditFormValues {
    description: string
@@ -42,11 +42,13 @@ export interface EditFormValues {
 
 const Campaign:NextPage = () => {
    const _campaign = useCampaign()
+   const router = useRouter()
    const [deletedItems, setDeletedItems] = useState<ItemsType[]>([])
    const [loading, setLoading] = useState<boolean>(false)
    const [addedItems, setAddedItems] = useState<ItemsType[]>([])
    const { account } = useAppSelector(state => state.web3)
-
+   const { myCampaignAddress } = useAppSelector(state => state.contracts)
+   
    const { 
       register,
       control,
@@ -92,6 +94,10 @@ const Campaign:NextPage = () => {
       return <div>Loading..</div>
    }
 
+   if(router.query.address !== myCampaignAddress){
+      router.replace("/")
+   }
+   
    const addListOfItems = (listOfItems: ItemsType) => {
       const {listOfItems:prev} = getValues()
       setValue("listOfItems", [...prev, listOfItems])
