@@ -53,6 +53,7 @@ contract BuyMeACoffeeFactory {
       ));
       deployedBuyMeCoffees.push(newBuyMeACoffee);
       registered[msg.sender] = true;
+      campaignToOwner[msg.sender] = newBuyMeACoffee;
       emit BuyMeACoffeeCreated(newBuyMeACoffee);
    }
 
@@ -89,6 +90,10 @@ contract BuyMeACoffeeFactory {
 
    function updatePriceFeed (AggregatorV3Interface _priceFeed) public onlySuperUser{
       priceFeed = _priceFeed;
+   }
+
+   function getCampaignOfUser() public view returns(address){
+      return campaignToOwner[msg.sender];
    }
 }
 
