@@ -45,6 +45,9 @@ export const contractsSlice = createSlice({
       },
       setAlreadyRegistered(state, action:PayloadAction<boolean>){
          state.alreadyRegistered = action.payload
+      },
+      setCampaignAddress(state, action: PayloadAction<string>){
+         state.myCampaignAddress = action.payload
       }
    }
 })
@@ -140,7 +143,7 @@ export const setInitialBuyMeACoffeeFactory =
 
       if(isRegistered){
          const campaignAddress = await buyMeACoffeeFactory?.getCampaignOfUser()
-         console.log(campaignAddress)
+         dispatch(setCampaignAddress(campaignAddress!))
       }
    }
 
@@ -148,7 +151,8 @@ export const {
    setBuyMeACoffeeFactory,
    setAlreadyRegistered,
    setEthPrice,
-   setCampaigns
+   setCampaigns,
+   setCampaignAddress
 } = contractsSlice.actions
 
 
