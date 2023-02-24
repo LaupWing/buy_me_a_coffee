@@ -134,7 +134,7 @@ export const setInitialBuyMeACoffeeFactory =
    () => async (dispatch: Dispatch, getState: typeof store.getState) =>{
       const {buyMeACoffeeFactory} = getState().contracts
       
-      dispatch(setAlreadyRegistered(await buyMeACoffeeFactory?.getGetRegistered()!))
+      dispatch(setAlreadyRegistered(await buyMeACoffeeFactory?.getRegistered()!))
    }
 
 export const {

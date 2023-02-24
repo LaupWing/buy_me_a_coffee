@@ -65,7 +65,7 @@ contract BuyMeACoffeeFactory {
       return superUser;
    }
 
-   function getGetRegistered() public view returns (bool){
+   function getRegistered() public view returns (bool){
       return registered[msg.sender];
    }
 
