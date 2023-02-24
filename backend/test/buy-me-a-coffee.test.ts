@@ -210,6 +210,7 @@ interface Item {
             expect(memos[0].name).equal(name)
             expect(memos[0].message).equal(message)
             expect(memos[0].items_id.toString()).equal(itemsId)
+            expect(await buyMeACoffee.getBalance()).equal(firstSetOfItemsCost)
          })
 
          it("emits MemoCreated event after memo has been stored", async () => {
