@@ -139,7 +139,8 @@ export const setInitialBuyMeACoffeeFactory =
       dispatch(setAlreadyRegistered(isRegistered))
 
       if(isRegistered){
-
+         const campaignAddress = await buyMeACoffeeFactory?.getCampaignOfUser()
+         console.log(campaignAddress)
       }
    }
 
