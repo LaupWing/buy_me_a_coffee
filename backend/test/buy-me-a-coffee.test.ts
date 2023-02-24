@@ -61,6 +61,7 @@ interface Item {
          it("sets up starting values correctly", async () => {
             expect(await buyMeACoffeeFactory.getDeployedBuyMeACoffee()).to.have.members([buyMeACoffeeAddress])
             expect(await buyMeACoffeeFactory.getSuperUser()).equal(deployer)
+            expect(await buyMeACoffeeFactory.getCampaignOfUser()).equal(buyMeACoffee.address)
             expect(await buyMeACoffee.getName()).equal(buyMeACoffeeName)
             expect(await buyMeACoffee.getOwner()).equal(deployer)
             expect(await buyMeACoffeeFactory.getPriceFeed()).equal(mockV3Aggregator.address)
@@ -109,16 +110,8 @@ interface Item {
             await buyMeACoffee.setThumbnail("Thumbnail test2")
             expect(await buyMeACoffee.getThumbnail()).equal("Thumbnail test2")
          })
-
-      //    string memory _name, 
-      // string memory _description,
-      // string memory _profile, 
-      // string memory _thumbnail,
-      // string[][] memory _items,
-      // uint256[] memory _itemsValues,
-      // uint256[] memory _deletedItems
          
-         it.only("allows owner to update campaign", async () => {
+         it("allows owner to update campaign", async () => {
             const updatedName = "Updated Name"
             const updatedDescription = "Updated description" 
             const updatedProfile = "updated_profile" 
