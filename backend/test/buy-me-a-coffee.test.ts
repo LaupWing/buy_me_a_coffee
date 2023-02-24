@@ -110,6 +110,38 @@ interface Item {
             expect(await buyMeACoffee.getThumbnail()).equal("Thumbnail test2")
          })
 
+      //    string memory _name, 
+      // string memory _description,
+      // string memory _profile, 
+      // string memory _thumbnail,
+      // string[][] memory _items,
+      // uint256[] memory _itemsValues,
+      // uint256[] memory _deletedItems
+         
+         it.only("allows owner to update campaign", async () => {
+            const updatedName = "Updated Name"
+            const updatedDescription = "Updated description" 
+            const updatedProfile = "updated_profile" 
+            const updatedThumbnail = "updated_thumbnail" 
+
+            await buyMeACoffee.update(
+               updatedName,
+               updatedDescription,
+               updatedProfile,
+               updatedThumbnail,
+               [["cookie"]],
+               [1],
+               [0]
+            )
+            expect((await buyMeACoffee.getListOfItems()).map(x => x.id.toString())).not.include("0")
+            expect((await buyMeACoffee.getListOfItems()).length).equal(3)
+            expect(await buyMeACoffee.getName()).equal(updatedName)
+            expect(await buyMeACoffee.getDescription()).equal(updatedDescription)
+            expect(await buyMeACoffee.getProfile()).equal(updatedProfile)
+            expect(await buyMeACoffee.getThumbnail()).equal(updatedThumbnail)
+            
+         })
+
          it("can get the latest price in dollars", async () =>{
             const latestPrice = (await buyMeACoffeeFactory.getLatestPrice()).toString() 
             const decimals = (await buyMeACoffeeFactory.getDecimals()).toString()
