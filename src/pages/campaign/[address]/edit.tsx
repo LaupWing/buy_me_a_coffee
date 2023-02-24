@@ -31,6 +31,7 @@ import { PinataPinResponse } from "@pinata/sdk"
 import { parseListOfItems } from "~/utils/parsers"
 import { toast } from "react-toastify"
 import { useRouter } from "next/router"
+import Link from "next/link"
 
 export interface EditFormValues {
    description: string
@@ -97,7 +98,7 @@ const Campaign:NextPage = () => {
    if(router.query.address !== myCampaignAddress){
       router.replace("/")
    }
-   
+
    const addListOfItems = (listOfItems: ItemsType) => {
       const {listOfItems:prev} = getValues()
       setValue("listOfItems", [...prev, listOfItems])
@@ -153,6 +154,16 @@ const Campaign:NextPage = () => {
       <div className="my-6 pb-10 flex flex-col">
          {loading && <LoadingOverlay message="Updating"/>}
          <div className="relative">
+            <Link
+               href={{
+                  pathname: `/campaign/[address]`,
+                  query: {
+                     address: router.query.address
+                  }
+               }}
+            >
+               <button className="absolute top-3 left-2 btn z-50">Campaign</button>
+            </Link>
             <EditThumbnail
                control={control}
             />
