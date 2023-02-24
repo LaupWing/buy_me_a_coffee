@@ -14,7 +14,8 @@ export interface InitialState {
    buyMeACoffeeFactory: BuyMeACoffeeFactory|null,
    alreadyRegistered: boolean,
    campaigns: CampaignType[],
-   ethPrice: number
+   ethPrice: number,
+   myCampaignAddress: null | string
 }
 
 const initialState:InitialState = {
@@ -22,7 +23,8 @@ const initialState:InitialState = {
    buyMeACoffeeFactory: null,
    alreadyRegistered: false,
    campaigns: [],
-   ethPrice: 0
+   ethPrice: 0,
+   myCampaignAddress: null
 }
 
 export const contractsSlice = createSlice({
@@ -133,8 +135,12 @@ export const fetchCampaigns =
 export const setInitialBuyMeACoffeeFactory = 
    () => async (dispatch: Dispatch, getState: typeof store.getState) =>{
       const {buyMeACoffeeFactory} = getState().contracts
-      
-      dispatch(setAlreadyRegistered(await buyMeACoffeeFactory?.getRegistered()!))
+      const isRegistered = await buyMeACoffeeFactory?.getRegistered()!
+      dispatch(setAlreadyRegistered(isRegistered))
+
+      if(isRegistered){
+
+      }
    }
 
 export const {
