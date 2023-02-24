@@ -66,7 +66,7 @@ interface Item {
             expect(await buyMeACoffeeFactory.getPriceFeed()).equal(mockV3Aggregator.address)
             expect(await buyMeACoffee.getProfile()).equal(buyMeACoffeeProfile)
             expect(await buyMeACoffee.getThumbnail()).equal(buyMeACoffeeThumbnail)
-            expect(await buyMeACoffeeFactory.getGetRegistered()).to.be.true
+            expect(await buyMeACoffeeFactory.getRegistered()).to.be.true
          })
 
          it("reverts with custom error when deployer wants to create another campaign", async () => {
