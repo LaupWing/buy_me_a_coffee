@@ -7,7 +7,7 @@ export const networkConfig = {
    5: {
       name: "goerli",
       ethUsdPriceFeed: "",
-      callbackGasLimit: ""
+      callbackGasLimit: "500000"
    }
 }
 
