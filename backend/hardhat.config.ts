@@ -25,6 +25,13 @@ const config: HardhatUserConfig = {
          goerli: ETHERSCAN_API_KEY  
       } 
    },
+   gasReporter:{
+      enabled: true,
+      currency: "USD",
+      outputFile: "gas-report.txt",
+      noColors: true,
+      coinmarketcap: process.env.COINMARKETCAP_API_KEY
+   },
    namedAccounts:{
       deployer:{
          default: 0,
