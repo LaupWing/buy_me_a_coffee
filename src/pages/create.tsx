@@ -98,7 +98,7 @@ const Create:NextPage = () => {
       toast(`Created at ${address}`)
       dispatch(setAlreadyRegistered(true))
       dispatch(setCampaignAddress(address))
-      router.push("/")
+      router.push(`/campaign/${address}`)
       setCreating(false)
    }
 

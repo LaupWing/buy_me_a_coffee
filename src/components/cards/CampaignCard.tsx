@@ -19,11 +19,13 @@ export const CampaignCard:FC<{campaign: CampaignType}> = ({ campaign }) => {
                <img 
                   src={gateWay + campaign.thumbnail} 
                   alt="thumbnail" 
+                  crossOrigin="anonymous"
                   className="h-full w-full object-center object-cover"
                />
                <img 
                   src={gateWay + campaign.profile} 
                   alt="profile" 
+                  crossOrigin="anonymous"
                   className="absolute object-cover transform translate-y-1/3 border-4 border-neutral-100 w-20 h-20 rounded-full bottom-0 right-5"
                />
             </div>
