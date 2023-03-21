@@ -140,7 +140,7 @@ export const setInitialBuyMeACoffeeFactory =
       const {buyMeACoffeeFactory} = getState().contracts
       const isRegistered = await buyMeACoffeeFactory?.getRegistered()!
       dispatch(setAlreadyRegistered(isRegistered))
-
+      
       if(isRegistered){
          const campaignAddress = await buyMeACoffeeFactory?.getCampaignOfUser()
          dispatch(setCampaignAddress(campaignAddress!))
