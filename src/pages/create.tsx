@@ -143,7 +143,10 @@ const Create:NextPage = () => {
                      render={({field}) => (
                         <>
                            {field.value.map((items, i) => (
-                              <div className="border-2 rounded divide-x-2 items-stretch flex">
+                              <div 
+                                 className="border-2 rounded divide-x-2 items-stretch flex"
+                                 key={i}
+                              >
                                  <Items 
                                     {...items}
                                  />
