@@ -101,8 +101,8 @@ const Create:NextPage = () => {
          dispatch(setAlreadyRegistered(true))
          dispatch(setCampaignAddress(address))
          router.push(`/campaign/${address}`)
-      } catch(e:any) {
-         toast.error(e.message)
+      } catch(e) {
+         toast.error("Something went wrong")
       }
       setCreating(false)
    }
