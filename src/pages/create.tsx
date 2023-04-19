@@ -116,7 +116,7 @@ const Create:NextPage = () => {
    }
    
    return (
-      <div className="mt-10 container relative bg-white rounded-md overflow-hidden shadow">
+      <div className="my-10 container flex-shrink-0 relative bg-white rounded-md overflow-hidden shadow">
          {creating && <div className="bg-white/90 absolute inset-0 z-50 flex items-center justify-center">
             <HashLoader color="#FDE047" size={70}/>
          </div>}

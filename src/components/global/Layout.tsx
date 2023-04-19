@@ -58,7 +58,7 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
    }, [account])
 
    return (
-      <div className="w-screen h-screen overflow-y-auto fixed inset-0 bg-neutral-100 flex flex-col">
+      <div className="w-screen h-screen overflow-y-auto min-h-0 fixed inset-0 bg-neutral-100 flex flex-col">
          {loaded ? (
             <>
                <header className="bg-white container p-4 flex rounded-lg shadow mt-4">
