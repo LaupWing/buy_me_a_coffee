@@ -51,7 +51,7 @@ export const AddItemsForm:FC<AddItemsFormProps> = ({ addListOfItems }) => {
                <IconEthereum className="text-gray-300 mr-2" size={30}/>
                <div className="text-2xl relative flex items-center">
                   <input
-                     step=".01"
+                     step=".001"
                      type="number"
                      placeholder="Price"
                      className="outline-none border-none focus:ring-0 my-auto mr-auto"
