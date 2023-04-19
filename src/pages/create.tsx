@@ -69,36 +69,41 @@ const Create:NextPage = () => {
       profile
    }) => {
       setCreating(true)
-      const {all_items, all_values} = parseListOfItems(listOfItems)
-      const response = await axios.post<{
-         profileUri: PinataPinResponse
-         thumbnailUri: PinataPinResponse
-      }>("/api/pinata", {
-         profile: profile[0].file,
-         thumbnail: thumbnail[0].file,
-         account
-      }, {
-         headers: {
-            "Content-Type": "multipart/form-data",
-         },
-      })
-      const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
-         name, 
-         description, 
-         response.data.profileUri.IpfsHash,
-         response.data.thumbnailUri.IpfsHash,
-         all_items,
-         all_values
-      )
+      try {
 
-      const transactionReceipt = await transaction?.wait()
-      const event = transactionReceipt?.events!.find(x => x.event === "BuyMeACoffeeCreated")
-      const address = event?.args![0]
-      await dispatch(fetchCampaigns())
-      toast(`Created at ${address}`)
-      dispatch(setAlreadyRegistered(true))
-      dispatch(setCampaignAddress(address))
-      router.push(`/campaign/${address}`)
+         const {all_items, all_values} = parseListOfItems(listOfItems)
+         const response = await axios.post<{
+            profileUri: PinataPinResponse
+            thumbnailUri: PinataPinResponse
+         }>("/api/pinata", {
+            profile: profile[0].file,
+            thumbnail: thumbnail[0].file,
+            account
+         }, {
+            headers: {
+               "Content-Type": "multipart/form-data",
+            },
+         })
+         const transaction = await buyMeACoffeeFactory?.createBuyMeACoffee(
+            name, 
+            description, 
+            response.data.profileUri.IpfsHash,
+            response.data.thumbnailUri.IpfsHash,
+            all_items,
+            all_values
+         )
+   
+         const transactionReceipt = await transaction?.wait()
+         const event = transactionReceipt?.events!.find(x => x.event === "BuyMeACoffeeCreated")
+         const address = event?.args![0]
+         await dispatch(fetchCampaigns())
+         toast(`Created at ${address}`)
+         dispatch(setAlreadyRegistered(true))
+         dispatch(setCampaignAddress(address))
+         router.push(`/campaign/${address}`)
+      } catch(e:any) {
+         toast.error(e.message)
+      }
       setCreating(false)
    }
 
